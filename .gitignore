@@ -1,0 +1,8 @@
+*.o
+*.out.o
+*.out
+*/kernel/kernel
+_kernel
+bootloader
+os.img
+*.d
