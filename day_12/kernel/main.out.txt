@@ -10,13 +10,13 @@ Disassembly of section .text:
   280003:	89 e5                	mov    %esp,%ebp
   280005:	57                   	push   %edi
   280006:	56                   	push   %esi
-  280007:	8d bd 36 fb ff ff    	lea    -0x4ca(%ebp),%edi
+  280007:	8d bd 36 fe ff ff    	lea    -0x1ca(%ebp),%edi
   28000d:	53                   	push   %ebx
   28000e:	bb 32 00 00 00       	mov    $0x32,%ebx
   280013:	89 d9                	mov    %ebx,%ecx
-  280015:	81 ec 8c 05 00 00    	sub    $0x58c,%esp
+  280015:	81 ec 8c 02 00 00    	sub    $0x28c,%esp
   28001b:	f3 aa                	rep stos %al,%es:(%edi)
-  28001d:	8d bd bc fa ff ff    	lea    -0x544(%ebp),%edi
+  28001d:	8d bd bc fd ff ff    	lea    -0x244(%ebp),%edi
   280023:	89 cb                	mov    %ecx,%ebx
   280025:	e8 61 0f 00 00       	call   280f8b <init_gdtidt>
   28002a:	e8 9f 10 00 00       	call   2810ce <init_pic>
@@ -26,23 +26,23 @@ Disassembly of section .text:
   28003b:	b9 04 00 00 00       	mov    $0x4,%ecx
   280040:	83 ec 0c             	sub    $0xc,%esp
   280043:	f3 ab                	rep stos %eax,%es:(%edi)
-  280045:	8d 85 bc fa ff ff    	lea    -0x544(%ebp),%eax
-  28004b:	8d bd 16 fb ff ff    	lea    -0x4ea(%ebp),%edi
+  280045:	8d 85 bc fd ff ff    	lea    -0x244(%ebp),%eax
+  28004b:	8d bd 16 fe ff ff    	lea    -0x1ea(%ebp),%edi
   280051:	50                   	push   %eax
   280052:	e8 c9 15 00 00       	call   281620 <enable_mouse>
   280057:	89 d8                	mov    %ebx,%eax
   280059:	b9 08 00 00 00       	mov    $0x8,%ecx
   28005e:	83 c4 0c             	add    $0xc,%esp
   280061:	f3 ab                	rep stos %eax,%es:(%edi)
-  280063:	8d bd 68 fb ff ff    	lea    -0x498(%ebp),%edi
+  280063:	8d bd 68 fe ff ff    	lea    -0x198(%ebp),%edi
   280069:	b9 20 00 00 00       	mov    $0x20,%ecx
   28006e:	f3 ab                	rep stos %eax,%es:(%edi)
-  280070:	8d 85 16 fb ff ff    	lea    -0x4ea(%ebp),%eax
+  280070:	8d 85 16 fe ff ff    	lea    -0x1ea(%ebp),%eax
   280076:	50                   	push   %eax
   280077:	6a 20                	push   $0x20
   280079:	68 18 48 28 00       	push   $0x284818
   28007e:	e8 9e 14 00 00       	call   281521 <fifo8_init>
-  280083:	8d 85 68 fb ff ff    	lea    -0x498(%ebp),%eax
+  280083:	8d 85 68 fe ff ff    	lea    -0x198(%ebp),%eax
   280089:	83 c4 0c             	add    $0xc,%esp
   28008c:	50                   	push   %eax
   28008d:	68 80 00 00 00       	push   $0x80
@@ -91,12 +91,12 @@ Disassembly of section .text:
   280139:	50                   	push   %eax
   28013a:	e8 92 1b 00 00       	call   281cd1 <sheet_alloc>
   28013f:	89 34 24             	mov    %esi,(%esp)
-  280142:	89 85 94 fa ff ff    	mov    %eax,-0x56c(%ebp)
+  280142:	89 85 94 fd ff ff    	mov    %eax,-0x26c(%ebp)
   280148:	e8 84 1b 00 00       	call   281cd1 <sheet_alloc>
   28014d:	89 34 24             	mov    %esi,(%esp)
-  280150:	89 85 80 fa ff ff    	mov    %eax,-0x580(%ebp)
+  280150:	89 85 80 fd ff ff    	mov    %eax,-0x280(%ebp)
   280156:	e8 76 1b 00 00       	call   281cd1 <sheet_alloc>
-  28015b:	89 85 7c fa ff ff    	mov    %eax,-0x584(%ebp)
+  28015b:	89 85 7c fd ff ff    	mov    %eax,-0x284(%ebp)
   280161:	58                   	pop    %eax
   280162:	0f bf 05 f6 0f 00 00 	movswl 0xff6,%eax
   280169:	5a                   	pop    %edx
@@ -110,30 +110,30 @@ Disassembly of section .text:
   280181:	68 80 3e 00 00       	push   $0x3e80
   280186:	68 00 00 3c 00       	push   $0x3c0000
   28018b:	89 c6                	mov    %eax,%esi
-  28018d:	8d bd e8 fb ff ff    	lea    -0x418(%ebp),%edi
+  28018d:	8d bd e8 fe ff ff    	lea    -0x118(%ebp),%edi
   280193:	e8 4a 1a 00 00       	call   281be2 <memman_alloc_4k>
-  280198:	89 85 88 fa ff ff    	mov    %eax,-0x578(%ebp)
+  280198:	89 85 88 fd ff ff    	mov    %eax,-0x278(%ebp)
   28019e:	0f bf 05 f6 0f 00 00 	movswl 0xff6,%eax
   2801a5:	c7 04 24 ff ff ff ff 	movl   $0xffffffff,(%esp)
   2801ac:	50                   	push   %eax
   2801ad:	0f bf 05 f4 0f 00 00 	movswl 0xff4,%eax
   2801b4:	50                   	push   %eax
   2801b5:	56                   	push   %esi
-  2801b6:	ff b5 94 fa ff ff    	pushl  -0x56c(%ebp)
+  2801b6:	ff b5 94 fd ff ff    	pushl  -0x26c(%ebp)
   2801bc:	e8 77 1b 00 00       	call   281d38 <sheet_setbuf>
   2801c1:	83 c4 14             	add    $0x14,%esp
   2801c4:	6a 63                	push   $0x63
   2801c6:	6a 10                	push   $0x10
   2801c8:	6a 10                	push   $0x10
   2801ca:	57                   	push   %edi
-  2801cb:	ff b5 80 fa ff ff    	pushl  -0x580(%ebp)
+  2801cb:	ff b5 80 fd ff ff    	pushl  -0x280(%ebp)
   2801d1:	e8 62 1b 00 00       	call   281d38 <sheet_setbuf>
   2801d6:	83 c4 14             	add    $0x14,%esp
   2801d9:	6a ff                	push   $0xffffffff
   2801db:	6a 64                	push   $0x64
   2801dd:	68 a0 00 00 00       	push   $0xa0
-  2801e2:	ff b5 88 fa ff ff    	pushl  -0x578(%ebp)
-  2801e8:	ff b5 7c fa ff ff    	pushl  -0x584(%ebp)
+  2801e2:	ff b5 88 fd ff ff    	pushl  -0x278(%ebp)
+  2801e8:	ff b5 7c fd ff ff    	pushl  -0x284(%ebp)
   2801ee:	e8 45 1b 00 00       	call   281d38 <sheet_setbuf>
   2801f3:	0f bf 05 f6 0f 00 00 	movswl 0xff6,%eax
   2801fa:	83 c4 18             	add    $0x18,%esp
@@ -156,7 +156,7 @@ Disassembly of section .text:
   28022e:	68 80 23 28 00       	push   $0x282380
   280233:	6a 64                	push   $0x64
   280235:	68 a0 00 00 00       	push   $0xa0
-  28023a:	ff b5 88 fa ff ff    	pushl  -0x578(%ebp)
+  28023a:	ff b5 88 fd ff ff    	pushl  -0x278(%ebp)
   280240:	e8 48 0a 00 00       	call   280c8d <make_window8>
   280245:	83 c4 18             	add    $0x18,%esp
   280248:	68 87 23 28 00       	push   $0x282387
@@ -164,7 +164,7 @@ Disassembly of section .text:
   28024f:	6a 1c                	push   $0x1c
   280251:	6a 18                	push   $0x18
   280253:	68 a0 00 00 00       	push   $0xa0
-  280258:	ff b5 88 fa ff ff    	pushl  -0x578(%ebp)
+  280258:	ff b5 88 fd ff ff    	pushl  -0x278(%ebp)
   28025e:	e8 57 0c 00 00       	call   280eba <putfonts8_asc>
   280263:	83 c4 18             	add    $0x18,%esp
   280266:	68 91 23 28 00       	push   $0x282391
@@ -172,12 +172,12 @@ Disassembly of section .text:
   28026d:	6a 2c                	push   $0x2c
   28026f:	6a 18                	push   $0x18
   280271:	68 a0 00 00 00       	push   $0xa0
-  280276:	ff b5 88 fa ff ff    	pushl  -0x578(%ebp)
+  280276:	ff b5 88 fd ff ff    	pushl  -0x278(%ebp)
   28027c:	e8 39 0c 00 00       	call   280eba <putfonts8_asc>
   280281:	83 c4 1c             	add    $0x1c,%esp
   280284:	6a 00                	push   $0x0
   280286:	6a 00                	push   $0x0
-  280288:	ff b5 94 fa ff ff    	pushl  -0x56c(%ebp)
+  280288:	ff b5 94 fd ff ff    	pushl  -0x26c(%ebp)
   28028e:	e8 c6 1e 00 00       	call   282159 <sheet_slide>
   280293:	0f bf 05 f4 0f 00 00 	movswl 0xff4,%eax
   28029a:	b9 02 00 00 00       	mov    $0x2,%ecx
@@ -185,35 +185,35 @@ Disassembly of section .text:
   2802a2:	83 e8 10             	sub    $0x10,%eax
   2802a5:	99                   	cltd   
   2802a6:	f7 f9                	idiv   %ecx
-  2802a8:	89 85 90 fa ff ff    	mov    %eax,-0x570(%ebp)
+  2802a8:	89 85 90 fd ff ff    	mov    %eax,-0x270(%ebp)
   2802ae:	0f bf 05 f6 0f 00 00 	movswl 0xff6,%eax
   2802b5:	83 e8 2c             	sub    $0x2c,%eax
   2802b8:	99                   	cltd   
   2802b9:	f7 f9                	idiv   %ecx
   2802bb:	50                   	push   %eax
-  2802bc:	ff b5 90 fa ff ff    	pushl  -0x570(%ebp)
-  2802c2:	ff b5 80 fa ff ff    	pushl  -0x580(%ebp)
-  2802c8:	89 85 8c fa ff ff    	mov    %eax,-0x574(%ebp)
+  2802bc:	ff b5 90 fd ff ff    	pushl  -0x270(%ebp)
+  2802c2:	ff b5 80 fd ff ff    	pushl  -0x280(%ebp)
+  2802c8:	89 85 8c fd ff ff    	mov    %eax,-0x274(%ebp)
   2802ce:	e8 86 1e 00 00       	call   282159 <sheet_slide>
   2802d3:	83 c4 0c             	add    $0xc,%esp
   2802d6:	6a 48                	push   $0x48
   2802d8:	6a 50                	push   $0x50
-  2802da:	ff b5 7c fa ff ff    	pushl  -0x584(%ebp)
+  2802da:	ff b5 7c fd ff ff    	pushl  -0x284(%ebp)
   2802e0:	e8 74 1e 00 00       	call   282159 <sheet_slide>
   2802e5:	59                   	pop    %ecx
   2802e6:	5f                   	pop    %edi
   2802e7:	6a 00                	push   $0x0
-  2802e9:	ff b5 94 fa ff ff    	pushl  -0x56c(%ebp)
+  2802e9:	ff b5 94 fd ff ff    	pushl  -0x26c(%ebp)
   2802ef:	e8 7c 1d 00 00       	call   282070 <sheet_updown>
   2802f4:	58                   	pop    %eax
   2802f5:	5a                   	pop    %edx
   2802f6:	6a 01                	push   $0x1
-  2802f8:	ff b5 7c fa ff ff    	pushl  -0x584(%ebp)
+  2802f8:	ff b5 7c fd ff ff    	pushl  -0x284(%ebp)
   2802fe:	e8 6d 1d 00 00       	call   282070 <sheet_updown>
   280303:	59                   	pop    %ecx
   280304:	5f                   	pop    %edi
   280305:	6a 02                	push   $0x2
-  280307:	ff b5 80 fa ff ff    	pushl  -0x580(%ebp)
+  280307:	ff b5 80 fd ff ff    	pushl  -0x280(%ebp)
   28030d:	e8 5e 1d 00 00       	call   282070 <sheet_updown>
   280312:	58                   	pop    %eax
   280313:	0f bf 05 f4 0f 00 00 	movswl 0xff4,%eax
@@ -249,13 +249,13 @@ Disassembly of section .text:
   280370:	e8 f8 14 00 00       	call   28186d <memman_total>
   280375:	c1 e8 0a             	shr    $0xa,%eax
   280378:	50                   	push   %eax
-  280379:	8d 85 36 fb ff ff    	lea    -0x4ca(%ebp),%eax
+  280379:	8d 85 36 fe ff ff    	lea    -0x1ca(%ebp),%eax
   28037f:	53                   	push   %ebx
   280380:	68 ac 23 28 00       	push   $0x2823ac
-  280385:	8d 9d cc fa ff ff    	lea    -0x534(%ebp),%ebx
+  280385:	8d 9d cc fd ff ff    	lea    -0x234(%ebp),%ebx
   28038b:	50                   	push   %eax
   28038c:	e8 bb 10 00 00       	call   28144c <sprintf>
-  280391:	8d 85 36 fb ff ff    	lea    -0x4ca(%ebp),%eax
+  280391:	8d 85 36 fe ff ff    	lea    -0x1ca(%ebp),%eax
   280397:	83 c4 18             	add    $0x18,%esp
   28039a:	50                   	push   %eax
   28039b:	0f bf 05 f4 0f 00 00 	movswl 0xff4,%eax
@@ -271,9 +271,9 @@ Disassembly of section .text:
   2803bb:	50                   	push   %eax
   2803bc:	6a 00                	push   $0x0
   2803be:	6a 00                	push   $0x0
-  2803c0:	ff b5 94 fa ff ff    	pushl  -0x56c(%ebp)
+  2803c0:	ff b5 94 fd ff ff    	pushl  -0x26c(%ebp)
   2803c6:	e8 6c 1c 00 00       	call   282037 <sheet_refresh>
-  2803cb:	8d 85 a4 fa ff ff    	lea    -0x55c(%ebp),%eax
+  2803cb:	8d 85 a4 fd ff ff    	lea    -0x25c(%ebp),%eax
   2803d1:	83 c4 1c             	add    $0x1c,%esp
   2803d4:	50                   	push   %eax
   2803d5:	6a 08                	push   $0x8
@@ -291,16 +291,16 @@ Disassembly of section .text:
   2803f2:	68 e8 03 00 00       	push   $0x3e8
   2803f7:	57                   	push   %edi
   2803f8:	e8 b1 1e 00 00       	call   2822ae <timer_settime>
-  2803fd:	8d 95 e4 fa ff ff    	lea    -0x51c(%ebp),%edx
-  280403:	8d 85 ac fa ff ff    	lea    -0x554(%ebp),%eax
+  2803fd:	8d 95 e4 fd ff ff    	lea    -0x21c(%ebp),%edx
+  280403:	8d 85 ac fd ff ff    	lea    -0x254(%ebp),%eax
   280409:	83 c4 0c             	add    $0xc,%esp
   28040c:	50                   	push   %eax
   28040d:	6a 08                	push   $0x8
   28040f:	52                   	push   %edx
-  280410:	89 95 84 fa ff ff    	mov    %edx,-0x57c(%ebp)
+  280410:	89 95 84 fd ff ff    	mov    %edx,-0x27c(%ebp)
   280416:	e8 06 11 00 00       	call   281521 <fifo8_init>
   28041b:	e8 20 1e 00 00       	call   282240 <timer_alloc>
-  280420:	8b 95 84 fa ff ff    	mov    -0x57c(%ebp),%edx
+  280420:	8b 95 84 fd ff ff    	mov    -0x27c(%ebp),%edx
   280426:	83 c4 0c             	add    $0xc,%esp
   280429:	89 c7                	mov    %eax,%edi
   28042b:	6a 01                	push   $0x1
@@ -311,9 +311,9 @@ Disassembly of section .text:
   280435:	5a                   	pop    %edx
   280436:	68 2c 01 00 00       	push   $0x12c
   28043b:	57                   	push   %edi
-  28043c:	8d bd fc fa ff ff    	lea    -0x504(%ebp),%edi
+  28043c:	8d bd fc fd ff ff    	lea    -0x204(%ebp),%edi
   280442:	e8 67 1e 00 00       	call   2822ae <timer_settime>
-  280447:	8d 85 b4 fa ff ff    	lea    -0x54c(%ebp),%eax
+  280447:	8d 85 b4 fd ff ff    	lea    -0x24c(%ebp),%eax
   28044d:	83 c4 0c             	add    $0xc,%esp
   280450:	50                   	push   %eax
   280451:	6a 08                	push   $0x8
@@ -321,7 +321,7 @@ Disassembly of section .text:
   280454:	e8 c8 10 00 00       	call   281521 <fifo8_init>
   280459:	e8 e2 1d 00 00       	call   282240 <timer_alloc>
   28045e:	83 c4 0c             	add    $0xc,%esp
-  280461:	89 85 84 fa ff ff    	mov    %eax,-0x57c(%ebp)
+  280461:	89 85 84 fd ff ff    	mov    %eax,-0x27c(%ebp)
   280467:	6a 01                	push   $0x1
   280469:	57                   	push   %edi
   28046a:	50                   	push   %eax
@@ -329,11 +329,11 @@ Disassembly of section .text:
   280470:	59                   	pop    %ecx
   280471:	5f                   	pop    %edi
   280472:	6a 32                	push   $0x32
-  280474:	ff b5 84 fa ff ff    	pushl  -0x57c(%ebp)
-  28047a:	8d bd 36 fb ff ff    	lea    -0x4ca(%ebp),%edi
+  280474:	ff b5 84 fd ff ff    	pushl  -0x27c(%ebp)
+  28047a:	8d bd 36 fe ff ff    	lea    -0x1ca(%ebp),%edi
   280480:	e8 29 1e 00 00       	call   2822ae <timer_settime>
   280485:	83 c4 10             	add    $0x10,%esp
-  280488:	89 9d 78 fa ff ff    	mov    %ebx,-0x588(%ebp)
+  280488:	89 9d 78 fd ff ff    	mov    %ebx,-0x288(%ebp)
   28048e:	50                   	push   %eax
   28048f:	ff 35 40 48 28 00    	pushl  0x284840
   280495:	68 c4 23 28 00       	push   $0x2823c4
@@ -346,7 +346,7 @@ Disassembly of section .text:
   2804a9:	6a 18                	push   $0x18
   2804ab:	6a 08                	push   $0x8
   2804ad:	68 a0 00 00 00       	push   $0xa0
-  2804b2:	ff b5 88 fa ff ff    	pushl  -0x578(%ebp)
+  2804b2:	ff b5 88 fd ff ff    	pushl  -0x278(%ebp)
   2804b8:	e8 87 05 00 00       	call   280a44 <boxfill8>
   2804bd:	83 c4 18             	add    $0x18,%esp
   2804c0:	57                   	push   %edi
@@ -354,14 +354,14 @@ Disassembly of section .text:
   2804c3:	6a 3c                	push   $0x3c
   2804c5:	6a 18                	push   $0x18
   2804c7:	68 a0 00 00 00       	push   $0xa0
-  2804cc:	ff b5 88 fa ff ff    	pushl  -0x578(%ebp)
+  2804cc:	ff b5 88 fd ff ff    	pushl  -0x278(%ebp)
   2804d2:	e8 e3 09 00 00       	call   280eba <putfonts8_asc>
   2804d7:	83 c4 14             	add    $0x14,%esp
   2804da:	6a 4c                	push   $0x4c
   2804dc:	6a 68                	push   $0x68
   2804de:	6a 3c                	push   $0x3c
   2804e0:	6a 18                	push   $0x18
-  2804e2:	ff b5 7c fa ff ff    	pushl  -0x584(%ebp)
+  2804e2:	ff b5 7c fd ff ff    	pushl  -0x284(%ebp)
   2804e8:	e8 4a 1b 00 00       	call   282037 <sheet_refresh>
   2804ed:	83 c4 20             	add    $0x20,%esp
   2804f0:	e8 cd 03 00 00       	call   2808c2 <io_cli>
@@ -373,18 +373,18 @@ Disassembly of section .text:
   28050b:	e8 bc 10 00 00       	call   2815cc <fifo8_status>
   280510:	01 c3                	add    %eax,%ebx
   280512:	58                   	pop    %eax
-  280513:	ff b5 78 fa ff ff    	pushl  -0x588(%ebp)
+  280513:	ff b5 78 fd ff ff    	pushl  -0x288(%ebp)
   280519:	e8 ae 10 00 00       	call   2815cc <fifo8_status>
   28051e:	01 c3                	add    %eax,%ebx
-  280520:	8d 85 e4 fa ff ff    	lea    -0x51c(%ebp),%eax
+  280520:	8d 85 e4 fd ff ff    	lea    -0x21c(%ebp),%eax
   280526:	89 04 24             	mov    %eax,(%esp)
   280529:	e8 9e 10 00 00       	call   2815cc <fifo8_status>
   28052e:	01 d8                	add    %ebx,%eax
-  280530:	8d 9d fc fa ff ff    	lea    -0x504(%ebp),%ebx
-  280536:	89 85 74 fa ff ff    	mov    %eax,-0x58c(%ebp)
+  280530:	8d 9d fc fd ff ff    	lea    -0x204(%ebp),%ebx
+  280536:	89 85 74 fd ff ff    	mov    %eax,-0x28c(%ebp)
   28053c:	89 1c 24             	mov    %ebx,(%esp)
   28053f:	e8 88 10 00 00       	call   2815cc <fifo8_status>
-  280544:	8b 8d 74 fa ff ff    	mov    -0x58c(%ebp),%ecx
+  280544:	8b 8d 74 fd ff ff    	mov    -0x28c(%ebp),%ecx
   28054a:	83 c4 10             	add    $0x10,%esp
   28054d:	01 c1                	add    %eax,%ecx
   28054f:	75 0a                	jne    28055b <bootmain+0x55b>
@@ -443,7 +443,7 @@ Disassembly of section .text:
   2805f5:	89 c3                	mov    %eax,%ebx
   2805f7:	e8 c8 02 00 00       	call   2808c4 <io_sti>
   2805fc:	58                   	pop    %eax
-  2805fd:	8d 85 bc fa ff ff    	lea    -0x544(%ebp),%eax
+  2805fd:	8d 85 bc fd ff ff    	lea    -0x244(%ebp),%eax
   280603:	0f b6 db             	movzbl %bl,%ebx
   280606:	5a                   	pop    %edx
   280607:	53                   	push   %ebx
@@ -452,22 +452,22 @@ Disassembly of section .text:
   28060e:	83 c4 10             	add    $0x10,%esp
   280611:	85 c0                	test   %eax,%eax
   280613:	0f 84 75 fe ff ff    	je     28048e <bootmain+0x48e>
-  280619:	ff b5 c4 fa ff ff    	pushl  -0x53c(%ebp)
-  28061f:	ff b5 c0 fa ff ff    	pushl  -0x540(%ebp)
+  280619:	ff b5 c4 fd ff ff    	pushl  -0x23c(%ebp)
+  28061f:	ff b5 c0 fd ff ff    	pushl  -0x240(%ebp)
   280625:	68 c7 23 28 00       	push   $0x2823c7
   28062a:	57                   	push   %edi
   28062b:	e8 1c 0e 00 00       	call   28144c <sprintf>
-  280630:	8b 85 c8 fa ff ff    	mov    -0x538(%ebp),%eax
+  280630:	8b 85 c8 fd ff ff    	mov    -0x238(%ebp),%eax
   280636:	83 c4 10             	add    $0x10,%esp
   280639:	a8 01                	test   $0x1,%al
   28063b:	74 07                	je     280644 <bootmain+0x644>
-  28063d:	c6 85 37 fb ff ff 4c 	movb   $0x4c,-0x4c9(%ebp)
+  28063d:	c6 85 37 fe ff ff 4c 	movb   $0x4c,-0x1c9(%ebp)
   280644:	a8 02                	test   $0x2,%al
   280646:	74 07                	je     28064f <bootmain+0x64f>
-  280648:	c6 85 39 fb ff ff 52 	movb   $0x52,-0x4c7(%ebp)
+  280648:	c6 85 39 fe ff ff 52 	movb   $0x52,-0x1c7(%ebp)
   28064f:	a8 04                	test   $0x4,%al
   280651:	74 07                	je     28065a <bootmain+0x65a>
-  280653:	c6 85 38 fb ff ff 43 	movb   $0x43,-0x4c8(%ebp)
+  280653:	c6 85 38 fe ff ff 43 	movb   $0x43,-0x1c8(%ebp)
   28065a:	51                   	push   %ecx
   28065b:	0f bf 05 f4 0f 00 00 	movswl 0xff4,%eax
   280662:	6a 1f                	push   $0x1f
@@ -488,28 +488,28 @@ Disassembly of section .text:
   280688:	56                   	push   %esi
   280689:	e8 2c 08 00 00       	call   280eba <putfonts8_asc>
   28068e:	83 c4 20             	add    $0x20,%esp
-  280691:	8b 85 90 fa ff ff    	mov    -0x570(%ebp),%eax
+  280691:	8b 85 90 fd ff ff    	mov    -0x270(%ebp),%eax
   280697:	31 c9                	xor    %ecx,%ecx
-  280699:	03 85 c0 fa ff ff    	add    -0x540(%ebp),%eax
+  280699:	03 85 c0 fd ff ff    	add    -0x240(%ebp),%eax
   28069f:	0f 48 c1             	cmovs  %ecx,%eax
-  2806a2:	89 85 90 fa ff ff    	mov    %eax,-0x570(%ebp)
-  2806a8:	8b 85 8c fa ff ff    	mov    -0x574(%ebp),%eax
-  2806ae:	03 85 c4 fa ff ff    	add    -0x53c(%ebp),%eax
+  2806a2:	89 85 90 fd ff ff    	mov    %eax,-0x270(%ebp)
+  2806a8:	8b 85 8c fd ff ff    	mov    -0x274(%ebp),%eax
+  2806ae:	03 85 c4 fd ff ff    	add    -0x23c(%ebp),%eax
   2806b4:	0f 49 c8             	cmovns %eax,%ecx
   2806b7:	0f bf 05 f4 0f 00 00 	movswl 0xff4,%eax
-  2806be:	3b 85 90 fa ff ff    	cmp    -0x570(%ebp),%eax
+  2806be:	3b 85 90 fd ff ff    	cmp    -0x270(%ebp),%eax
   2806c4:	8d 50 ff             	lea    -0x1(%eax),%edx
   2806c7:	0f bf 05 f6 0f 00 00 	movswl 0xff6,%eax
-  2806ce:	0f 4f 95 90 fa ff ff 	cmovg  -0x570(%ebp),%edx
-  2806d5:	89 95 90 fa ff ff    	mov    %edx,-0x570(%ebp)
+  2806ce:	0f 4f 95 90 fd ff ff 	cmovg  -0x270(%ebp),%edx
+  2806d5:	89 95 90 fd ff ff    	mov    %edx,-0x270(%ebp)
   2806db:	8d 50 ff             	lea    -0x1(%eax),%edx
   2806de:	39 c8                	cmp    %ecx,%eax
   2806e0:	0f 4f d1             	cmovg  %ecx,%edx
   2806e3:	52                   	push   %edx
-  2806e4:	ff b5 90 fa ff ff    	pushl  -0x570(%ebp)
+  2806e4:	ff b5 90 fd ff ff    	pushl  -0x270(%ebp)
   2806ea:	68 d3 23 28 00       	push   $0x2823d3
   2806ef:	57                   	push   %edi
-  2806f0:	89 95 8c fa ff ff    	mov    %edx,-0x574(%ebp)
+  2806f0:	89 95 8c fd ff ff    	mov    %edx,-0x274(%ebp)
   2806f6:	e8 51 0d 00 00       	call   28144c <sprintf>
   2806fb:	0f bf 05 f4 0f 00 00 	movswl 0xff4,%eax
   280702:	83 c4 0c             	add    $0xc,%esp
@@ -535,23 +535,23 @@ Disassembly of section .text:
   280733:	68 97 00 00 00       	push   $0x97
   280738:	6a 00                	push   $0x0
   28073a:	6a 00                	push   $0x0
-  28073c:	ff b5 94 fa ff ff    	pushl  -0x56c(%ebp)
+  28073c:	ff b5 94 fd ff ff    	pushl  -0x26c(%ebp)
   280742:	e8 f0 18 00 00       	call   282037 <sheet_refresh>
   280747:	83 c4 1c             	add    $0x1c,%esp
-  28074a:	ff b5 8c fa ff ff    	pushl  -0x574(%ebp)
-  280750:	ff b5 90 fa ff ff    	pushl  -0x570(%ebp)
-  280756:	ff b5 80 fa ff ff    	pushl  -0x580(%ebp)
+  28074a:	ff b5 8c fd ff ff    	pushl  -0x274(%ebp)
+  280750:	ff b5 90 fd ff ff    	pushl  -0x270(%ebp)
+  280756:	ff b5 80 fd ff ff    	pushl  -0x280(%ebp)
   28075c:	e8 f8 19 00 00       	call   282159 <sheet_slide>
   280761:	83 c4 10             	add    $0x10,%esp
   280764:	e9 25 fd ff ff       	jmp    28048e <bootmain+0x48e>
   280769:	83 ec 0c             	sub    $0xc,%esp
-  28076c:	ff b5 78 fa ff ff    	pushl  -0x588(%ebp)
+  28076c:	ff b5 78 fd ff ff    	pushl  -0x288(%ebp)
   280772:	e8 55 0e 00 00       	call   2815cc <fifo8_status>
   280777:	83 c4 10             	add    $0x10,%esp
   28077a:	85 c0                	test   %eax,%eax
   28077c:	74 37                	je     2807b5 <bootmain+0x7b5>
   28077e:	83 ec 0c             	sub    $0xc,%esp
-  280781:	ff b5 78 fa ff ff    	pushl  -0x588(%ebp)
+  280781:	ff b5 78 fd ff ff    	pushl  -0x288(%ebp)
   280787:	e8 04 0e 00 00       	call   281590 <fifo8_get>
   28078c:	e8 33 01 00 00       	call   2808c4 <io_sti>
   280791:	58                   	pop    %eax
@@ -568,14 +568,14 @@ Disassembly of section .text:
   2807af:	6a 50                	push   $0x50
   2807b1:	6a 38                	push   $0x38
   2807b3:	eb 4c                	jmp    280801 <bootmain+0x801>
-  2807b5:	8d 85 e4 fa ff ff    	lea    -0x51c(%ebp),%eax
+  2807b5:	8d 85 e4 fd ff ff    	lea    -0x21c(%ebp),%eax
   2807bb:	83 ec 0c             	sub    $0xc,%esp
   2807be:	50                   	push   %eax
   2807bf:	e8 08 0e 00 00       	call   2815cc <fifo8_status>
   2807c4:	83 c4 10             	add    $0x10,%esp
   2807c7:	85 c0                	test   %eax,%eax
   2807c9:	74 3f                	je     28080a <bootmain+0x80a>
-  2807cb:	8d 85 e4 fa ff ff    	lea    -0x51c(%ebp),%eax
+  2807cb:	8d 85 e4 fd ff ff    	lea    -0x21c(%ebp),%eax
   2807d1:	83 ec 0c             	sub    $0xc,%esp
   2807d4:	50                   	push   %eax
   2807d5:	e8 b6 0d 00 00       	call   281590 <fifo8_get>
@@ -605,16 +605,16 @@ Disassembly of section .text:
   28081e:	83 ec 0c             	sub    $0xc,%esp
   280821:	53                   	push   %ebx
   280822:	e8 69 0d 00 00       	call   281590 <fifo8_get>
-  280827:	89 85 74 fa ff ff    	mov    %eax,-0x58c(%ebp)
+  280827:	89 85 74 fd ff ff    	mov    %eax,-0x28c(%ebp)
   28082d:	e8 92 00 00 00       	call   2808c4 <io_sti>
-  280832:	8b 85 74 fa ff ff    	mov    -0x58c(%ebp),%eax
+  280832:	8b 85 74 fd ff ff    	mov    -0x28c(%ebp),%eax
   280838:	83 c4 10             	add    $0x10,%esp
   28083b:	84 c0                	test   %al,%al
   28083d:	74 1e                	je     28085d <bootmain+0x85d>
   28083f:	51                   	push   %ecx
   280840:	6a 00                	push   $0x0
   280842:	53                   	push   %ebx
-  280843:	ff b5 84 fa ff ff    	pushl  -0x57c(%ebp)
+  280843:	ff b5 84 fd ff ff    	pushl  -0x27c(%ebp)
   280849:	e8 4c 1a 00 00       	call   28229a <timer_init>
   28084e:	83 c4 0c             	add    $0xc,%esp
   280851:	6a 6f                	push   $0x6f
@@ -626,7 +626,7 @@ Disassembly of section .text:
   28085d:	52                   	push   %edx
   28085e:	6a 01                	push   $0x1
   280860:	53                   	push   %ebx
-  280861:	ff b5 84 fa ff ff    	pushl  -0x57c(%ebp)
+  280861:	ff b5 84 fd ff ff    	pushl  -0x27c(%ebp)
   280867:	e8 2e 1a 00 00       	call   28229a <timer_init>
   28086c:	83 c4 0c             	add    $0xc,%esp
   28086f:	6a 6f                	push   $0x6f
@@ -642,13 +642,13 @@ Disassembly of section .text:
   28088a:	50                   	push   %eax
   28088b:	50                   	push   %eax
   28088c:	6a 32                	push   $0x32
-  28088e:	ff b5 84 fa ff ff    	pushl  -0x57c(%ebp)
+  28088e:	ff b5 84 fd ff ff    	pushl  -0x27c(%ebp)
   280894:	e8 15 1a 00 00       	call   2822ae <timer_settime>
   280899:	c7 04 24 70 00 00 00 	movl   $0x70,(%esp)
   2808a0:	6a 10                	push   $0x10
   2808a2:	6a 60                	push   $0x60
   2808a4:	6a 08                	push   $0x8
-  2808a6:	ff b5 94 fa ff ff    	pushl  -0x56c(%ebp)
+  2808a6:	ff b5 94 fd ff ff    	pushl  -0x26c(%ebp)
   2808ac:	e8 86 17 00 00       	call   282037 <sheet_refresh>
   2808b1:	83 c4 20             	add    $0x20,%esp
   2808b4:	e9 d5 fb ff ff       	jmp    28048e <bootmain+0x48e>
