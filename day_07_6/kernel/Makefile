@@ -30,7 +30,7 @@ entry.out: entry.gas.o
 	ld $(LDFLAGS) -N -e start -Ttext 0xc400 -o $@.o $^
 	objcopy -S -O binary -j .text $@.o $@
 
-%.c.o: %.c
+%.o: %.c
 	gcc -nostdinc $(CFLAGS) -c -o $@ $<
 
 %.nas.o: %.nas

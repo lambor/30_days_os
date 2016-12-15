@@ -34,7 +34,7 @@ entry.out: entry.gas.o
 memory.o: memory.c
 	gcc -nostdinc $(CFLAGS) -O0 -c -o $@ $<
 
-%.c.o: %.c
+%.o: %.c
 	gcc -nostdinc $(CFLAGS) -c -o $@ $<
 
 %.nas.o: %.nas
