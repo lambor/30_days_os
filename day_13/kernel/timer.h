@@ -10,6 +10,7 @@ void init_pit(void);
 
 struct TIMER 
 {
+	struct TIMER *next;
 	unsigned int timeout,flags;
 	struct FIFO *fifo;
 	unsigned char data;
@@ -19,9 +20,9 @@ struct TIMER
 
 struct TIMERCTL 
 {
-	unsigned int count,next,using;
+	unsigned int count,next;
 	struct TIMER timers0[MAX_TIMER];
-	struct TIMER *timers[MAX_TIMER];
+	struct TIMER *t0;
 };
 
 #define TIMER_FLAGS_ALLOC 1 //already alloced

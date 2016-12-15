@@ -45,7 +45,7 @@ Disassembly of section .text:
   28007b:	68 00 02 00 00       	push   $0x200
   280080:	56                   	push   %esi
   280081:	e8 43 12 00 00       	call   2812c9 <enable_mouse>
-  280086:	e8 d9 1e 00 00       	call   281f64 <init_pit>
+  280086:	e8 2d 1f 00 00       	call   281fb8 <init_pit>
   28008b:	59                   	pop    %ecx
   28008c:	5b                   	pop    %ebx
   28008d:	68 f8 00 00 00       	push   $0xf8
@@ -139,7 +139,7 @@ Disassembly of section .text:
   2801ed:	50                   	push   %eax
   2801ee:	0f bf 05 f4 0f 00 00 	movswl 0xff4,%eax
   2801f5:	50                   	push   %eax
-  2801f6:	e8 e2 1f 00 00       	call   2821dd <test>
+  2801f6:	e8 67 1f 00 00       	call   282162 <test>
   2801fb:	0f bf 05 f6 0f 00 00 	movswl 0xff6,%eax
   280202:	83 c4 0c             	add    $0xc,%esp
   280205:	50                   	push   %eax
@@ -153,13 +153,13 @@ Disassembly of section .text:
   280221:	6a 63                	push   $0x63
   280223:	52                   	push   %edx
   280224:	e8 da 07 00 00       	call   280a03 <init_mouse_cursor8>
-  280229:	68 00 22 28 00       	push   $0x282200
+  280229:	68 80 21 28 00       	push   $0x282180
   28022e:	6a 64                	push   $0x64
   280230:	68 a0 00 00 00       	push   $0xa0
   280235:	57                   	push   %edi
   280236:	e8 32 08 00 00       	call   280a6d <make_window8>
   28023b:	83 c4 18             	add    $0x18,%esp
-  28023e:	68 07 22 28 00       	push   $0x282207
+  28023e:	68 87 21 28 00       	push   $0x282187
   280243:	6a 00                	push   $0x0
   280245:	6a 1c                	push   $0x1c
   280247:	6a 18                	push   $0x18
@@ -167,7 +167,7 @@ Disassembly of section .text:
   28024e:	57                   	push   %edi
   28024f:	e8 ab 0a 00 00       	call   280cff <putfonts8_asc>
   280254:	83 c4 18             	add    $0x18,%esp
-  280257:	68 11 22 28 00       	push   $0x282211
+  280257:	68 91 21 28 00       	push   $0x282191
   28025c:	6a 00                	push   $0x0
   28025e:	6a 2c                	push   $0x2c
   280260:	6a 18                	push   $0x18
@@ -218,7 +218,7 @@ Disassembly of section .text:
   2802f4:	0f bf 05 f4 0f 00 00 	movswl 0xff4,%eax
   2802fb:	59                   	pop    %ecx
   2802fc:	5f                   	pop    %edi
-  2802fd:	68 1b 22 28 00       	push   $0x28221b
+  2802fd:	68 9b 21 28 00       	push   $0x28219b
   280302:	6a 07                	push   $0x7
   280304:	8d bd b6 fc ff ff    	lea    -0x34a(%ebp),%edi
   28030a:	6a 08                	push   $0x8
@@ -228,7 +228,7 @@ Disassembly of section .text:
   280315:	e8 e5 09 00 00       	call   280cff <putfonts8_asc>
   28031a:	0f bf 05 f4 0f 00 00 	movswl 0xff4,%eax
   280321:	83 c4 18             	add    $0x18,%esp
-  280324:	68 23 22 28 00       	push   $0x282223
+  280324:	68 a3 21 28 00       	push   $0x2821a3
   280329:	6a 00                	push   $0x0
   28032b:	6a 1f                	push   $0x1f
   28032d:	6a 1f                	push   $0x1f
@@ -237,7 +237,7 @@ Disassembly of section .text:
   280336:	e8 c4 09 00 00       	call   280cff <putfonts8_asc>
   28033b:	0f bf 05 f4 0f 00 00 	movswl 0xff4,%eax
   280342:	83 c4 18             	add    $0x18,%esp
-  280345:	68 23 22 28 00       	push   $0x282223
+  280345:	68 a3 21 28 00       	push   $0x2821a3
   28034a:	6a 07                	push   $0x7
   28034c:	6a 1e                	push   $0x1e
   28034e:	6a 1e                	push   $0x1e
@@ -252,7 +252,7 @@ Disassembly of section .text:
   28036d:	8b 85 70 fc ff ff    	mov    -0x390(%ebp),%eax
   280373:	c1 e8 14             	shr    $0x14,%eax
   280376:	50                   	push   %eax
-  280377:	68 2c 22 28 00       	push   $0x28222c
+  280377:	68 ac 21 28 00       	push   $0x2821ac
   28037c:	57                   	push   %edi
   28037d:	e8 ba 0d 00 00       	call   28113c <sprintf>
   280382:	0f bf 05 f4 0f 00 00 	movswl 0xff4,%eax
@@ -273,54 +273,54 @@ Disassembly of section .text:
   2803b0:	53                   	push   %ebx
   2803b1:	e8 09 1a 00 00       	call   281dbf <sheet_refresh>
   2803b6:	83 c4 20             	add    $0x20,%esp
-  2803b9:	e8 0a 1c 00 00       	call   281fc8 <timer_alloc>
+  2803b9:	e8 a6 1b 00 00       	call   281f64 <timer_alloc>
   2803be:	52                   	push   %edx
   2803bf:	6a 0a                	push   $0xa
   2803c1:	89 c7                	mov    %eax,%edi
   2803c3:	56                   	push   %esi
   2803c4:	50                   	push   %eax
-  2803c5:	e8 58 1c 00 00       	call   282022 <timer_init>
+  2803c5:	e8 6b 1c 00 00       	call   282035 <timer_init>
   2803ca:	59                   	pop    %ecx
   2803cb:	58                   	pop    %eax
   2803cc:	68 e8 03 00 00       	push   $0x3e8
   2803d1:	57                   	push   %edi
-  2803d2:	e8 5f 1c 00 00       	call   282036 <timer_settime>
-  2803d7:	e8 ec 1b 00 00       	call   281fc8 <timer_alloc>
+  2803d2:	e8 72 1c 00 00       	call   282049 <timer_settime>
+  2803d7:	e8 88 1b 00 00       	call   281f64 <timer_alloc>
   2803dc:	83 c4 0c             	add    $0xc,%esp
   2803df:	89 c7                	mov    %eax,%edi
   2803e1:	6a 03                	push   $0x3
   2803e3:	56                   	push   %esi
   2803e4:	50                   	push   %eax
-  2803e5:	e8 38 1c 00 00       	call   282022 <timer_init>
+  2803e5:	e8 4b 1c 00 00       	call   282035 <timer_init>
   2803ea:	58                   	pop    %eax
   2803eb:	5a                   	pop    %edx
   2803ec:	68 2c 01 00 00       	push   $0x12c
   2803f1:	57                   	push   %edi
-  2803f2:	e8 3f 1c 00 00       	call   282036 <timer_settime>
-  2803f7:	e8 cc 1b 00 00       	call   281fc8 <timer_alloc>
+  2803f2:	e8 52 1c 00 00       	call   282049 <timer_settime>
+  2803f7:	e8 68 1b 00 00       	call   281f64 <timer_alloc>
   2803fc:	83 c4 0c             	add    $0xc,%esp
   2803ff:	89 c7                	mov    %eax,%edi
   280401:	6a 01                	push   $0x1
   280403:	56                   	push   %esi
   280404:	50                   	push   %eax
-  280405:	e8 18 1c 00 00       	call   282022 <timer_init>
+  280405:	e8 2b 1c 00 00       	call   282035 <timer_init>
   28040a:	59                   	pop    %ecx
   28040b:	58                   	pop    %eax
   28040c:	6a 32                	push   $0x32
   28040e:	57                   	push   %edi
-  28040f:	e8 22 1c 00 00       	call   282036 <timer_settime>
-  280414:	a1 a4 46 28 00       	mov    0x2846a4,%eax
+  28040f:	e8 35 1c 00 00       	call   282049 <timer_settime>
+  280414:	a1 24 46 28 00       	mov    0x284624,%eax
   280419:	83 c4 10             	add    $0x10,%esp
-  28041c:	39 05 a8 46 28 00    	cmp    %eax,0x2846a8
+  28041c:	39 05 28 46 28 00    	cmp    %eax,0x284628
   280422:	75 0e                	jne    280432 <bootmain+0x432>
   280424:	39 f0                	cmp    %esi,%eax
   280426:	75 0a                	jne    280432 <bootmain+0x432>
-  280428:	c7 05 c0 46 28 00 64 	movl   $0x64,0x2846c0
+  280428:	c7 05 40 46 28 00 64 	movl   $0x64,0x284640
   28042f:	00 00 00 
   280432:	8d b5 b6 fc ff ff    	lea    -0x34a(%ebp),%esi
   280438:	50                   	push   %eax
-  280439:	ff 35 c0 46 28 00    	pushl  0x2846c0
-  28043f:	68 44 22 28 00       	push   $0x282244
+  280439:	ff 35 40 46 28 00    	pushl  0x284640
+  28043f:	68 c4 21 28 00       	push   $0x2821c4
   280444:	56                   	push   %esi
   280445:	e8 f2 0c 00 00       	call   28113c <sprintf>
   28044a:	83 c4 0c             	add    $0xc,%esp
@@ -404,7 +404,7 @@ Disassembly of section .text:
   280567:	ff b5 84 fc ff ff    	pushl  -0x37c(%ebp)
   28056d:	51                   	push   %ecx
   28056e:	ff b5 90 fc ff ff    	pushl  -0x370(%ebp)
-  280574:	68 47 22 28 00       	push   $0x282247
+  280574:	68 c7 21 28 00       	push   $0x2821c7
   280579:	56                   	push   %esi
   28057a:	89 95 80 fc ff ff    	mov    %edx,-0x380(%ebp)
   280580:	e8 b7 0b 00 00       	call   28113c <sprintf>
@@ -438,7 +438,7 @@ Disassembly of section .text:
   2805e3:	75 1e                	jne    280603 <bootmain+0x603>
   2805e5:	50                   	push   %eax
   2805e6:	6a 07                	push   $0x7
-  2805e8:	68 5a 22 28 00       	push   $0x28225a
+  2805e8:	68 da 21 28 00       	push   $0x2821da
   2805ed:	6a 0e                	push   $0xe
   2805ef:	6a 07                	push   $0x7
   2805f1:	6a 40                	push   $0x40
@@ -451,7 +451,7 @@ Disassembly of section .text:
   280606:	75 10                	jne    280618 <bootmain+0x618>
   280608:	51                   	push   %ecx
   280609:	6a 06                	push   $0x6
-  28060b:	68 62 22 28 00       	push   $0x282262
+  28060b:	68 e2 21 28 00       	push   $0x2821e2
   280610:	6a 0e                	push   $0xe
   280612:	6a 07                	push   $0x7
   280614:	6a 50                	push   $0x50
@@ -463,7 +463,7 @@ Disassembly of section .text:
   280624:	6a 00                	push   $0x0
   280626:	50                   	push   %eax
   280627:	57                   	push   %edi
-  280628:	e8 f5 19 00 00       	call   282022 <timer_init>
+  280628:	e8 08 1a 00 00       	call   282035 <timer_init>
   28062d:	83 c4 0c             	add    $0xc,%esp
   280630:	6a 6f                	push   $0x6f
   280632:	6a 0f                	push   $0xf
@@ -478,7 +478,7 @@ Disassembly of section .text:
   28064b:	6a 01                	push   $0x1
   28064d:	50                   	push   %eax
   28064e:	57                   	push   %edi
-  28064f:	e8 ce 19 00 00       	call   282022 <timer_init>
+  28064f:	e8 e1 19 00 00       	call   282035 <timer_init>
   280654:	83 c4 0c             	add    $0xc,%esp
   280657:	6a 6f                	push   $0x6f
   280659:	6a 0f                	push   $0xf
@@ -499,7 +499,7 @@ Disassembly of section .text:
   280685:	83 c4 18             	add    $0x18,%esp
   280688:	6a 32                	push   $0x32
   28068a:	57                   	push   %edi
-  28068b:	e8 a6 19 00 00       	call   282036 <timer_settime>
+  28068b:	e8 b9 19 00 00       	call   282049 <timer_settime>
   280690:	83 c4 10             	add    $0x10,%esp
   280693:	e9 a0 fd ff ff       	jmp    280438 <bootmain+0x438>
   280698:	66 90                	xchg   %ax,%ax
@@ -696,7 +696,7 @@ Disassembly of section .text:
   28080b:	55                   	push   %ebp
   28080c:	89 e5                	mov    %esp,%ebp
   28080e:	83 ec 0c             	sub    $0xc,%esp
-  280811:	68 80 2c 28 00       	push   $0x282c80
+  280811:	68 00 2c 28 00       	push   $0x282c00
   280816:	6a 0f                	push   $0xf
   280818:	6a 00                	push   $0x0
   28081a:	e8 4e ff ff ff       	call   28076d <set_palette>
@@ -942,7 +942,7 @@ Disassembly of section .text:
   280a16:	8d 86 00 01 00 00    	lea    0x100(%esi),%eax
   280a1c:	89 45 ec             	mov    %eax,-0x14(%ebp)
   280a1f:	eb 38                	jmp    280a59 <init_mouse_cursor8+0x56>
-  280a21:	0f b6 94 03 60 23 28 	movzbl 0x282360(%ebx,%eax,1),%edx
+  280a21:	0f b6 94 03 e0 22 28 	movzbl 0x2822e0(%ebx,%eax,1),%edx
   280a28:	00 
   280a29:	80 fa 2a             	cmp    $0x2a,%dl
   280a2c:	75 06                	jne    280a34 <init_mouse_cursor8+0x31>
@@ -1098,7 +1098,7 @@ Disassembly of section .text:
   280b75:	bf 00 00 00 00       	mov    $0x0,%edi
   280b7a:	eb 41                	jmp    280bbd <make_window8+0x150>
   280b7c:	89 c1                	mov    %eax,%ecx
-  280b7e:	0f b6 9c 07 80 22 28 	movzbl 0x282280(%edi,%eax,1),%ebx
+  280b7e:	0f b6 9c 07 00 22 28 	movzbl 0x282200(%edi,%eax,1),%ebx
   280b85:	00 
   280b86:	ba 00 00 00 00       	mov    $0x0,%edx
   280b8b:	80 fb 40             	cmp    $0x40,%bl
@@ -1277,7 +1277,7 @@ Disassembly of section .text:
   280d16:	0f be fa             	movsbl %dl,%edi
   280d19:	0f b6 c0             	movzbl %al,%eax
   280d1c:	c1 e0 04             	shl    $0x4,%eax
-  280d1f:	05 c0 2c 28 00       	add    $0x282cc0,%eax
+  280d1f:	05 40 2c 28 00       	add    $0x282c40,%eax
   280d24:	50                   	push   %eax
   280d25:	57                   	push   %edi
   280d26:	ff 75 14             	pushl  0x14(%ebp)
@@ -1533,7 +1533,7 @@ Disassembly of section .text:
   281004:	66 8c d0             	mov    %ss,%ax
   281007:	8e d8                	mov    %eax,%ds
   281009:	8e c0                	mov    %eax,%es
-  28100b:	e8 e2 10 00 00       	call   2820f2 <inthandler20>
+  28100b:	e8 d5 10 00 00       	call   2820e5 <inthandler20>
   281010:	58                   	pop    %eax
   281011:	61                   	popa   
   281012:	1f                   	pop    %ds
@@ -1823,9 +1823,9 @@ Disassembly of section .text:
   2812ca:	89 e5                	mov    %esp,%ebp
   2812cc:	83 ec 08             	sub    $0x8,%esp
   2812cf:	8b 45 08             	mov    0x8(%ebp),%eax
-  2812d2:	a3 a4 46 28 00       	mov    %eax,0x2846a4
+  2812d2:	a3 24 46 28 00       	mov    %eax,0x284624
   2812d7:	8b 45 0c             	mov    0xc(%ebp),%eax
-  2812da:	a3 a0 46 28 00       	mov    %eax,0x2846a0
+  2812da:	a3 20 46 28 00       	mov    %eax,0x284620
   2812df:	e8 1a 01 00 00       	call   2813fe <wait_KBC_sendready>
   2812e4:	83 ec 08             	sub    $0x8,%esp
   2812e7:	68 d4 00 00 00       	push   $0xd4
@@ -1917,9 +1917,9 @@ Disassembly of section .text:
   2813d8:	c7 04 24 60 00 00 00 	movl   $0x60,(%esp)
   2813df:	e8 d0 f2 ff ff       	call   2806b4 <io_in8>
   2813e4:	83 c4 08             	add    $0x8,%esp
-  2813e7:	03 05 a0 46 28 00    	add    0x2846a0,%eax
+  2813e7:	03 05 20 46 28 00    	add    0x284620,%eax
   2813ed:	50                   	push   %eax
-  2813ee:	ff 35 a4 46 28 00    	pushl  0x2846a4
+  2813ee:	ff 35 24 46 28 00    	pushl  0x284624
   2813f4:	e8 43 fe ff ff       	call   28123c <fifo32_put>
   2813f9:	83 c4 10             	add    $0x10,%esp
   2813fc:	c9                   	leave  
@@ -1943,9 +1943,9 @@ Disassembly of section .text:
   281418:	89 e5                	mov    %esp,%ebp
   28141a:	83 ec 08             	sub    $0x8,%esp
   28141d:	8b 45 08             	mov    0x8(%ebp),%eax
-  281420:	a3 a8 46 28 00       	mov    %eax,0x2846a8
+  281420:	a3 28 46 28 00       	mov    %eax,0x284628
   281425:	8b 45 0c             	mov    0xc(%ebp),%eax
-  281428:	a3 ac 46 28 00       	mov    %eax,0x2846ac
+  281428:	a3 2c 46 28 00       	mov    %eax,0x28462c
   28142d:	e8 cc ff ff ff       	call   2813fe <wait_KBC_sendready>
   281432:	83 ec 08             	sub    $0x8,%esp
   281435:	6a 60                	push   $0x60
@@ -1970,9 +1970,9 @@ Disassembly of section .text:
   281463:	c7 04 24 60 00 00 00 	movl   $0x60,(%esp)
   28146a:	e8 45 f2 ff ff       	call   2806b4 <io_in8>
   28146f:	83 c4 08             	add    $0x8,%esp
-  281472:	03 05 ac 46 28 00    	add    0x2846ac,%eax
+  281472:	03 05 2c 46 28 00    	add    0x28462c,%eax
   281478:	50                   	push   %eax
-  281479:	ff 35 a8 46 28 00    	pushl  0x2846a8
+  281479:	ff 35 28 46 28 00    	pushl  0x284628
   28147f:	e8 b8 fd ff ff       	call   28123c <fifo32_put>
   281484:	83 c4 10             	add    $0x10,%esp
   281487:	c9                   	leave  
@@ -2996,221 +2996,190 @@ Disassembly of section .text:
   281f62:	c9                   	leave  
   281f63:	c3                   	ret    
 
-00281f64 <init_pit>:
+00281f64 <timer_alloc>:
   281f64:	55                   	push   %ebp
   281f65:	89 e5                	mov    %esp,%ebp
-  281f67:	83 ec 10             	sub    $0x10,%esp
-  281f6a:	6a 34                	push   $0x34
-  281f6c:	6a 43                	push   $0x43
-  281f6e:	e8 63 e7 ff ff       	call   2806d6 <io_out8>
-  281f73:	83 c4 08             	add    $0x8,%esp
-  281f76:	68 9c 00 00 00       	push   $0x9c
-  281f7b:	6a 40                	push   $0x40
-  281f7d:	e8 54 e7 ff ff       	call   2806d6 <io_out8>
-  281f82:	83 c4 08             	add    $0x8,%esp
-  281f85:	6a 2e                	push   $0x2e
-  281f87:	6a 40                	push   $0x40
-  281f89:	e8 48 e7 ff ff       	call   2806d6 <io_out8>
-  281f8e:	c7 05 c0 46 28 00 00 	movl   $0x0,0x2846c0
-  281f95:	00 00 00 
-  281f98:	c7 05 c8 46 28 00 00 	movl   $0x0,0x2846c8
-  281f9f:	00 00 00 
-  281fa2:	c7 05 c4 46 28 00 ff 	movl   $0xffffffff,0x2846c4
-  281fa9:	ff ff ff 
-  281fac:	b8 d0 46 28 00       	mov    $0x2846d0,%eax
-  281fb1:	ba 10 66 28 00       	mov    $0x286610,%edx
-  281fb6:	83 c4 10             	add    $0x10,%esp
-  281fb9:	c7 00 00 00 00 00    	movl   $0x0,(%eax)
-  281fbf:	83 c0 10             	add    $0x10,%eax
-  281fc2:	39 d0                	cmp    %edx,%eax
-  281fc4:	75 f3                	jne    281fb9 <init_pit+0x55>
-  281fc6:	c9                   	leave  
-  281fc7:	c3                   	ret    
+  281f67:	83 3d 50 46 28 00 00 	cmpl   $0x0,0x284650
+  281f6e:	74 11                	je     281f81 <timer_alloc+0x1d>
+  281f70:	ba 64 46 28 00       	mov    $0x284664,%edx
+  281f75:	b8 01 00 00 00       	mov    $0x1,%eax
+  281f7a:	83 3a 00             	cmpl   $0x0,(%edx)
+  281f7d:	75 25                	jne    281fa4 <timer_alloc+0x40>
+  281f7f:	eb 05                	jmp    281f86 <timer_alloc+0x22>
+  281f81:	b8 00 00 00 00       	mov    $0x0,%eax
+  281f86:	8d 14 85 00 00 00 00 	lea    0x0(,%eax,4),%edx
+  281f8d:	8d 0c 02             	lea    (%edx,%eax,1),%ecx
+  281f90:	c7 04 8d 50 46 28 00 	movl   $0x1,0x284650(,%ecx,4)
+  281f97:	01 00 00 00 
+  281f9b:	8d 04 8d 48 46 28 00 	lea    0x284648(,%ecx,4),%eax
+  281fa2:	eb 12                	jmp    281fb6 <timer_alloc+0x52>
+  281fa4:	83 c0 01             	add    $0x1,%eax
+  281fa7:	83 c2 14             	add    $0x14,%edx
+  281faa:	3d f4 01 00 00       	cmp    $0x1f4,%eax
+  281faf:	75 c9                	jne    281f7a <timer_alloc+0x16>
+  281fb1:	b8 00 00 00 00       	mov    $0x0,%eax
+  281fb6:	5d                   	pop    %ebp
+  281fb7:	c3                   	ret    
 
-00281fc8 <timer_alloc>:
-  281fc8:	55                   	push   %ebp
-  281fc9:	89 e5                	mov    %esp,%ebp
-  281fcb:	83 3d d0 46 28 00 00 	cmpl   $0x0,0x2846d0
-  281fd2:	74 15                	je     281fe9 <timer_alloc+0x21>
-  281fd4:	b8 01 00 00 00       	mov    $0x1,%eax
-  281fd9:	89 c2                	mov    %eax,%edx
-  281fdb:	c1 e2 04             	shl    $0x4,%edx
-  281fde:	83 ba d0 46 28 00 00 	cmpl   $0x0,0x2846d0(%edx)
-  281fe5:	75 1b                	jne    282002 <timer_alloc+0x3a>
-  281fe7:	eb 05                	jmp    281fee <timer_alloc+0x26>
-  281fe9:	b8 00 00 00 00       	mov    $0x0,%eax
-  281fee:	c1 e0 04             	shl    $0x4,%eax
-  281ff1:	c7 80 d0 46 28 00 01 	movl   $0x1,0x2846d0(%eax)
-  281ff8:	00 00 00 
-  281ffb:	05 cc 46 28 00       	add    $0x2846cc,%eax
-  282000:	eb 0f                	jmp    282011 <timer_alloc+0x49>
-  282002:	83 c0 01             	add    $0x1,%eax
-  282005:	3d f4 01 00 00       	cmp    $0x1f4,%eax
-  28200a:	75 cd                	jne    281fd9 <timer_alloc+0x11>
-  28200c:	b8 00 00 00 00       	mov    $0x0,%eax
-  282011:	5d                   	pop    %ebp
-  282012:	c3                   	ret    
+00281fb8 <init_pit>:
+  281fb8:	55                   	push   %ebp
+  281fb9:	89 e5                	mov    %esp,%ebp
+  281fbb:	83 ec 10             	sub    $0x10,%esp
+  281fbe:	6a 34                	push   $0x34
+  281fc0:	6a 43                	push   $0x43
+  281fc2:	e8 0f e7 ff ff       	call   2806d6 <io_out8>
+  281fc7:	83 c4 08             	add    $0x8,%esp
+  281fca:	68 9c 00 00 00       	push   $0x9c
+  281fcf:	6a 40                	push   $0x40
+  281fd1:	e8 00 e7 ff ff       	call   2806d6 <io_out8>
+  281fd6:	83 c4 08             	add    $0x8,%esp
+  281fd9:	6a 2e                	push   $0x2e
+  281fdb:	6a 40                	push   $0x40
+  281fdd:	e8 f4 e6 ff ff       	call   2806d6 <io_out8>
+  281fe2:	b8 50 46 28 00       	mov    $0x284650,%eax
+  281fe7:	ba 60 6d 28 00       	mov    $0x286d60,%edx
+  281fec:	83 c4 10             	add    $0x10,%esp
+  281fef:	c7 00 00 00 00 00    	movl   $0x0,(%eax)
+  281ff5:	83 c0 14             	add    $0x14,%eax
+  281ff8:	39 d0                	cmp    %edx,%eax
+  281ffa:	75 f3                	jne    281fef <init_pit+0x37>
+  281ffc:	e8 63 ff ff ff       	call   281f64 <timer_alloc>
+  282001:	c7 00 00 00 00 00    	movl   $0x0,(%eax)
+  282007:	c7 40 04 ff ff ff ff 	movl   $0xffffffff,0x4(%eax)
+  28200e:	c7 40 08 02 00 00 00 	movl   $0x2,0x8(%eax)
+  282015:	a3 58 6d 28 00       	mov    %eax,0x286d58
+  28201a:	c7 05 44 46 28 00 ff 	movl   $0xffffffff,0x284644
+  282021:	ff ff ff 
+  282024:	c9                   	leave  
+  282025:	c3                   	ret    
 
-00282013 <timer_free>:
-  282013:	55                   	push   %ebp
-  282014:	89 e5                	mov    %esp,%ebp
-  282016:	8b 45 08             	mov    0x8(%ebp),%eax
-  282019:	c7 40 04 00 00 00 00 	movl   $0x0,0x4(%eax)
-  282020:	5d                   	pop    %ebp
-  282021:	c3                   	ret    
+00282026 <timer_free>:
+  282026:	55                   	push   %ebp
+  282027:	89 e5                	mov    %esp,%ebp
+  282029:	8b 45 08             	mov    0x8(%ebp),%eax
+  28202c:	c7 40 08 00 00 00 00 	movl   $0x0,0x8(%eax)
+  282033:	5d                   	pop    %ebp
+  282034:	c3                   	ret    
 
-00282022 <timer_init>:
-  282022:	55                   	push   %ebp
-  282023:	89 e5                	mov    %esp,%ebp
-  282025:	8b 45 08             	mov    0x8(%ebp),%eax
-  282028:	8b 55 0c             	mov    0xc(%ebp),%edx
-  28202b:	89 50 08             	mov    %edx,0x8(%eax)
-  28202e:	8b 55 10             	mov    0x10(%ebp),%edx
-  282031:	88 50 0c             	mov    %dl,0xc(%eax)
-  282034:	5d                   	pop    %ebp
-  282035:	c3                   	ret    
+00282035 <timer_init>:
+  282035:	55                   	push   %ebp
+  282036:	89 e5                	mov    %esp,%ebp
+  282038:	8b 45 08             	mov    0x8(%ebp),%eax
+  28203b:	8b 55 0c             	mov    0xc(%ebp),%edx
+  28203e:	89 50 0c             	mov    %edx,0xc(%eax)
+  282041:	8b 55 10             	mov    0x10(%ebp),%edx
+  282044:	88 50 10             	mov    %dl,0x10(%eax)
+  282047:	5d                   	pop    %ebp
+  282048:	c3                   	ret    
 
-00282036 <timer_settime>:
-  282036:	55                   	push   %ebp
-  282037:	89 e5                	mov    %esp,%ebp
-  282039:	57                   	push   %edi
-  28203a:	56                   	push   %esi
-  28203b:	53                   	push   %ebx
-  28203c:	83 ec 1c             	sub    $0x1c,%esp
-  28203f:	8b 5d 08             	mov    0x8(%ebp),%ebx
-  282042:	a1 c0 46 28 00       	mov    0x2846c0,%eax
-  282047:	03 45 0c             	add    0xc(%ebp),%eax
-  28204a:	89 03                	mov    %eax,(%ebx)
-  28204c:	c7 43 04 02 00 00 00 	movl   $0x2,0x4(%ebx)
-  282053:	e8 9d e6 ff ff       	call   2806f5 <io_load_eflags>
-  282058:	89 45 e4             	mov    %eax,-0x1c(%ebp)
-  28205b:	e8 42 e6 ff ff       	call   2806a2 <io_cli>
-  282060:	8b 3d c8 46 28 00    	mov    0x2846c8,%edi
-  282066:	85 ff                	test   %edi,%edi
-  282068:	74 51                	je     2820bb <timer_settime+0x85>
-  28206a:	8b 33                	mov    (%ebx),%esi
-  28206c:	a1 0c 66 28 00       	mov    0x28660c,%eax
-  282071:	39 30                	cmp    %esi,(%eax)
-  282073:	72 36                	jb     2820ab <timer_settime+0x75>
-  282075:	eb 0f                	jmp    282086 <timer_settime+0x50>
-  282077:	8b 14 85 0c 66 28 00 	mov    0x28660c(,%eax,4),%edx
-  28207e:	39 32                	cmp    %esi,(%edx)
-  282080:	72 30                	jb     2820b2 <timer_settime+0x7c>
-  282082:	89 c1                	mov    %eax,%ecx
-  282084:	eb 05                	jmp    28208b <timer_settime+0x55>
-  282086:	b9 00 00 00 00       	mov    $0x0,%ecx
-  28208b:	39 cf                	cmp    %ecx,%edi
-  28208d:	7e 31                	jle    2820c0 <timer_settime+0x8a>
-  28208f:	8d 04 bd 08 66 28 00 	lea    0x286608(,%edi,4),%eax
-  282096:	8d 14 8d 08 66 28 00 	lea    0x286608(,%ecx,4),%edx
-  28209d:	8b 30                	mov    (%eax),%esi
-  28209f:	89 70 04             	mov    %esi,0x4(%eax)
-  2820a2:	83 e8 04             	sub    $0x4,%eax
-  2820a5:	39 d0                	cmp    %edx,%eax
-  2820a7:	75 f4                	jne    28209d <timer_settime+0x67>
-  2820a9:	eb 15                	jmp    2820c0 <timer_settime+0x8a>
-  2820ab:	89 f9                	mov    %edi,%ecx
-  2820ad:	b8 00 00 00 00       	mov    $0x0,%eax
-  2820b2:	83 c0 01             	add    $0x1,%eax
-  2820b5:	39 c8                	cmp    %ecx,%eax
-  2820b7:	75 be                	jne    282077 <timer_settime+0x41>
-  2820b9:	eb 05                	jmp    2820c0 <timer_settime+0x8a>
-  2820bb:	b9 00 00 00 00       	mov    $0x0,%ecx
-  2820c0:	89 1c 8d 0c 66 28 00 	mov    %ebx,0x28660c(,%ecx,4)
-  2820c7:	83 c7 01             	add    $0x1,%edi
-  2820ca:	89 3d c8 46 28 00    	mov    %edi,0x2846c8
-  2820d0:	a1 0c 66 28 00       	mov    0x28660c,%eax
-  2820d5:	8b 00                	mov    (%eax),%eax
-  2820d7:	a3 c4 46 28 00       	mov    %eax,0x2846c4
-  2820dc:	83 ec 0c             	sub    $0xc,%esp
-  2820df:	ff 75 e4             	pushl  -0x1c(%ebp)
-  2820e2:	e8 11 e6 ff ff       	call   2806f8 <io_store_eflags>
-  2820e7:	83 c4 10             	add    $0x10,%esp
-  2820ea:	8d 65 f4             	lea    -0xc(%ebp),%esp
-  2820ed:	5b                   	pop    %ebx
-  2820ee:	5e                   	pop    %esi
-  2820ef:	5f                   	pop    %edi
-  2820f0:	5d                   	pop    %ebp
-  2820f1:	c3                   	ret    
+00282049 <timer_settime>:
+  282049:	55                   	push   %ebp
+  28204a:	89 e5                	mov    %esp,%ebp
+  28204c:	57                   	push   %edi
+  28204d:	56                   	push   %esi
+  28204e:	53                   	push   %ebx
+  28204f:	83 ec 0c             	sub    $0xc,%esp
+  282052:	8b 5d 08             	mov    0x8(%ebp),%ebx
+  282055:	a1 40 46 28 00       	mov    0x284640,%eax
+  28205a:	03 45 0c             	add    0xc(%ebp),%eax
+  28205d:	89 43 04             	mov    %eax,0x4(%ebx)
+  282060:	c7 43 08 02 00 00 00 	movl   $0x2,0x8(%ebx)
+  282067:	e8 89 e6 ff ff       	call   2806f5 <io_load_eflags>
+  28206c:	89 c6                	mov    %eax,%esi
+  28206e:	e8 2f e6 ff ff       	call   2806a2 <io_cli>
+  282073:	8b 4b 04             	mov    0x4(%ebx),%ecx
+  282076:	8b 3d 58 6d 28 00    	mov    0x286d58,%edi
+  28207c:	3b 4f 04             	cmp    0x4(%edi),%ecx
+  28207f:	77 1e                	ja     28209f <timer_settime+0x56>
+  282081:	89 3b                	mov    %edi,(%ebx)
+  282083:	89 1d 58 6d 28 00    	mov    %ebx,0x286d58
+  282089:	8b 43 04             	mov    0x4(%ebx),%eax
+  28208c:	a3 44 46 28 00       	mov    %eax,0x284644
+  282091:	83 ec 0c             	sub    $0xc,%esp
+  282094:	56                   	push   %esi
+  282095:	e8 5e e6 ff ff       	call   2806f8 <io_store_eflags>
+  28209a:	83 c4 10             	add    $0x10,%esp
+  28209d:	eb 3e                	jmp    2820dd <timer_settime+0x94>
+  28209f:	8b 17                	mov    (%edi),%edx
+  2820a1:	85 d2                	test   %edx,%edx
+  2820a3:	74 2c                	je     2820d1 <timer_settime+0x88>
+  2820a5:	3b 4a 04             	cmp    0x4(%edx),%ecx
+  2820a8:	77 21                	ja     2820cb <timer_settime+0x82>
+  2820aa:	eb 07                	jmp    2820b3 <timer_settime+0x6a>
+  2820ac:	3b 48 04             	cmp    0x4(%eax),%ecx
+  2820af:	77 18                	ja     2820c9 <timer_settime+0x80>
+  2820b1:	eb 04                	jmp    2820b7 <timer_settime+0x6e>
+  2820b3:	89 d0                	mov    %edx,%eax
+  2820b5:	89 fa                	mov    %edi,%edx
+  2820b7:	89 03                	mov    %eax,(%ebx)
+  2820b9:	89 1a                	mov    %ebx,(%edx)
+  2820bb:	83 ec 0c             	sub    $0xc,%esp
+  2820be:	56                   	push   %esi
+  2820bf:	e8 34 e6 ff ff       	call   2806f8 <io_store_eflags>
+  2820c4:	83 c4 10             	add    $0x10,%esp
+  2820c7:	eb 14                	jmp    2820dd <timer_settime+0x94>
+  2820c9:	89 c2                	mov    %eax,%edx
+  2820cb:	8b 02                	mov    (%edx),%eax
+  2820cd:	85 c0                	test   %eax,%eax
+  2820cf:	75 db                	jne    2820ac <timer_settime+0x63>
+  2820d1:	83 ec 0c             	sub    $0xc,%esp
+  2820d4:	56                   	push   %esi
+  2820d5:	e8 1e e6 ff ff       	call   2806f8 <io_store_eflags>
+  2820da:	83 c4 10             	add    $0x10,%esp
+  2820dd:	8d 65 f4             	lea    -0xc(%ebp),%esp
+  2820e0:	5b                   	pop    %ebx
+  2820e1:	5e                   	pop    %esi
+  2820e2:	5f                   	pop    %edi
+  2820e3:	5d                   	pop    %ebp
+  2820e4:	c3                   	ret    
 
-002820f2 <inthandler20>:
-  2820f2:	55                   	push   %ebp
-  2820f3:	89 e5                	mov    %esp,%ebp
-  2820f5:	57                   	push   %edi
-  2820f6:	56                   	push   %esi
-  2820f7:	53                   	push   %ebx
-  2820f8:	83 ec 14             	sub    $0x14,%esp
-  2820fb:	6a 60                	push   $0x60
-  2820fd:	6a 20                	push   $0x20
-  2820ff:	e8 d2 e5 ff ff       	call   2806d6 <io_out8>
-  282104:	a1 c0 46 28 00       	mov    0x2846c0,%eax
-  282109:	8d 50 01             	lea    0x1(%eax),%edx
-  28210c:	89 15 c0 46 28 00    	mov    %edx,0x2846c0
-  282112:	83 c4 10             	add    $0x10,%esp
-  282115:	3b 15 c4 46 28 00    	cmp    0x2846c4,%edx
-  28211b:	0f 82 93 00 00 00    	jb     2821b4 <inthandler20+0xc2>
-  282121:	8b 0d c8 46 28 00    	mov    0x2846c8,%ecx
-  282127:	85 c9                	test   %ecx,%ecx
-  282129:	75 74                	jne    28219f <inthandler20+0xad>
-  28212b:	e9 9b 00 00 00       	jmp    2821cb <inthandler20+0xd9>
-  282130:	8b 46 04             	mov    0x4(%esi),%eax
-  282133:	83 c6 04             	add    $0x4,%esi
-  282136:	8b 38                	mov    (%eax),%edi
-  282138:	39 3d c0 46 28 00    	cmp    %edi,0x2846c0
-  28213e:	72 2d                	jb     28216d <inthandler20+0x7b>
-  282140:	c7 40 04 01 00 00 00 	movl   $0x1,0x4(%eax)
-  282147:	8b 06                	mov    (%esi),%eax
-  282149:	83 ec 08             	sub    $0x8,%esp
-  28214c:	0f b6 50 0c          	movzbl 0xc(%eax),%edx
-  282150:	52                   	push   %edx
-  282151:	ff 70 08             	pushl  0x8(%eax)
-  282154:	e8 e3 f0 ff ff       	call   28123c <fifo32_put>
-  282159:	83 c3 01             	add    $0x1,%ebx
-  28215c:	8b 0d c8 46 28 00    	mov    0x2846c8,%ecx
-  282162:	89 da                	mov    %ebx,%edx
-  282164:	83 c4 10             	add    $0x10,%esp
-  282167:	39 d9                	cmp    %ebx,%ecx
-  282169:	77 c5                	ja     282130 <inthandler20+0x3e>
-  28216b:	eb 47                	jmp    2821b4 <inthandler20+0xc2>
-  28216d:	29 d1                	sub    %edx,%ecx
-  28216f:	89 0d c8 46 28 00    	mov    %ecx,0x2846c8
-  282175:	85 c9                	test   %ecx,%ecx
-  282177:	75 07                	jne    282180 <inthandler20+0x8e>
-  282179:	eb 50                	jmp    2821cb <inthandler20+0xd9>
-  28217b:	bb 00 00 00 00       	mov    $0x0,%ebx
-  282180:	b8 00 00 00 00       	mov    $0x0,%eax
-  282185:	8d 14 03             	lea    (%ebx,%eax,1),%edx
-  282188:	8b 14 95 0c 66 28 00 	mov    0x28660c(,%edx,4),%edx
-  28218f:	89 14 85 0c 66 28 00 	mov    %edx,0x28660c(,%eax,4)
-  282196:	83 c0 01             	add    $0x1,%eax
-  282199:	39 c8                	cmp    %ecx,%eax
-  28219b:	72 e8                	jb     282185 <inthandler20+0x93>
-  28219d:	eb 1e                	jmp    2821bd <inthandler20+0xcb>
-  28219f:	a1 0c 66 28 00       	mov    0x28660c,%eax
-  2821a4:	3b 10                	cmp    (%eax),%edx
-  2821a6:	72 d3                	jb     28217b <inthandler20+0x89>
-  2821a8:	be 0c 66 28 00       	mov    $0x28660c,%esi
-  2821ad:	bb 00 00 00 00       	mov    $0x0,%ebx
-  2821b2:	eb 8c                	jmp    282140 <inthandler20+0x4e>
-  2821b4:	83 3d c8 46 28 00 00 	cmpl   $0x0,0x2846c8
-  2821bb:	74 0e                	je     2821cb <inthandler20+0xd9>
-  2821bd:	a1 0c 66 28 00       	mov    0x28660c,%eax
-  2821c2:	8b 00                	mov    (%eax),%eax
-  2821c4:	a3 c4 46 28 00       	mov    %eax,0x2846c4
-  2821c9:	eb 0a                	jmp    2821d5 <inthandler20+0xe3>
-  2821cb:	c7 05 c4 46 28 00 ff 	movl   $0xffffffff,0x2846c4
-  2821d2:	ff ff ff 
-  2821d5:	8d 65 f4             	lea    -0xc(%ebp),%esp
-  2821d8:	5b                   	pop    %ebx
-  2821d9:	5e                   	pop    %esi
-  2821da:	5f                   	pop    %edi
-  2821db:	5d                   	pop    %ebp
-  2821dc:	c3                   	ret    
+002820e5 <inthandler20>:
+  2820e5:	55                   	push   %ebp
+  2820e6:	89 e5                	mov    %esp,%ebp
+  2820e8:	53                   	push   %ebx
+  2820e9:	83 ec 0c             	sub    $0xc,%esp
+  2820ec:	6a 60                	push   $0x60
+  2820ee:	6a 20                	push   $0x20
+  2820f0:	e8 e1 e5 ff ff       	call   2806d6 <io_out8>
+  2820f5:	a1 40 46 28 00       	mov    0x284640,%eax
+  2820fa:	8d 50 01             	lea    0x1(%eax),%edx
+  2820fd:	89 15 40 46 28 00    	mov    %edx,0x284640
+  282103:	83 c4 10             	add    $0x10,%esp
+  282106:	3b 15 44 46 28 00    	cmp    0x284644,%edx
+  28210c:	72 4f                	jb     28215d <inthandler20+0x78>
+  28210e:	8b 1d 58 6d 28 00    	mov    0x286d58,%ebx
+  282114:	85 db                	test   %ebx,%ebx
+  282116:	75 3c                	jne    282154 <inthandler20+0x6f>
+  282118:	eb 43                	jmp    28215d <inthandler20+0x78>
+  28211a:	8b 43 04             	mov    0x4(%ebx),%eax
+  28211d:	3b 05 40 46 28 00    	cmp    0x284640,%eax
+  282123:	77 22                	ja     282147 <inthandler20+0x62>
+  282125:	c7 43 08 01 00 00 00 	movl   $0x1,0x8(%ebx)
+  28212c:	83 ec 08             	sub    $0x8,%esp
+  28212f:	0f b6 43 10          	movzbl 0x10(%ebx),%eax
+  282133:	50                   	push   %eax
+  282134:	ff 73 0c             	pushl  0xc(%ebx)
+  282137:	e8 00 f1 ff ff       	call   28123c <fifo32_put>
+  28213c:	8b 1b                	mov    (%ebx),%ebx
+  28213e:	83 c4 10             	add    $0x10,%esp
+  282141:	85 db                	test   %ebx,%ebx
+  282143:	75 d5                	jne    28211a <inthandler20+0x35>
+  282145:	eb 16                	jmp    28215d <inthandler20+0x78>
+  282147:	a3 44 46 28 00       	mov    %eax,0x284644
+  28214c:	89 1d 58 6d 28 00    	mov    %ebx,0x286d58
+  282152:	eb 09                	jmp    28215d <inthandler20+0x78>
+  282154:	8b 43 04             	mov    0x4(%ebx),%eax
+  282157:	39 c2                	cmp    %eax,%edx
+  282159:	73 ca                	jae    282125 <inthandler20+0x40>
+  28215b:	eb ea                	jmp    282147 <inthandler20+0x62>
+  28215d:	8b 5d fc             	mov    -0x4(%ebp),%ebx
+  282160:	c9                   	leave  
+  282161:	c3                   	ret    
 
-002821dd <test>:
-  2821dd:	55                   	push   %ebp
-  2821de:	89 e5                	mov    %esp,%ebp
-  2821e0:	8b 45 0c             	mov    0xc(%ebp),%eax
-  2821e3:	0f af 45 08          	imul   0x8(%ebp),%eax
-  2821e7:	5d                   	pop    %ebp
-  2821e8:	c3                   	ret    
+00282162 <test>:
+  282162:	55                   	push   %ebp
+  282163:	89 e5                	mov    %esp,%ebp
+  282165:	8b 45 0c             	mov    0xc(%ebp),%eax
+  282168:	0f af 45 08          	imul   0x8(%ebp),%eax
+  28216c:	5d                   	pop    %ebp
+  28216d:	c3                   	ret    

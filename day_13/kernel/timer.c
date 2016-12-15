@@ -1,4 +1,5 @@
 #include "timer.h"
+#include "int.h"
 
 struct TIMERCTL timerctl;
 
@@ -13,10 +14,9 @@ void init_pit(void)
 	struct TIMER *t = timer_alloc();
 	t->next = 0;
 	t->timeout = 0xffffffff;
-	t->flags = TIMER_FLAG_USING;
+	t->flags = TIMER_FLAGS_USING;
 	timerctl.t0 = t;
 	timerctl.next = 0xffffffff;
-	timerctl.using = 1;
 	return;
 }
 
@@ -40,7 +40,7 @@ void timer_free(struct TIMER *timer)
 	return;
 }
 
-void timer_init(struct TIMER *timer,struct FIFO8 *fifo,unsigned char data)
+void timer_init(struct TIMER *timer,struct FIFO32 *fifo,unsigned char data)
 {
 	timer->fifo = fifo;
 	timer->data = data;
@@ -54,7 +54,7 @@ void timer_settime(struct TIMER *timer,unsigned int timeout)
 	int e = io_load_eflags();
 	io_cli();
 	struct TIMER *t, *s;
-	if(timer.timeout<=timerctl.to->timeout)
+	if(timer->timeout<=timerctl.t0->timeout)
 	{
 		timer->next = timerctl.t0;
 		timerctl.t0 = timer;
@@ -66,7 +66,7 @@ void timer_settime(struct TIMER *timer,unsigned int timeout)
 	s = timerctl.t0;
 	while(t)
 	{
-		if(timer.timeout<=t->timeout)
+		if(timer->timeout<=t->timeout)
 		{
 			timer->next = t;
 			s->next = timer;
@@ -74,8 +74,38 @@ void timer_settime(struct TIMER *timer,unsigned int timeout)
 			return;
 		}
 		s = t;
-		t = t->next
+		t = t->next;
 	}
 	io_store_eflags(e);
+	return;
+}
+
+
+//handler for int 20 (timer interrupts)
+void inthandler20(int *esp)
+{
+	io_out8(PIC0_OCW2,0x60); //tell pic continue watch 20 int
+	timerctl.count ++;
+	
+	if(timerctl.count >= timerctl.next)
+	{
+		struct TIMER *t = timerctl.t0;
+		while(t)
+		{
+			if(t->timeout <= timerctl.count)
+			{
+				t->flags = TIMER_FLAGS_ALLOC;
+				fifo32_put(t->fifo,t->data);
+				t = t->next;
+			}
+			else
+			{
+				timerctl.next = t->timeout;
+				timerctl.t0 = t;
+				break;
+			}
+		}
+	}
+
 	return;
 }
