@@ -60,8 +60,8 @@ int bootmain()
 	init_screen8(buf_bg,binfo->scrnx,binfo->scrny);
 	init_mouse_cursor8(buf_mouse,99);
 	make_window8(buf_window,160,100,"window");
-	putfonts8_asc(buf_window,160,24,28,COL8_000000,"Welcom to");
-	putfonts8_asc(buf_window,160,24,44,COL8_000000,"dcnh's os");
+	//putfonts8_asc(buf_window,160,24,28,COL8_000000,"Welcom to");
+	//putfonts8_asc(buf_window,160,24,44,COL8_000000,"dcnh's os");
 
 	sheet_slide(sht_bg,0,0);
 	int mx = (binfo->scrnx-16)/2;
@@ -99,19 +99,18 @@ int bootmain()
 	extern struct TIMERCTL timerctl;
 	extern struct FIFO32 *keyfifo,*mousefifo;
 
+	//text box and append char
+	int cursor_x,cursor_c;
+	make_textbox8(sht_window,8,28,144,16,COL8_FFFFFF);
+	cursor_x = 8;
+	cursor_c = COL8_FFFFFF;
+
 	for(;;)
 	{
-		sprintf(s,"%d",timerctl.count);
-		//boxfill8(buf_window,160,COL8_C6C6C6,24,60,104,76);
-		//putfonts8_asc(buf_window,160,24,60,COL8_000000,s);
-		//sheet_refresh(sht_window,24,60,104,76);
-		putfonts8_asc_sht(sht_window,24,60,COL8_000000,COL8_C6C6C6,s,10);		
-
 		io_cli();
 		if(fifo32_status(&fifo) == 0)
 		{	
-			//not hlt
-			io_sti();
+			io_stihlt();
 		}
 		else
 		{
@@ -120,10 +119,26 @@ int bootmain()
 			if(256<=i && i<=511)
 			{
 				xtoa(i-256,s);
-				//boxfill8(buf_bg,binfo->scrnx,COL8_000000,0,16,31,31);
-				//putfonts8_asc(buf_bg,binfo->scrnx,0,16,COL8_FFFFFF,s);
-				//sheet_refresh(sht_bg,0,16,31,31);
 				putfonts8_asc_sht(sht_bg,0,16,COL8_FFFFFF,COL8_000000,s,4);
+
+				if(i<0x54 + 256)
+				{
+					if(key_char(i-256)!=0 && cursor_x <144)
+					{
+						s[0] = key_char(i-256);
+						s[1] = 0;
+						putfonts8_asc_sht(sht_window,cursor_x,28,COL8_000000,COL8_FFFFFF,s,1);
+						cursor_x += 8;
+					}
+				}
+				if(i==256+0x0e && cursor_x >8) //back key
+				{
+					putfonts8_asc_sht(sht_window,cursor_x,28,COL8_000000,COL8_FFFFFF," ",1);
+					cursor_x -= 8;
+				}
+				//show cursor after show character
+				boxfill8(sht_window->buf,sht_window->bxsize,cursor_c,cursor_x,28,cursor_x+7,43);
+				sheet_refresh(sht_window,cursor_x,28,cursor_x+8,44);
 			}
 			else if(512<=i && i<=767)
 			{
@@ -145,6 +160,10 @@ int bootmain()
 
 					putfonts8_asc_sht(sht_bg,0,0,COL8_FFFFFF,COL8_008484,s,20);
 					sheet_slide(sht_mouse,mx,my);
+					if(mdec.btn & 0x01)
+					{
+						sheet_slide(sht_window,mx-80,my-8);
+					}
 				}
 			}
 			else if(i == 10)
@@ -159,13 +178,23 @@ int bootmain()
 				//sheet_refresh(sht_bg,0,80,48,96);
 				putfonts8_asc_sht(sht_bg,0,80,COL8_FFFFFF,COL8_008484,"3[sec]",6);
 			}
-			else if(i==1)
+			else if(i<=1)
 			{
-				timer_init(timer3,&fifo,0);
-				boxfill8(buf_bg,binfo->scrnx,COL8_FFFFFF,8,96,15,111);
-				sheet_refresh(sht_bg,8,96,16,112);
+				if(i != 0)
+				{
+					timer_init(timer3,&fifo,0);
+					cursor_c = COL8_000000;
+				}
+				else
+				{
+					timer_init(timer3,&fifo,1);
+					cursor_c = COL8_FFFFFF;
+				}
+				boxfill8(sht_window->buf,sht_window->bxsize,cursor_c,cursor_x,28,cursor_x+7,43);
+				sheet_refresh(sht_window,cursor_x,28,cursor_x+8,44);
 				timer_settime(timer3,50);
 			}
+/*
 			else if(i==0)
 			{
 				timer_init(timer3,&fifo,1);
@@ -173,7 +202,7 @@ int bootmain()
 				sheet_refresh(sht_bg,8,96,16,112);
 				timer_settime(timer3,50);
 			}
-				
+*/				
 		}
 	}
 }
