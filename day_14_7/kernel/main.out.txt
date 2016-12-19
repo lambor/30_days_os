@@ -1586,26 +1586,26 @@ Disassembly of section .text:
   281077:	83 c0 08             	add    $0x8,%eax
   28107a:	3d 00 00 27 00       	cmp    $0x270000,%eax
   28107f:	75 dd                	jne    28105e <init_gdtidt+0x85>
-  281081:	b8 0e 12 28 00       	mov    $0x28120e,%eax
+  281081:	b8 0e 12 00 00       	mov    $0x120e,%eax
   281086:	66 a3 00 f9 26 00    	mov    %ax,0x26f900
-  28108c:	66 c7 05 02 f9 26 00 	movw   $0x10,0x26f902
-  281093:	10 00 
+  28108c:	66 c7 05 02 f9 26 00 	movw   $0x18,0x26f902
+  281093:	18 00 
   281095:	c6 05 04 f9 26 00 00 	movb   $0x0,0x26f904
   28109c:	c6 05 05 f9 26 00 8e 	movb   $0x8e,0x26f905
   2810a3:	c1 e8 10             	shr    $0x10,%eax
   2810a6:	66 a3 06 f9 26 00    	mov    %ax,0x26f906
-  2810ac:	b8 e0 11 28 00       	mov    $0x2811e0,%eax
+  2810ac:	b8 e0 11 00 00       	mov    $0x11e0,%eax
   2810b1:	66 a3 08 f9 26 00    	mov    %ax,0x26f908
-  2810b7:	66 c7 05 0a f9 26 00 	movw   $0x10,0x26f90a
-  2810be:	10 00 
+  2810b7:	66 c7 05 0a f9 26 00 	movw   $0x18,0x26f90a
+  2810be:	18 00 
   2810c0:	c6 05 0c f9 26 00 00 	movb   $0x0,0x26f90c
   2810c7:	c6 05 0d f9 26 00 8e 	movb   $0x8e,0x26f90d
   2810ce:	c1 e8 10             	shr    $0x10,%eax
   2810d1:	66 a3 0e f9 26 00    	mov    %ax,0x26f90e
-  2810d7:	b8 f7 11 28 00       	mov    $0x2811f7,%eax
+  2810d7:	b8 f7 11 00 00       	mov    $0x11f7,%eax
   2810dc:	66 a3 60 f9 26 00    	mov    %ax,0x26f960
-  2810e2:	66 c7 05 62 f9 26 00 	movw   $0x10,0x26f962
-  2810e9:	10 00 
+  2810e2:	66 c7 05 62 f9 26 00 	movw   $0x18,0x26f962
+  2810e9:	18 00 
   2810eb:	c6 05 64 f9 26 00 00 	movb   $0x0,0x26f964
   2810f2:	c6 05 65 f9 26 00 8e 	movb   $0x8e,0x26f965
   2810f9:	c1 e8 10             	shr    $0x10,%eax
