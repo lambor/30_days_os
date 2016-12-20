@@ -1,0 +1,189 @@
+
+entry.gas.o:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+00000000 <start>:
+   0:	31 c0                	xor    %eax,%eax
+   2:	8e d8                	mov    %eax,%ds
+   4:	8e c0                	mov    %eax,%es
+   6:	8e d0                	mov    %eax,%ss
+   8:	c6 06 f0             	movb   $0xf0,(%esi)
+   b:	0f 0a                	(bad)  
+   d:	b8 00 90 8c c0       	mov    $0xc08c9000,%eax
+  12:	bf 00 00 b8 00       	mov    $0xb80000,%edi
+  17:	4f                   	dec    %edi
+  18:	cd 10                	int    $0x10
+  1a:	83 f8 4f             	cmp    $0x4f,%eax
+  1d:	75 52                	jne    71 <scrn320>
+  1f:	26 8b 45 04          	mov    %es:0x4(%ebp),%eax
+  23:	3d 00 02 72 49       	cmp    $0x49720200,%eax
+  28:	b9 01 01 b8 01       	mov    $0x1b80101,%ecx
+  2d:	4f                   	dec    %edi
+  2e:	cd 10                	int    $0x10
+  30:	83 f8 4f             	cmp    $0x4f,%eax
+  33:	75 3c                	jne    71 <scrn320>
+  35:	26 80 7d 19 08       	cmpb   $0x8,%es:0x19(%ebp)
+  3a:	75 35                	jne    71 <scrn320>
+  3c:	26 80 7d 1b 04       	cmpb   $0x4,%es:0x1b(%ebp)
+  41:	75 2e                	jne    71 <scrn320>
+  43:	26 8b 05 25 80 00 74 	mov    %es:0x74008025,%eax
+  4a:	26                   	es
+
+0000004b <largescrn>:
+  4b:	bb 01 41 b8 02       	mov    $0x2b84101,%ebx
+  50:	4f                   	dec    %edi
+  51:	cd 10                	int    $0x10
+  53:	c6 06 f2             	movb   $0xf2,(%esi)
+  56:	0f 08                	invd   
+  58:	26 8b 45 12          	mov    %es:0x12(%ebp),%eax
+  5c:	a3 f4 0f 26 8b       	mov    %eax,0x8b260ff4
+  61:	45                   	inc    %ebp
+  62:	14 a3                	adc    $0xa3,%al
+  64:	f6                   	(bad)  
+  65:	0f 26                	(bad)  
+  67:	66 8b 45 28          	mov    0x28(%ebp),%ax
+  6b:	66 a3 f8 0f eb 20    	mov    %ax,0x20eb0ff8
+
+00000071 <scrn320>:
+  71:	b0 13                	mov    $0x13,%al
+  73:	b4 00                	mov    $0x0,%ah
+  75:	cd 10                	int    $0x10
+  77:	c6 06 f2             	movb   $0xf2,(%esi)
+  7a:	0f 08                	invd   
+  7c:	c7 06 f4 0f 40 01    	movl   $0x1400ff4,(%esi)
+  82:	c7 06 f6 0f c8 00    	movl   $0xc80ff6,(%esi)
+  88:	66 c7 06 f8 0f       	movw   $0xff8,(%esi)
+  8d:	00 00                	add    %al,(%eax)
+  8f:	0a 00                	or     (%eax),%al
+
+00000091 <keystatus>:
+  91:	b4 02                	mov    $0x2,%ah
+  93:	cd 16                	int    $0x16
+  95:	a2 f1 0f be da       	mov    %al,0xdabe0ff1
+  9a:	00 e8                	add    %ch,%al
+  9c:	69 00 be f6 00 e8    	imul   $0xe800f6be,(%eax),%eax
+  a2:	63 00                	arpl   %ax,(%eax)
+  a4:	b0 ff                	mov    $0xff,%al
+  a6:	e6 21                	out    %al,$0x21
+  a8:	90                   	nop
+  a9:	e6 a1                	out    %al,$0xa1
+  ab:	fa                   	cli    
+
+000000ac <seta20.1>:
+  ac:	e4 64                	in     $0x64,%al
+  ae:	a8 02                	test   $0x2,%al
+  b0:	75 fa                	jne    ac <seta20.1>
+  b2:	b0 d1                	mov    $0xd1,%al
+  b4:	e6 64                	out    %al,$0x64
+
+000000b6 <seta20.2>:
+  b6:	e4 64                	in     $0x64,%al
+  b8:	a8 02                	test   $0x2,%al
+  ba:	75 fa                	jne    b6 <seta20.2>
+  bc:	b0 df                	mov    $0xdf,%al
+  be:	e6 60                	out    %al,$0x60
+  c0:	0f 01 16             	lgdtl  (%esi)
+  c3:	b4 01                	mov    $0x1,%ah
+  c5:	0f 20 c0             	mov    %cr0,%eax
+  c8:	66 25 ff ff          	and    $0xffff,%ax
+  cc:	ff                   	(bad)  
+  cd:	7f 66                	jg     135 <protcseg+0x1b>
+  cf:	83 c8 01             	or     $0x1,%eax
+  d2:	0f 22 c0             	mov    %eax,%cr0
+  d5:	ea                   	.byte 0xea
+  d6:	1a 01                	sbb    (%ecx),%al
+  d8:	10 00                	adc    %al,(%eax)
+
+000000da <msg>:
+  da:	0d 0a 0a 0d 6d       	or     $0x6d0d0a0a,%eax
+  df:	79 20                	jns    101 <try+0xb>
+  e1:	6b 65 72 6e          	imul   $0x6e,0x72(%ebp),%esp
+  e5:	65 6c                	gs insb (%dx),%es:(%edi)
+  e7:	20 69 73             	and    %ch,0x73(%ecx)
+  ea:	20 72 75             	and    %dh,0x75(%edx)
+  ed:	6e                   	outsb  %ds:(%esi),(%dx)
+  ee:	69 6e 67 20 6a 6f 73 	imul   $0x736f6a20,0x67(%esi),%ebp
+	...
+
+000000f6 <try>:
+  f6:	0d 0a 0a 0d 74       	or     $0x740d0a0a,%eax
+  fb:	72 79                	jb     176 <protcseg+0x5c>
+  fd:	20 69 74             	and    %ch,0x74(%ecx)
+ 100:	20 61 67             	and    %ah,0x67(%ecx)
+ 103:	61                   	popa   
+ 104:	69                   	.byte 0x69
+ 105:	6e                   	outsb  %ds:(%esi),(%dx)
+	...
+
+00000107 <puts>:
+ 107:	8a 04 83             	mov    (%ebx,%eax,4),%al
+ 10a:	c6 01 3c             	movb   $0x3c,(%ecx)
+ 10d:	00 74 09 b4          	add    %dh,-0x4c(%ecx,%ecx,1)
+ 111:	0e                   	push   %cs
+ 112:	bb 0f 00 cd 10       	mov    $0x10cd000f,%ebx
+ 117:	eb ee                	jmp    107 <puts>
+
+00000119 <over>:
+ 119:	c3                   	ret    
+
+0000011a <protcseg>:
+ 11a:	66 b8 08 00          	mov    $0x8,%ax
+ 11e:	8e d8                	mov    %eax,%ds
+ 120:	8e c0                	mov    %eax,%es
+ 122:	8e e0                	mov    %eax,%fs
+ 124:	8e e8                	mov    %eax,%gs
+ 126:	8e d0                	mov    %eax,%ss
+ 128:	bc ff ff 3f 00       	mov    $0x3fffff,%esp
+ 12d:	be ba 01 00 00       	mov    $0x1ba,%esi
+ 132:	bf 00 00 28 00       	mov    $0x280000,%edi
+ 137:	b9 00 00 02 00       	mov    $0x20000,%ecx
+ 13c:	e8 43 00 00 00       	call   184 <memcpy>
+ 141:	be 00 7c 00 00       	mov    $0x7c00,%esi
+ 146:	bf 00 00 10 00       	mov    $0x100000,%edi
+ 14b:	b9 80 00 00 00       	mov    $0x80,%ecx
+ 150:	e8 2f 00 00 00       	call   184 <memcpy>
+ 155:	be 00 82 00 00       	mov    $0x8200,%esi
+ 15a:	bf 00 02 10 00       	mov    $0x100200,%edi
+ 15f:	b9 00 00 00 00       	mov    $0x0,%ecx
+ 164:	8a 0d f0 0f 00 00    	mov    0xff0,%cl
+ 16a:	69 c9 00 12 00 00    	imul   $0x1200,%ecx,%ecx
+ 170:	81 e9 80 00 00 00    	sub    $0x80,%ecx
+ 176:	e8 09 00 00 00       	call   184 <memcpy>
+ 17b:	ea 00 00 00 00 18 00 	ljmp   $0x18,$0x0
+
+00000182 <spin>:
+ 182:	eb fe                	jmp    182 <spin>
+
+00000184 <memcpy>:
+ 184:	8b 06                	mov    (%esi),%eax
+ 186:	83 c6 04             	add    $0x4,%esi
+ 189:	89 07                	mov    %eax,(%edi)
+ 18b:	83 c7 04             	add    $0x4,%edi
+ 18e:	83 e9 01             	sub    $0x1,%ecx
+ 191:	75 f1                	jne    184 <memcpy>
+ 193:	c3                   	ret    
+
+00000194 <gdt>:
+	...
+ 19c:	ff                   	(bad)  
+ 19d:	ff 00                	incl   (%eax)
+ 19f:	00 00                	add    %al,(%eax)
+ 1a1:	92                   	xchg   %eax,%edx
+ 1a2:	cf                   	iret   
+ 1a3:	00 ff                	add    %bh,%bh
+ 1a5:	ff 00                	incl   (%eax)
+ 1a7:	00 00                	add    %al,(%eax)
+ 1a9:	9a cf 00 7f 00 00 00 	lcall  $0x0,$0x7f00cf
+ 1b0:	28                   	.byte 0x28
+ 1b1:	9a                   	.byte 0x9a
+ 1b2:	c0                   	.byte 0xc0
+	...
+
+000001b4 <gdtdesc>:
+ 1b4:	1f                   	pop    %ds
+ 1b5:	00                   	.byte 0x0
+ 1b6:	94                   	xchg   %eax,%esp
+ 1b7:	01 00                	add    %eax,(%eax)
+	...
