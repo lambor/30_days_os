@@ -5,11 +5,21 @@ int bootmain()
 {
 	//the buf for all strings.
 	char s[50] = {0};
+	
+	//entry.S write the boot info into 0x0ff0
+	struct BOOTINFO *binfo = (struct BOOTINFO *)0xff0;
 
-	//init fifo
-	struct FIFO32 fifo;
-	int fifobuf[128];
-	fifo32_init(&fifo,128,fifobuf,0);	
+	//init fifo and keycmd fifo
+	struct FIFO32 fifo,keycmd;
+	int fifobuf[128], keycmd_buf[32];
+	fifo32_init(&fifo,128,fifobuf,0);
+	fifo32_init(&keycmd,32,keycmd_buf,0);
+	
+	int key_leds = (binfo->leds>>4)&7;
+
+	//init with the keyboard led status
+	fifo32_put(&keycmd,KEYCMD_LED);
+	fifo32_put(&keycmd,key_leds);
 
 	//init gdt idt pic and enable cpu interrupt
 	init_gdtidt();
@@ -36,13 +46,11 @@ int bootmain()
 	memman_free(memman,0x00001000,0x0009e000);
 	memman_free(memman,0x00400000,memtotal-0x00400000);
 
-	//entry.S write the boot info into 0x0ff0
-	struct BOOTINFO *binfo = (struct BOOTINFO *)0xff0;
-
+	
 	struct SHTCTL *shtctl;
-	struct SHEET *sht_bg, *sht_mouse, *sht_window, *sht_window_b[3];
-	unsigned char *buf_bg,buf_mouse[256],*buf_window,*buf_window_b;
-	struct TASK *task_a,*task_b[3];
+	struct SHEET *sht_bg, *sht_mouse, *sht_window, *sht_console;
+	unsigned char *buf_bg,buf_mouse[256],*buf_window,*buf_console;
+	struct TASK *task_a, *task_console;
 	
 	init_palette();
 	shtctl = shtctl_init(memman,binfo->vram,binfo->scrnx,binfo->scrny);
@@ -55,27 +63,6 @@ int bootmain()
 	buf_bg = (unsigned char *)memman_alloc_4k(memman,binfo->scrnx*binfo->scrny);
 	sheet_setbuf(sht_bg,buf_bg,binfo->scrnx,binfo->scrny,-1);
 	init_screen8(buf_bg,binfo->scrnx,binfo->scrny);
-	
-	//task_b sheets
-	for(int i=0;i<3;i++)
-	{
-		sht_window_b[i] = sheet_alloc(shtctl);
-		buf_window_b = (unsigned char *)memman_alloc_4k(memman,144*52);
-		sheet_setbuf(sht_window_b[i],buf_window_b,144,52,-1);
-		sprintf(s,"task_b%d",i);
-		make_window8(buf_window_b,144,52,s,0);
-		task_b[i] = task_alloc();
-		task_b[i]->tss.esp = memman_alloc_4k(memman,64*1024)+64*1024-8;
-		task_b[i]->tss.eip = (int)&task_b_main - 0x280000;
-		task_b[i]->tss.es = 1*8;
-		task_b[i]->tss.cs = 3*8;
-		task_b[i]->tss.ss = 1*8;
-		task_b[i]->tss.ds = 1*8;
-		task_b[i]->tss.fs = 1*8;
-		task_b[i]->tss.gs = 1*8;
-		*((int *)(task_b[i]->tss.esp + 4)) = sht_window_b[i];
-		//task_run(task_b[i],2,i+1);
-	}
 	
 	//task_a window sheet
 	sht_window = sheet_alloc(shtctl);
@@ -101,18 +88,33 @@ int bootmain()
 	int mx = (binfo->scrnx-16)/2;
 	int my = (binfo->scrny-28-16)/2;
 
+	//console sheet
+	sht_console = sheet_alloc(shtctl);
+	buf_console = (unsigned char *)memman_alloc_4k(memman,256*165);
+	sheet_setbuf(sht_console,buf_console,256,165,-1);
+	make_window8(buf_console,256,165,"console",0);
+	make_textbox8(sht_console,8,28,240,128,COL8_000000);
+	task_console = task_alloc();
+	task_console->tss.esp = memman_alloc_4k(memman,64*1024)+64*1024-8;
+	task_console->tss.eip = (int)&console_task - 0x280000;
+	task_console->tss.es = 1*8;
+	task_console->tss.cs = 3*8;
+	task_console->tss.ss = 1*8;
+	task_console->tss.ds = 1*8;
+	task_console->tss.fs = 1*8;
+	task_console->tss.gs = 1*8;
+	*((int *)(task_console->tss.esp + 4)) = sht_console;
+	task_run(task_console,2,2);
+
+
 	sheet_slide(sht_bg,0,0);
-	sheet_slide(sht_window_b[0],168, 56);
-	sheet_slide(sht_window_b[1],  8,116);
-	sheet_slide(sht_window_b[2],168,116);
-	sheet_slide(sht_window,	8, 56);
+	sheet_slide(sht_console,32,4);
+	sheet_slide(sht_window,	64, 56);
 	sheet_slide(sht_mouse,mx,my);
 	sheet_updown(sht_bg,0);
-	sheet_updown(sht_window_b[0],1);
-	sheet_updown(sht_window_b[1],2);
-	sheet_updown(sht_window_b[2],3);
-	sheet_updown(sht_window,4);
-	sheet_updown(sht_mouse,5);
+	sheet_updown(sht_console,1);
+	sheet_updown(sht_window,2);
+	sheet_updown(sht_mouse,3);
 	
 /*
 	putfonts8_asc(buf_bg,binfo->scrnx,8,8,COL8_FFFFFF,"ABC 123");
@@ -126,8 +128,16 @@ int bootmain()
 	
 	extern struct TIMERCTL timerctl;
 
+	int key_to = 0,key_shift = 0,keycmd_wait = -1;
+
 	for(;;)
 	{
+		if(fifo32_status(&keycmd) > 0 && keycmd_wait < 0)
+		{
+			keycmd_wait = fifo32_get(&keycmd);
+			wait_KBC_sendready();
+			io_out8(PORT_KEYDAT,keycmd_wait);
+		}
 		io_cli();
 		if(fifo32_status(&fifo) == 0)
 		{	
@@ -142,25 +152,107 @@ int bootmain()
 			{
 				xtoa(i-256,s);
 				putfonts8_asc_sht(sht_bg,0,16,COL8_FFFFFF,COL8_000000,s,4);
+				
+				s[0] = key_char(i-256,key_shift);
+				s[1] = 0;
 
-				if(i<0x54 + 256)
+				if('A' <= s[0] && s[0] <= 'Z')
 				{
-					if(key_char(i-256)!=0 && cursor_x <144)
+					if((key_leds&4) == 0 && key_shift != 0 ||	//keyboard led off and shift on
+						(key_leds&4) != 0 && key_shift == 0)			//keyboard led on and shift off
+						s[0] += 0x20;		//uppercase 2 lowercases					
+				}
+				if(s[0]!=0)//visible char
+				{
+					if(key_to == 0 && cursor_x <128)
 					{
-						s[0] = key_char(i-256);
-						s[1] = 0;
 						putfonts8_asc_sht(sht_window,cursor_x,28,COL8_000000,COL8_FFFFFF,s,1);
 						cursor_x += 8;
 					}
+					else if(key_to == 1)
+					{
+						fifo32_put(&task_console->fifo,s[0]+256); //send key to console fifo
+					}
+					
 				}
-				if(i==256+0x0e && cursor_x >8) //back key
+				if(i == 256 + 0x0f) //tab key
 				{
-					putfonts8_asc_sht(sht_window,cursor_x,28,COL8_000000,COL8_FFFFFF," ",1);
-					cursor_x -= 8;
+					if(key_to == 0)
+					{
+						key_to = 1;
+						make_wtitle8(buf_window,sht_window->bxsize,"task_a",0);
+						make_wtitle8(buf_console,sht_console->bxsize,"task_console",1);
+					}
+					else
+					{
+						key_to = 0;
+						make_wtitle8(buf_window,sht_window->bxsize,"task_a",1);
+						make_wtitle8(buf_console,sht_console->bxsize,"task_console",0);
+					}
+					sheet_refresh(sht_window,0,0,sht_window->bxsize,21);
+					sheet_refresh(sht_console,0,0,sht_console->bxsize,21);
+				}
+			 	else if(i == 256 + 0x0e) //back key
+				{
+					if(key_to == 0 && cursor_x >8)
+					{
+						putfonts8_asc_sht(sht_window,cursor_x,28,COL8_000000,COL8_FFFFFF," ",1);
+						cursor_x -= 8;
+					}
+					else if(key_to == 1)
+					{
+						fifo32_put(&task_console->fifo,8+256);
+					}
+				}
+				else if(i == 256 + 0x2a)  //left shift on
+				{
+					key_shift |= 1;
+				} 
+				else if(i == 256 + 0x36) //right shift on
+				{
+					key_shift |= 2;
+				}
+				else if(i == 256 + 0xaa)  //left shift off
+				{
+					key_shift &= ~1;
+				} 
+				else if(i == 256 + 0xb6) //right shift off
+				{
+					key_shift &= ~2;
+				}
+				else if(i == 256 + 0x3a) //CapsLock
+				{
+					key_leds ^= 4;
+					fifo32_put(&keycmd,KEYCMD_LED);
+					fifo32_put(&keycmd,key_leds);
+				}
+				else if(i == 256 + 0x45) //NumLock
+				{
+					key_leds ^= 2;
+					fifo32_put(&keycmd,KEYCMD_LED);
+					fifo32_put(&keycmd,key_leds);
+				}
+				else if(i == 256 + 0x46) //ScrollLock
+				{
+					key_leds ^= 1;
+					fifo32_put(&keycmd,KEYCMD_LED);
+					fifo32_put(&keycmd,key_leds);
+				}
+				else if(i == 256 + 0xfa)
+				{
+					keycmd_wait = -1;
+				}
+				else if(i == 256 + 0xfe)
+				{
+					wait_KBC_sendready();
+					io_out8(PORT_KEYDAT,keycmd_wait);
 				}
 				//show cursor after show character
 				boxfill8(sht_window->buf,sht_window->bxsize,cursor_c,cursor_x,28,cursor_x+7,43);
 				sheet_refresh(sht_window,cursor_x,28,cursor_x+8,44);
+				sprintf(s,"%d,%d",key_leds,key_shift);
+				putfonts8_asc_sht(sht_bg,0,32,COL8_FFFFFF,COL8_000000,s,4);
+
 			}
 			else if(512<=i && i<=767)
 			{

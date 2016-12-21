@@ -48,4 +48,5 @@
 #define AR_TSS32		0x0089
 
 #define PORT_KEYDAT 0x0060
+#define KEYCMD_LED  0xed
 #endif

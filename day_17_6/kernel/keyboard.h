@@ -12,6 +12,7 @@
 void wait_KBC_sendready(void);
 void init_keyboard(struct FIFO32 *fifo,int data0);
 
+char key_char(int key,int key_shift);
 #define ADR_BOOTINFO 0x00000FF0
 
 #include "const.h"

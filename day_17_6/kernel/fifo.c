@@ -1,4 +1,5 @@
 #include "fifo.h"
+#include "task.h"
 void fifo32_init(struct FIFO32 *fifo,int size,int *buf,struct TASK *task)
 {
 	fifo->size=size;

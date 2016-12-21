@@ -9,10 +9,13 @@ struct TSS32
 	int ldtr,iomap;
 };
 
+#include "fifo.h"
+
 struct TASK
 {
 	int sel,flags;
 	int level,priority;
+	struct FIFO32 fifo;
 	struct TSS32 tss;
 };
 
