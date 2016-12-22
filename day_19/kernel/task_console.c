@@ -16,6 +16,8 @@ void console_task(struct SHEET *sheet,unsigned int memtotal)
 	//draw prompt char
 	putfonts8_asc_sht(sheet,8,28,COL8_FFFFFF,COL8_000000,">",1);
 
+	int *fat = (int *)memman_alloc_4k(memman, 4*2880);
+	file_readfat(fat,(unsigned char *)(ADR_DISKIMG+0x000200));
 	for(;;)
 	{
 		io_cli();
@@ -151,19 +153,18 @@ void console_task(struct SHEET *sheet,unsigned int memtotal)
 						if(x<224 && finfo[x].name[0]!=0)
 						{
 							//file found!
-							y = finfo[x].size;
-							char *p = (char *)(finfo[x].clustno * 512 + 0x003e00 + ADR_DISKIMG);
+							char *p = (char *)memman_alloc_4k(memman,finfo[x].size);
+							file_loadfile(finfo[x].clustno,finfo[x].size,p,fat,(char *)(ADR_DISKIMG+0x003e00));
 							cursor_x = 8;
-							for(x=0;x<y;x++)
+							for(y=0;y<finfo[x].size;y++)
 							{
-								s[0] = p[x];
+								s[0] = p[y];
 								s[1] = 0;
 								if(s[0] == 0x09) //tab
 								{
 									for(;;)
 									{
 										putfonts8_asc_sht(sheet,cursor_x,cursor_y,COL8_FFFFFF,COL8_000000," ",1);
-										cursor_x += 8;
 										if(cursor_x == 8+240)
 										{
 											cursor_x = 8;
@@ -195,6 +196,7 @@ void console_task(struct SHEET *sheet,unsigned int memtotal)
 									}	
 								}
 							}
+							memman_free_4k(memman,(int)p,finfo[x].size);
 						}
 						else
 						{

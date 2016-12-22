@@ -16,5 +16,6 @@
 #include "timer.h"
 #include "task.h"
 #include "task_console.h"
+#include "fat.h"
 #include "test.h"
 #endif

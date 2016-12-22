@@ -25,7 +25,7 @@ main.o:main.c
 
 main.out: main.o io.nas.o graphics.o font.o dsctbl.o int.o int.nas.o \
 		string.o fifo.o mouse.o keyboard.o memory.o map_sheet.o timer.o\
-		task.nas.o task.o task_console.o\
+		task.nas.o task.o task_console.o fat.o\
 		test.o
 	ld $(LDFLAGS) -N -e bootmain -Ttext 0x280000 -o $@.o $^
 	objcopy -S -O binary $@.o $@
