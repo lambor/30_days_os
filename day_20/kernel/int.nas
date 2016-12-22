@@ -4,6 +4,8 @@
 ;[FILE "header.nas"]
 	extern inthandler21,inthandler2c,inthandler20
 	global asm_inthandler21,asm_inthandler2c,asm_inthandler20
+	extern sys_api
+	global asm_sys_api
 
 [SECTION .text]
 asm_inthandler21:
@@ -52,4 +54,13 @@ asm_inthandler20:
 	popad
 	pop ds
 	pop es
+	iretd
+
+asm_sys_api:
+	sti
+	pushad
+	pushad
+	call sys_api
+	add esp,32
+	popad
 	iretd

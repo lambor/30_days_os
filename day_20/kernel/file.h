@@ -7,8 +7,8 @@ struct FILEINFO
 	char reserve[10];
 	unsigned short time,data,clustno;
 	unsigned int size;
-}
+};
 void file_readfat(int *fat,unsigned char *img);
 void file_loadfile(int clustno,int size,char *buf,int *fat,char *img);
-void file_search(char *name,struct FILENAME *finfo,int max);
+struct FILEINFO *file_search(char *name,struct FILEINFO *finfo,int max);
 #endif

@@ -1,4 +1,4 @@
-all: hlt.bin
+all: hello.bin
 
 %.bin: %.nas
 	nasm -o $@ $<

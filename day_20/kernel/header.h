@@ -17,5 +17,6 @@
 #include "task.h"
 #include "task_console.h"
 #include "file.h"
+#include "console.h"
 #include "test.h"
 #endif

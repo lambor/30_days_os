@@ -5,6 +5,7 @@ void init_gdtidt(void);
 extern void asm_inthandler20();
 extern void asm_inthandler21();
 extern void asm_inthandler2c();
+extern void asm_sys_api();
 
 struct SEGMENT_DESCRIPTOR
 {

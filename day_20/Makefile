@@ -20,7 +20,7 @@ mountos: os.img kernel bin
 	cp ipl.nas /tmp/os_dir
 	cp Makefile /tmp/os_dir
 	cp 1111.txt /tmp/os_dir
-	cp $(binsdir)/hlt.bin /tmp/os_dir
+	cp $(binsdir)/*.bin /tmp/os_dir
 	sleep 1
 	umount /tmp/os_dir
 run: mountos
