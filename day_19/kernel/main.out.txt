@@ -1,5 +1,5 @@
 
-main.out.o:     file format elf32-i386
+main.out.o：     文件格式 elf32-i386
 
 
 Disassembly of section .text:
@@ -280,7 +280,7 @@ int bootmain()
 	make_window8(buf_window,144,52,"task_a",1);
   28022b:	83 c4 14             	add    $0x14,%esp
   28022e:	6a 01                	push   $0x1
-  280230:	68 60 39 28 00       	push   $0x283960
+  280230:	68 00 3c 28 00       	push   $0x283c00
   280235:	6a 34                	push   $0x34
   280237:	68 90 00 00 00       	push   $0x90
   28023c:	ff b5 b8 fb ff ff    	pushl  -0x448(%ebp)
@@ -406,7 +406,7 @@ int bootmain()
 	make_window8(buf_console,256,165,"console",0);
   28032d:	83 c4 14             	add    $0x14,%esp
   280330:	6a 00                	push   $0x0
-  280332:	68 6c 39 28 00       	push   $0x28396c
+  280332:	68 0c 3c 28 00       	push   $0x283c0c
   280337:	68 a5 00 00 00       	push   $0xa5
   28033c:	68 00 01 00 00       	push   $0x100
   280341:	ff b5 b0 fb ff ff    	pushl  -0x450(%ebp)
@@ -805,14 +805,14 @@ int bootmain()
 						key_to = 1;
 						make_wtitle8(buf_window,sht_window->bxsize,"task_a",0);
   280693:	6a 00                	push   $0x0
-  280695:	68 60 39 28 00       	push   $0x283960
+  280695:	68 00 3c 28 00       	push   $0x283c00
   28069a:	ff 73 04             	pushl  0x4(%ebx)
   28069d:	ff b5 b8 fb ff ff    	pushl  -0x448(%ebp)
   2806a3:	e8 25 08 00 00       	call   280ecd <make_wtitle8>
 						make_wtitle8(buf_console,sht_console->bxsize,"task_console",1);
   2806a8:	8b 85 d8 fb ff ff    	mov    -0x428(%ebp),%eax
   2806ae:	6a 01                	push   $0x1
-  2806b0:	68 67 39 28 00       	push   $0x283967
+  2806b0:	68 07 3c 28 00       	push   $0x283c07
   2806b5:	ff 70 04             	pushl  0x4(%eax)
   2806b8:	ff b5 b0 fb ff ff    	pushl  -0x450(%ebp)
   2806be:	e8 0a 08 00 00       	call   280ecd <make_wtitle8>
@@ -856,14 +856,14 @@ int bootmain()
 						key_to = 0;
 						make_wtitle8(buf_window,sht_window->bxsize,"task_a",1);
   280702:	6a 01                	push   $0x1
-  280704:	68 60 39 28 00       	push   $0x283960
+  280704:	68 00 3c 28 00       	push   $0x283c00
   280709:	ff 73 04             	pushl  0x4(%ebx)
   28070c:	ff b5 b8 fb ff ff    	pushl  -0x448(%ebp)
   280712:	e8 b6 07 00 00       	call   280ecd <make_wtitle8>
 						make_wtitle8(buf_console,sht_console->bxsize,"task_console",0);
   280717:	8b 85 d8 fb ff ff    	mov    -0x428(%ebp),%eax
   28071d:	6a 00                	push   $0x0
-  28071f:	68 67 39 28 00       	push   $0x283967
+  28071f:	68 07 3c 28 00       	push   $0x283c07
   280724:	ff 70 04             	pushl  0x4(%eax)
   280727:	ff b5 b0 fb ff ff    	pushl  -0x450(%ebp)
   28072d:	e8 9b 07 00 00       	call   280ecd <make_wtitle8>
@@ -923,7 +923,7 @@ int bootmain()
 						putfonts8_asc_sht(sht_window,cursor_x,28,COL8_000000,COL8_FFFFFF," ",1);
   28079f:	50                   	push   %eax
   2807a0:	6a 01                	push   $0x1
-  2807a2:	68 74 39 28 00       	push   $0x283974
+  2807a2:	68 14 3c 28 00       	push   $0x283c14
   2807a7:	6a 07                	push   $0x7
   2807a9:	6a 00                	push   $0x0
   2807ab:	6a 1c                	push   $0x1c
@@ -1126,7 +1126,7 @@ int bootmain()
   28093e:	83 c4 20             	add    $0x20,%esp
   280941:	ff b5 cc fb ff ff    	pushl  -0x434(%ebp)
   280947:	ff b5 e0 fb ff ff    	pushl  -0x420(%ebp)
-  28094d:	68 76 39 28 00       	push   $0x283976
+  28094d:	68 16 3c 28 00       	push   $0x283c16
   280952:	50                   	push   %eax
   280953:	89 85 a4 fb ff ff    	mov    %eax,-0x45c(%ebp)
   280959:	e8 be 0d 00 00       	call   28171c <sprintf>
@@ -1552,7 +1552,7 @@ void init_palette(void)
 		0x84, 0x84, 0x84,	//dark gray
 	};
 	set_palette(0,15,table_rgb);
-  280c71:	68 c0 47 28 00       	push   $0x2847c0
+  280c71:	68 80 4a 28 00       	push   $0x284a80
   280c76:	6a 0f                	push   $0xf
   280c78:	6a 00                	push   $0x0
   280c7a:	e8 4e ff ff ff       	call   280bcd <set_palette>
@@ -1880,7 +1880,7 @@ void init_mouse_cursor8(char *mouse, char bc)
 		for(x=0;x<16;x++)
 		{
 			if(cursor[y][x] == '*')
-  280e81:	0f b6 94 03 60 3a 28 	movzbl 0x283a60(%ebx,%eax,1),%edx
+  280e81:	0f b6 94 03 00 3d 28 	movzbl 0x283d00(%ebx,%eax,1),%edx
   280e88:	00 
   280e89:	80 fa 2a             	cmp    $0x2a,%dl
   280e8c:	75 06                	jne    280e94 <init_mouse_cursor8+0x31>
@@ -2014,7 +2014,7 @@ void make_wtitle8(unsigned char *buf,int xsize,char *title,char act)
 		for(x=0;x<16;x++)
 		{
 			c=closebtn[y][x];
-  280f37:	0f b6 9c 06 80 39 28 	movzbl 0x283980(%esi,%eax,1),%ebx
+  280f37:	0f b6 9c 06 20 3c 28 	movzbl 0x283c20(%esi,%eax,1),%ebx
   280f3e:	00 
 			if(c == '@') c=COL8_000000;
   280f3f:	ba 00 00 00 00       	mov    $0x0,%edx
@@ -2572,7 +2572,7 @@ void putfonts8_asc(char *vram,int xsize,int x,int y,char c,unsigned char *s)
   2812f0:	0f be fa             	movsbl %dl,%edi
   2812f3:	0f b6 c0             	movzbl %al,%eax
   2812f6:	c1 e0 04             	shl    $0x4,%eax
-  2812f9:	05 00 48 28 00       	add    $0x284800,%eax
+  2812f9:	05 c0 4a 28 00       	add    $0x284ac0,%eax
   2812fe:	50                   	push   %eax
   2812ff:	57                   	push   %edi
   281300:	ff 75 14             	pushl  0x14(%ebp)
@@ -3689,10 +3689,10 @@ void enable_mouse(struct FIFO32 *fifo,int data0,struct MOUSE_DEC *mdec)
   2819c6:	83 ec 08             	sub    $0x8,%esp
 	mousefifo = fifo;
   2819c9:	8b 45 08             	mov    0x8(%ebp),%eax
-  2819cc:	a3 e4 61 28 00       	mov    %eax,0x2861e4
+  2819cc:	a3 a4 64 28 00       	mov    %eax,0x2864a4
 	mousedata0 = data0;
   2819d1:	8b 45 0c             	mov    0xc(%ebp),%eax
-  2819d4:	a3 e0 61 28 00       	mov    %eax,0x2861e0
+  2819d4:	a3 a0 64 28 00       	mov    %eax,0x2864a0
 
 	wait_KBC_sendready();
   2819d9:	e8 1a 01 00 00       	call   281af8 <wait_KBC_sendready>
@@ -3868,9 +3868,9 @@ void inthandler2c(int *esp)
   281ad9:	e8 36 f0 ff ff       	call   280b14 <io_in8>
 	fifo32_put(mousefifo,data+mousedata0);
   281ade:	83 c4 08             	add    $0x8,%esp
-  281ae1:	03 05 e0 61 28 00    	add    0x2861e0,%eax
+  281ae1:	03 05 a0 64 28 00    	add    0x2864a0,%eax
   281ae7:	50                   	push   %eax
-  281ae8:	ff 35 e4 61 28 00    	pushl  0x2861e4
+  281ae8:	ff 35 a4 64 28 00    	pushl  0x2864a4
   281aee:	e8 15 fe ff ff       	call   281908 <fifo32_put>
 	return;
   281af3:	83 c4 10             	add    $0x10,%esp
@@ -3913,10 +3913,10 @@ void init_keyboard(struct FIFO32 *fifo,int data0)
   281b14:	83 ec 08             	sub    $0x8,%esp
 	keyfifo = fifo;
   281b17:	8b 45 08             	mov    0x8(%ebp),%eax
-  281b1a:	a3 e8 61 28 00       	mov    %eax,0x2861e8
+  281b1a:	a3 a8 64 28 00       	mov    %eax,0x2864a8
 	keydata0 = data0;
   281b1f:	8b 45 0c             	mov    0xc(%ebp),%eax
-  281b22:	a3 ec 61 28 00       	mov    %eax,0x2861ec
+  281b22:	a3 ac 64 28 00       	mov    %eax,0x2864ac
 	wait_KBC_sendready();
   281b27:	e8 cc ff ff ff       	call   281af8 <wait_KBC_sendready>
 	io_out8(PORT_KEYCMD,KEYCMD_WRITE_MODE);
@@ -3958,9 +3958,9 @@ void inthandler21(int *esp)
   281b64:	e8 ab ef ff ff       	call   280b14 <io_in8>
 	fifo32_put(keyfifo,data + keydata0);
   281b69:	83 c4 08             	add    $0x8,%esp
-  281b6c:	03 05 ec 61 28 00    	add    0x2861ec,%eax
+  281b6c:	03 05 ac 64 28 00    	add    0x2864ac,%eax
   281b72:	50                   	push   %eax
-  281b73:	ff 35 e8 61 28 00    	pushl  0x2861e8
+  281b73:	ff 35 a8 64 28 00    	pushl  0x2864a8
   281b79:	e8 8a fd ff ff       	call   281908 <fifo32_put>
 	return;
   281b7e:	83 c4 10             	add    $0x10,%esp
@@ -3997,10 +3997,10 @@ char key_char(int key, int key_shift)
 		if(key_shift==0) return keytable0[key];
   281b93:	83 7d 0c 00          	cmpl   $0x0,0xc(%ebp)
   281b97:	75 09                	jne    281ba2 <key_char+0x1f>
-  281b99:	0f b6 82 e0 3b 28 00 	movzbl 0x283be0(%edx),%eax
+  281b99:	0f b6 82 80 3e 28 00 	movzbl 0x283e80(%edx),%eax
   281ba0:	eb 07                	jmp    281ba9 <key_char+0x26>
 		else return keytable1[key];
-  281ba2:	0f b6 82 60 3b 28 00 	movzbl 0x283b60(%edx),%eax
+  281ba2:	0f b6 82 00 3e 28 00 	movzbl 0x283e00(%edx),%eax
 	}
 	else return 0;
 }
@@ -5694,9 +5694,9 @@ struct TIMER *timer_alloc(void)
 	for(i=0;i<MAX_TIMER;i++)
 	{
 		if(timerctl.timers0[i].flags == 0)
-  282689:	83 3d 10 62 28 00 00 	cmpl   $0x0,0x286210
+  282689:	83 3d d0 64 28 00 00 	cmpl   $0x0,0x2864d0
   282690:	74 11                	je     2826a3 <timer_alloc+0x1d>
-  282692:	ba 24 62 28 00       	mov    $0x286224,%edx
+  282692:	ba e4 64 28 00       	mov    $0x2864e4,%edx
 }
 
 struct TIMER *timer_alloc(void)
@@ -5722,10 +5722,10 @@ struct TIMER *timer_alloc(void)
 			timerctl.timers0[i].flags = TIMER_FLAGS_ALLOC;
   2826a8:	8d 14 85 00 00 00 00 	lea    0x0(,%eax,4),%edx
   2826af:	8d 0c 02             	lea    (%edx,%eax,1),%ecx
-  2826b2:	c7 04 8d 10 62 28 00 	movl   $0x1,0x286210(,%ecx,4)
+  2826b2:	c7 04 8d d0 64 28 00 	movl   $0x1,0x2864d0(,%ecx,4)
   2826b9:	01 00 00 00 
 			return &timerctl.timers0[i];
-  2826bd:	8d 04 8d 08 62 28 00 	lea    0x286208(,%ecx,4),%eax
+  2826bd:	8d 04 8d c8 64 28 00 	lea    0x2864c8(,%ecx,4),%eax
   2826c4:	eb 12                	jmp    2826d8 <timer_alloc+0x52>
 }
 
@@ -5773,8 +5773,8 @@ void init_pit(void)
   2826fb:	6a 2e                	push   $0x2e
   2826fd:	6a 40                	push   $0x40
   2826ff:	e8 32 e4 ff ff       	call   280b36 <io_out8>
-  282704:	b8 10 62 28 00       	mov    $0x286210,%eax
-  282709:	ba 20 89 28 00       	mov    $0x288920,%edx
+  282704:	b8 d0 64 28 00       	mov    $0x2864d0,%eax
+  282709:	ba e0 8b 28 00       	mov    $0x288be0,%edx
   28270e:	83 c4 10             	add    $0x10,%esp
 	for(int i=0;i<MAX_TIMER;i++)
 		timerctl.timers0[i].flags = 0;
@@ -5798,9 +5798,9 @@ void init_pit(void)
 	t->flags = TIMER_FLAGS_USING;
   282730:	c7 40 08 02 00 00 00 	movl   $0x2,0x8(%eax)
 	timerctl.t0 = t;
-  282737:	a3 18 89 28 00       	mov    %eax,0x288918
+  282737:	a3 d8 8b 28 00       	mov    %eax,0x288bd8
 	timerctl.next = 0xffffffff;
-  28273c:	c7 05 04 62 28 00 ff 	movl   $0xffffffff,0x286204
+  28273c:	c7 05 c4 64 28 00 ff 	movl   $0xffffffff,0x2864c4
   282743:	ff ff ff 
 	return;
 }
@@ -5854,7 +5854,7 @@ void timer_settime(struct TIMER *timer,unsigned int timeout)
   282771:	83 ec 0c             	sub    $0xc,%esp
   282774:	8b 5d 08             	mov    0x8(%ebp),%ebx
 	timer->timeout = timeout + timerctl.count;
-  282777:	a1 00 62 28 00       	mov    0x286200,%eax
+  282777:	a1 c0 64 28 00       	mov    0x2864c0,%eax
   28277c:	03 45 0c             	add    0xc(%ebp),%eax
   28277f:	89 43 04             	mov    %eax,0x4(%ebx)
 	timer->flags = TIMER_FLAGS_USING;
@@ -5867,17 +5867,17 @@ void timer_settime(struct TIMER *timer,unsigned int timeout)
 	struct TIMER *t, *s;
 	if(timer->timeout<=timerctl.t0->timeout)
   282795:	8b 4b 04             	mov    0x4(%ebx),%ecx
-  282798:	8b 3d 18 89 28 00    	mov    0x288918,%edi
+  282798:	8b 3d d8 8b 28 00    	mov    0x288bd8,%edi
   28279e:	3b 4f 04             	cmp    0x4(%edi),%ecx
   2827a1:	77 1e                	ja     2827c1 <timer_settime+0x56>
 	{
 		timer->next = timerctl.t0;
   2827a3:	89 3b                	mov    %edi,(%ebx)
 		timerctl.t0 = timer;
-  2827a5:	89 1d 18 89 28 00    	mov    %ebx,0x288918
+  2827a5:	89 1d d8 8b 28 00    	mov    %ebx,0x288bd8
 		timerctl.next = timer->timeout;
   2827ab:	8b 43 04             	mov    0x4(%ebx),%eax
-  2827ae:	a3 04 62 28 00       	mov    %eax,0x286204
+  2827ae:	a3 c4 64 28 00       	mov    %eax,0x2864c4
 		io_store_eflags(e);
   2827b3:	83 ec 0c             	sub    $0xc,%esp
   2827b6:	56                   	push   %esi
@@ -5975,17 +5975,17 @@ void inthandler20(int *esp)
   282811:	6a 20                	push   $0x20
   282813:	e8 1e e3 ff ff       	call   280b36 <io_out8>
 	timerctl.count ++;
-  282818:	a1 00 62 28 00       	mov    0x286200,%eax
+  282818:	a1 c0 64 28 00       	mov    0x2864c0,%eax
   28281d:	8d 50 01             	lea    0x1(%eax),%edx
-  282820:	89 15 00 62 28 00    	mov    %edx,0x286200
+  282820:	89 15 c0 64 28 00    	mov    %edx,0x2864c0
 	
 	if(timerctl.count >= timerctl.next)
   282826:	83 c4 10             	add    $0x10,%esp
-  282829:	3b 15 04 62 28 00    	cmp    0x286204,%edx
+  282829:	3b 15 c4 64 28 00    	cmp    0x2864c4,%edx
   28282f:	72 6e                	jb     28289f <inthandler20+0x98>
 	{
 		struct TIMER *t = timerctl.t0;
-  282831:	8b 1d 18 89 28 00    	mov    0x288918,%ebx
+  282831:	8b 1d d8 8b 28 00    	mov    0x288bd8,%ebx
 		while(t)
   282837:	85 db                	test   %ebx,%ebx
   282839:	75 4b                	jne    282886 <inthandler20+0x7f>
@@ -5993,13 +5993,13 @@ void inthandler20(int *esp)
 		{
 			if(t->timeout <= timerctl.count)
   28283d:	8b 43 04             	mov    0x4(%ebx),%eax
-  282840:	3b 05 00 62 28 00    	cmp    0x286200,%eax
+  282840:	3b 05 c0 64 28 00    	cmp    0x2864c0,%eax
   282846:	77 31                	ja     282879 <inthandler20+0x72>
 			{
 				t->flags = TIMER_FLAGS_ALLOC;
   282848:	c7 43 08 01 00 00 00 	movl   $0x1,0x8(%ebx)
 				if(t!=task_timer) fifo32_put(t->fifo,t->data);
-  28284f:	39 1d 20 89 28 00    	cmp    %ebx,0x288920
+  28284f:	39 1d e0 8b 28 00    	cmp    %ebx,0x288be0
   282855:	74 15                	je     28286c <inthandler20+0x65>
   282857:	83 ec 08             	sub    $0x8,%esp
   28285a:	0f b6 43 10          	movzbl 0x10(%ebx),%eax
@@ -6027,9 +6027,9 @@ void inthandler20(int *esp)
 			else
 			{
 				timerctl.next = t->timeout;
-  282879:	a3 04 62 28 00       	mov    %eax,0x286204
+  282879:	a3 c4 64 28 00       	mov    %eax,0x2864c4
 				timerctl.t0 = t;
-  28287e:	89 1d 18 89 28 00    	mov    %ebx,0x288918
+  28287e:	89 1d d8 8b 28 00    	mov    %ebx,0x288bd8
 				break;
   282884:	eb 0e                	jmp    282894 <inthandler20+0x8d>
 	if(timerctl.count >= timerctl.next)
@@ -6104,7 +6104,7 @@ struct TASK *task_alloc(void)
 	for(i=0;i<MAX_TASKS;i++)
 	{
 		if(taskctl->tasks0[i].flags == 0)
-  2828cb:	8b 0d 1c 89 28 00    	mov    0x28891c,%ecx
+  2828cb:	8b 0d dc 8b 28 00    	mov    0x288bdc,%ecx
   2828d1:	83 b9 fc 0f 00 00 00 	cmpl   $0x0,0xffc(%ecx)
   2828d8:	74 16                	je     2828f0 <task_alloc+0x28>
   2828da:	8d 91 90 10 00 00    	lea    0x1090(%ecx),%edx
@@ -6212,7 +6212,7 @@ struct TASK *task_now(void)
   2829b8:	55                   	push   %ebp
   2829b9:	89 e5                	mov    %esp,%ebp
 	struct TASKLEVEL *tl = &taskctl->level[taskctl->now_lv];
-  2829bb:	8b 15 1c 89 28 00    	mov    0x28891c,%edx
+  2829bb:	8b 15 dc 8b 28 00    	mov    0x288bdc,%edx
   2829c1:	8b 02                	mov    (%edx),%eax
 	return tl->tasks[tl->now];
   2829c3:	69 c8 98 01 00 00    	imul   $0x198,%eax,%ecx
@@ -6233,7 +6233,7 @@ void task_add(struct TASK *task)
   2829da:	53                   	push   %ebx
   2829db:	8b 5d 08             	mov    0x8(%ebp),%ebx
 	struct TASKLEVEL *tl = &taskctl->level[task->level];
-  2829de:	8b 35 1c 89 28 00    	mov    0x28891c,%esi
+  2829de:	8b 35 dc 8b 28 00    	mov    0x288bdc,%esi
   2829e4:	8b 4b 08             	mov    0x8(%ebx),%ecx
   2829e7:	69 c1 98 01 00 00    	imul   $0x198,%ecx,%eax
   2829ed:	01 f0                	add    %esi,%eax
@@ -6268,7 +6268,7 @@ void task_remove(struct TASK *task)
   282a15:	83 ec 04             	sub    $0x4,%esp
   282a18:	8b 5d 08             	mov    0x8(%ebp),%ebx
 	struct TASKLEVEL *tl = &taskctl->level[task->level];
-  282a1b:	8b 3d 1c 89 28 00    	mov    0x28891c,%edi
+  282a1b:	8b 3d dc 8b 28 00    	mov    0x288bdc,%edi
   282a21:	8b 43 08             	mov    0x8(%ebx),%eax
   282a24:	89 45 f0             	mov    %eax,-0x10(%ebp)
   282a27:	69 d0 98 01 00 00    	imul   $0x198,%eax,%edx
@@ -6404,7 +6404,7 @@ void task_run(struct TASK *task,int level,int priority)
   282aec:	83 c4 04             	add    $0x4,%esp
 	}
 	taskctl->lv_change = 1;
-  282aef:	a1 1c 89 28 00       	mov    0x28891c,%eax
+  282aef:	a1 dc 8b 28 00       	mov    0x288bdc,%eax
   282af4:	c6 40 04 01          	movb   $0x1,0x4(%eax)
 	return;
 }
@@ -6427,7 +6427,7 @@ void task_switchsub(void)
 	for(i=0;i<MAX_TASKLEVELS;i++)
 	{
 		if(taskctl->level[i].running>0) break;
-  282b02:	8b 0d 1c 89 28 00    	mov    0x28891c,%ecx
+  282b02:	8b 0d dc 8b 28 00    	mov    0x288bdc,%ecx
   282b08:	83 79 08 00          	cmpl   $0x0,0x8(%ecx)
   282b0c:	7f 20                	jg     282b2e <task_switchsub+0x2f>
   282b0e:	8d 91 a0 01 00 00    	lea    0x1a0(%ecx),%edx
@@ -6460,7 +6460,7 @@ void task_switchsub(void)
 	taskctl->now_lv = i;
   282b33:	89 01                	mov    %eax,(%ecx)
 	taskctl->lv_change = 0;
-  282b35:	a1 1c 89 28 00       	mov    0x28891c,%eax
+  282b35:	a1 dc 8b 28 00       	mov    0x288bdc,%eax
   282b3a:	c6 40 04 00          	movb   $0x0,0x4(%eax)
 	return;
 }
@@ -6488,14 +6488,14 @@ struct TASK *task_init(struct MEMMAN *memman)
   282b4c:	68 18 52 02 00       	push   $0x25218
   282b51:	57                   	push   %edi
   282b52:	e8 35 f5 ff ff       	call   28208c <memman_alloc_4k>
-  282b57:	a3 1c 89 28 00       	mov    %eax,0x28891c
+  282b57:	a3 dc 8b 28 00       	mov    %eax,0x288bdc
   282b5c:	83 c4 10             	add    $0x10,%esp
   282b5f:	be 20 00 00 00       	mov    $0x20,%esi
 	for(i=0;i<MAX_TASKS;i++)
   282b64:	bb 00 00 00 00       	mov    $0x0,%ebx
 	{
 		taskctl->tasks0[i].flags = 0;
-  282b69:	8b 15 1c 89 28 00    	mov    0x28891c,%edx
+  282b69:	8b 15 dc 8b 28 00    	mov    0x288bdc,%edx
   282b6f:	69 c3 94 00 00 00    	imul   $0x94,%ebx,%eax
   282b75:	8d 0c 02             	lea    (%edx,%eax,1),%ecx
   282b78:	c7 81 fc 0f 00 00 00 	movl   $0x0,0xffc(%ecx)
@@ -6527,7 +6527,7 @@ struct TASK *task_init(struct MEMMAN *memman)
 	for(i=0;i<MAX_TASKLEVELS;i++)
 	{
 		taskctl->level[i].running = 0;
-  282bb4:	8b 15 1c 89 28 00    	mov    0x28891c,%edx
+  282bb4:	8b 15 dc 8b 28 00    	mov    0x288bdc,%edx
   282bba:	8d 42 08             	lea    0x8(%edx),%eax
   282bbd:	81 c2 f8 0f 00 00    	add    $0xff8,%edx
   282bc3:	c7 00 00 00 00 00    	movl   $0x0,(%eax)
@@ -6568,7 +6568,7 @@ struct TASK *task_init(struct MEMMAN *memman)
   282c08:	e8 a3 fc ff ff       	call   2828b0 <load_tr>
 	task_timer = timer_alloc();
   282c0d:	e8 74 fa ff ff       	call   282686 <timer_alloc>
-  282c12:	a3 20 89 28 00       	mov    %eax,0x288920
+  282c12:	a3 e0 8b 28 00       	mov    %eax,0x288be0
 	timer_settime(task_timer,task->priority);
   282c17:	83 c4 08             	add    $0x8,%esp
   282c1a:	ff 76 0c             	pushl  0xc(%esi)
@@ -6630,7 +6630,7 @@ void task_switch(void)
   282c94:	56                   	push   %esi
   282c95:	53                   	push   %ebx
 	struct TASKLEVEL *tl = &taskctl->level[taskctl->now_lv];
-  282c96:	8b 0d 1c 89 28 00    	mov    0x28891c,%ecx
+  282c96:	8b 0d dc 8b 28 00    	mov    0x288bdc,%ecx
   282c9c:	8b 31                	mov    (%ecx),%esi
   282c9e:	69 c6 98 01 00 00    	imul   $0x198,%esi,%eax
   282ca4:	01 c8                	add    %ecx,%eax
@@ -6669,7 +6669,7 @@ void task_switch(void)
 		task_switchsub();
   282cd6:	e8 24 fe ff ff       	call   282aff <task_switchsub>
 		tl = &taskctl->level[taskctl->now_lv];
-  282cdb:	a1 1c 89 28 00       	mov    0x28891c,%eax
+  282cdb:	a1 dc 8b 28 00       	mov    0x288bdc,%eax
   282ce0:	69 10 98 01 00 00    	imul   $0x198,(%eax),%edx
   282ce6:	8d 44 10 08          	lea    0x8(%eax,%edx,1),%eax
 	}
@@ -6679,7 +6679,7 @@ void task_switch(void)
 	timer_settime(task_timer,new_task->priority);
   282cf1:	83 ec 08             	sub    $0x8,%esp
   282cf4:	ff 76 0c             	pushl  0xc(%esi)
-  282cf7:	ff 35 20 89 28 00    	pushl  0x288920
+  282cf7:	ff 35 e0 8b 28 00    	pushl  0x288be0
   282cfd:	e8 69 fa ff ff       	call   28276b <timer_settime>
 	if(new_task != now_task)
   282d02:	83 c4 10             	add    $0x10,%esp
@@ -6754,1437 +6754,1706 @@ void console_task(struct SHEET *sheet,unsigned int memtotal)
   282d62:	89 e5                	mov    %esp,%ebp
   282d64:	56                   	push   %esi
   282d65:	53                   	push   %ebx
-  282d66:	81 ec 90 02 00 00    	sub    $0x290,%esp
+  282d66:	81 ec a0 02 00 00    	sub    $0x2a0,%esp
 	char s[50],cmdline[30];
 	struct TIMER *timer;
 	struct TASK *task = task_now();
   282d6c:	e8 47 fc ff ff       	call   2829b8 <task_now>
-  282d71:	89 45 d0             	mov    %eax,-0x30(%ebp)
+  282d71:	89 45 c8             	mov    %eax,-0x38(%ebp)
 	struct MEMMAN *memman = (struct MEMMAN *)MEMMAN_ADDR;
-  282d74:	c7 45 cc 00 00 3c 00 	movl   $0x3c0000,-0x34(%ebp)
+  282d74:	c7 45 c4 00 00 3c 00 	movl   $0x3c0000,-0x3c(%ebp)
 	struct FILEINFO *finfo = (struct FILEINFO *)(ADR_DISKIMG+0x002600); //0x002600 the offset of directory entry in the os.img
-  282d7b:	c7 45 c8 00 26 10 00 	movl   $0x102600,-0x38(%ebp)
-	
+  282d7b:	c7 45 c0 00 26 10 00 	movl   $0x102600,-0x40(%ebp)
+	struct SEGMENT_DESCRIPTOR *gdt = (struct SEGMENT_DESCRIPTOR *)ADR_GDT;
+  282d82:	c7 45 bc 00 00 27 00 	movl   $0x270000,-0x44(%ebp)
+
 	int i,fifobuf[128],cursor_x = 16,cursor_y = 28,cursor_c = -1;
-  282d82:	c7 45 f4 10 00 00 00 	movl   $0x10,-0xc(%ebp)
-  282d89:	c7 45 f0 1c 00 00 00 	movl   $0x1c,-0x10(%ebp)
-  282d90:	c7 45 ec ff ff ff ff 	movl   $0xffffffff,-0x14(%ebp)
+  282d89:	c7 45 f4 10 00 00 00 	movl   $0x10,-0xc(%ebp)
+  282d90:	c7 45 f0 1c 00 00 00 	movl   $0x1c,-0x10(%ebp)
+  282d97:	c7 45 ec ff ff ff ff 	movl   $0xffffffff,-0x14(%ebp)
 	fifo32_init(&task->fifo,128,fifobuf,task);
-  282d97:	8b 45 d0             	mov    -0x30(%ebp),%eax
-  282d9a:	8d 50 10             	lea    0x10(%eax),%edx
-  282d9d:	ff 75 d0             	pushl  -0x30(%ebp)
-  282da0:	8d 85 68 fd ff ff    	lea    -0x298(%ebp),%eax
-  282da6:	50                   	push   %eax
-  282da7:	68 80 00 00 00       	push   $0x80
-  282dac:	52                   	push   %edx
-  282dad:	e8 25 eb ff ff       	call   2818d7 <fifo32_init>
-  282db2:	83 c4 10             	add    $0x10,%esp
+  282d9e:	8b 45 c8             	mov    -0x38(%ebp),%eax
+  282da1:	8d 50 10             	lea    0x10(%eax),%edx
+  282da4:	ff 75 c8             	pushl  -0x38(%ebp)
+  282da7:	8d 85 58 fd ff ff    	lea    -0x2a8(%ebp),%eax
+  282dad:	50                   	push   %eax
+  282dae:	68 80 00 00 00       	push   $0x80
+  282db3:	52                   	push   %edx
+  282db4:	e8 1e eb ff ff       	call   2818d7 <fifo32_init>
+  282db9:	83 c4 10             	add    $0x10,%esp
 	timer = timer_alloc();
-  282db5:	e8 cc f8 ff ff       	call   282686 <timer_alloc>
-  282dba:	89 45 c4             	mov    %eax,-0x3c(%ebp)
+  282dbc:	e8 c5 f8 ff ff       	call   282686 <timer_alloc>
+  282dc1:	89 45 b8             	mov    %eax,-0x48(%ebp)
 	timer_init(timer,&task->fifo,1);
-  282dbd:	8b 45 d0             	mov    -0x30(%ebp),%eax
-  282dc0:	83 c0 10             	add    $0x10,%eax
-  282dc3:	83 ec 04             	sub    $0x4,%esp
-  282dc6:	6a 01                	push   $0x1
-  282dc8:	50                   	push   %eax
-  282dc9:	ff 75 c4             	pushl  -0x3c(%ebp)
-  282dcc:	e8 86 f9 ff ff       	call   282757 <timer_init>
-  282dd1:	83 c4 10             	add    $0x10,%esp
+  282dc4:	8b 45 c8             	mov    -0x38(%ebp),%eax
+  282dc7:	83 c0 10             	add    $0x10,%eax
+  282dca:	83 ec 04             	sub    $0x4,%esp
+  282dcd:	6a 01                	push   $0x1
+  282dcf:	50                   	push   %eax
+  282dd0:	ff 75 b8             	pushl  -0x48(%ebp)
+  282dd3:	e8 7f f9 ff ff       	call   282757 <timer_init>
+  282dd8:	83 c4 10             	add    $0x10,%esp
 	timer_settime(timer,50);
-  282dd4:	83 ec 08             	sub    $0x8,%esp
-  282dd7:	6a 32                	push   $0x32
-  282dd9:	ff 75 c4             	pushl  -0x3c(%ebp)
-  282ddc:	e8 8a f9 ff ff       	call   28276b <timer_settime>
-  282de1:	83 c4 10             	add    $0x10,%esp
+  282ddb:	83 ec 08             	sub    $0x8,%esp
+  282dde:	6a 32                	push   $0x32
+  282de0:	ff 75 b8             	pushl  -0x48(%ebp)
+  282de3:	e8 83 f9 ff ff       	call   28276b <timer_settime>
+  282de8:	83 c4 10             	add    $0x10,%esp
 	
 	//draw prompt char
 	putfonts8_asc_sht(sheet,8,28,COL8_FFFFFF,COL8_000000,">",1);
-  282de4:	83 ec 04             	sub    $0x4,%esp
-  282de7:	6a 01                	push   $0x1
-  282de9:	68 60 3c 28 00       	push   $0x283c60
-  282dee:	6a 00                	push   $0x0
-  282df0:	6a 07                	push   $0x7
-  282df2:	6a 1c                	push   $0x1c
-  282df4:	6a 08                	push   $0x8
-  282df6:	ff 75 08             	pushl  0x8(%ebp)
-  282df9:	e8 e5 e2 ff ff       	call   2810e3 <putfonts8_asc_sht>
-  282dfe:	83 c4 20             	add    $0x20,%esp
+  282deb:	83 ec 04             	sub    $0x4,%esp
+  282dee:	6a 01                	push   $0x1
+  282df0:	68 00 3f 28 00       	push   $0x283f00
+  282df5:	6a 00                	push   $0x0
+  282df7:	6a 07                	push   $0x7
+  282df9:	6a 1c                	push   $0x1c
+  282dfb:	6a 08                	push   $0x8
+  282dfd:	ff 75 08             	pushl  0x8(%ebp)
+  282e00:	e8 de e2 ff ff       	call   2810e3 <putfonts8_asc_sht>
+  282e05:	83 c4 20             	add    $0x20,%esp
 
 	int *fat = (int *)memman_alloc_4k(memman, 4*2880);
-  282e01:	83 ec 08             	sub    $0x8,%esp
-  282e04:	68 00 2d 00 00       	push   $0x2d00
-  282e09:	ff 75 cc             	pushl  -0x34(%ebp)
-  282e0c:	e8 7b f2 ff ff       	call   28208c <memman_alloc_4k>
-  282e11:	83 c4 10             	add    $0x10,%esp
-  282e14:	89 45 c0             	mov    %eax,-0x40(%ebp)
+  282e08:	83 ec 08             	sub    $0x8,%esp
+  282e0b:	68 00 2d 00 00       	push   $0x2d00
+  282e10:	ff 75 c4             	pushl  -0x3c(%ebp)
+  282e13:	e8 74 f2 ff ff       	call   28208c <memman_alloc_4k>
+  282e18:	83 c4 10             	add    $0x10,%esp
+  282e1b:	89 45 b4             	mov    %eax,-0x4c(%ebp)
 	file_readfat(fat,(unsigned char *)(ADR_DISKIMG+0x000200));
-  282e17:	83 ec 08             	sub    $0x8,%esp
-  282e1a:	68 00 02 10 00       	push   $0x100200
-  282e1f:	ff 75 c0             	pushl  -0x40(%ebp)
-  282e22:	e8 27 0a 00 00       	call   28384e <file_readfat>
-  282e27:	83 c4 10             	add    $0x10,%esp
+  282e1e:	83 ec 08             	sub    $0x8,%esp
+  282e21:	68 00 02 10 00       	push   $0x100200
+  282e26:	ff 75 b4             	pushl  -0x4c(%ebp)
+  282e29:	e8 be 0c 00 00       	call   283aec <file_readfat>
+  282e2e:	83 c4 10             	add    $0x10,%esp
 	for(;;)
 	{
 		io_cli();
-  282e2a:	e8 d3 dc ff ff       	call   280b02 <io_cli>
+  282e31:	e8 cc dc ff ff       	call   280b02 <io_cli>
 		if(fifo32_status(&task->fifo)==0)
-  282e2f:	8b 45 d0             	mov    -0x30(%ebp),%eax
-  282e32:	83 c0 10             	add    $0x10,%eax
-  282e35:	83 ec 0c             	sub    $0xc,%esp
-  282e38:	50                   	push   %eax
-  282e39:	e8 77 eb ff ff       	call   2819b5 <fifo32_status>
-  282e3e:	83 c4 10             	add    $0x10,%esp
-  282e41:	85 c0                	test   %eax,%eax
-  282e43:	75 15                	jne    282e5a <console_task+0xf9>
+  282e36:	8b 45 c8             	mov    -0x38(%ebp),%eax
+  282e39:	83 c0 10             	add    $0x10,%eax
+  282e3c:	83 ec 0c             	sub    $0xc,%esp
+  282e3f:	50                   	push   %eax
+  282e40:	e8 70 eb ff ff       	call   2819b5 <fifo32_status>
+  282e45:	83 c4 10             	add    $0x10,%esp
+  282e48:	85 c0                	test   %eax,%eax
+  282e4a:	75 15                	jne    282e61 <console_task+0x100>
 		{
 			task_sleep(task);
-  282e45:	83 ec 0c             	sub    $0xc,%esp
-  282e48:	ff 75 d0             	pushl  -0x30(%ebp)
-  282e4b:	e8 cf fe ff ff       	call   282d1f <task_sleep>
-  282e50:	83 c4 10             	add    $0x10,%esp
+  282e4c:	83 ec 0c             	sub    $0xc,%esp
+  282e4f:	ff 75 c8             	pushl  -0x38(%ebp)
+  282e52:	e8 c8 fe ff ff       	call   282d1f <task_sleep>
+  282e57:	83 c4 10             	add    $0x10,%esp
 			io_sti();
-  282e53:	e8 ac dc ff ff       	call   280b04 <io_sti>
-  282e58:	eb d0                	jmp    282e2a <console_task+0xc9>
+  282e5a:	e8 a5 dc ff ff       	call   280b04 <io_sti>
+  282e5f:	eb d0                	jmp    282e31 <console_task+0xd0>
 		}
 		else
 		{
 			i=fifo32_get(&task->fifo);
-  282e5a:	8b 45 d0             	mov    -0x30(%ebp),%eax
-  282e5d:	83 c0 10             	add    $0x10,%eax
-  282e60:	83 ec 0c             	sub    $0xc,%esp
-  282e63:	50                   	push   %eax
-  282e64:	e8 11 eb ff ff       	call   28197a <fifo32_get>
-  282e69:	83 c4 10             	add    $0x10,%esp
-  282e6c:	89 45 bc             	mov    %eax,-0x44(%ebp)
+  282e61:	8b 45 c8             	mov    -0x38(%ebp),%eax
+  282e64:	83 c0 10             	add    $0x10,%eax
+  282e67:	83 ec 0c             	sub    $0xc,%esp
+  282e6a:	50                   	push   %eax
+  282e6b:	e8 0a eb ff ff       	call   28197a <fifo32_get>
+  282e70:	83 c4 10             	add    $0x10,%esp
+  282e73:	89 45 b0             	mov    %eax,-0x50(%ebp)
 			io_sti();
-  282e6f:	e8 90 dc ff ff       	call   280b04 <io_sti>
+  282e76:	e8 89 dc ff ff       	call   280b04 <io_sti>
 			if(i<=1) //for cursor
-  282e74:	83 7d bc 01          	cmpl   $0x1,-0x44(%ebp)
-  282e78:	7f 65                	jg     282edf <console_task+0x17e>
+  282e7b:	83 7d b0 01          	cmpl   $0x1,-0x50(%ebp)
+  282e7f:	7f 65                	jg     282ee6 <console_task+0x185>
 			{
 				if(i!=0)
-  282e7a:	83 7d bc 00          	cmpl   $0x0,-0x44(%ebp)
-  282e7e:	74 26                	je     282ea6 <console_task+0x145>
+  282e81:	83 7d b0 00          	cmpl   $0x0,-0x50(%ebp)
+  282e85:	74 26                	je     282ead <console_task+0x14c>
 				{
 					timer_init(timer,&task->fifo,0);
-  282e80:	8b 45 d0             	mov    -0x30(%ebp),%eax
-  282e83:	83 c0 10             	add    $0x10,%eax
-  282e86:	83 ec 04             	sub    $0x4,%esp
-  282e89:	6a 00                	push   $0x0
-  282e8b:	50                   	push   %eax
-  282e8c:	ff 75 c4             	pushl  -0x3c(%ebp)
-  282e8f:	e8 c3 f8 ff ff       	call   282757 <timer_init>
-  282e94:	83 c4 10             	add    $0x10,%esp
+  282e87:	8b 45 c8             	mov    -0x38(%ebp),%eax
+  282e8a:	83 c0 10             	add    $0x10,%eax
+  282e8d:	83 ec 04             	sub    $0x4,%esp
+  282e90:	6a 00                	push   $0x0
+  282e92:	50                   	push   %eax
+  282e93:	ff 75 b8             	pushl  -0x48(%ebp)
+  282e96:	e8 bc f8 ff ff       	call   282757 <timer_init>
+  282e9b:	83 c4 10             	add    $0x10,%esp
 					if(cursor_c >= 0) cursor_c = COL8_FFFFFF;
-  282e97:	83 7d ec 00          	cmpl   $0x0,-0x14(%ebp)
-  282e9b:	78 2d                	js     282eca <console_task+0x169>
-  282e9d:	c7 45 ec 07 00 00 00 	movl   $0x7,-0x14(%ebp)
-  282ea4:	eb 24                	jmp    282eca <console_task+0x169>
+  282e9e:	83 7d ec 00          	cmpl   $0x0,-0x14(%ebp)
+  282ea2:	78 2d                	js     282ed1 <console_task+0x170>
+  282ea4:	c7 45 ec 07 00 00 00 	movl   $0x7,-0x14(%ebp)
+  282eab:	eb 24                	jmp    282ed1 <console_task+0x170>
 				}
 				else
 				{
 					timer_init(timer,&task->fifo,1);
-  282ea6:	8b 45 d0             	mov    -0x30(%ebp),%eax
-  282ea9:	83 c0 10             	add    $0x10,%eax
-  282eac:	83 ec 04             	sub    $0x4,%esp
-  282eaf:	6a 01                	push   $0x1
-  282eb1:	50                   	push   %eax
-  282eb2:	ff 75 c4             	pushl  -0x3c(%ebp)
-  282eb5:	e8 9d f8 ff ff       	call   282757 <timer_init>
-  282eba:	83 c4 10             	add    $0x10,%esp
+  282ead:	8b 45 c8             	mov    -0x38(%ebp),%eax
+  282eb0:	83 c0 10             	add    $0x10,%eax
+  282eb3:	83 ec 04             	sub    $0x4,%esp
+  282eb6:	6a 01                	push   $0x1
+  282eb8:	50                   	push   %eax
+  282eb9:	ff 75 b8             	pushl  -0x48(%ebp)
+  282ebc:	e8 96 f8 ff ff       	call   282757 <timer_init>
+  282ec1:	83 c4 10             	add    $0x10,%esp
 					if(cursor_c >= 0) cursor_c = COL8_000000;
-  282ebd:	83 7d ec 00          	cmpl   $0x0,-0x14(%ebp)
-  282ec1:	78 07                	js     282eca <console_task+0x169>
-  282ec3:	c7 45 ec 00 00 00 00 	movl   $0x0,-0x14(%ebp)
+  282ec4:	83 7d ec 00          	cmpl   $0x0,-0x14(%ebp)
+  282ec8:	78 07                	js     282ed1 <console_task+0x170>
+  282eca:	c7 45 ec 00 00 00 00 	movl   $0x0,-0x14(%ebp)
 				}
 				timer_settime(timer,50);
-  282eca:	83 ec 08             	sub    $0x8,%esp
-  282ecd:	6a 32                	push   $0x32
-  282ecf:	ff 75 c4             	pushl  -0x3c(%ebp)
-  282ed2:	e8 94 f8 ff ff       	call   28276b <timer_settime>
-  282ed7:	83 c4 10             	add    $0x10,%esp
-  282eda:	e9 27 08 00 00       	jmp    283706 <console_task+0x9a5>
+  282ed1:	83 ec 08             	sub    $0x8,%esp
+  282ed4:	6a 32                	push   $0x32
+  282ed6:	ff 75 b8             	pushl  -0x48(%ebp)
+  282ed9:	e8 8d f8 ff ff       	call   28276b <timer_settime>
+  282ede:	83 c4 10             	add    $0x10,%esp
+  282ee1:	e9 be 0a 00 00       	jmp    2839a4 <console_task+0xc43>
 							
 			}
 			else if(i == 2) //get show cursor msg
-  282edf:	83 7d bc 02          	cmpl   $0x2,-0x44(%ebp)
-  282ee3:	75 0c                	jne    282ef1 <console_task+0x190>
+  282ee6:	83 7d b0 02          	cmpl   $0x2,-0x50(%ebp)
+  282eea:	75 0c                	jne    282ef8 <console_task+0x197>
 			{
 				cursor_c = COL8_FFFFFF;
-  282ee5:	c7 45 ec 07 00 00 00 	movl   $0x7,-0x14(%ebp)
-  282eec:	e9 15 08 00 00       	jmp    283706 <console_task+0x9a5>
+  282eec:	c7 45 ec 07 00 00 00 	movl   $0x7,-0x14(%ebp)
+  282ef3:	e9 ac 0a 00 00       	jmp    2839a4 <console_task+0xc43>
 			}
 			else if(i == 3) //get hide cursor msg
-  282ef1:	83 7d bc 03          	cmpl   $0x3,-0x44(%ebp)
-  282ef5:	75 34                	jne    282f2b <console_task+0x1ca>
+  282ef8:	83 7d b0 03          	cmpl   $0x3,-0x50(%ebp)
+  282efc:	75 34                	jne    282f32 <console_task+0x1d1>
 			{
 				cursor_c = -1;
-  282ef7:	c7 45 ec ff ff ff ff 	movl   $0xffffffff,-0x14(%ebp)
+  282efe:	c7 45 ec ff ff ff ff 	movl   $0xffffffff,-0x14(%ebp)
 				boxfill8(sheet->buf,sheet->bxsize,COL8_000000,cursor_x,28,cursor_x+7,43);
-  282efe:	8b 45 f4             	mov    -0xc(%ebp),%eax
-  282f01:	8d 48 07             	lea    0x7(%eax),%ecx
-  282f04:	8b 45 08             	mov    0x8(%ebp),%eax
-  282f07:	8b 50 04             	mov    0x4(%eax),%edx
-  282f0a:	8b 45 08             	mov    0x8(%ebp),%eax
-  282f0d:	8b 00                	mov    (%eax),%eax
-  282f0f:	83 ec 04             	sub    $0x4,%esp
-  282f12:	6a 2b                	push   $0x2b
-  282f14:	51                   	push   %ecx
-  282f15:	6a 1c                	push   $0x1c
-  282f17:	ff 75 f4             	pushl  -0xc(%ebp)
-  282f1a:	6a 00                	push   $0x0
-  282f1c:	52                   	push   %edx
-  282f1d:	50                   	push   %eax
-  282f1e:	e8 61 dd ff ff       	call   280c84 <boxfill8>
-  282f23:	83 c4 20             	add    $0x20,%esp
-  282f26:	e9 db 07 00 00       	jmp    283706 <console_task+0x9a5>
+  282f05:	8b 45 f4             	mov    -0xc(%ebp),%eax
+  282f08:	8d 48 07             	lea    0x7(%eax),%ecx
+  282f0b:	8b 45 08             	mov    0x8(%ebp),%eax
+  282f0e:	8b 50 04             	mov    0x4(%eax),%edx
+  282f11:	8b 45 08             	mov    0x8(%ebp),%eax
+  282f14:	8b 00                	mov    (%eax),%eax
+  282f16:	83 ec 04             	sub    $0x4,%esp
+  282f19:	6a 2b                	push   $0x2b
+  282f1b:	51                   	push   %ecx
+  282f1c:	6a 1c                	push   $0x1c
+  282f1e:	ff 75 f4             	pushl  -0xc(%ebp)
+  282f21:	6a 00                	push   $0x0
+  282f23:	52                   	push   %edx
+  282f24:	50                   	push   %eax
+  282f25:	e8 5a dd ff ff       	call   280c84 <boxfill8>
+  282f2a:	83 c4 20             	add    $0x20,%esp
+  282f2d:	e9 72 0a 00 00       	jmp    2839a4 <console_task+0xc43>
 			}
 			else if(256<=i && i<=511)
-  282f2b:	81 7d bc ff 00 00 00 	cmpl   $0xff,-0x44(%ebp)
-  282f32:	0f 8e ce 07 00 00    	jle    283706 <console_task+0x9a5>
-  282f38:	81 7d bc ff 01 00 00 	cmpl   $0x1ff,-0x44(%ebp)
-  282f3f:	0f 8f c1 07 00 00    	jg     283706 <console_task+0x9a5>
+  282f32:	81 7d b0 ff 00 00 00 	cmpl   $0xff,-0x50(%ebp)
+  282f39:	0f 8e 65 0a 00 00    	jle    2839a4 <console_task+0xc43>
+  282f3f:	81 7d b0 ff 01 00 00 	cmpl   $0x1ff,-0x50(%ebp)
+  282f46:	0f 8f 58 0a 00 00    	jg     2839a4 <console_task+0xc43>
 			{
 				if(i == 8+256) //back key
-  282f45:	81 7d bc 08 01 00 00 	cmpl   $0x108,-0x44(%ebp)
-  282f4c:	75 32                	jne    282f80 <console_task+0x21f>
+  282f4c:	81 7d b0 08 01 00 00 	cmpl   $0x108,-0x50(%ebp)
+  282f53:	75 32                	jne    282f87 <console_task+0x226>
 				{
 					if(cursor_x > 16)
-  282f4e:	83 7d f4 10          	cmpl   $0x10,-0xc(%ebp)
-  282f52:	0f 8e ae 07 00 00    	jle    283706 <console_task+0x9a5>
+  282f55:	83 7d f4 10          	cmpl   $0x10,-0xc(%ebp)
+  282f59:	0f 8e 45 0a 00 00    	jle    2839a4 <console_task+0xc43>
 					{
 						putfonts8_asc_sht(sheet,cursor_x,cursor_y,COL8_FFFFFF,COL8_000000," ",1);
-  282f58:	83 ec 04             	sub    $0x4,%esp
-  282f5b:	6a 01                	push   $0x1
-  282f5d:	68 62 3c 28 00       	push   $0x283c62
-  282f62:	6a 00                	push   $0x0
-  282f64:	6a 07                	push   $0x7
-  282f66:	ff 75 f0             	pushl  -0x10(%ebp)
-  282f69:	ff 75 f4             	pushl  -0xc(%ebp)
-  282f6c:	ff 75 08             	pushl  0x8(%ebp)
-  282f6f:	e8 6f e1 ff ff       	call   2810e3 <putfonts8_asc_sht>
-  282f74:	83 c4 20             	add    $0x20,%esp
+  282f5f:	83 ec 04             	sub    $0x4,%esp
+  282f62:	6a 01                	push   $0x1
+  282f64:	68 02 3f 28 00       	push   $0x283f02
+  282f69:	6a 00                	push   $0x0
+  282f6b:	6a 07                	push   $0x7
+  282f6d:	ff 75 f0             	pushl  -0x10(%ebp)
+  282f70:	ff 75 f4             	pushl  -0xc(%ebp)
+  282f73:	ff 75 08             	pushl  0x8(%ebp)
+  282f76:	e8 68 e1 ff ff       	call   2810e3 <putfonts8_asc_sht>
+  282f7b:	83 c4 20             	add    $0x20,%esp
 						cursor_x -= 8;
-  282f77:	83 6d f4 08          	subl   $0x8,-0xc(%ebp)
-  282f7b:	e9 86 07 00 00       	jmp    283706 <console_task+0x9a5>
+  282f7e:	83 6d f4 08          	subl   $0x8,-0xc(%ebp)
+  282f82:	e9 1d 0a 00 00       	jmp    2839a4 <console_task+0xc43>
 					}
 				}
 				else if(i == 10+256) //return key
-  282f80:	81 7d bc 0a 01 00 00 	cmpl   $0x10a,-0x44(%ebp)
-  282f87:	0f 85 29 07 00 00    	jne    2836b6 <console_task+0x955>
+  282f87:	81 7d b0 0a 01 00 00 	cmpl   $0x10a,-0x50(%ebp)
+  282f8e:	0f 85 b7 09 00 00    	jne    28394b <console_task+0xbea>
 				{
 					
 					putfonts8_asc_sht(sheet,cursor_x,cursor_y,COL8_FFFFFF,COL8_000000," ",1); //erase the cursor
-  282f8d:	83 ec 04             	sub    $0x4,%esp
-  282f90:	6a 01                	push   $0x1
-  282f92:	68 62 3c 28 00       	push   $0x283c62
-  282f97:	6a 00                	push   $0x0
-  282f99:	6a 07                	push   $0x7
-  282f9b:	ff 75 f0             	pushl  -0x10(%ebp)
-  282f9e:	ff 75 f4             	pushl  -0xc(%ebp)
-  282fa1:	ff 75 08             	pushl  0x8(%ebp)
-  282fa4:	e8 3a e1 ff ff       	call   2810e3 <putfonts8_asc_sht>
-  282fa9:	83 c4 20             	add    $0x20,%esp
+  282f94:	83 ec 04             	sub    $0x4,%esp
+  282f97:	6a 01                	push   $0x1
+  282f99:	68 02 3f 28 00       	push   $0x283f02
+  282f9e:	6a 00                	push   $0x0
+  282fa0:	6a 07                	push   $0x7
+  282fa2:	ff 75 f0             	pushl  -0x10(%ebp)
+  282fa5:	ff 75 f4             	pushl  -0xc(%ebp)
+  282fa8:	ff 75 08             	pushl  0x8(%ebp)
+  282fab:	e8 33 e1 ff ff       	call   2810e3 <putfonts8_asc_sht>
+  282fb0:	83 c4 20             	add    $0x20,%esp
 					cmdline[cursor_x/8-2] = 0;
-  282fac:	8b 45 f4             	mov    -0xc(%ebp),%eax
-  282faf:	8d 50 07             	lea    0x7(%eax),%edx
-  282fb2:	85 c0                	test   %eax,%eax
-  282fb4:	0f 48 c2             	cmovs  %edx,%eax
-  282fb7:	c1 f8 03             	sar    $0x3,%eax
-  282fba:	83 e8 02             	sub    $0x2,%eax
-  282fbd:	c6 84 05 68 ff ff ff 	movb   $0x0,-0x98(%ebp,%eax,1)
-  282fc4:	00 
+  282fb3:	8b 45 f4             	mov    -0xc(%ebp),%eax
+  282fb6:	8d 50 07             	lea    0x7(%eax),%edx
+  282fb9:	85 c0                	test   %eax,%eax
+  282fbb:	0f 48 c2             	cmovs  %edx,%eax
+  282fbe:	c1 f8 03             	sar    $0x3,%eax
+  282fc1:	83 e8 02             	sub    $0x2,%eax
+  282fc4:	c6 84 05 58 ff ff ff 	movb   $0x0,-0xa8(%ebp,%eax,1)
+  282fcb:	00 
 					cursor_y = cons_newline(cursor_y,sheet);
-  282fc5:	83 ec 08             	sub    $0x8,%esp
-  282fc8:	ff 75 08             	pushl  0x8(%ebp)
-  282fcb:	ff 75 f0             	pushl  -0x10(%ebp)
-  282fce:	e8 93 07 00 00       	call   283766 <cons_newline>
-  282fd3:	83 c4 10             	add    $0x10,%esp
-  282fd6:	89 45 f0             	mov    %eax,-0x10(%ebp)
+  282fcc:	83 ec 08             	sub    $0x8,%esp
+  282fcf:	ff 75 08             	pushl  0x8(%ebp)
+  282fd2:	ff 75 f0             	pushl  -0x10(%ebp)
+  282fd5:	e8 2a 0a 00 00       	call   283a04 <cons_newline>
+  282fda:	83 c4 10             	add    $0x10,%esp
+  282fdd:	89 45 f0             	mov    %eax,-0x10(%ebp)
 					if(strcmp(cmdline,"mem")==0)
-  282fd9:	83 ec 08             	sub    $0x8,%esp
-  282fdc:	68 64 3c 28 00       	push   $0x283c64
-  282fe1:	8d 85 68 ff ff ff    	lea    -0x98(%ebp),%eax
-  282fe7:	50                   	push   %eax
-  282fe8:	e8 04 e8 ff ff       	call   2817f1 <strcmp>
-  282fed:	83 c4 10             	add    $0x10,%esp
-  282ff0:	85 c0                	test   %eax,%eax
-  282ff2:	0f 85 bc 00 00 00    	jne    2830b4 <console_task+0x353>
+  282fe0:	83 ec 08             	sub    $0x8,%esp
+  282fe3:	68 04 3f 28 00       	push   $0x283f04
+  282fe8:	8d 85 58 ff ff ff    	lea    -0xa8(%ebp),%eax
+  282fee:	50                   	push   %eax
+  282fef:	e8 fd e7 ff ff       	call   2817f1 <strcmp>
+  282ff4:	83 c4 10             	add    $0x10,%esp
+  282ff7:	85 c0                	test   %eax,%eax
+  282ff9:	0f 85 c8 00 00 00    	jne    2830c7 <console_task+0x366>
 					{
 						//mem cmd
 						sprintf(s,"total %dMB",memtotal/(1024*1024));
-  282ff8:	8b 45 0c             	mov    0xc(%ebp),%eax
-  282ffb:	c1 e8 14             	shr    $0x14,%eax
-  282ffe:	83 ec 04             	sub    $0x4,%esp
-  283001:	50                   	push   %eax
-  283002:	68 68 3c 28 00       	push   $0x283c68
-  283007:	8d 45 86             	lea    -0x7a(%ebp),%eax
-  28300a:	50                   	push   %eax
-  28300b:	e8 0c e7 ff ff       	call   28171c <sprintf>
-  283010:	83 c4 10             	add    $0x10,%esp
+  282fff:	8b 45 0c             	mov    0xc(%ebp),%eax
+  283002:	c1 e8 14             	shr    $0x14,%eax
+  283005:	83 ec 04             	sub    $0x4,%esp
+  283008:	50                   	push   %eax
+  283009:	68 08 3f 28 00       	push   $0x283f08
+  28300e:	8d 85 76 ff ff ff    	lea    -0x8a(%ebp),%eax
+  283014:	50                   	push   %eax
+  283015:	e8 02 e7 ff ff       	call   28171c <sprintf>
+  28301a:	83 c4 10             	add    $0x10,%esp
 						putfonts8_asc_sht(sheet,8,cursor_y,COL8_FFFFFF,COL8_000000,s,30);
-  283013:	83 ec 04             	sub    $0x4,%esp
-  283016:	6a 1e                	push   $0x1e
-  283018:	8d 45 86             	lea    -0x7a(%ebp),%eax
-  28301b:	50                   	push   %eax
-  28301c:	6a 00                	push   $0x0
-  28301e:	6a 07                	push   $0x7
-  283020:	ff 75 f0             	pushl  -0x10(%ebp)
-  283023:	6a 08                	push   $0x8
-  283025:	ff 75 08             	pushl  0x8(%ebp)
-  283028:	e8 b6 e0 ff ff       	call   2810e3 <putfonts8_asc_sht>
-  28302d:	83 c4 20             	add    $0x20,%esp
+  28301d:	83 ec 04             	sub    $0x4,%esp
+  283020:	6a 1e                	push   $0x1e
+  283022:	8d 85 76 ff ff ff    	lea    -0x8a(%ebp),%eax
+  283028:	50                   	push   %eax
+  283029:	6a 00                	push   $0x0
+  28302b:	6a 07                	push   $0x7
+  28302d:	ff 75 f0             	pushl  -0x10(%ebp)
+  283030:	6a 08                	push   $0x8
+  283032:	ff 75 08             	pushl  0x8(%ebp)
+  283035:	e8 a9 e0 ff ff       	call   2810e3 <putfonts8_asc_sht>
+  28303a:	83 c4 20             	add    $0x20,%esp
 						cursor_y = cons_newline(cursor_y,sheet);
-  283030:	83 ec 08             	sub    $0x8,%esp
-  283033:	ff 75 08             	pushl  0x8(%ebp)
-  283036:	ff 75 f0             	pushl  -0x10(%ebp)
-  283039:	e8 28 07 00 00       	call   283766 <cons_newline>
-  28303e:	83 c4 10             	add    $0x10,%esp
-  283041:	89 45 f0             	mov    %eax,-0x10(%ebp)
+  28303d:	83 ec 08             	sub    $0x8,%esp
+  283040:	ff 75 08             	pushl  0x8(%ebp)
+  283043:	ff 75 f0             	pushl  -0x10(%ebp)
+  283046:	e8 b9 09 00 00       	call   283a04 <cons_newline>
+  28304b:	83 c4 10             	add    $0x10,%esp
+  28304e:	89 45 f0             	mov    %eax,-0x10(%ebp)
 						sprintf(s,"free %dKB",memman_total(memman)/1024);
-  283044:	83 ec 0c             	sub    $0xc,%esp
-  283047:	ff 75 cc             	pushl  -0x34(%ebp)
-  28304a:	e8 c8 ec ff ff       	call   281d17 <memman_total>
-  28304f:	83 c4 10             	add    $0x10,%esp
-  283052:	c1 e8 0a             	shr    $0xa,%eax
-  283055:	83 ec 04             	sub    $0x4,%esp
-  283058:	50                   	push   %eax
-  283059:	68 73 3c 28 00       	push   $0x283c73
-  28305e:	8d 45 86             	lea    -0x7a(%ebp),%eax
-  283061:	50                   	push   %eax
-  283062:	e8 b5 e6 ff ff       	call   28171c <sprintf>
-  283067:	83 c4 10             	add    $0x10,%esp
+  283051:	83 ec 0c             	sub    $0xc,%esp
+  283054:	ff 75 c4             	pushl  -0x3c(%ebp)
+  283057:	e8 bb ec ff ff       	call   281d17 <memman_total>
+  28305c:	83 c4 10             	add    $0x10,%esp
+  28305f:	c1 e8 0a             	shr    $0xa,%eax
+  283062:	83 ec 04             	sub    $0x4,%esp
+  283065:	50                   	push   %eax
+  283066:	68 13 3f 28 00       	push   $0x283f13
+  28306b:	8d 85 76 ff ff ff    	lea    -0x8a(%ebp),%eax
+  283071:	50                   	push   %eax
+  283072:	e8 a5 e6 ff ff       	call   28171c <sprintf>
+  283077:	83 c4 10             	add    $0x10,%esp
 						putfonts8_asc_sht(sheet,8,cursor_y,COL8_FFFFFF,COL8_000000,s,30);
-  28306a:	83 ec 04             	sub    $0x4,%esp
-  28306d:	6a 1e                	push   $0x1e
-  28306f:	8d 45 86             	lea    -0x7a(%ebp),%eax
-  283072:	50                   	push   %eax
-  283073:	6a 00                	push   $0x0
-  283075:	6a 07                	push   $0x7
-  283077:	ff 75 f0             	pushl  -0x10(%ebp)
-  28307a:	6a 08                	push   $0x8
-  28307c:	ff 75 08             	pushl  0x8(%ebp)
-  28307f:	e8 5f e0 ff ff       	call   2810e3 <putfonts8_asc_sht>
-  283084:	83 c4 20             	add    $0x20,%esp
+  28307a:	83 ec 04             	sub    $0x4,%esp
+  28307d:	6a 1e                	push   $0x1e
+  28307f:	8d 85 76 ff ff ff    	lea    -0x8a(%ebp),%eax
+  283085:	50                   	push   %eax
+  283086:	6a 00                	push   $0x0
+  283088:	6a 07                	push   $0x7
+  28308a:	ff 75 f0             	pushl  -0x10(%ebp)
+  28308d:	6a 08                	push   $0x8
+  28308f:	ff 75 08             	pushl  0x8(%ebp)
+  283092:	e8 4c e0 ff ff       	call   2810e3 <putfonts8_asc_sht>
+  283097:	83 c4 20             	add    $0x20,%esp
 						cursor_y = cons_newline(cursor_y,sheet);
-  283087:	83 ec 08             	sub    $0x8,%esp
-  28308a:	ff 75 08             	pushl  0x8(%ebp)
-  28308d:	ff 75 f0             	pushl  -0x10(%ebp)
-  283090:	e8 d1 06 00 00       	call   283766 <cons_newline>
-  283095:	83 c4 10             	add    $0x10,%esp
-  283098:	89 45 f0             	mov    %eax,-0x10(%ebp)
+  28309a:	83 ec 08             	sub    $0x8,%esp
+  28309d:	ff 75 08             	pushl  0x8(%ebp)
+  2830a0:	ff 75 f0             	pushl  -0x10(%ebp)
+  2830a3:	e8 5c 09 00 00       	call   283a04 <cons_newline>
+  2830a8:	83 c4 10             	add    $0x10,%esp
+  2830ab:	89 45 f0             	mov    %eax,-0x10(%ebp)
 						cursor_y = cons_newline(cursor_y,sheet);
-  28309b:	83 ec 08             	sub    $0x8,%esp
-  28309e:	ff 75 08             	pushl  0x8(%ebp)
-  2830a1:	ff 75 f0             	pushl  -0x10(%ebp)
-  2830a4:	e8 bd 06 00 00       	call   283766 <cons_newline>
-  2830a9:	83 c4 10             	add    $0x10,%esp
-  2830ac:	89 45 f0             	mov    %eax,-0x10(%ebp)
-  2830af:	e9 db 05 00 00       	jmp    28368f <console_task+0x92e>
+  2830ae:	83 ec 08             	sub    $0x8,%esp
+  2830b1:	ff 75 08             	pushl  0x8(%ebp)
+  2830b4:	ff 75 f0             	pushl  -0x10(%ebp)
+  2830b7:	e8 48 09 00 00       	call   283a04 <cons_newline>
+  2830bc:	83 c4 10             	add    $0x10,%esp
+  2830bf:	89 45 f0             	mov    %eax,-0x10(%ebp)
+  2830c2:	e9 5d 08 00 00       	jmp    283924 <console_task+0xbc3>
 					}
 					else if(strcmp(cmdline,"cls")==0)
-  2830b4:	83 ec 08             	sub    $0x8,%esp
-  2830b7:	68 7d 3c 28 00       	push   $0x283c7d
-  2830bc:	8d 85 68 ff ff ff    	lea    -0x98(%ebp),%eax
-  2830c2:	50                   	push   %eax
-  2830c3:	e8 29 e7 ff ff       	call   2817f1 <strcmp>
-  2830c8:	83 c4 10             	add    $0x10,%esp
-  2830cb:	85 c0                	test   %eax,%eax
-  2830cd:	75 6f                	jne    28313e <console_task+0x3dd>
+  2830c7:	83 ec 08             	sub    $0x8,%esp
+  2830ca:	68 1d 3f 28 00       	push   $0x283f1d
+  2830cf:	8d 85 58 ff ff ff    	lea    -0xa8(%ebp),%eax
+  2830d5:	50                   	push   %eax
+  2830d6:	e8 16 e7 ff ff       	call   2817f1 <strcmp>
+  2830db:	83 c4 10             	add    $0x10,%esp
+  2830de:	85 c0                	test   %eax,%eax
+  2830e0:	75 6f                	jne    283151 <console_task+0x3f0>
 					{
 						for(int y=28;y<8+128;y++)
-  2830cf:	c7 45 e8 1c 00 00 00 	movl   $0x1c,-0x18(%ebp)
-  2830d6:	eb 35                	jmp    28310d <console_task+0x3ac>
+  2830e2:	c7 45 e8 1c 00 00 00 	movl   $0x1c,-0x18(%ebp)
+  2830e9:	eb 35                	jmp    283120 <console_task+0x3bf>
 							for(int x=8;x<8+240;x++)
-  2830d8:	c7 45 e4 08 00 00 00 	movl   $0x8,-0x1c(%ebp)
-  2830df:	eb 1f                	jmp    283100 <console_task+0x39f>
+  2830eb:	c7 45 e4 08 00 00 00 	movl   $0x8,-0x1c(%ebp)
+  2830f2:	eb 1f                	jmp    283113 <console_task+0x3b2>
 								sheet->buf[x+y*sheet->bxsize] = COL8_000000;
-  2830e1:	8b 45 08             	mov    0x8(%ebp),%eax
-  2830e4:	8b 10                	mov    (%eax),%edx
-  2830e6:	8b 45 08             	mov    0x8(%ebp),%eax
-  2830e9:	8b 40 04             	mov    0x4(%eax),%eax
-  2830ec:	0f af 45 e8          	imul   -0x18(%ebp),%eax
-  2830f0:	89 c1                	mov    %eax,%ecx
-  2830f2:	8b 45 e4             	mov    -0x1c(%ebp),%eax
-  2830f5:	01 c8                	add    %ecx,%eax
-  2830f7:	01 d0                	add    %edx,%eax
-  2830f9:	c6 00 00             	movb   $0x0,(%eax)
+  2830f4:	8b 45 08             	mov    0x8(%ebp),%eax
+  2830f7:	8b 10                	mov    (%eax),%edx
+  2830f9:	8b 45 08             	mov    0x8(%ebp),%eax
+  2830fc:	8b 40 04             	mov    0x4(%eax),%eax
+  2830ff:	0f af 45 e8          	imul   -0x18(%ebp),%eax
+  283103:	89 c1                	mov    %eax,%ecx
+  283105:	8b 45 e4             	mov    -0x1c(%ebp),%eax
+  283108:	01 c8                	add    %ecx,%eax
+  28310a:	01 d0                	add    %edx,%eax
+  28310c:	c6 00 00             	movb   $0x0,(%eax)
 						cursor_y = cons_newline(cursor_y,sheet);
 					}
 					else if(strcmp(cmdline,"cls")==0)
 					{
 						for(int y=28;y<8+128;y++)
 							for(int x=8;x<8+240;x++)
-  2830fc:	83 45 e4 01          	addl   $0x1,-0x1c(%ebp)
-  283100:	81 7d e4 f7 00 00 00 	cmpl   $0xf7,-0x1c(%ebp)
-  283107:	7e d8                	jle    2830e1 <console_task+0x380>
+  28310f:	83 45 e4 01          	addl   $0x1,-0x1c(%ebp)
+  283113:	81 7d e4 f7 00 00 00 	cmpl   $0xf7,-0x1c(%ebp)
+  28311a:	7e d8                	jle    2830f4 <console_task+0x393>
 						cursor_y = cons_newline(cursor_y,sheet);
 						cursor_y = cons_newline(cursor_y,sheet);
 					}
 					else if(strcmp(cmdline,"cls")==0)
 					{
 						for(int y=28;y<8+128;y++)
-  283109:	83 45 e8 01          	addl   $0x1,-0x18(%ebp)
-  28310d:	81 7d e8 87 00 00 00 	cmpl   $0x87,-0x18(%ebp)
-  283114:	7e c2                	jle    2830d8 <console_task+0x377>
+  28311c:	83 45 e8 01          	addl   $0x1,-0x18(%ebp)
+  283120:	81 7d e8 87 00 00 00 	cmpl   $0x87,-0x18(%ebp)
+  283127:	7e c2                	jle    2830eb <console_task+0x38a>
 							for(int x=8;x<8+240;x++)
 								sheet->buf[x+y*sheet->bxsize] = COL8_000000;
 						sheet_refresh(sheet,8,28,8+240,28+128);
-  283116:	83 ec 0c             	sub    $0xc,%esp
-  283119:	68 9c 00 00 00       	push   $0x9c
-  28311e:	68 f8 00 00 00       	push   $0xf8
-  283123:	6a 1c                	push   $0x1c
-  283125:	6a 08                	push   $0x8
-  283127:	ff 75 08             	pushl  0x8(%ebp)
-  28312a:	e8 b2 f3 ff ff       	call   2824e1 <sheet_refresh>
-  28312f:	83 c4 20             	add    $0x20,%esp
+  283129:	83 ec 0c             	sub    $0xc,%esp
+  28312c:	68 9c 00 00 00       	push   $0x9c
+  283131:	68 f8 00 00 00       	push   $0xf8
+  283136:	6a 1c                	push   $0x1c
+  283138:	6a 08                	push   $0x8
+  28313a:	ff 75 08             	pushl  0x8(%ebp)
+  28313d:	e8 9f f3 ff ff       	call   2824e1 <sheet_refresh>
+  283142:	83 c4 20             	add    $0x20,%esp
 						cursor_y = 28;
-  283132:	c7 45 f0 1c 00 00 00 	movl   $0x1c,-0x10(%ebp)
-  283139:	e9 51 05 00 00       	jmp    28368f <console_task+0x92e>
+  283145:	c7 45 f0 1c 00 00 00 	movl   $0x1c,-0x10(%ebp)
+  28314c:	e9 d3 07 00 00       	jmp    283924 <console_task+0xbc3>
 					}
 					else if(strcmp(cmdline,"dir")==0)
-  28313e:	83 ec 08             	sub    $0x8,%esp
-  283141:	68 81 3c 28 00       	push   $0x283c81
-  283146:	8d 85 68 ff ff ff    	lea    -0x98(%ebp),%eax
-  28314c:	50                   	push   %eax
-  28314d:	e8 9f e6 ff ff       	call   2817f1 <strcmp>
-  283152:	83 c4 10             	add    $0x10,%esp
-  283155:	85 c0                	test   %eax,%eax
-  283157:	0f 85 3c 01 00 00    	jne    283299 <console_task+0x538>
+  283151:	83 ec 08             	sub    $0x8,%esp
+  283154:	68 21 3f 28 00       	push   $0x283f21
+  283159:	8d 85 58 ff ff ff    	lea    -0xa8(%ebp),%eax
+  28315f:	50                   	push   %eax
+  283160:	e8 8c e6 ff ff       	call   2817f1 <strcmp>
+  283165:	83 c4 10             	add    $0x10,%esp
+  283168:	85 c0                	test   %eax,%eax
+  28316a:	0f 85 48 01 00 00    	jne    2832b8 <console_task+0x557>
 					{
 						for(int x=0;x<224;x++)
-  28315d:	c7 45 e0 00 00 00 00 	movl   $0x0,-0x20(%ebp)
-  283164:	e9 1e 01 00 00       	jmp    283287 <console_task+0x526>
+  283170:	c7 45 e0 00 00 00 00 	movl   $0x0,-0x20(%ebp)
+  283177:	e9 2a 01 00 00       	jmp    2832a6 <console_task+0x545>
 						{
 							if(finfo[x].name[0] == 0) break;
-  283169:	8b 45 e0             	mov    -0x20(%ebp),%eax
-  28316c:	c1 e0 06             	shl    $0x6,%eax
-  28316f:	89 c2                	mov    %eax,%edx
-  283171:	8b 45 c8             	mov    -0x38(%ebp),%eax
-  283174:	01 d0                	add    %edx,%eax
-  283176:	0f b6 40 20          	movzbl 0x20(%eax),%eax
-  28317a:	84 c0                	test   %al,%al
-  28317c:	0f 84 0c 05 00 00    	je     28368e <console_task+0x92d>
+  28317c:	8b 45 e0             	mov    -0x20(%ebp),%eax
+  28317f:	c1 e0 06             	shl    $0x6,%eax
+  283182:	89 c2                	mov    %eax,%edx
+  283184:	8b 45 c0             	mov    -0x40(%ebp),%eax
+  283187:	01 d0                	add    %edx,%eax
+  283189:	0f b6 40 20          	movzbl 0x20(%eax),%eax
+  28318d:	84 c0                	test   %al,%al
+  28318f:	0f 84 8e 07 00 00    	je     283923 <console_task+0xbc2>
 							if(finfo[x].name[0] != 0xe5 &&(finfo[x].type & 0x18) == 0)
-  283182:	8b 45 e0             	mov    -0x20(%ebp),%eax
-  283185:	c1 e0 06             	shl    $0x6,%eax
-  283188:	89 c2                	mov    %eax,%edx
-  28318a:	8b 45 c8             	mov    -0x38(%ebp),%eax
-  28318d:	01 d0                	add    %edx,%eax
-  28318f:	0f b6 40 20          	movzbl 0x20(%eax),%eax
-  283193:	3c e5                	cmp    $0xe5,%al
-  283195:	0f 84 e8 00 00 00    	je     283283 <console_task+0x522>
-  28319b:	8b 45 e0             	mov    -0x20(%ebp),%eax
-  28319e:	c1 e0 06             	shl    $0x6,%eax
-  2831a1:	89 c2                	mov    %eax,%edx
-  2831a3:	8b 45 c8             	mov    -0x38(%ebp),%eax
-  2831a6:	01 d0                	add    %edx,%eax
-  2831a8:	0f b6 40 2b          	movzbl 0x2b(%eax),%eax
-  2831ac:	0f b6 c0             	movzbl %al,%eax
-  2831af:	83 e0 18             	and    $0x18,%eax
-  2831b2:	85 c0                	test   %eax,%eax
-  2831b4:	0f 85 c9 00 00 00    	jne    283283 <console_task+0x522>
+  283195:	8b 45 e0             	mov    -0x20(%ebp),%eax
+  283198:	c1 e0 06             	shl    $0x6,%eax
+  28319b:	89 c2                	mov    %eax,%edx
+  28319d:	8b 45 c0             	mov    -0x40(%ebp),%eax
+  2831a0:	01 d0                	add    %edx,%eax
+  2831a2:	0f b6 40 20          	movzbl 0x20(%eax),%eax
+  2831a6:	3c e5                	cmp    $0xe5,%al
+  2831a8:	0f 84 f4 00 00 00    	je     2832a2 <console_task+0x541>
+  2831ae:	8b 45 e0             	mov    -0x20(%ebp),%eax
+  2831b1:	c1 e0 06             	shl    $0x6,%eax
+  2831b4:	89 c2                	mov    %eax,%edx
+  2831b6:	8b 45 c0             	mov    -0x40(%ebp),%eax
+  2831b9:	01 d0                	add    %edx,%eax
+  2831bb:	0f b6 40 2b          	movzbl 0x2b(%eax),%eax
+  2831bf:	0f b6 c0             	movzbl %al,%eax
+  2831c2:	83 e0 18             	and    $0x18,%eax
+  2831c5:	85 c0                	test   %eax,%eax
+  2831c7:	0f 85 d5 00 00 00    	jne    2832a2 <console_task+0x541>
 							{
 								sprintf(s,"filename.ext %d",finfo[x].size);
-  2831ba:	8b 45 e0             	mov    -0x20(%ebp),%eax
-  2831bd:	c1 e0 06             	shl    $0x6,%eax
-  2831c0:	89 c2                	mov    %eax,%edx
-  2831c2:	8b 45 c8             	mov    -0x38(%ebp),%eax
-  2831c5:	01 d0                	add    %edx,%eax
-  2831c7:	8b 40 3c             	mov    0x3c(%eax),%eax
-  2831ca:	83 ec 04             	sub    $0x4,%esp
-  2831cd:	50                   	push   %eax
-  2831ce:	68 85 3c 28 00       	push   $0x283c85
-  2831d3:	8d 45 86             	lea    -0x7a(%ebp),%eax
-  2831d6:	50                   	push   %eax
-  2831d7:	e8 40 e5 ff ff       	call   28171c <sprintf>
-  2831dc:	83 c4 10             	add    $0x10,%esp
+  2831cd:	8b 45 e0             	mov    -0x20(%ebp),%eax
+  2831d0:	c1 e0 06             	shl    $0x6,%eax
+  2831d3:	89 c2                	mov    %eax,%edx
+  2831d5:	8b 45 c0             	mov    -0x40(%ebp),%eax
+  2831d8:	01 d0                	add    %edx,%eax
+  2831da:	8b 40 3c             	mov    0x3c(%eax),%eax
+  2831dd:	83 ec 04             	sub    $0x4,%esp
+  2831e0:	50                   	push   %eax
+  2831e1:	68 25 3f 28 00       	push   $0x283f25
+  2831e6:	8d 85 76 ff ff ff    	lea    -0x8a(%ebp),%eax
+  2831ec:	50                   	push   %eax
+  2831ed:	e8 2a e5 ff ff       	call   28171c <sprintf>
+  2831f2:	83 c4 10             	add    $0x10,%esp
 								for(int y=0;y<8;y++)
-  2831df:	c7 45 dc 00 00 00 00 	movl   $0x0,-0x24(%ebp)
-  2831e6:	eb 28                	jmp    283210 <console_task+0x4af>
+  2831f5:	c7 45 dc 00 00 00 00 	movl   $0x0,-0x24(%ebp)
+  2831fc:	eb 2b                	jmp    283229 <console_task+0x4c8>
 								{
 									s[y] = finfo[x].name[y];
-  2831e8:	8b 45 e0             	mov    -0x20(%ebp),%eax
-  2831eb:	c1 e0 06             	shl    $0x6,%eax
-  2831ee:	89 c2                	mov    %eax,%edx
-  2831f0:	8b 45 c8             	mov    -0x38(%ebp),%eax
-  2831f3:	01 c2                	add    %eax,%edx
-  2831f5:	8b 45 dc             	mov    -0x24(%ebp),%eax
-  2831f8:	01 d0                	add    %edx,%eax
-  2831fa:	83 c0 20             	add    $0x20,%eax
-  2831fd:	0f b6 00             	movzbl (%eax),%eax
-  283200:	89 c1                	mov    %eax,%ecx
-  283202:	8d 55 86             	lea    -0x7a(%ebp),%edx
-  283205:	8b 45 dc             	mov    -0x24(%ebp),%eax
-  283208:	01 d0                	add    %edx,%eax
-  28320a:	88 08                	mov    %cl,(%eax)
+  2831fe:	8b 45 e0             	mov    -0x20(%ebp),%eax
+  283201:	c1 e0 06             	shl    $0x6,%eax
+  283204:	89 c2                	mov    %eax,%edx
+  283206:	8b 45 c0             	mov    -0x40(%ebp),%eax
+  283209:	01 c2                	add    %eax,%edx
+  28320b:	8b 45 dc             	mov    -0x24(%ebp),%eax
+  28320e:	01 d0                	add    %edx,%eax
+  283210:	83 c0 20             	add    $0x20,%eax
+  283213:	0f b6 00             	movzbl (%eax),%eax
+  283216:	89 c1                	mov    %eax,%ecx
+  283218:	8d 95 76 ff ff ff    	lea    -0x8a(%ebp),%edx
+  28321e:	8b 45 dc             	mov    -0x24(%ebp),%eax
+  283221:	01 d0                	add    %edx,%eax
+  283223:	88 08                	mov    %cl,(%eax)
 						{
 							if(finfo[x].name[0] == 0) break;
 							if(finfo[x].name[0] != 0xe5 &&(finfo[x].type & 0x18) == 0)
 							{
 								sprintf(s,"filename.ext %d",finfo[x].size);
 								for(int y=0;y<8;y++)
-  28320c:	83 45 dc 01          	addl   $0x1,-0x24(%ebp)
-  283210:	83 7d dc 07          	cmpl   $0x7,-0x24(%ebp)
-  283214:	7e d2                	jle    2831e8 <console_task+0x487>
+  283225:	83 45 dc 01          	addl   $0x1,-0x24(%ebp)
+  283229:	83 7d dc 07          	cmpl   $0x7,-0x24(%ebp)
+  28322d:	7e cf                	jle    2831fe <console_task+0x49d>
 								{
 									s[y] = finfo[x].name[y];
 								}
 								s[9]=finfo[x].ext[0];
-  283216:	8b 45 e0             	mov    -0x20(%ebp),%eax
-  283219:	c1 e0 06             	shl    $0x6,%eax
-  28321c:	89 c2                	mov    %eax,%edx
-  28321e:	8b 45 c8             	mov    -0x38(%ebp),%eax
-  283221:	01 d0                	add    %edx,%eax
-  283223:	0f b6 40 28          	movzbl 0x28(%eax),%eax
-  283227:	88 45 8f             	mov    %al,-0x71(%ebp)
+  28322f:	8b 45 e0             	mov    -0x20(%ebp),%eax
+  283232:	c1 e0 06             	shl    $0x6,%eax
+  283235:	89 c2                	mov    %eax,%edx
+  283237:	8b 45 c0             	mov    -0x40(%ebp),%eax
+  28323a:	01 d0                	add    %edx,%eax
+  28323c:	0f b6 40 28          	movzbl 0x28(%eax),%eax
+  283240:	88 85 7f ff ff ff    	mov    %al,-0x81(%ebp)
 								s[10]=finfo[x].ext[1];
-  28322a:	8b 45 e0             	mov    -0x20(%ebp),%eax
-  28322d:	c1 e0 06             	shl    $0x6,%eax
-  283230:	89 c2                	mov    %eax,%edx
-  283232:	8b 45 c8             	mov    -0x38(%ebp),%eax
-  283235:	01 d0                	add    %edx,%eax
-  283237:	0f b6 40 29          	movzbl 0x29(%eax),%eax
-  28323b:	88 45 90             	mov    %al,-0x70(%ebp)
+  283246:	8b 45 e0             	mov    -0x20(%ebp),%eax
+  283249:	c1 e0 06             	shl    $0x6,%eax
+  28324c:	89 c2                	mov    %eax,%edx
+  28324e:	8b 45 c0             	mov    -0x40(%ebp),%eax
+  283251:	01 d0                	add    %edx,%eax
+  283253:	0f b6 40 29          	movzbl 0x29(%eax),%eax
+  283257:	88 45 80             	mov    %al,-0x80(%ebp)
 								s[11]=finfo[x].ext[2];
-  28323e:	8b 45 e0             	mov    -0x20(%ebp),%eax
-  283241:	c1 e0 06             	shl    $0x6,%eax
-  283244:	89 c2                	mov    %eax,%edx
-  283246:	8b 45 c8             	mov    -0x38(%ebp),%eax
-  283249:	01 d0                	add    %edx,%eax
-  28324b:	0f b6 40 2a          	movzbl 0x2a(%eax),%eax
-  28324f:	88 45 91             	mov    %al,-0x6f(%ebp)
+  28325a:	8b 45 e0             	mov    -0x20(%ebp),%eax
+  28325d:	c1 e0 06             	shl    $0x6,%eax
+  283260:	89 c2                	mov    %eax,%edx
+  283262:	8b 45 c0             	mov    -0x40(%ebp),%eax
+  283265:	01 d0                	add    %edx,%eax
+  283267:	0f b6 40 2a          	movzbl 0x2a(%eax),%eax
+  28326b:	88 45 81             	mov    %al,-0x7f(%ebp)
 								putfonts8_asc_sht(sheet,8,cursor_y,COL8_FFFFFF,COL8_000000,s,30);
-  283252:	83 ec 04             	sub    $0x4,%esp
-  283255:	6a 1e                	push   $0x1e
-  283257:	8d 45 86             	lea    -0x7a(%ebp),%eax
-  28325a:	50                   	push   %eax
-  28325b:	6a 00                	push   $0x0
-  28325d:	6a 07                	push   $0x7
-  28325f:	ff 75 f0             	pushl  -0x10(%ebp)
-  283262:	6a 08                	push   $0x8
-  283264:	ff 75 08             	pushl  0x8(%ebp)
-  283267:	e8 77 de ff ff       	call   2810e3 <putfonts8_asc_sht>
-  28326c:	83 c4 20             	add    $0x20,%esp
+  28326e:	83 ec 04             	sub    $0x4,%esp
+  283271:	6a 1e                	push   $0x1e
+  283273:	8d 85 76 ff ff ff    	lea    -0x8a(%ebp),%eax
+  283279:	50                   	push   %eax
+  28327a:	6a 00                	push   $0x0
+  28327c:	6a 07                	push   $0x7
+  28327e:	ff 75 f0             	pushl  -0x10(%ebp)
+  283281:	6a 08                	push   $0x8
+  283283:	ff 75 08             	pushl  0x8(%ebp)
+  283286:	e8 58 de ff ff       	call   2810e3 <putfonts8_asc_sht>
+  28328b:	83 c4 20             	add    $0x20,%esp
 								cursor_y = cons_newline(cursor_y,sheet);
-  28326f:	83 ec 08             	sub    $0x8,%esp
-  283272:	ff 75 08             	pushl  0x8(%ebp)
-  283275:	ff 75 f0             	pushl  -0x10(%ebp)
-  283278:	e8 e9 04 00 00       	call   283766 <cons_newline>
-  28327d:	83 c4 10             	add    $0x10,%esp
-  283280:	89 45 f0             	mov    %eax,-0x10(%ebp)
+  28328e:	83 ec 08             	sub    $0x8,%esp
+  283291:	ff 75 08             	pushl  0x8(%ebp)
+  283294:	ff 75 f0             	pushl  -0x10(%ebp)
+  283297:	e8 68 07 00 00       	call   283a04 <cons_newline>
+  28329c:	83 c4 10             	add    $0x10,%esp
+  28329f:	89 45 f0             	mov    %eax,-0x10(%ebp)
 						sheet_refresh(sheet,8,28,8+240,28+128);
 						cursor_y = 28;
 					}
 					else if(strcmp(cmdline,"dir")==0)
 					{
 						for(int x=0;x<224;x++)
-  283283:	83 45 e0 01          	addl   $0x1,-0x20(%ebp)
-  283287:	81 7d e0 df 00 00 00 	cmpl   $0xdf,-0x20(%ebp)
-  28328e:	0f 8e d5 fe ff ff    	jle    283169 <console_task+0x408>
-  283294:	e9 f6 03 00 00       	jmp    28368f <console_task+0x92e>
+  2832a2:	83 45 e0 01          	addl   $0x1,-0x20(%ebp)
+  2832a6:	81 7d e0 df 00 00 00 	cmpl   $0xdf,-0x20(%ebp)
+  2832ad:	0f 8e c9 fe ff ff    	jle    28317c <console_task+0x41b>
+  2832b3:	e9 6c 06 00 00       	jmp    283924 <console_task+0xbc3>
 								putfonts8_asc_sht(sheet,8,cursor_y,COL8_FFFFFF,COL8_000000,s,30);
 								cursor_y = cons_newline(cursor_y,sheet);
 							}
 						}
 					}
 					else if(strncmp(cmdline,"type ",5) == 0)
-  283299:	83 ec 04             	sub    $0x4,%esp
-  28329c:	6a 05                	push   $0x5
-  28329e:	68 95 3c 28 00       	push   $0x283c95
-  2832a3:	8d 85 68 ff ff ff    	lea    -0x98(%ebp),%eax
-  2832a9:	50                   	push   %eax
-  2832aa:	e8 a8 e5 ff ff       	call   281857 <strncmp>
-  2832af:	83 c4 10             	add    $0x10,%esp
-  2832b2:	85 c0                	test   %eax,%eax
-  2832b4:	0f 85 81 03 00 00    	jne    28363b <console_task+0x8da>
+  2832b8:	83 ec 04             	sub    $0x4,%esp
+  2832bb:	6a 05                	push   $0x5
+  2832bd:	68 35 3f 28 00       	push   $0x283f35
+  2832c2:	8d 85 58 ff ff ff    	lea    -0xa8(%ebp),%eax
+  2832c8:	50                   	push   %eax
+  2832c9:	e8 89 e5 ff ff       	call   281857 <strncmp>
+  2832ce:	83 c4 10             	add    $0x10,%esp
+  2832d1:	85 c0                	test   %eax,%eax
+  2832d3:	0f 85 b6 03 00 00    	jne    28368f <console_task+0x92e>
 					{
 						int x,y;
 						for(y = 0;y < 11;y++)
-  2832ba:	c7 45 d4 00 00 00 00 	movl   $0x0,-0x2c(%ebp)
-  2832c1:	eb 0f                	jmp    2832d2 <console_task+0x571>
+  2832d9:	c7 45 d4 00 00 00 00 	movl   $0x0,-0x2c(%ebp)
+  2832e0:	eb 12                	jmp    2832f4 <console_task+0x593>
 						{
 							s[y] = ' ';
-  2832c3:	8d 55 86             	lea    -0x7a(%ebp),%edx
-  2832c6:	8b 45 d4             	mov    -0x2c(%ebp),%eax
-  2832c9:	01 d0                	add    %edx,%eax
-  2832cb:	c6 00 20             	movb   $0x20,(%eax)
+  2832e2:	8d 95 76 ff ff ff    	lea    -0x8a(%ebp),%edx
+  2832e8:	8b 45 d4             	mov    -0x2c(%ebp),%eax
+  2832eb:	01 d0                	add    %edx,%eax
+  2832ed:	c6 00 20             	movb   $0x20,(%eax)
 						}
 					}
 					else if(strncmp(cmdline,"type ",5) == 0)
 					{
 						int x,y;
 						for(y = 0;y < 11;y++)
-  2832ce:	83 45 d4 01          	addl   $0x1,-0x2c(%ebp)
-  2832d2:	83 7d d4 0a          	cmpl   $0xa,-0x2c(%ebp)
-  2832d6:	7e eb                	jle    2832c3 <console_task+0x562>
+  2832f0:	83 45 d4 01          	addl   $0x1,-0x2c(%ebp)
+  2832f4:	83 7d d4 0a          	cmpl   $0xa,-0x2c(%ebp)
+  2832f8:	7e e8                	jle    2832e2 <console_task+0x581>
 						{
 							s[y] = ' ';
 						}
 						y=0;
-  2832d8:	c7 45 d4 00 00 00 00 	movl   $0x0,-0x2c(%ebp)
+  2832fa:	c7 45 d4 00 00 00 00 	movl   $0x0,-0x2c(%ebp)
 						for(x=5;y<11&&cmdline[x]!=0;x++)
-  2832df:	c7 45 d8 05 00 00 00 	movl   $0x5,-0x28(%ebp)
-  2832e6:	eb 79                	jmp    283361 <console_task+0x600>
+  283301:	c7 45 d8 05 00 00 00 	movl   $0x5,-0x28(%ebp)
+  283308:	e9 88 00 00 00       	jmp    283395 <console_task+0x634>
 						{
 							if(cmdline[x] == '.' && y <= 8) y = 8;
-  2832e8:	8d 95 68 ff ff ff    	lea    -0x98(%ebp),%edx
-  2832ee:	8b 45 d8             	mov    -0x28(%ebp),%eax
-  2832f1:	01 d0                	add    %edx,%eax
-  2832f3:	0f b6 00             	movzbl (%eax),%eax
-  2832f6:	3c 2e                	cmp    $0x2e,%al
-  2832f8:	75 0f                	jne    283309 <console_task+0x5a8>
-  2832fa:	83 7d d4 08          	cmpl   $0x8,-0x2c(%ebp)
-  2832fe:	7f 09                	jg     283309 <console_task+0x5a8>
-  283300:	c7 45 d4 08 00 00 00 	movl   $0x8,-0x2c(%ebp)
-  283307:	eb 54                	jmp    28335d <console_task+0x5fc>
+  28330d:	8d 95 58 ff ff ff    	lea    -0xa8(%ebp),%edx
+  283313:	8b 45 d8             	mov    -0x28(%ebp),%eax
+  283316:	01 d0                	add    %edx,%eax
+  283318:	0f b6 00             	movzbl (%eax),%eax
+  28331b:	3c 2e                	cmp    $0x2e,%al
+  28331d:	75 0f                	jne    28332e <console_task+0x5cd>
+  28331f:	83 7d d4 08          	cmpl   $0x8,-0x2c(%ebp)
+  283323:	7f 09                	jg     28332e <console_task+0x5cd>
+  283325:	c7 45 d4 08 00 00 00 	movl   $0x8,-0x2c(%ebp)
+  28332c:	eb 63                	jmp    283391 <console_task+0x630>
 							else 
 							{
 								s[y] = cmdline[x];
-  283309:	8d 95 68 ff ff ff    	lea    -0x98(%ebp),%edx
-  28330f:	8b 45 d8             	mov    -0x28(%ebp),%eax
-  283312:	01 d0                	add    %edx,%eax
-  283314:	0f b6 00             	movzbl (%eax),%eax
-  283317:	8d 4d 86             	lea    -0x7a(%ebp),%ecx
-  28331a:	8b 55 d4             	mov    -0x2c(%ebp),%edx
-  28331d:	01 ca                	add    %ecx,%edx
-  28331f:	88 02                	mov    %al,(%edx)
+  28332e:	8d 95 58 ff ff ff    	lea    -0xa8(%ebp),%edx
+  283334:	8b 45 d8             	mov    -0x28(%ebp),%eax
+  283337:	01 d0                	add    %edx,%eax
+  283339:	0f b6 00             	movzbl (%eax),%eax
+  28333c:	8d 8d 76 ff ff ff    	lea    -0x8a(%ebp),%ecx
+  283342:	8b 55 d4             	mov    -0x2c(%ebp),%edx
+  283345:	01 ca                	add    %ecx,%edx
+  283347:	88 02                	mov    %al,(%edx)
 								if('a'<=s[y] && s[y]<='z')
-  283321:	8d 55 86             	lea    -0x7a(%ebp),%edx
-  283324:	8b 45 d4             	mov    -0x2c(%ebp),%eax
-  283327:	01 d0                	add    %edx,%eax
-  283329:	0f b6 00             	movzbl (%eax),%eax
-  28332c:	3c 60                	cmp    $0x60,%al
-  28332e:	7e 29                	jle    283359 <console_task+0x5f8>
-  283330:	8d 55 86             	lea    -0x7a(%ebp),%edx
-  283333:	8b 45 d4             	mov    -0x2c(%ebp),%eax
-  283336:	01 d0                	add    %edx,%eax
-  283338:	0f b6 00             	movzbl (%eax),%eax
-  28333b:	3c 7a                	cmp    $0x7a,%al
-  28333d:	7f 1a                	jg     283359 <console_task+0x5f8>
+  283349:	8d 95 76 ff ff ff    	lea    -0x8a(%ebp),%edx
+  28334f:	8b 45 d4             	mov    -0x2c(%ebp),%eax
+  283352:	01 d0                	add    %edx,%eax
+  283354:	0f b6 00             	movzbl (%eax),%eax
+  283357:	3c 60                	cmp    $0x60,%al
+  283359:	7e 32                	jle    28338d <console_task+0x62c>
+  28335b:	8d 95 76 ff ff ff    	lea    -0x8a(%ebp),%edx
+  283361:	8b 45 d4             	mov    -0x2c(%ebp),%eax
+  283364:	01 d0                	add    %edx,%eax
+  283366:	0f b6 00             	movzbl (%eax),%eax
+  283369:	3c 7a                	cmp    $0x7a,%al
+  28336b:	7f 20                	jg     28338d <console_task+0x62c>
 								{
 									s[y] -= 0x20;
-  28333f:	8d 55 86             	lea    -0x7a(%ebp),%edx
-  283342:	8b 45 d4             	mov    -0x2c(%ebp),%eax
-  283345:	01 d0                	add    %edx,%eax
-  283347:	0f b6 00             	movzbl (%eax),%eax
-  28334a:	83 e8 20             	sub    $0x20,%eax
-  28334d:	89 c1                	mov    %eax,%ecx
-  28334f:	8d 55 86             	lea    -0x7a(%ebp),%edx
-  283352:	8b 45 d4             	mov    -0x2c(%ebp),%eax
-  283355:	01 d0                	add    %edx,%eax
-  283357:	88 08                	mov    %cl,(%eax)
+  28336d:	8d 95 76 ff ff ff    	lea    -0x8a(%ebp),%edx
+  283373:	8b 45 d4             	mov    -0x2c(%ebp),%eax
+  283376:	01 d0                	add    %edx,%eax
+  283378:	0f b6 00             	movzbl (%eax),%eax
+  28337b:	83 e8 20             	sub    $0x20,%eax
+  28337e:	89 c1                	mov    %eax,%ecx
+  283380:	8d 95 76 ff ff ff    	lea    -0x8a(%ebp),%edx
+  283386:	8b 45 d4             	mov    -0x2c(%ebp),%eax
+  283389:	01 d0                	add    %edx,%eax
+  28338b:	88 08                	mov    %cl,(%eax)
 								}
 								y++;
-  283359:	83 45 d4 01          	addl   $0x1,-0x2c(%ebp)
+  28338d:	83 45 d4 01          	addl   $0x1,-0x2c(%ebp)
 						for(y = 0;y < 11;y++)
 						{
 							s[y] = ' ';
 						}
 						y=0;
 						for(x=5;y<11&&cmdline[x]!=0;x++)
-  28335d:	83 45 d8 01          	addl   $0x1,-0x28(%ebp)
-  283361:	83 7d d4 0a          	cmpl   $0xa,-0x2c(%ebp)
-  283365:	7f 16                	jg     28337d <console_task+0x61c>
-  283367:	8d 95 68 ff ff ff    	lea    -0x98(%ebp),%edx
-  28336d:	8b 45 d8             	mov    -0x28(%ebp),%eax
-  283370:	01 d0                	add    %edx,%eax
-  283372:	0f b6 00             	movzbl (%eax),%eax
-  283375:	84 c0                	test   %al,%al
-  283377:	0f 85 6b ff ff ff    	jne    2832e8 <console_task+0x587>
+  283391:	83 45 d8 01          	addl   $0x1,-0x28(%ebp)
+  283395:	83 7d d4 0a          	cmpl   $0xa,-0x2c(%ebp)
+  283399:	7f 16                	jg     2833b1 <console_task+0x650>
+  28339b:	8d 95 58 ff ff ff    	lea    -0xa8(%ebp),%edx
+  2833a1:	8b 45 d8             	mov    -0x28(%ebp),%eax
+  2833a4:	01 d0                	add    %edx,%eax
+  2833a6:	0f b6 00             	movzbl (%eax),%eax
+  2833a9:	84 c0                	test   %al,%al
+  2833ab:	0f 85 5c ff ff ff    	jne    28330d <console_task+0x5ac>
 									s[y] -= 0x20;
 								}
 								y++;
 							}
 						}
 						for(x=0;x<224;)
-  28337d:	c7 45 d8 00 00 00 00 	movl   $0x0,-0x28(%ebp)
-  283384:	e9 84 00 00 00       	jmp    28340d <console_task+0x6ac>
+  2833b1:	c7 45 d8 00 00 00 00 	movl   $0x0,-0x28(%ebp)
+  2833b8:	e9 87 00 00 00       	jmp    283444 <console_task+0x6e3>
 						{
 							y = 0;
-  283389:	c7 45 d4 00 00 00 00 	movl   $0x0,-0x2c(%ebp)
+  2833bd:	c7 45 d4 00 00 00 00 	movl   $0x0,-0x2c(%ebp)
 							if(finfo[x].name[0]==0) break;
-  283390:	8b 45 d8             	mov    -0x28(%ebp),%eax
-  283393:	c1 e0 06             	shl    $0x6,%eax
-  283396:	89 c2                	mov    %eax,%edx
-  283398:	8b 45 c8             	mov    -0x38(%ebp),%eax
-  28339b:	01 d0                	add    %edx,%eax
-  28339d:	0f b6 40 20          	movzbl 0x20(%eax),%eax
-  2833a1:	84 c0                	test   %al,%al
-  2833a3:	74 77                	je     28341c <console_task+0x6bb>
+  2833c4:	8b 45 d8             	mov    -0x28(%ebp),%eax
+  2833c7:	c1 e0 06             	shl    $0x6,%eax
+  2833ca:	89 c2                	mov    %eax,%edx
+  2833cc:	8b 45 c0             	mov    -0x40(%ebp),%eax
+  2833cf:	01 d0                	add    %edx,%eax
+  2833d1:	0f b6 40 20          	movzbl 0x20(%eax),%eax
+  2833d5:	84 c0                	test   %al,%al
+  2833d7:	74 7a                	je     283453 <console_task+0x6f2>
 							if((finfo[x].type & 0x18)==0)
-  2833a5:	8b 45 d8             	mov    -0x28(%ebp),%eax
-  2833a8:	c1 e0 06             	shl    $0x6,%eax
-  2833ab:	89 c2                	mov    %eax,%edx
-  2833ad:	8b 45 c8             	mov    -0x38(%ebp),%eax
-  2833b0:	01 d0                	add    %edx,%eax
-  2833b2:	0f b6 40 2b          	movzbl 0x2b(%eax),%eax
-  2833b6:	0f b6 c0             	movzbl %al,%eax
-  2833b9:	83 e0 18             	and    $0x18,%eax
-  2833bc:	85 c0                	test   %eax,%eax
-  2833be:	75 43                	jne    283403 <console_task+0x6a2>
+  2833d9:	8b 45 d8             	mov    -0x28(%ebp),%eax
+  2833dc:	c1 e0 06             	shl    $0x6,%eax
+  2833df:	89 c2                	mov    %eax,%edx
+  2833e1:	8b 45 c0             	mov    -0x40(%ebp),%eax
+  2833e4:	01 d0                	add    %edx,%eax
+  2833e6:	0f b6 40 2b          	movzbl 0x2b(%eax),%eax
+  2833ea:	0f b6 c0             	movzbl %al,%eax
+  2833ed:	83 e0 18             	and    $0x18,%eax
+  2833f0:	85 c0                	test   %eax,%eax
+  2833f2:	75 46                	jne    28343a <console_task+0x6d9>
 							{
 								for(y=0;y<11;y++)
-  2833c0:	c7 45 d4 00 00 00 00 	movl   $0x0,-0x2c(%ebp)
-  2833c7:	eb 31                	jmp    2833fa <console_task+0x699>
+  2833f4:	c7 45 d4 00 00 00 00 	movl   $0x0,-0x2c(%ebp)
+  2833fb:	eb 34                	jmp    283431 <console_task+0x6d0>
 								{
 									if(finfo[x].name[y]!=s[y])
-  2833c9:	8b 45 d8             	mov    -0x28(%ebp),%eax
-  2833cc:	c1 e0 06             	shl    $0x6,%eax
-  2833cf:	89 c2                	mov    %eax,%edx
-  2833d1:	8b 45 c8             	mov    -0x38(%ebp),%eax
-  2833d4:	01 c2                	add    %eax,%edx
-  2833d6:	8b 45 d4             	mov    -0x2c(%ebp),%eax
-  2833d9:	01 d0                	add    %edx,%eax
-  2833db:	83 c0 20             	add    $0x20,%eax
-  2833de:	0f b6 00             	movzbl (%eax),%eax
-  2833e1:	0f b6 d0             	movzbl %al,%edx
-  2833e4:	8d 4d 86             	lea    -0x7a(%ebp),%ecx
-  2833e7:	8b 45 d4             	mov    -0x2c(%ebp),%eax
-  2833ea:	01 c8                	add    %ecx,%eax
-  2833ec:	0f b6 00             	movzbl (%eax),%eax
-  2833ef:	0f be c0             	movsbl %al,%eax
-  2833f2:	39 c2                	cmp    %eax,%edx
-  2833f4:	75 0c                	jne    283402 <console_task+0x6a1>
+  2833fd:	8b 45 d8             	mov    -0x28(%ebp),%eax
+  283400:	c1 e0 06             	shl    $0x6,%eax
+  283403:	89 c2                	mov    %eax,%edx
+  283405:	8b 45 c0             	mov    -0x40(%ebp),%eax
+  283408:	01 c2                	add    %eax,%edx
+  28340a:	8b 45 d4             	mov    -0x2c(%ebp),%eax
+  28340d:	01 d0                	add    %edx,%eax
+  28340f:	83 c0 20             	add    $0x20,%eax
+  283412:	0f b6 00             	movzbl (%eax),%eax
+  283415:	0f b6 d0             	movzbl %al,%edx
+  283418:	8d 8d 76 ff ff ff    	lea    -0x8a(%ebp),%ecx
+  28341e:	8b 45 d4             	mov    -0x2c(%ebp),%eax
+  283421:	01 c8                	add    %ecx,%eax
+  283423:	0f b6 00             	movzbl (%eax),%eax
+  283426:	0f be c0             	movsbl %al,%eax
+  283429:	39 c2                	cmp    %eax,%edx
+  28342b:	75 0c                	jne    283439 <console_task+0x6d8>
 						{
 							y = 0;
 							if(finfo[x].name[0]==0) break;
 							if((finfo[x].type & 0x18)==0)
 							{
 								for(y=0;y<11;y++)
-  2833f6:	83 45 d4 01          	addl   $0x1,-0x2c(%ebp)
-  2833fa:	83 7d d4 0a          	cmpl   $0xa,-0x2c(%ebp)
-  2833fe:	7e c9                	jle    2833c9 <console_task+0x668>
-  283400:	eb 01                	jmp    283403 <console_task+0x6a2>
+  28342d:	83 45 d4 01          	addl   $0x1,-0x2c(%ebp)
+  283431:	83 7d d4 0a          	cmpl   $0xa,-0x2c(%ebp)
+  283435:	7e c6                	jle    2833fd <console_task+0x69c>
+  283437:	eb 01                	jmp    28343a <console_task+0x6d9>
 								{
 									if(finfo[x].name[y]!=s[y])
 									{
 										break;
-  283402:	90                   	nop
+  283439:	90                   	nop
 									}
 								}
 							}
 							if(y>10)
-  283403:	83 7d d4 0a          	cmpl   $0xa,-0x2c(%ebp)
-  283407:	7f 16                	jg     28341f <console_task+0x6be>
+  28343a:	83 7d d4 0a          	cmpl   $0xa,-0x2c(%ebp)
+  28343e:	7f 16                	jg     283456 <console_task+0x6f5>
 							{ 
 								break;
 							}
 							x++;
-  283409:	83 45 d8 01          	addl   $0x1,-0x28(%ebp)
+  283440:	83 45 d8 01          	addl   $0x1,-0x28(%ebp)
 									s[y] -= 0x20;
 								}
 								y++;
 							}
 						}
 						for(x=0;x<224;)
-  28340d:	81 7d d8 df 00 00 00 	cmpl   $0xdf,-0x28(%ebp)
-  283414:	0f 8e 6f ff ff ff    	jle    283389 <console_task+0x628>
-  28341a:	eb 04                	jmp    283420 <console_task+0x6bf>
+  283444:	81 7d d8 df 00 00 00 	cmpl   $0xdf,-0x28(%ebp)
+  28344b:	0f 8e 6c ff ff ff    	jle    2833bd <console_task+0x65c>
+  283451:	eb 04                	jmp    283457 <console_task+0x6f6>
 						{
 							y = 0;
 							if(finfo[x].name[0]==0) break;
-  28341c:	90                   	nop
-  28341d:	eb 01                	jmp    283420 <console_task+0x6bf>
+  283453:	90                   	nop
+  283454:	eb 01                	jmp    283457 <console_task+0x6f6>
 									}
 								}
 							}
 							if(y>10)
 							{ 
 								break;
-  28341f:	90                   	nop
+  283456:	90                   	nop
 							}
 							x++;
 						}
 						if(x<224 && finfo[x].name[0]!=0)
-  283420:	81 7d d8 df 00 00 00 	cmpl   $0xdf,-0x28(%ebp)
-  283427:	0f 8f b2 01 00 00    	jg     2835df <console_task+0x87e>
-  28342d:	8b 45 d8             	mov    -0x28(%ebp),%eax
-  283430:	c1 e0 06             	shl    $0x6,%eax
-  283433:	89 c2                	mov    %eax,%edx
-  283435:	8b 45 c8             	mov    -0x38(%ebp),%eax
-  283438:	01 d0                	add    %edx,%eax
-  28343a:	0f b6 40 20          	movzbl 0x20(%eax),%eax
-  28343e:	84 c0                	test   %al,%al
-  283440:	0f 84 99 01 00 00    	je     2835df <console_task+0x87e>
+  283457:	81 7d d8 df 00 00 00 	cmpl   $0xdf,-0x28(%ebp)
+  28345e:	0f 8f cc 01 00 00    	jg     283630 <console_task+0x8cf>
+  283464:	8b 45 d8             	mov    -0x28(%ebp),%eax
+  283467:	c1 e0 06             	shl    $0x6,%eax
+  28346a:	89 c2                	mov    %eax,%edx
+  28346c:	8b 45 c0             	mov    -0x40(%ebp),%eax
+  28346f:	01 d0                	add    %edx,%eax
+  283471:	0f b6 40 20          	movzbl 0x20(%eax),%eax
+  283475:	84 c0                	test   %al,%al
+  283477:	0f 84 b3 01 00 00    	je     283630 <console_task+0x8cf>
 						{
 							//file found!
 							char *p = (char *)memman_alloc_4k(memman,finfo[x].size);
-  283446:	8b 45 d8             	mov    -0x28(%ebp),%eax
-  283449:	c1 e0 06             	shl    $0x6,%eax
-  28344c:	89 c2                	mov    %eax,%edx
-  28344e:	8b 45 c8             	mov    -0x38(%ebp),%eax
-  283451:	01 d0                	add    %edx,%eax
-  283453:	8b 40 3c             	mov    0x3c(%eax),%eax
-  283456:	83 ec 08             	sub    $0x8,%esp
-  283459:	50                   	push   %eax
-  28345a:	ff 75 cc             	pushl  -0x34(%ebp)
-  28345d:	e8 2a ec ff ff       	call   28208c <memman_alloc_4k>
-  283462:	83 c4 10             	add    $0x10,%esp
-  283465:	89 45 b8             	mov    %eax,-0x48(%ebp)
+  28347d:	8b 45 d8             	mov    -0x28(%ebp),%eax
+  283480:	c1 e0 06             	shl    $0x6,%eax
+  283483:	89 c2                	mov    %eax,%edx
+  283485:	8b 45 c0             	mov    -0x40(%ebp),%eax
+  283488:	01 d0                	add    %edx,%eax
+  28348a:	8b 40 3c             	mov    0x3c(%eax),%eax
+  28348d:	83 ec 08             	sub    $0x8,%esp
+  283490:	50                   	push   %eax
+  283491:	ff 75 c4             	pushl  -0x3c(%ebp)
+  283494:	e8 f3 eb ff ff       	call   28208c <memman_alloc_4k>
+  283499:	83 c4 10             	add    $0x10,%esp
+  28349c:	89 45 ac             	mov    %eax,-0x54(%ebp)
 							file_loadfile(finfo[x].clustno,finfo[x].size,p,fat,(char *)(ADR_DISKIMG+0x003e00));
-  283468:	8b 45 d8             	mov    -0x28(%ebp),%eax
-  28346b:	c1 e0 06             	shl    $0x6,%eax
-  28346e:	89 c2                	mov    %eax,%edx
-  283470:	8b 45 c8             	mov    -0x38(%ebp),%eax
-  283473:	01 d0                	add    %edx,%eax
-  283475:	8b 40 3c             	mov    0x3c(%eax),%eax
-  283478:	89 c1                	mov    %eax,%ecx
-  28347a:	8b 45 d8             	mov    -0x28(%ebp),%eax
-  28347d:	c1 e0 06             	shl    $0x6,%eax
-  283480:	89 c2                	mov    %eax,%edx
-  283482:	8b 45 c8             	mov    -0x38(%ebp),%eax
-  283485:	01 d0                	add    %edx,%eax
-  283487:	0f b7 40 3a          	movzwl 0x3a(%eax),%eax
-  28348b:	0f b7 c0             	movzwl %ax,%eax
-  28348e:	83 ec 0c             	sub    $0xc,%esp
-  283491:	68 00 3e 10 00       	push   $0x103e00
-  283496:	ff 75 c0             	pushl  -0x40(%ebp)
-  283499:	ff 75 b8             	pushl  -0x48(%ebp)
-  28349c:	51                   	push   %ecx
-  28349d:	50                   	push   %eax
-  28349e:	e8 f6 03 00 00       	call   283899 <file_loadfile>
-  2834a3:	83 c4 20             	add    $0x20,%esp
+  28349f:	8b 45 d8             	mov    -0x28(%ebp),%eax
+  2834a2:	c1 e0 06             	shl    $0x6,%eax
+  2834a5:	89 c2                	mov    %eax,%edx
+  2834a7:	8b 45 c0             	mov    -0x40(%ebp),%eax
+  2834aa:	01 d0                	add    %edx,%eax
+  2834ac:	8b 40 3c             	mov    0x3c(%eax),%eax
+  2834af:	89 c1                	mov    %eax,%ecx
+  2834b1:	8b 45 d8             	mov    -0x28(%ebp),%eax
+  2834b4:	c1 e0 06             	shl    $0x6,%eax
+  2834b7:	89 c2                	mov    %eax,%edx
+  2834b9:	8b 45 c0             	mov    -0x40(%ebp),%eax
+  2834bc:	01 d0                	add    %edx,%eax
+  2834be:	0f b7 40 3a          	movzwl 0x3a(%eax),%eax
+  2834c2:	0f b7 c0             	movzwl %ax,%eax
+  2834c5:	83 ec 0c             	sub    $0xc,%esp
+  2834c8:	68 00 3e 10 00       	push   $0x103e00
+  2834cd:	ff 75 b4             	pushl  -0x4c(%ebp)
+  2834d0:	ff 75 ac             	pushl  -0x54(%ebp)
+  2834d3:	51                   	push   %ecx
+  2834d4:	50                   	push   %eax
+  2834d5:	e8 5d 06 00 00       	call   283b37 <file_loadfile>
+  2834da:	83 c4 20             	add    $0x20,%esp
 							cursor_x = 8;
-  2834a6:	c7 45 f4 08 00 00 00 	movl   $0x8,-0xc(%ebp)
+  2834dd:	c7 45 f4 08 00 00 00 	movl   $0x8,-0xc(%ebp)
 							for(y=0;y<finfo[x].size;y++)
-  2834ad:	c7 45 d4 00 00 00 00 	movl   $0x0,-0x2c(%ebp)
-  2834b4:	e9 e6 00 00 00       	jmp    28359f <console_task+0x83e>
+  2834e4:	c7 45 d4 00 00 00 00 	movl   $0x0,-0x2c(%ebp)
+  2834eb:	e9 00 01 00 00       	jmp    2835f0 <console_task+0x88f>
 							{
 								s[0] = p[y];
-  2834b9:	8b 55 d4             	mov    -0x2c(%ebp),%edx
-  2834bc:	8b 45 b8             	mov    -0x48(%ebp),%eax
-  2834bf:	01 d0                	add    %edx,%eax
-  2834c1:	0f b6 00             	movzbl (%eax),%eax
-  2834c4:	88 45 86             	mov    %al,-0x7a(%ebp)
+  2834f0:	8b 55 d4             	mov    -0x2c(%ebp),%edx
+  2834f3:	8b 45 ac             	mov    -0x54(%ebp),%eax
+  2834f6:	01 d0                	add    %edx,%eax
+  2834f8:	0f b6 00             	movzbl (%eax),%eax
+  2834fb:	88 85 76 ff ff ff    	mov    %al,-0x8a(%ebp)
 								s[1] = 0;
-  2834c7:	c6 45 87 00          	movb   $0x0,-0x79(%ebp)
+  283501:	c6 85 77 ff ff ff 00 	movb   $0x0,-0x89(%ebp)
 								if(s[0] == 0x09) //tab
-  2834cb:	0f b6 45 86          	movzbl -0x7a(%ebp),%eax
-  2834cf:	3c 09                	cmp    $0x9,%al
-  2834d1:	75 52                	jne    283525 <console_task+0x7c4>
+  283508:	0f b6 85 76 ff ff ff 	movzbl -0x8a(%ebp),%eax
+  28350f:	3c 09                	cmp    $0x9,%al
+  283511:	75 5a                	jne    28356d <console_task+0x80c>
 								{
 									for(;;)
 									{
 										putfonts8_asc_sht(sheet,cursor_x,cursor_y,COL8_FFFFFF,COL8_000000," ",1);
-  2834d3:	83 ec 04             	sub    $0x4,%esp
-  2834d6:	6a 01                	push   $0x1
-  2834d8:	68 62 3c 28 00       	push   $0x283c62
-  2834dd:	6a 00                	push   $0x0
-  2834df:	6a 07                	push   $0x7
-  2834e1:	ff 75 f0             	pushl  -0x10(%ebp)
-  2834e4:	ff 75 f4             	pushl  -0xc(%ebp)
-  2834e7:	ff 75 08             	pushl  0x8(%ebp)
-  2834ea:	e8 f4 db ff ff       	call   2810e3 <putfonts8_asc_sht>
-  2834ef:	83 c4 20             	add    $0x20,%esp
+  283513:	83 ec 04             	sub    $0x4,%esp
+  283516:	6a 01                	push   $0x1
+  283518:	68 02 3f 28 00       	push   $0x283f02
+  28351d:	6a 00                	push   $0x0
+  28351f:	6a 07                	push   $0x7
+  283521:	ff 75 f0             	pushl  -0x10(%ebp)
+  283524:	ff 75 f4             	pushl  -0xc(%ebp)
+  283527:	ff 75 08             	pushl  0x8(%ebp)
+  28352a:	e8 b4 db ff ff       	call   2810e3 <putfonts8_asc_sht>
+  28352f:	83 c4 20             	add    $0x20,%esp
+										cursor_x += 8;
+  283532:	83 45 f4 08          	addl   $0x8,-0xc(%ebp)
 										if(cursor_x == 8+240)
-  2834f2:	81 7d f4 f8 00 00 00 	cmpl   $0xf8,-0xc(%ebp)
-  2834f9:	75 1b                	jne    283516 <console_task+0x7b5>
+  283536:	81 7d f4 f8 00 00 00 	cmpl   $0xf8,-0xc(%ebp)
+  28353d:	75 1b                	jne    28355a <console_task+0x7f9>
 										{
 											cursor_x = 8;
-  2834fb:	c7 45 f4 08 00 00 00 	movl   $0x8,-0xc(%ebp)
+  28353f:	c7 45 f4 08 00 00 00 	movl   $0x8,-0xc(%ebp)
 											cursor_y = cons_newline(cursor_y,sheet);
-  283502:	83 ec 08             	sub    $0x8,%esp
-  283505:	ff 75 08             	pushl  0x8(%ebp)
-  283508:	ff 75 f0             	pushl  -0x10(%ebp)
-  28350b:	e8 56 02 00 00       	call   283766 <cons_newline>
-  283510:	83 c4 10             	add    $0x10,%esp
-  283513:	89 45 f0             	mov    %eax,-0x10(%ebp)
+  283546:	83 ec 08             	sub    $0x8,%esp
+  283549:	ff 75 08             	pushl  0x8(%ebp)
+  28354c:	ff 75 f0             	pushl  -0x10(%ebp)
+  28354f:	e8 b0 04 00 00       	call   283a04 <cons_newline>
+  283554:	83 c4 10             	add    $0x10,%esp
+  283557:	89 45 f0             	mov    %eax,-0x10(%ebp)
 										}
 										if(((cursor_x -8) & 0x1f) == 0)
-  283516:	8b 45 f4             	mov    -0xc(%ebp),%eax
-  283519:	83 e8 08             	sub    $0x8,%eax
-  28351c:	83 e0 1f             	and    $0x1f,%eax
-  28351f:	85 c0                	test   %eax,%eax
-  283521:	74 77                	je     28359a <console_task+0x839>
+  28355a:	8b 45 f4             	mov    -0xc(%ebp),%eax
+  28355d:	83 e8 08             	sub    $0x8,%eax
+  283560:	83 e0 1f             	and    $0x1f,%eax
+  283563:	85 c0                	test   %eax,%eax
+  283565:	0f 84 80 00 00 00    	je     2835eb <console_task+0x88a>
 										{
 											break;
 										}
 									}
-  283523:	eb ae                	jmp    2834d3 <console_task+0x772>
+  28356b:	eb a6                	jmp    283513 <console_task+0x7b2>
 								}
 								else if(s[0] == 0x0a) //change line
-  283525:	0f b6 45 86          	movzbl -0x7a(%ebp),%eax
-  283529:	3c 0a                	cmp    $0xa,%al
-  28352b:	75 1d                	jne    28354a <console_task+0x7e9>
+  28356d:	0f b6 85 76 ff ff ff 	movzbl -0x8a(%ebp),%eax
+  283574:	3c 0a                	cmp    $0xa,%al
+  283576:	75 1d                	jne    283595 <console_task+0x834>
 								{
 									cursor_x = 8;
-  28352d:	c7 45 f4 08 00 00 00 	movl   $0x8,-0xc(%ebp)
+  283578:	c7 45 f4 08 00 00 00 	movl   $0x8,-0xc(%ebp)
 									cursor_y = cons_newline(cursor_y,sheet);
-  283534:	83 ec 08             	sub    $0x8,%esp
-  283537:	ff 75 08             	pushl  0x8(%ebp)
-  28353a:	ff 75 f0             	pushl  -0x10(%ebp)
-  28353d:	e8 24 02 00 00       	call   283766 <cons_newline>
-  283542:	83 c4 10             	add    $0x10,%esp
-  283545:	89 45 f0             	mov    %eax,-0x10(%ebp)
-  283548:	eb 51                	jmp    28359b <console_task+0x83a>
+  28357f:	83 ec 08             	sub    $0x8,%esp
+  283582:	ff 75 08             	pushl  0x8(%ebp)
+  283585:	ff 75 f0             	pushl  -0x10(%ebp)
+  283588:	e8 77 04 00 00       	call   283a04 <cons_newline>
+  28358d:	83 c4 10             	add    $0x10,%esp
+  283590:	89 45 f0             	mov    %eax,-0x10(%ebp)
+  283593:	eb 57                	jmp    2835ec <console_task+0x88b>
 								}
 								else if(s[0] == 0x0d) //return key
-  28354a:	0f b6 45 86          	movzbl -0x7a(%ebp),%eax
-  28354e:	3c 0d                	cmp    $0xd,%al
-  283550:	74 49                	je     28359b <console_task+0x83a>
+  283595:	0f b6 85 76 ff ff ff 	movzbl -0x8a(%ebp),%eax
+  28359c:	3c 0d                	cmp    $0xd,%al
+  28359e:	74 4c                	je     2835ec <console_task+0x88b>
 								{
 									//todo
 								}
 								else
 								{
 									putfonts8_asc_sht(sheet,cursor_x,cursor_y,COL8_FFFFFF,COL8_000000,s,1);
-  283552:	83 ec 04             	sub    $0x4,%esp
-  283555:	6a 01                	push   $0x1
-  283557:	8d 45 86             	lea    -0x7a(%ebp),%eax
-  28355a:	50                   	push   %eax
-  28355b:	6a 00                	push   $0x0
-  28355d:	6a 07                	push   $0x7
-  28355f:	ff 75 f0             	pushl  -0x10(%ebp)
-  283562:	ff 75 f4             	pushl  -0xc(%ebp)
-  283565:	ff 75 08             	pushl  0x8(%ebp)
-  283568:	e8 76 db ff ff       	call   2810e3 <putfonts8_asc_sht>
-  28356d:	83 c4 20             	add    $0x20,%esp
+  2835a0:	83 ec 04             	sub    $0x4,%esp
+  2835a3:	6a 01                	push   $0x1
+  2835a5:	8d 85 76 ff ff ff    	lea    -0x8a(%ebp),%eax
+  2835ab:	50                   	push   %eax
+  2835ac:	6a 00                	push   $0x0
+  2835ae:	6a 07                	push   $0x7
+  2835b0:	ff 75 f0             	pushl  -0x10(%ebp)
+  2835b3:	ff 75 f4             	pushl  -0xc(%ebp)
+  2835b6:	ff 75 08             	pushl  0x8(%ebp)
+  2835b9:	e8 25 db ff ff       	call   2810e3 <putfonts8_asc_sht>
+  2835be:	83 c4 20             	add    $0x20,%esp
 									cursor_x += 8;
-  283570:	83 45 f4 08          	addl   $0x8,-0xc(%ebp)
+  2835c1:	83 45 f4 08          	addl   $0x8,-0xc(%ebp)
 									if(cursor_x == 8+240)
-  283574:	81 7d f4 f8 00 00 00 	cmpl   $0xf8,-0xc(%ebp)
-  28357b:	75 1e                	jne    28359b <console_task+0x83a>
+  2835c5:	81 7d f4 f8 00 00 00 	cmpl   $0xf8,-0xc(%ebp)
+  2835cc:	75 1e                	jne    2835ec <console_task+0x88b>
 									{
 										cursor_x = 8;
-  28357d:	c7 45 f4 08 00 00 00 	movl   $0x8,-0xc(%ebp)
+  2835ce:	c7 45 f4 08 00 00 00 	movl   $0x8,-0xc(%ebp)
 										cursor_y = cons_newline(cursor_y,sheet);
-  283584:	83 ec 08             	sub    $0x8,%esp
-  283587:	ff 75 08             	pushl  0x8(%ebp)
-  28358a:	ff 75 f0             	pushl  -0x10(%ebp)
-  28358d:	e8 d4 01 00 00       	call   283766 <cons_newline>
-  283592:	83 c4 10             	add    $0x10,%esp
-  283595:	89 45 f0             	mov    %eax,-0x10(%ebp)
-  283598:	eb 01                	jmp    28359b <console_task+0x83a>
+  2835d5:	83 ec 08             	sub    $0x8,%esp
+  2835d8:	ff 75 08             	pushl  0x8(%ebp)
+  2835db:	ff 75 f0             	pushl  -0x10(%ebp)
+  2835de:	e8 21 04 00 00       	call   283a04 <cons_newline>
+  2835e3:	83 c4 10             	add    $0x10,%esp
+  2835e6:	89 45 f0             	mov    %eax,-0x10(%ebp)
+  2835e9:	eb 01                	jmp    2835ec <console_task+0x88b>
 											cursor_x = 8;
 											cursor_y = cons_newline(cursor_y,sheet);
 										}
 										if(((cursor_x -8) & 0x1f) == 0)
 										{
 											break;
-  28359a:	90                   	nop
+  2835eb:	90                   	nop
 						{
 							//file found!
 							char *p = (char *)memman_alloc_4k(memman,finfo[x].size);
 							file_loadfile(finfo[x].clustno,finfo[x].size,p,fat,(char *)(ADR_DISKIMG+0x003e00));
 							cursor_x = 8;
 							for(y=0;y<finfo[x].size;y++)
-  28359b:	83 45 d4 01          	addl   $0x1,-0x2c(%ebp)
-  28359f:	8b 45 d8             	mov    -0x28(%ebp),%eax
-  2835a2:	c1 e0 06             	shl    $0x6,%eax
-  2835a5:	89 c2                	mov    %eax,%edx
-  2835a7:	8b 45 c8             	mov    -0x38(%ebp),%eax
-  2835aa:	01 d0                	add    %edx,%eax
-  2835ac:	8b 50 3c             	mov    0x3c(%eax),%edx
-  2835af:	8b 45 d4             	mov    -0x2c(%ebp),%eax
-  2835b2:	39 c2                	cmp    %eax,%edx
-  2835b4:	0f 87 ff fe ff ff    	ja     2834b9 <console_task+0x758>
+  2835ec:	83 45 d4 01          	addl   $0x1,-0x2c(%ebp)
+  2835f0:	8b 45 d8             	mov    -0x28(%ebp),%eax
+  2835f3:	c1 e0 06             	shl    $0x6,%eax
+  2835f6:	89 c2                	mov    %eax,%edx
+  2835f8:	8b 45 c0             	mov    -0x40(%ebp),%eax
+  2835fb:	01 d0                	add    %edx,%eax
+  2835fd:	8b 50 3c             	mov    0x3c(%eax),%edx
+  283600:	8b 45 d4             	mov    -0x2c(%ebp),%eax
+  283603:	39 c2                	cmp    %eax,%edx
+  283605:	0f 87 e5 fe ff ff    	ja     2834f0 <console_task+0x78f>
 										cursor_x = 8;
 										cursor_y = cons_newline(cursor_y,sheet);
 									}	
 								}
 							}
 							memman_free_4k(memman,(int)p,finfo[x].size);
-  2835ba:	8b 45 d8             	mov    -0x28(%ebp),%eax
-  2835bd:	c1 e0 06             	shl    $0x6,%eax
-  2835c0:	89 c2                	mov    %eax,%edx
-  2835c2:	8b 45 c8             	mov    -0x38(%ebp),%eax
-  2835c5:	01 d0                	add    %edx,%eax
-  2835c7:	8b 50 3c             	mov    0x3c(%eax),%edx
-  2835ca:	8b 45 b8             	mov    -0x48(%ebp),%eax
-  2835cd:	83 ec 04             	sub    $0x4,%esp
-  2835d0:	52                   	push   %edx
-  2835d1:	50                   	push   %eax
-  2835d2:	ff 75 cc             	pushl  -0x34(%ebp)
-  2835d5:	e8 de ea ff ff       	call   2820b8 <memman_free_4k>
-  2835da:	83 c4 10             	add    $0x10,%esp
+  28360b:	8b 45 d8             	mov    -0x28(%ebp),%eax
+  28360e:	c1 e0 06             	shl    $0x6,%eax
+  283611:	89 c2                	mov    %eax,%edx
+  283613:	8b 45 c0             	mov    -0x40(%ebp),%eax
+  283616:	01 d0                	add    %edx,%eax
+  283618:	8b 50 3c             	mov    0x3c(%eax),%edx
+  28361b:	8b 45 ac             	mov    -0x54(%ebp),%eax
+  28361e:	83 ec 04             	sub    $0x4,%esp
+  283621:	52                   	push   %edx
+  283622:	50                   	push   %eax
+  283623:	ff 75 c4             	pushl  -0x3c(%ebp)
+  283626:	e8 8d ea ff ff       	call   2820b8 <memman_free_4k>
+  28362b:	83 c4 10             	add    $0x10,%esp
 								break;
 							}
 							x++;
 						}
 						if(x<224 && finfo[x].name[0]!=0)
 						{
-  2835dd:	eb 46                	jmp    283625 <console_task+0x8c4>
+  28362e:	eb 46                	jmp    283676 <console_task+0x915>
 							}
 							memman_free_4k(memman,(int)p,finfo[x].size);
 						}
 						else
 						{
 							putfonts8_asc_sht(sheet,8,cursor_y,COL8_FFFFFF,COL8_000000,"File not found.",15);
-  2835df:	83 ec 04             	sub    $0x4,%esp
-  2835e2:	6a 0f                	push   $0xf
-  2835e4:	68 9b 3c 28 00       	push   $0x283c9b
-  2835e9:	6a 00                	push   $0x0
-  2835eb:	6a 07                	push   $0x7
-  2835ed:	ff 75 f0             	pushl  -0x10(%ebp)
-  2835f0:	6a 08                	push   $0x8
-  2835f2:	ff 75 08             	pushl  0x8(%ebp)
-  2835f5:	e8 e9 da ff ff       	call   2810e3 <putfonts8_asc_sht>
-  2835fa:	83 c4 20             	add    $0x20,%esp
+  283630:	83 ec 04             	sub    $0x4,%esp
+  283633:	6a 0f                	push   $0xf
+  283635:	68 3b 3f 28 00       	push   $0x283f3b
+  28363a:	6a 00                	push   $0x0
+  28363c:	6a 07                	push   $0x7
+  28363e:	ff 75 f0             	pushl  -0x10(%ebp)
+  283641:	6a 08                	push   $0x8
+  283643:	ff 75 08             	pushl  0x8(%ebp)
+  283646:	e8 98 da ff ff       	call   2810e3 <putfonts8_asc_sht>
+  28364b:	83 c4 20             	add    $0x20,%esp
 							cursor_y = cons_newline(cursor_y,sheet);
-  2835fd:	83 ec 08             	sub    $0x8,%esp
-  283600:	ff 75 08             	pushl  0x8(%ebp)
-  283603:	ff 75 f0             	pushl  -0x10(%ebp)
-  283606:	e8 5b 01 00 00       	call   283766 <cons_newline>
-  28360b:	83 c4 10             	add    $0x10,%esp
-  28360e:	89 45 f0             	mov    %eax,-0x10(%ebp)
+  28364e:	83 ec 08             	sub    $0x8,%esp
+  283651:	ff 75 08             	pushl  0x8(%ebp)
+  283654:	ff 75 f0             	pushl  -0x10(%ebp)
+  283657:	e8 a8 03 00 00       	call   283a04 <cons_newline>
+  28365c:	83 c4 10             	add    $0x10,%esp
+  28365f:	89 45 f0             	mov    %eax,-0x10(%ebp)
 							cursor_y = cons_newline(cursor_y,sheet);
-  283611:	83 ec 08             	sub    $0x8,%esp
-  283614:	ff 75 08             	pushl  0x8(%ebp)
-  283617:	ff 75 f0             	pushl  -0x10(%ebp)
-  28361a:	e8 47 01 00 00       	call   283766 <cons_newline>
-  28361f:	83 c4 10             	add    $0x10,%esp
-  283622:	89 45 f0             	mov    %eax,-0x10(%ebp)
+  283662:	83 ec 08             	sub    $0x8,%esp
+  283665:	ff 75 08             	pushl  0x8(%ebp)
+  283668:	ff 75 f0             	pushl  -0x10(%ebp)
+  28366b:	e8 94 03 00 00       	call   283a04 <cons_newline>
+  283670:	83 c4 10             	add    $0x10,%esp
+  283673:	89 45 f0             	mov    %eax,-0x10(%ebp)
 						}
 						cursor_y = cons_newline(cursor_y,sheet);
-  283625:	83 ec 08             	sub    $0x8,%esp
-  283628:	ff 75 08             	pushl  0x8(%ebp)
-  28362b:	ff 75 f0             	pushl  -0x10(%ebp)
-  28362e:	e8 33 01 00 00       	call   283766 <cons_newline>
-  283633:	83 c4 10             	add    $0x10,%esp
-  283636:	89 45 f0             	mov    %eax,-0x10(%ebp)
-  283639:	eb 54                	jmp    28368f <console_task+0x92e>
+  283676:	83 ec 08             	sub    $0x8,%esp
+  283679:	ff 75 08             	pushl  0x8(%ebp)
+  28367c:	ff 75 f0             	pushl  -0x10(%ebp)
+  28367f:	e8 80 03 00 00       	call   283a04 <cons_newline>
+  283684:	83 c4 10             	add    $0x10,%esp
+  283687:	89 45 f0             	mov    %eax,-0x10(%ebp)
+  28368a:	e9 95 02 00 00       	jmp    283924 <console_task+0xbc3>
+					}
+					else if(strcmp(cmdline,"hlt") == 0)
+  28368f:	83 ec 08             	sub    $0x8,%esp
+  283692:	68 4b 3f 28 00       	push   $0x283f4b
+  283697:	8d 85 58 ff ff ff    	lea    -0xa8(%ebp),%eax
+  28369d:	50                   	push   %eax
+  28369e:	e8 4e e1 ff ff       	call   2817f1 <strcmp>
+  2836a3:	83 c4 10             	add    $0x10,%esp
+  2836a6:	85 c0                	test   %eax,%eax
+  2836a8:	0f 85 22 02 00 00    	jne    2838d0 <console_task+0xb6f>
+					{
+						int x,y;
+						for(y=0;y<11;y++)
+  2836ae:	c7 45 cc 00 00 00 00 	movl   $0x0,-0x34(%ebp)
+  2836b5:	eb 12                	jmp    2836c9 <console_task+0x968>
+							s[y] = ' ';
+  2836b7:	8d 95 76 ff ff ff    	lea    -0x8a(%ebp),%edx
+  2836bd:	8b 45 cc             	mov    -0x34(%ebp),%eax
+  2836c0:	01 d0                	add    %edx,%eax
+  2836c2:	c6 00 20             	movb   $0x20,(%eax)
+						cursor_y = cons_newline(cursor_y,sheet);
+					}
+					else if(strcmp(cmdline,"hlt") == 0)
+					{
+						int x,y;
+						for(y=0;y<11;y++)
+  2836c5:	83 45 cc 01          	addl   $0x1,-0x34(%ebp)
+  2836c9:	83 7d cc 0a          	cmpl   $0xa,-0x34(%ebp)
+  2836cd:	7e e8                	jle    2836b7 <console_task+0x956>
+							s[y] = ' ';
+						s[0] = 'H';
+  2836cf:	c6 85 76 ff ff ff 48 	movb   $0x48,-0x8a(%ebp)
+						s[1] = 'L';
+  2836d6:	c6 85 77 ff ff ff 4c 	movb   $0x4c,-0x89(%ebp)
+						s[2] = 'T';
+  2836dd:	c6 85 78 ff ff ff 54 	movb   $0x54,-0x88(%ebp)
+						s[8] = 'B';
+  2836e4:	c6 85 7e ff ff ff 42 	movb   $0x42,-0x82(%ebp)
+						s[9] = 'I';
+  2836eb:	c6 85 7f ff ff ff 49 	movb   $0x49,-0x81(%ebp)
+						s[10] = 'N';
+  2836f2:	c6 45 80 4e          	movb   $0x4e,-0x80(%ebp)
+						for(x=0;x<224;)
+  2836f6:	c7 45 d0 00 00 00 00 	movl   $0x0,-0x30(%ebp)
+  2836fd:	e9 87 00 00 00       	jmp    283789 <console_task+0xa28>
+						{
+							y=0;
+  283702:	c7 45 cc 00 00 00 00 	movl   $0x0,-0x34(%ebp)
+							if(finfo[x].name[0] == 0x00) break;
+  283709:	8b 45 d0             	mov    -0x30(%ebp),%eax
+  28370c:	c1 e0 06             	shl    $0x6,%eax
+  28370f:	89 c2                	mov    %eax,%edx
+  283711:	8b 45 c0             	mov    -0x40(%ebp),%eax
+  283714:	01 d0                	add    %edx,%eax
+  283716:	0f b6 40 20          	movzbl 0x20(%eax),%eax
+  28371a:	84 c0                	test   %al,%al
+  28371c:	74 7a                	je     283798 <console_task+0xa37>
+							if((finfo[x].type & 0x18)==0)
+  28371e:	8b 45 d0             	mov    -0x30(%ebp),%eax
+  283721:	c1 e0 06             	shl    $0x6,%eax
+  283724:	89 c2                	mov    %eax,%edx
+  283726:	8b 45 c0             	mov    -0x40(%ebp),%eax
+  283729:	01 d0                	add    %edx,%eax
+  28372b:	0f b6 40 2b          	movzbl 0x2b(%eax),%eax
+  28372f:	0f b6 c0             	movzbl %al,%eax
+  283732:	83 e0 18             	and    $0x18,%eax
+  283735:	85 c0                	test   %eax,%eax
+  283737:	75 46                	jne    28377f <console_task+0xa1e>
+							{
+								for(y=0;y<11;y++)
+  283739:	c7 45 cc 00 00 00 00 	movl   $0x0,-0x34(%ebp)
+  283740:	eb 34                	jmp    283776 <console_task+0xa15>
+								{
+									if(finfo[x].name[y]!=s[y])
+  283742:	8b 45 d0             	mov    -0x30(%ebp),%eax
+  283745:	c1 e0 06             	shl    $0x6,%eax
+  283748:	89 c2                	mov    %eax,%edx
+  28374a:	8b 45 c0             	mov    -0x40(%ebp),%eax
+  28374d:	01 c2                	add    %eax,%edx
+  28374f:	8b 45 cc             	mov    -0x34(%ebp),%eax
+  283752:	01 d0                	add    %edx,%eax
+  283754:	83 c0 20             	add    $0x20,%eax
+  283757:	0f b6 00             	movzbl (%eax),%eax
+  28375a:	0f b6 d0             	movzbl %al,%edx
+  28375d:	8d 8d 76 ff ff ff    	lea    -0x8a(%ebp),%ecx
+  283763:	8b 45 cc             	mov    -0x34(%ebp),%eax
+  283766:	01 c8                	add    %ecx,%eax
+  283768:	0f b6 00             	movzbl (%eax),%eax
+  28376b:	0f be c0             	movsbl %al,%eax
+  28376e:	39 c2                	cmp    %eax,%edx
+  283770:	75 0c                	jne    28377e <console_task+0xa1d>
+						{
+							y=0;
+							if(finfo[x].name[0] == 0x00) break;
+							if((finfo[x].type & 0x18)==0)
+							{
+								for(y=0;y<11;y++)
+  283772:	83 45 cc 01          	addl   $0x1,-0x34(%ebp)
+  283776:	83 7d cc 0a          	cmpl   $0xa,-0x34(%ebp)
+  28377a:	7e c6                	jle    283742 <console_task+0x9e1>
+  28377c:	eb 01                	jmp    28377f <console_task+0xa1e>
+								{
+									if(finfo[x].name[y]!=s[y])
+									{
+										break;
+  28377e:	90                   	nop
+									}
+								}
+							}
+							if(y>10)
+  28377f:	83 7d cc 0a          	cmpl   $0xa,-0x34(%ebp)
+  283783:	7f 16                	jg     28379b <console_task+0xa3a>
+							{ 
+								break;
+							}
+							x++;
+  283785:	83 45 d0 01          	addl   $0x1,-0x30(%ebp)
+						s[1] = 'L';
+						s[2] = 'T';
+						s[8] = 'B';
+						s[9] = 'I';
+						s[10] = 'N';
+						for(x=0;x<224;)
+  283789:	81 7d d0 df 00 00 00 	cmpl   $0xdf,-0x30(%ebp)
+  283790:	0f 8e 6c ff ff ff    	jle    283702 <console_task+0x9a1>
+  283796:	eb 04                	jmp    28379c <console_task+0xa3b>
+						{
+							y=0;
+							if(finfo[x].name[0] == 0x00) break;
+  283798:	90                   	nop
+  283799:	eb 01                	jmp    28379c <console_task+0xa3b>
+									}
+								}
+							}
+							if(y>10)
+							{ 
+								break;
+  28379b:	90                   	nop
+							}
+							x++;
+						}
+						if(x<224 && finfo[x].name[0] != 0x00)
+  28379c:	81 7d d0 df 00 00 00 	cmpl   $0xdf,-0x30(%ebp)
+  2837a3:	0f 8f df 00 00 00    	jg     283888 <console_task+0xb27>
+  2837a9:	8b 45 d0             	mov    -0x30(%ebp),%eax
+  2837ac:	c1 e0 06             	shl    $0x6,%eax
+  2837af:	89 c2                	mov    %eax,%edx
+  2837b1:	8b 45 c0             	mov    -0x40(%ebp),%eax
+  2837b4:	01 d0                	add    %edx,%eax
+  2837b6:	0f b6 40 20          	movzbl 0x20(%eax),%eax
+  2837ba:	84 c0                	test   %al,%al
+  2837bc:	0f 84 c6 00 00 00    	je     283888 <console_task+0xb27>
+						{
+							char *p = (char *)memman_alloc_4k(memman,finfo[x].size);
+  2837c2:	8b 45 d0             	mov    -0x30(%ebp),%eax
+  2837c5:	c1 e0 06             	shl    $0x6,%eax
+  2837c8:	89 c2                	mov    %eax,%edx
+  2837ca:	8b 45 c0             	mov    -0x40(%ebp),%eax
+  2837cd:	01 d0                	add    %edx,%eax
+  2837cf:	8b 40 3c             	mov    0x3c(%eax),%eax
+  2837d2:	83 ec 08             	sub    $0x8,%esp
+  2837d5:	50                   	push   %eax
+  2837d6:	ff 75 c4             	pushl  -0x3c(%ebp)
+  2837d9:	e8 ae e8 ff ff       	call   28208c <memman_alloc_4k>
+  2837de:	83 c4 10             	add    $0x10,%esp
+  2837e1:	89 45 a8             	mov    %eax,-0x58(%ebp)
+							file_loadfile(finfo[x].clustno,finfo[x].size,p,fat,(char *)(ADR_DISKIMG + 0x003e00));
+  2837e4:	8b 45 d0             	mov    -0x30(%ebp),%eax
+  2837e7:	c1 e0 06             	shl    $0x6,%eax
+  2837ea:	89 c2                	mov    %eax,%edx
+  2837ec:	8b 45 c0             	mov    -0x40(%ebp),%eax
+  2837ef:	01 d0                	add    %edx,%eax
+  2837f1:	8b 40 3c             	mov    0x3c(%eax),%eax
+  2837f4:	89 c1                	mov    %eax,%ecx
+  2837f6:	8b 45 d0             	mov    -0x30(%ebp),%eax
+  2837f9:	c1 e0 06             	shl    $0x6,%eax
+  2837fc:	89 c2                	mov    %eax,%edx
+  2837fe:	8b 45 c0             	mov    -0x40(%ebp),%eax
+  283801:	01 d0                	add    %edx,%eax
+  283803:	0f b7 40 3a          	movzwl 0x3a(%eax),%eax
+  283807:	0f b7 c0             	movzwl %ax,%eax
+  28380a:	83 ec 0c             	sub    $0xc,%esp
+  28380d:	68 00 3e 10 00       	push   $0x103e00
+  283812:	ff 75 b4             	pushl  -0x4c(%ebp)
+  283815:	ff 75 a8             	pushl  -0x58(%ebp)
+  283818:	51                   	push   %ecx
+  283819:	50                   	push   %eax
+  28381a:	e8 18 03 00 00       	call   283b37 <file_loadfile>
+  28381f:	83 c4 20             	add    $0x20,%esp
+							set_segmdesc(gdt + 1003,finfo[x].size-1,(int)p,AR_CODE32_ER);
+  283822:	8b 45 a8             	mov    -0x58(%ebp),%eax
+  283825:	8b 55 d0             	mov    -0x30(%ebp),%edx
+  283828:	89 d1                	mov    %edx,%ecx
+  28382a:	c1 e1 06             	shl    $0x6,%ecx
+  28382d:	8b 55 c0             	mov    -0x40(%ebp),%edx
+  283830:	01 ca                	add    %ecx,%edx
+  283832:	8b 52 3c             	mov    0x3c(%edx),%edx
+  283835:	8d 4a ff             	lea    -0x1(%edx),%ecx
+  283838:	8b 55 bc             	mov    -0x44(%ebp),%edx
+  28383b:	81 c2 58 1f 00 00    	add    $0x1f58,%edx
+  283841:	68 9a 40 00 00       	push   $0x409a
+  283846:	50                   	push   %eax
+  283847:	51                   	push   %ecx
+  283848:	52                   	push   %edx
+  283849:	e8 d9 da ff ff       	call   281327 <set_segmdesc>
+  28384e:	83 c4 10             	add    $0x10,%esp
+							farjmp(0,1003*8);
+  283851:	83 ec 08             	sub    $0x8,%esp
+  283854:	68 58 1f 00 00       	push   $0x1f58
+  283859:	6a 00                	push   $0x0
+  28385b:	e8 56 f0 ff ff       	call   2828b6 <farjmp>
+  283860:	83 c4 10             	add    $0x10,%esp
+							memman_free_4k(memman,(int)p,finfo[x].size);
+  283863:	8b 45 d0             	mov    -0x30(%ebp),%eax
+  283866:	c1 e0 06             	shl    $0x6,%eax
+  283869:	89 c2                	mov    %eax,%edx
+  28386b:	8b 45 c0             	mov    -0x40(%ebp),%eax
+  28386e:	01 d0                	add    %edx,%eax
+  283870:	8b 50 3c             	mov    0x3c(%eax),%edx
+  283873:	8b 45 a8             	mov    -0x58(%ebp),%eax
+  283876:	83 ec 04             	sub    $0x4,%esp
+  283879:	52                   	push   %edx
+  28387a:	50                   	push   %eax
+  28387b:	ff 75 c4             	pushl  -0x3c(%ebp)
+  28387e:	e8 35 e8 ff ff       	call   2820b8 <memman_free_4k>
+  283883:	83 c4 10             	add    $0x10,%esp
+								break;
+							}
+							x++;
+						}
+						if(x<224 && finfo[x].name[0] != 0x00)
+						{
+  283886:	eb 32                	jmp    2838ba <console_task+0xb59>
+							farjmp(0,1003*8);
+							memman_free_4k(memman,(int)p,finfo[x].size);
+						}
+						else
+						{
+							putfonts8_asc_sht(sheet,8,cursor_y,COL8_FFFFFF,COL8_000000,"hlt not found.",15);
+  283888:	83 ec 04             	sub    $0x4,%esp
+  28388b:	6a 0f                	push   $0xf
+  28388d:	68 4f 3f 28 00       	push   $0x283f4f
+  283892:	6a 00                	push   $0x0
+  283894:	6a 07                	push   $0x7
+  283896:	ff 75 f0             	pushl  -0x10(%ebp)
+  283899:	6a 08                	push   $0x8
+  28389b:	ff 75 08             	pushl  0x8(%ebp)
+  28389e:	e8 40 d8 ff ff       	call   2810e3 <putfonts8_asc_sht>
+  2838a3:	83 c4 20             	add    $0x20,%esp
+							cursor_y = cons_newline(cursor_y,sheet);
+  2838a6:	83 ec 08             	sub    $0x8,%esp
+  2838a9:	ff 75 08             	pushl  0x8(%ebp)
+  2838ac:	ff 75 f0             	pushl  -0x10(%ebp)
+  2838af:	e8 50 01 00 00       	call   283a04 <cons_newline>
+  2838b4:	83 c4 10             	add    $0x10,%esp
+  2838b7:	89 45 f0             	mov    %eax,-0x10(%ebp)
+						}
+						cursor_y = cons_newline(cursor_y,sheet);
+  2838ba:	83 ec 08             	sub    $0x8,%esp
+  2838bd:	ff 75 08             	pushl  0x8(%ebp)
+  2838c0:	ff 75 f0             	pushl  -0x10(%ebp)
+  2838c3:	e8 3c 01 00 00       	call   283a04 <cons_newline>
+  2838c8:	83 c4 10             	add    $0x10,%esp
+  2838cb:	89 45 f0             	mov    %eax,-0x10(%ebp)
+  2838ce:	eb 54                	jmp    283924 <console_task+0xbc3>
 					}
 					else if(cmdline[0]!=0)
-  28363b:	0f b6 85 68 ff ff ff 	movzbl -0x98(%ebp),%eax
-  283642:	84 c0                	test   %al,%al
-  283644:	74 49                	je     28368f <console_task+0x92e>
+  2838d0:	0f b6 85 58 ff ff ff 	movzbl -0xa8(%ebp),%eax
+  2838d7:	84 c0                	test   %al,%al
+  2838d9:	74 49                	je     283924 <console_task+0xbc3>
 					{
 						putfonts8_asc_sht(sheet,8,cursor_y,COL8_FFFFFF,COL8_000000,"Bad command.",12);
-  283646:	83 ec 04             	sub    $0x4,%esp
-  283649:	6a 0c                	push   $0xc
-  28364b:	68 ab 3c 28 00       	push   $0x283cab
-  283650:	6a 00                	push   $0x0
-  283652:	6a 07                	push   $0x7
-  283654:	ff 75 f0             	pushl  -0x10(%ebp)
-  283657:	6a 08                	push   $0x8
-  283659:	ff 75 08             	pushl  0x8(%ebp)
-  28365c:	e8 82 da ff ff       	call   2810e3 <putfonts8_asc_sht>
-  283661:	83 c4 20             	add    $0x20,%esp
+  2838db:	83 ec 04             	sub    $0x4,%esp
+  2838de:	6a 0c                	push   $0xc
+  2838e0:	68 5e 3f 28 00       	push   $0x283f5e
+  2838e5:	6a 00                	push   $0x0
+  2838e7:	6a 07                	push   $0x7
+  2838e9:	ff 75 f0             	pushl  -0x10(%ebp)
+  2838ec:	6a 08                	push   $0x8
+  2838ee:	ff 75 08             	pushl  0x8(%ebp)
+  2838f1:	e8 ed d7 ff ff       	call   2810e3 <putfonts8_asc_sht>
+  2838f6:	83 c4 20             	add    $0x20,%esp
 						cursor_y = cons_newline(cursor_y,sheet);
-  283664:	83 ec 08             	sub    $0x8,%esp
-  283667:	ff 75 08             	pushl  0x8(%ebp)
-  28366a:	ff 75 f0             	pushl  -0x10(%ebp)
-  28366d:	e8 f4 00 00 00       	call   283766 <cons_newline>
-  283672:	83 c4 10             	add    $0x10,%esp
-  283675:	89 45 f0             	mov    %eax,-0x10(%ebp)
+  2838f9:	83 ec 08             	sub    $0x8,%esp
+  2838fc:	ff 75 08             	pushl  0x8(%ebp)
+  2838ff:	ff 75 f0             	pushl  -0x10(%ebp)
+  283902:	e8 fd 00 00 00       	call   283a04 <cons_newline>
+  283907:	83 c4 10             	add    $0x10,%esp
+  28390a:	89 45 f0             	mov    %eax,-0x10(%ebp)
 						cursor_y = cons_newline(cursor_y,sheet);
-  283678:	83 ec 08             	sub    $0x8,%esp
-  28367b:	ff 75 08             	pushl  0x8(%ebp)
-  28367e:	ff 75 f0             	pushl  -0x10(%ebp)
-  283681:	e8 e0 00 00 00       	call   283766 <cons_newline>
-  283686:	83 c4 10             	add    $0x10,%esp
-  283689:	89 45 f0             	mov    %eax,-0x10(%ebp)
-  28368c:	eb 01                	jmp    28368f <console_task+0x92e>
+  28390d:	83 ec 08             	sub    $0x8,%esp
+  283910:	ff 75 08             	pushl  0x8(%ebp)
+  283913:	ff 75 f0             	pushl  -0x10(%ebp)
+  283916:	e8 e9 00 00 00       	call   283a04 <cons_newline>
+  28391b:	83 c4 10             	add    $0x10,%esp
+  28391e:	89 45 f0             	mov    %eax,-0x10(%ebp)
+  283921:	eb 01                	jmp    283924 <console_task+0xbc3>
 					}
 					else if(strcmp(cmdline,"dir")==0)
 					{
 						for(int x=0;x<224;x++)
 						{
 							if(finfo[x].name[0] == 0) break;
-  28368e:	90                   	nop
+  283923:	90                   	nop
 					{
 						putfonts8_asc_sht(sheet,8,cursor_y,COL8_FFFFFF,COL8_000000,"Bad command.",12);
 						cursor_y = cons_newline(cursor_y,sheet);
 						cursor_y = cons_newline(cursor_y,sheet);
 					}
 					putfonts8_asc_sht(sheet,8,cursor_y,COL8_FFFFFF,COL8_000000,">",1);
-  28368f:	83 ec 04             	sub    $0x4,%esp
-  283692:	6a 01                	push   $0x1
-  283694:	68 60 3c 28 00       	push   $0x283c60
-  283699:	6a 00                	push   $0x0
-  28369b:	6a 07                	push   $0x7
-  28369d:	ff 75 f0             	pushl  -0x10(%ebp)
-  2836a0:	6a 08                	push   $0x8
-  2836a2:	ff 75 08             	pushl  0x8(%ebp)
-  2836a5:	e8 39 da ff ff       	call   2810e3 <putfonts8_asc_sht>
-  2836aa:	83 c4 20             	add    $0x20,%esp
+  283924:	83 ec 04             	sub    $0x4,%esp
+  283927:	6a 01                	push   $0x1
+  283929:	68 00 3f 28 00       	push   $0x283f00
+  28392e:	6a 00                	push   $0x0
+  283930:	6a 07                	push   $0x7
+  283932:	ff 75 f0             	pushl  -0x10(%ebp)
+  283935:	6a 08                	push   $0x8
+  283937:	ff 75 08             	pushl  0x8(%ebp)
+  28393a:	e8 a4 d7 ff ff       	call   2810e3 <putfonts8_asc_sht>
+  28393f:	83 c4 20             	add    $0x20,%esp
 					cursor_x = 16;
-  2836ad:	c7 45 f4 10 00 00 00 	movl   $0x10,-0xc(%ebp)
-  2836b4:	eb 50                	jmp    283706 <console_task+0x9a5>
+  283942:	c7 45 f4 10 00 00 00 	movl   $0x10,-0xc(%ebp)
+  283949:	eb 59                	jmp    2839a4 <console_task+0xc43>
 				}
 				else
 				{
 					if(cursor_x<240)
-  2836b6:	81 7d f4 ef 00 00 00 	cmpl   $0xef,-0xc(%ebp)
-  2836bd:	7f 47                	jg     283706 <console_task+0x9a5>
+  28394b:	81 7d f4 ef 00 00 00 	cmpl   $0xef,-0xc(%ebp)
+  283952:	7f 50                	jg     2839a4 <console_task+0xc43>
 					{
 						s[0] = i-256;
-  2836bf:	8b 45 bc             	mov    -0x44(%ebp),%eax
-  2836c2:	88 45 86             	mov    %al,-0x7a(%ebp)
+  283954:	8b 45 b0             	mov    -0x50(%ebp),%eax
+  283957:	88 85 76 ff ff ff    	mov    %al,-0x8a(%ebp)
 						s[1] = 0;
-  2836c5:	c6 45 87 00          	movb   $0x0,-0x79(%ebp)
+  28395d:	c6 85 77 ff ff ff 00 	movb   $0x0,-0x89(%ebp)
 						cmdline[cursor_x/8-2] = i-256;
-  2836c9:	8b 45 f4             	mov    -0xc(%ebp),%eax
-  2836cc:	8d 50 07             	lea    0x7(%eax),%edx
-  2836cf:	85 c0                	test   %eax,%eax
-  2836d1:	0f 48 c2             	cmovs  %edx,%eax
-  2836d4:	c1 f8 03             	sar    $0x3,%eax
-  2836d7:	83 e8 02             	sub    $0x2,%eax
-  2836da:	8b 55 bc             	mov    -0x44(%ebp),%edx
-  2836dd:	88 94 05 68 ff ff ff 	mov    %dl,-0x98(%ebp,%eax,1)
+  283964:	8b 45 f4             	mov    -0xc(%ebp),%eax
+  283967:	8d 50 07             	lea    0x7(%eax),%edx
+  28396a:	85 c0                	test   %eax,%eax
+  28396c:	0f 48 c2             	cmovs  %edx,%eax
+  28396f:	c1 f8 03             	sar    $0x3,%eax
+  283972:	83 e8 02             	sub    $0x2,%eax
+  283975:	8b 55 b0             	mov    -0x50(%ebp),%edx
+  283978:	88 94 05 58 ff ff ff 	mov    %dl,-0xa8(%ebp,%eax,1)
 						putfonts8_asc_sht(sheet,cursor_x,cursor_y,COL8_FFFFFF,COL8_000000,s,1);
-  2836e4:	83 ec 04             	sub    $0x4,%esp
-  2836e7:	6a 01                	push   $0x1
-  2836e9:	8d 45 86             	lea    -0x7a(%ebp),%eax
-  2836ec:	50                   	push   %eax
-  2836ed:	6a 00                	push   $0x0
-  2836ef:	6a 07                	push   $0x7
-  2836f1:	ff 75 f0             	pushl  -0x10(%ebp)
-  2836f4:	ff 75 f4             	pushl  -0xc(%ebp)
-  2836f7:	ff 75 08             	pushl  0x8(%ebp)
-  2836fa:	e8 e4 d9 ff ff       	call   2810e3 <putfonts8_asc_sht>
-  2836ff:	83 c4 20             	add    $0x20,%esp
+  28397f:	83 ec 04             	sub    $0x4,%esp
+  283982:	6a 01                	push   $0x1
+  283984:	8d 85 76 ff ff ff    	lea    -0x8a(%ebp),%eax
+  28398a:	50                   	push   %eax
+  28398b:	6a 00                	push   $0x0
+  28398d:	6a 07                	push   $0x7
+  28398f:	ff 75 f0             	pushl  -0x10(%ebp)
+  283992:	ff 75 f4             	pushl  -0xc(%ebp)
+  283995:	ff 75 08             	pushl  0x8(%ebp)
+  283998:	e8 46 d7 ff ff       	call   2810e3 <putfonts8_asc_sht>
+  28399d:	83 c4 20             	add    $0x20,%esp
 						cursor_x += 8;
-  283702:	83 45 f4 08          	addl   $0x8,-0xc(%ebp)
+  2839a0:	83 45 f4 08          	addl   $0x8,-0xc(%ebp)
 					}
 				}
 			}
 			if(cursor_c >= 0) boxfill8(sheet->buf,sheet->bxsize,cursor_c,cursor_x,cursor_y,cursor_x+7,cursor_y+15);
-  283706:	83 7d ec 00          	cmpl   $0x0,-0x14(%ebp)
-  28370a:	78 33                	js     28373f <console_task+0x9de>
-  28370c:	8b 45 f0             	mov    -0x10(%ebp),%eax
-  28370f:	8d 70 0f             	lea    0xf(%eax),%esi
-  283712:	8b 45 f4             	mov    -0xc(%ebp),%eax
-  283715:	8d 58 07             	lea    0x7(%eax),%ebx
-  283718:	8b 45 ec             	mov    -0x14(%ebp),%eax
-  28371b:	0f b6 c8             	movzbl %al,%ecx
-  28371e:	8b 45 08             	mov    0x8(%ebp),%eax
-  283721:	8b 50 04             	mov    0x4(%eax),%edx
-  283724:	8b 45 08             	mov    0x8(%ebp),%eax
-  283727:	8b 00                	mov    (%eax),%eax
-  283729:	83 ec 04             	sub    $0x4,%esp
-  28372c:	56                   	push   %esi
-  28372d:	53                   	push   %ebx
-  28372e:	ff 75 f0             	pushl  -0x10(%ebp)
-  283731:	ff 75 f4             	pushl  -0xc(%ebp)
-  283734:	51                   	push   %ecx
-  283735:	52                   	push   %edx
-  283736:	50                   	push   %eax
-  283737:	e8 48 d5 ff ff       	call   280c84 <boxfill8>
-  28373c:	83 c4 20             	add    $0x20,%esp
+  2839a4:	83 7d ec 00          	cmpl   $0x0,-0x14(%ebp)
+  2839a8:	78 33                	js     2839dd <console_task+0xc7c>
+  2839aa:	8b 45 f0             	mov    -0x10(%ebp),%eax
+  2839ad:	8d 70 0f             	lea    0xf(%eax),%esi
+  2839b0:	8b 45 f4             	mov    -0xc(%ebp),%eax
+  2839b3:	8d 58 07             	lea    0x7(%eax),%ebx
+  2839b6:	8b 45 ec             	mov    -0x14(%ebp),%eax
+  2839b9:	0f b6 c8             	movzbl %al,%ecx
+  2839bc:	8b 45 08             	mov    0x8(%ebp),%eax
+  2839bf:	8b 50 04             	mov    0x4(%eax),%edx
+  2839c2:	8b 45 08             	mov    0x8(%ebp),%eax
+  2839c5:	8b 00                	mov    (%eax),%eax
+  2839c7:	83 ec 04             	sub    $0x4,%esp
+  2839ca:	56                   	push   %esi
+  2839cb:	53                   	push   %ebx
+  2839cc:	ff 75 f0             	pushl  -0x10(%ebp)
+  2839cf:	ff 75 f4             	pushl  -0xc(%ebp)
+  2839d2:	51                   	push   %ecx
+  2839d3:	52                   	push   %edx
+  2839d4:	50                   	push   %eax
+  2839d5:	e8 aa d2 ff ff       	call   280c84 <boxfill8>
+  2839da:	83 c4 20             	add    $0x20,%esp
 			sheet_refresh(sheet,cursor_x,cursor_y,cursor_x+8,cursor_y+16);
-  28373f:	8b 45 f0             	mov    -0x10(%ebp),%eax
-  283742:	8d 50 10             	lea    0x10(%eax),%edx
-  283745:	8b 45 f4             	mov    -0xc(%ebp),%eax
-  283748:	83 c0 08             	add    $0x8,%eax
-  28374b:	83 ec 0c             	sub    $0xc,%esp
-  28374e:	52                   	push   %edx
-  28374f:	50                   	push   %eax
-  283750:	ff 75 f0             	pushl  -0x10(%ebp)
-  283753:	ff 75 f4             	pushl  -0xc(%ebp)
-  283756:	ff 75 08             	pushl  0x8(%ebp)
-  283759:	e8 83 ed ff ff       	call   2824e1 <sheet_refresh>
-  28375e:	83 c4 20             	add    $0x20,%esp
+  2839dd:	8b 45 f0             	mov    -0x10(%ebp),%eax
+  2839e0:	8d 50 10             	lea    0x10(%eax),%edx
+  2839e3:	8b 45 f4             	mov    -0xc(%ebp),%eax
+  2839e6:	83 c0 08             	add    $0x8,%eax
+  2839e9:	83 ec 0c             	sub    $0xc,%esp
+  2839ec:	52                   	push   %edx
+  2839ed:	50                   	push   %eax
+  2839ee:	ff 75 f0             	pushl  -0x10(%ebp)
+  2839f1:	ff 75 f4             	pushl  -0xc(%ebp)
+  2839f4:	ff 75 08             	pushl  0x8(%ebp)
+  2839f7:	e8 e5 ea ff ff       	call   2824e1 <sheet_refresh>
+  2839fc:	83 c4 20             	add    $0x20,%esp
 
 		}
 	}
-  283761:	e9 c4 f6 ff ff       	jmp    282e2a <console_task+0xc9>
+  2839ff:	e9 2d f4 ff ff       	jmp    282e31 <console_task+0xd0>
 
-00283766 <cons_newline>:
+00283a04 <cons_newline>:
 }
 
 int cons_newline(int cursor_y,struct SHEET *sheet)
 {
-  283766:	55                   	push   %ebp
-  283767:	89 e5                	mov    %esp,%ebp
-  283769:	53                   	push   %ebx
-  28376a:	83 ec 14             	sub    $0x14,%esp
+  283a04:	55                   	push   %ebp
+  283a05:	89 e5                	mov    %esp,%ebp
+  283a07:	53                   	push   %ebx
+  283a08:	83 ec 14             	sub    $0x14,%esp
 	int x,y;
 	if(cursor_y<28+112)
-  28376d:	81 7d 08 8b 00 00 00 	cmpl   $0x8b,0x8(%ebp)
-  283774:	7f 09                	jg     28377f <cons_newline+0x19>
+  283a0b:	81 7d 08 8b 00 00 00 	cmpl   $0x8b,0x8(%ebp)
+  283a12:	7f 09                	jg     283a1d <cons_newline+0x19>
 	{
 		cursor_y += 16;
-  283776:	83 45 08 10          	addl   $0x10,0x8(%ebp)
-  28377a:	e9 c7 00 00 00       	jmp    283846 <cons_newline+0xe0>
+  283a14:	83 45 08 10          	addl   $0x10,0x8(%ebp)
+  283a18:	e9 c7 00 00 00       	jmp    283ae4 <cons_newline+0xe0>
 	}
 	else
 	{
 		for(y=28;y<28+112;y++)
-  28377f:	c7 45 f0 1c 00 00 00 	movl   $0x1c,-0x10(%ebp)
-  283786:	eb 52                	jmp    2837da <cons_newline+0x74>
+  283a1d:	c7 45 f0 1c 00 00 00 	movl   $0x1c,-0x10(%ebp)
+  283a24:	eb 52                	jmp    283a78 <cons_newline+0x74>
 			for(x=8;x<8+240;x++)
-  283788:	c7 45 f4 08 00 00 00 	movl   $0x8,-0xc(%ebp)
-  28378f:	eb 3c                	jmp    2837cd <cons_newline+0x67>
+  283a26:	c7 45 f4 08 00 00 00 	movl   $0x8,-0xc(%ebp)
+  283a2d:	eb 3c                	jmp    283a6b <cons_newline+0x67>
 				sheet->buf[x+y*sheet->bxsize] = sheet->buf[x+(y+16)*sheet->bxsize];
-  283791:	8b 45 0c             	mov    0xc(%ebp),%eax
-  283794:	8b 10                	mov    (%eax),%edx
-  283796:	8b 45 0c             	mov    0xc(%ebp),%eax
-  283799:	8b 40 04             	mov    0x4(%eax),%eax
-  28379c:	0f af 45 f0          	imul   -0x10(%ebp),%eax
-  2837a0:	89 c1                	mov    %eax,%ecx
-  2837a2:	8b 45 f4             	mov    -0xc(%ebp),%eax
-  2837a5:	01 c8                	add    %ecx,%eax
-  2837a7:	01 c2                	add    %eax,%edx
-  2837a9:	8b 45 0c             	mov    0xc(%ebp),%eax
-  2837ac:	8b 08                	mov    (%eax),%ecx
-  2837ae:	8b 45 f0             	mov    -0x10(%ebp),%eax
-  2837b1:	8d 58 10             	lea    0x10(%eax),%ebx
-  2837b4:	8b 45 0c             	mov    0xc(%ebp),%eax
-  2837b7:	8b 40 04             	mov    0x4(%eax),%eax
-  2837ba:	0f af d8             	imul   %eax,%ebx
-  2837bd:	8b 45 f4             	mov    -0xc(%ebp),%eax
-  2837c0:	01 d8                	add    %ebx,%eax
-  2837c2:	01 c8                	add    %ecx,%eax
-  2837c4:	0f b6 00             	movzbl (%eax),%eax
-  2837c7:	88 02                	mov    %al,(%edx)
+  283a2f:	8b 45 0c             	mov    0xc(%ebp),%eax
+  283a32:	8b 10                	mov    (%eax),%edx
+  283a34:	8b 45 0c             	mov    0xc(%ebp),%eax
+  283a37:	8b 40 04             	mov    0x4(%eax),%eax
+  283a3a:	0f af 45 f0          	imul   -0x10(%ebp),%eax
+  283a3e:	89 c1                	mov    %eax,%ecx
+  283a40:	8b 45 f4             	mov    -0xc(%ebp),%eax
+  283a43:	01 c8                	add    %ecx,%eax
+  283a45:	01 c2                	add    %eax,%edx
+  283a47:	8b 45 0c             	mov    0xc(%ebp),%eax
+  283a4a:	8b 08                	mov    (%eax),%ecx
+  283a4c:	8b 45 f0             	mov    -0x10(%ebp),%eax
+  283a4f:	8d 58 10             	lea    0x10(%eax),%ebx
+  283a52:	8b 45 0c             	mov    0xc(%ebp),%eax
+  283a55:	8b 40 04             	mov    0x4(%eax),%eax
+  283a58:	0f af d8             	imul   %eax,%ebx
+  283a5b:	8b 45 f4             	mov    -0xc(%ebp),%eax
+  283a5e:	01 d8                	add    %ebx,%eax
+  283a60:	01 c8                	add    %ecx,%eax
+  283a62:	0f b6 00             	movzbl (%eax),%eax
+  283a65:	88 02                	mov    %al,(%edx)
 		cursor_y += 16;
 	}
 	else
 	{
 		for(y=28;y<28+112;y++)
 			for(x=8;x<8+240;x++)
-  2837c9:	83 45 f4 01          	addl   $0x1,-0xc(%ebp)
-  2837cd:	81 7d f4 f7 00 00 00 	cmpl   $0xf7,-0xc(%ebp)
-  2837d4:	7e bb                	jle    283791 <cons_newline+0x2b>
+  283a67:	83 45 f4 01          	addl   $0x1,-0xc(%ebp)
+  283a6b:	81 7d f4 f7 00 00 00 	cmpl   $0xf7,-0xc(%ebp)
+  283a72:	7e bb                	jle    283a2f <cons_newline+0x2b>
 	{
 		cursor_y += 16;
 	}
 	else
 	{
 		for(y=28;y<28+112;y++)
-  2837d6:	83 45 f0 01          	addl   $0x1,-0x10(%ebp)
-  2837da:	81 7d f0 8b 00 00 00 	cmpl   $0x8b,-0x10(%ebp)
-  2837e1:	7e a5                	jle    283788 <cons_newline+0x22>
+  283a74:	83 45 f0 01          	addl   $0x1,-0x10(%ebp)
+  283a78:	81 7d f0 8b 00 00 00 	cmpl   $0x8b,-0x10(%ebp)
+  283a7f:	7e a5                	jle    283a26 <cons_newline+0x22>
 			for(x=8;x<8+240;x++)
 				sheet->buf[x+y*sheet->bxsize] = sheet->buf[x+(y+16)*sheet->bxsize];
 		for(y=28+112;y<28+128;y++)
-  2837e3:	c7 45 f0 8c 00 00 00 	movl   $0x8c,-0x10(%ebp)
-  2837ea:	eb 35                	jmp    283821 <cons_newline+0xbb>
+  283a81:	c7 45 f0 8c 00 00 00 	movl   $0x8c,-0x10(%ebp)
+  283a88:	eb 35                	jmp    283abf <cons_newline+0xbb>
 			for(x=8;x<8+240;x++)
-  2837ec:	c7 45 f4 08 00 00 00 	movl   $0x8,-0xc(%ebp)
-  2837f3:	eb 1f                	jmp    283814 <cons_newline+0xae>
+  283a8a:	c7 45 f4 08 00 00 00 	movl   $0x8,-0xc(%ebp)
+  283a91:	eb 1f                	jmp    283ab2 <cons_newline+0xae>
 				sheet->buf[x+y*sheet->bxsize] = COL8_000000;
-  2837f5:	8b 45 0c             	mov    0xc(%ebp),%eax
-  2837f8:	8b 10                	mov    (%eax),%edx
-  2837fa:	8b 45 0c             	mov    0xc(%ebp),%eax
-  2837fd:	8b 40 04             	mov    0x4(%eax),%eax
-  283800:	0f af 45 f0          	imul   -0x10(%ebp),%eax
-  283804:	89 c1                	mov    %eax,%ecx
-  283806:	8b 45 f4             	mov    -0xc(%ebp),%eax
-  283809:	01 c8                	add    %ecx,%eax
-  28380b:	01 d0                	add    %edx,%eax
-  28380d:	c6 00 00             	movb   $0x0,(%eax)
+  283a93:	8b 45 0c             	mov    0xc(%ebp),%eax
+  283a96:	8b 10                	mov    (%eax),%edx
+  283a98:	8b 45 0c             	mov    0xc(%ebp),%eax
+  283a9b:	8b 40 04             	mov    0x4(%eax),%eax
+  283a9e:	0f af 45 f0          	imul   -0x10(%ebp),%eax
+  283aa2:	89 c1                	mov    %eax,%ecx
+  283aa4:	8b 45 f4             	mov    -0xc(%ebp),%eax
+  283aa7:	01 c8                	add    %ecx,%eax
+  283aa9:	01 d0                	add    %edx,%eax
+  283aab:	c6 00 00             	movb   $0x0,(%eax)
 	{
 		for(y=28;y<28+112;y++)
 			for(x=8;x<8+240;x++)
 				sheet->buf[x+y*sheet->bxsize] = sheet->buf[x+(y+16)*sheet->bxsize];
 		for(y=28+112;y<28+128;y++)
 			for(x=8;x<8+240;x++)
-  283810:	83 45 f4 01          	addl   $0x1,-0xc(%ebp)
-  283814:	81 7d f4 f7 00 00 00 	cmpl   $0xf7,-0xc(%ebp)
-  28381b:	7e d8                	jle    2837f5 <cons_newline+0x8f>
+  283aae:	83 45 f4 01          	addl   $0x1,-0xc(%ebp)
+  283ab2:	81 7d f4 f7 00 00 00 	cmpl   $0xf7,-0xc(%ebp)
+  283ab9:	7e d8                	jle    283a93 <cons_newline+0x8f>
 	else
 	{
 		for(y=28;y<28+112;y++)
 			for(x=8;x<8+240;x++)
 				sheet->buf[x+y*sheet->bxsize] = sheet->buf[x+(y+16)*sheet->bxsize];
 		for(y=28+112;y<28+128;y++)
-  28381d:	83 45 f0 01          	addl   $0x1,-0x10(%ebp)
-  283821:	81 7d f0 9b 00 00 00 	cmpl   $0x9b,-0x10(%ebp)
-  283828:	7e c2                	jle    2837ec <cons_newline+0x86>
+  283abb:	83 45 f0 01          	addl   $0x1,-0x10(%ebp)
+  283abf:	81 7d f0 9b 00 00 00 	cmpl   $0x9b,-0x10(%ebp)
+  283ac6:	7e c2                	jle    283a8a <cons_newline+0x86>
 			for(x=8;x<8+240;x++)
 				sheet->buf[x+y*sheet->bxsize] = COL8_000000;
 		sheet_refresh(sheet,8,28,8+240,28+128);
-  28382a:	83 ec 0c             	sub    $0xc,%esp
-  28382d:	68 9c 00 00 00       	push   $0x9c
-  283832:	68 f8 00 00 00       	push   $0xf8
-  283837:	6a 1c                	push   $0x1c
-  283839:	6a 08                	push   $0x8
-  28383b:	ff 75 0c             	pushl  0xc(%ebp)
-  28383e:	e8 9e ec ff ff       	call   2824e1 <sheet_refresh>
-  283843:	83 c4 20             	add    $0x20,%esp
+  283ac8:	83 ec 0c             	sub    $0xc,%esp
+  283acb:	68 9c 00 00 00       	push   $0x9c
+  283ad0:	68 f8 00 00 00       	push   $0xf8
+  283ad5:	6a 1c                	push   $0x1c
+  283ad7:	6a 08                	push   $0x8
+  283ad9:	ff 75 0c             	pushl  0xc(%ebp)
+  283adc:	e8 00 ea ff ff       	call   2824e1 <sheet_refresh>
+  283ae1:	83 c4 20             	add    $0x20,%esp
 	}
 	return cursor_y;
-  283846:	8b 45 08             	mov    0x8(%ebp),%eax
+  283ae4:	8b 45 08             	mov    0x8(%ebp),%eax
 }
-  283849:	8b 5d fc             	mov    -0x4(%ebp),%ebx
-  28384c:	c9                   	leave  
-  28384d:	c3                   	ret    
+  283ae7:	8b 5d fc             	mov    -0x4(%ebp),%ebx
+  283aea:	c9                   	leave  
+  283aeb:	c3                   	ret    
 
-0028384e <file_readfat>:
+00283aec <file_readfat>:
 #include "fat.h"
 
 void file_readfat(int *fat,unsigned char *img)
 {
-  28384e:	55                   	push   %ebp
-  28384f:	89 e5                	mov    %esp,%ebp
-  283851:	56                   	push   %esi
-  283852:	53                   	push   %ebx
-  283853:	8b 5d 0c             	mov    0xc(%ebp),%ebx
-  283856:	8d 43 01             	lea    0x1(%ebx),%eax
-  283859:	8b 4d 08             	mov    0x8(%ebp),%ecx
-  28385c:	81 c3 e1 10 00 00    	add    $0x10e1,%ebx
+  283aec:	55                   	push   %ebp
+  283aed:	89 e5                	mov    %esp,%ebp
+  283aef:	56                   	push   %esi
+  283af0:	53                   	push   %ebx
+  283af1:	8b 5d 0c             	mov    0xc(%ebp),%ebx
+  283af4:	8d 43 01             	lea    0x1(%ebx),%eax
+  283af7:	8b 4d 08             	mov    0x8(%ebp),%ecx
+  283afa:	81 c3 e1 10 00 00    	add    $0x10e1,%ebx
 	int i,j=0;
 	for(i=0;i<2880;i+=2)
 	{
 		fat[i+0] = (img[j+0]	| img[j+1] << 8) & 0xfff;
-  283862:	0f b6 10             	movzbl (%eax),%edx
-  283865:	c1 e2 08             	shl    $0x8,%edx
-  283868:	0f b6 70 ff          	movzbl -0x1(%eax),%esi
-  28386c:	09 f2                	or     %esi,%edx
-  28386e:	81 e2 ff 0f 00 00    	and    $0xfff,%edx
-  283874:	89 11                	mov    %edx,(%ecx)
+  283b00:	0f b6 10             	movzbl (%eax),%edx
+  283b03:	c1 e2 08             	shl    $0x8,%edx
+  283b06:	0f b6 70 ff          	movzbl -0x1(%eax),%esi
+  283b0a:	09 f2                	or     %esi,%edx
+  283b0c:	81 e2 ff 0f 00 00    	and    $0xfff,%edx
+  283b12:	89 11                	mov    %edx,(%ecx)
 		fat[i+1] = (img[j+1]>>4	| img[j+2] << 4) & 0xfff;
-  283876:	0f b6 10             	movzbl (%eax),%edx
-  283879:	c0 ea 04             	shr    $0x4,%dl
-  28387c:	0f b6 f2             	movzbl %dl,%esi
-  28387f:	0f b6 50 01          	movzbl 0x1(%eax),%edx
-  283883:	c1 e2 04             	shl    $0x4,%edx
-  283886:	09 f2                	or     %esi,%edx
-  283888:	89 51 04             	mov    %edx,0x4(%ecx)
-  28388b:	83 c0 03             	add    $0x3,%eax
-  28388e:	83 c1 08             	add    $0x8,%ecx
+  283b14:	0f b6 10             	movzbl (%eax),%edx
+  283b17:	c0 ea 04             	shr    $0x4,%dl
+  283b1a:	0f b6 f2             	movzbl %dl,%esi
+  283b1d:	0f b6 50 01          	movzbl 0x1(%eax),%edx
+  283b21:	c1 e2 04             	shl    $0x4,%edx
+  283b24:	09 f2                	or     %esi,%edx
+  283b26:	89 51 04             	mov    %edx,0x4(%ecx)
+  283b29:	83 c0 03             	add    $0x3,%eax
+  283b2c:	83 c1 08             	add    $0x8,%ecx
 #include "fat.h"
 
 void file_readfat(int *fat,unsigned char *img)
 {
 	int i,j=0;
 	for(i=0;i<2880;i+=2)
-  283891:	39 d8                	cmp    %ebx,%eax
-  283893:	75 cd                	jne    283862 <file_readfat+0x14>
+  283b2f:	39 d8                	cmp    %ebx,%eax
+  283b31:	75 cd                	jne    283b00 <file_readfat+0x14>
 		fat[i+0] = (img[j+0]	| img[j+1] << 8) & 0xfff;
 		fat[i+1] = (img[j+1]>>4	| img[j+2] << 4) & 0xfff;
 		j+=3;
 	}
 	return;
 }
-  283895:	5b                   	pop    %ebx
-  283896:	5e                   	pop    %esi
-  283897:	5d                   	pop    %ebp
-  283898:	c3                   	ret    
+  283b33:	5b                   	pop    %ebx
+  283b34:	5e                   	pop    %esi
+  283b35:	5d                   	pop    %ebp
+  283b36:	c3                   	ret    
 
-00283899 <file_loadfile>:
+00283b37 <file_loadfile>:
 
 void file_loadfile(int clustno,int size,char *buf,int *fat,char *img)
 {
-  283899:	55                   	push   %ebp
-  28389a:	89 e5                	mov    %esp,%ebp
-  28389c:	57                   	push   %edi
-  28389d:	56                   	push   %esi
-  28389e:	53                   	push   %ebx
-  28389f:	83 ec 04             	sub    $0x4,%esp
-  2838a2:	8b 5d 08             	mov    0x8(%ebp),%ebx
-  2838a5:	8b 7d 0c             	mov    0xc(%ebp),%edi
-  2838a8:	8b 55 10             	mov    0x10(%ebp),%edx
+  283b37:	55                   	push   %ebp
+  283b38:	89 e5                	mov    %esp,%ebp
+  283b3a:	57                   	push   %edi
+  283b3b:	56                   	push   %esi
+  283b3c:	53                   	push   %ebx
+  283b3d:	83 ec 04             	sub    $0x4,%esp
+  283b40:	8b 5d 08             	mov    0x8(%ebp),%ebx
+  283b43:	8b 7d 0c             	mov    0xc(%ebp),%edi
+  283b46:	8b 55 10             	mov    0x10(%ebp),%edx
 	int i;
 	for(;;)
 	{
 		if(size <= 512)
-  2838ab:	81 ff 00 02 00 00    	cmp    $0x200,%edi
-  2838b1:	7e 29                	jle    2838dc <file_loadfile+0x43>
-  2838b3:	8d 87 ff fd ff ff    	lea    -0x201(%edi),%eax
-  2838b9:	c1 e8 09             	shr    $0x9,%eax
-  2838bc:	89 45 f0             	mov    %eax,-0x10(%ebp)
-  2838bf:	8d 70 01             	lea    0x1(%eax),%esi
-  2838c2:	c1 e6 09             	shl    $0x9,%esi
-  2838c5:	01 d6                	add    %edx,%esi
-  2838c7:	8b 7d 14             	mov    0x14(%ebp),%edi
+  283b49:	81 ff 00 02 00 00    	cmp    $0x200,%edi
+  283b4f:	7e 29                	jle    283b7a <file_loadfile+0x43>
+  283b51:	8d 87 ff fd ff ff    	lea    -0x201(%edi),%eax
+  283b57:	c1 e8 09             	shr    $0x9,%eax
+  283b5a:	89 45 f0             	mov    %eax,-0x10(%ebp)
+  283b5d:	8d 70 01             	lea    0x1(%eax),%esi
+  283b60:	c1 e6 09             	shl    $0x9,%esi
+  283b63:	01 d6                	add    %edx,%esi
+  283b65:	8b 7d 14             	mov    0x14(%ebp),%edi
 			}
 			return;
 		}
 		for(i=0;i<512;i++)
 		{
 			buf[i] = img[clustno*512 + i];
-  2838ca:	89 d9                	mov    %ebx,%ecx
-  2838cc:	c1 e1 09             	shl    $0x9,%ecx
-  2838cf:	b8 00 00 00 00       	mov    $0x0,%eax
-  2838d4:	03 4d 18             	add    0x18(%ebp),%ecx
-  2838d7:	89 5d 08             	mov    %ebx,0x8(%ebp)
-  2838da:	eb 23                	jmp    2838ff <file_loadfile+0x66>
+  283b68:	89 d9                	mov    %ebx,%ecx
+  283b6a:	c1 e1 09             	shl    $0x9,%ecx
+  283b6d:	b8 00 00 00 00       	mov    $0x0,%eax
+  283b72:	03 4d 18             	add    0x18(%ebp),%ecx
+  283b75:	89 5d 08             	mov    %ebx,0x8(%ebp)
+  283b78:	eb 23                	jmp    283b9d <file_loadfile+0x66>
 void file_loadfile(int clustno,int size,char *buf,int *fat,char *img)
 {
 	int i;
 	for(;;)
 	{
 		if(size <= 512)
-  2838dc:	89 d6                	mov    %edx,%esi
+  283b7a:	89 d6                	mov    %edx,%esi
 		{
 			for(i=0;i<size;i++)
-  2838de:	85 ff                	test   %edi,%edi
-  2838e0:	7e 52                	jle    283934 <file_loadfile+0x9b>
+  283b7c:	85 ff                	test   %edi,%edi
+  283b7e:	7e 52                	jle    283bd2 <file_loadfile+0x9b>
 			{
 				buf[i] = img[clustno*512 + i];
-  2838e2:	89 d9                	mov    %ebx,%ecx
-  2838e4:	c1 e1 09             	shl    $0x9,%ecx
-  2838e7:	b8 00 00 00 00       	mov    $0x0,%eax
-  2838ec:	03 4d 18             	add    0x18(%ebp),%ecx
-  2838ef:	0f b6 14 01          	movzbl (%ecx,%eax,1),%edx
-  2838f3:	88 14 06             	mov    %dl,(%esi,%eax,1)
+  283b80:	89 d9                	mov    %ebx,%ecx
+  283b82:	c1 e1 09             	shl    $0x9,%ecx
+  283b85:	b8 00 00 00 00       	mov    $0x0,%eax
+  283b8a:	03 4d 18             	add    0x18(%ebp),%ecx
+  283b8d:	0f b6 14 01          	movzbl (%ecx,%eax,1),%edx
+  283b91:	88 14 06             	mov    %dl,(%esi,%eax,1)
 	int i;
 	for(;;)
 	{
 		if(size <= 512)
 		{
 			for(i=0;i<size;i++)
-  2838f6:	83 c0 01             	add    $0x1,%eax
-  2838f9:	39 f8                	cmp    %edi,%eax
-  2838fb:	75 f2                	jne    2838ef <file_loadfile+0x56>
-  2838fd:	eb 35                	jmp    283934 <file_loadfile+0x9b>
+  283b94:	83 c0 01             	add    $0x1,%eax
+  283b97:	39 f8                	cmp    %edi,%eax
+  283b99:	75 f2                	jne    283b8d <file_loadfile+0x56>
+  283b9b:	eb 35                	jmp    283bd2 <file_loadfile+0x9b>
 			}
 			return;
 		}
 		for(i=0;i<512;i++)
 		{
 			buf[i] = img[clustno*512 + i];
-  2838ff:	0f b6 1c 01          	movzbl (%ecx,%eax,1),%ebx
-  283903:	88 1c 02             	mov    %bl,(%edx,%eax,1)
+  283b9d:	0f b6 1c 01          	movzbl (%ecx,%eax,1),%ebx
+  283ba1:	88 1c 02             	mov    %bl,(%edx,%eax,1)
 			{
 				buf[i] = img[clustno*512 + i];
 			}
 			return;
 		}
 		for(i=0;i<512;i++)
-  283906:	83 c0 01             	add    $0x1,%eax
-  283909:	3d 00 02 00 00       	cmp    $0x200,%eax
-  28390e:	75 ef                	jne    2838ff <file_loadfile+0x66>
-  283910:	8b 5d 08             	mov    0x8(%ebp),%ebx
+  283ba4:	83 c0 01             	add    $0x1,%eax
+  283ba7:	3d 00 02 00 00       	cmp    $0x200,%eax
+  283bac:	75 ef                	jne    283b9d <file_loadfile+0x66>
+  283bae:	8b 5d 08             	mov    0x8(%ebp),%ebx
 		{
 			buf[i] = img[clustno*512 + i];
 		}
 		size -= 512;
 		buf += 512;
-  283913:	81 c2 00 02 00 00    	add    $0x200,%edx
+  283bb1:	81 c2 00 02 00 00    	add    $0x200,%edx
 		clustno = fat[clustno];
-  283919:	8b 1c 9f             	mov    (%edi,%ebx,4),%ebx
+  283bb7:	8b 1c 9f             	mov    (%edi,%ebx,4),%ebx
 void file_loadfile(int clustno,int size,char *buf,int *fat,char *img)
 {
 	int i;
 	for(;;)
 	{
 		if(size <= 512)
-  28391c:	39 d6                	cmp    %edx,%esi
-  28391e:	75 aa                	jne    2838ca <file_loadfile+0x31>
-  283920:	8b 7d 0c             	mov    0xc(%ebp),%edi
-  283923:	8b 45 f0             	mov    -0x10(%ebp),%eax
-  283926:	f7 d8                	neg    %eax
-  283928:	c1 e0 09             	shl    $0x9,%eax
-  28392b:	8d bc 07 00 fe ff ff 	lea    -0x200(%edi,%eax,1),%edi
-  283932:	eb aa                	jmp    2838de <file_loadfile+0x45>
+  283bba:	39 d6                	cmp    %edx,%esi
+  283bbc:	75 aa                	jne    283b68 <file_loadfile+0x31>
+  283bbe:	8b 7d 0c             	mov    0xc(%ebp),%edi
+  283bc1:	8b 45 f0             	mov    -0x10(%ebp),%eax
+  283bc4:	f7 d8                	neg    %eax
+  283bc6:	c1 e0 09             	shl    $0x9,%eax
+  283bc9:	8d bc 07 00 fe ff ff 	lea    -0x200(%edi,%eax,1),%edi
+  283bd0:	eb aa                	jmp    283b7c <file_loadfile+0x45>
 		size -= 512;
 		buf += 512;
 		clustno = fat[clustno];
 	}
 	return;
 }
-  283934:	83 c4 04             	add    $0x4,%esp
-  283937:	5b                   	pop    %ebx
-  283938:	5e                   	pop    %esi
-  283939:	5f                   	pop    %edi
-  28393a:	5d                   	pop    %ebp
-  28393b:	c3                   	ret    
+  283bd2:	83 c4 04             	add    $0x4,%esp
+  283bd5:	5b                   	pop    %ebx
+  283bd6:	5e                   	pop    %esi
+  283bd7:	5f                   	pop    %edi
+  283bd8:	5d                   	pop    %ebp
+  283bd9:	c3                   	ret    
 
-0028393c <test>:
+00283bda <test>:
 #include "test.h"
 int test(int screenx, int screeny)
 {
-  28393c:	55                   	push   %ebp
-  28393d:	89 e5                	mov    %esp,%ebp
+  283bda:	55                   	push   %ebp
+  283bdb:	89 e5                	mov    %esp,%ebp
 	return screenx*screeny;
-  28393f:	8b 45 0c             	mov    0xc(%ebp),%eax
-  283942:	0f af 45 08          	imul   0x8(%ebp),%eax
+  283bdd:	8b 45 0c             	mov    0xc(%ebp),%eax
+  283be0:	0f af 45 08          	imul   0x8(%ebp),%eax
 }
-  283946:	5d                   	pop    %ebp
-  283947:	c3                   	ret    
+  283be4:	5d                   	pop    %ebp
+  283be5:	c3                   	ret    

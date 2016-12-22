@@ -6,7 +6,8 @@ void console_task(struct SHEET *sheet,unsigned int memtotal)
 	struct TASK *task = task_now();
 	struct MEMMAN *memman = (struct MEMMAN *)MEMMAN_ADDR;
 	struct FILEINFO *finfo = (struct FILEINFO *)(ADR_DISKIMG+0x002600); //0x002600 the offset of directory entry in the os.img
-	
+	struct SEGMENT_DESCRIPTOR *gdt = (struct SEGMENT_DESCRIPTOR *)ADR_GDT;
+
 	int i,fifobuf[128],cursor_x = 16,cursor_y = 28,cursor_c = -1;
 	fifo32_init(&task->fifo,128,fifobuf,task);
 	timer = timer_alloc();
@@ -165,6 +166,7 @@ void console_task(struct SHEET *sheet,unsigned int memtotal)
 									for(;;)
 									{
 										putfonts8_asc_sht(sheet,cursor_x,cursor_y,COL8_FFFFFF,COL8_000000," ",1);
+										cursor_x += 8;
 										if(cursor_x == 8+240)
 										{
 											cursor_x = 8;
@@ -202,6 +204,52 @@ void console_task(struct SHEET *sheet,unsigned int memtotal)
 						{
 							putfonts8_asc_sht(sheet,8,cursor_y,COL8_FFFFFF,COL8_000000,"File not found.",15);
 							cursor_y = cons_newline(cursor_y,sheet);
+							cursor_y = cons_newline(cursor_y,sheet);
+						}
+						cursor_y = cons_newline(cursor_y,sheet);
+					}
+					else if(strcmp(cmdline,"hlt") == 0)
+					{
+						int x,y;
+						for(y=0;y<11;y++)
+							s[y] = ' ';
+						s[0] = 'H';
+						s[1] = 'L';
+						s[2] = 'T';
+						s[8] = 'B';
+						s[9] = 'I';
+						s[10] = 'N';
+						for(x=0;x<224;)
+						{
+							y=0;
+							if(finfo[x].name[0] == 0x00) break;
+							if((finfo[x].type & 0x18)==0)
+							{
+								for(y=0;y<11;y++)
+								{
+									if(finfo[x].name[y]!=s[y])
+									{
+										break;
+									}
+								}
+							}
+							if(y>10)
+							{ 
+								break;
+							}
+							x++;
+						}
+						if(x<224 && finfo[x].name[0] != 0x00)
+						{
+							char *p = (char *)memman_alloc_4k(memman,finfo[x].size);
+							file_loadfile(finfo[x].clustno,finfo[x].size,p,fat,(char *)(ADR_DISKIMG + 0x003e00));
+							set_segmdesc(gdt + 1003,finfo[x].size-1,(int)p,AR_CODE32_ER);
+							farjmp(0,1003*8);
+							memman_free_4k(memman,(int)p,finfo[x].size);
+						}
+						else
+						{
+							putfonts8_asc_sht(sheet,8,cursor_y,COL8_FFFFFF,COL8_000000,"hlt not found.",15);
 							cursor_y = cons_newline(cursor_y,sheet);
 						}
 						cursor_y = cons_newline(cursor_y,sheet);

@@ -6,3 +6,4 @@ _kernel
 bootloader
 os.img
 *.d
+*.bin
