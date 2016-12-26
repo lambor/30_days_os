@@ -236,6 +236,7 @@ void cons_putstr1(struct CONSOLE *cons,char *s,int l)
 int inthandler0d(int *esp)
 {
 	struct CONSOLE *cons = (struct CONSOLE *)*((int *)0x0fec);
+	struct TASK *task = task_now();
 	cons_putstr0(cons,"\nINT 0D:\n General Protected Exception.\n");
-	return 1;
+	return &(task->tss.esp0);
 }

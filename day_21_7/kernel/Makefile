@@ -26,7 +26,7 @@ main.o:main.c
 main.out: main.o io.nas.o graphics.o font.o dsctbl.o int.o int.nas.o \
 		string.o fifo.o mouse.o keyboard.o memory.o map_sheet.o timer.o\
 		task.nas.o task.o task_console.o file.o console.o  console.nas.o\
-	   	sys_api.o\
+	   	sys_api.o api.nas.o\
 		test.o
 	ld $(LDFLAGS) -N -e bootmain -Ttext 0x280000 -o $@.o $^
 	objcopy -S -O binary $@.o $@
@@ -40,6 +40,9 @@ memory.o: memory.c
 
 file.o: file.c
 	gcc -nostdinc $(CFLAGS) -O0 -c -o $@ $<
+
+api.nas.o: ../bin/api.nas
+	nasm -f elf $< -o $@
 
 %.o: %.c
 	gcc -nostdinc $(CFLAGS) -c -o $@ $<
