@@ -5,9 +5,13 @@ CFLAGS += -g
 
 LDFLAGS=-m elf_i386
 
-all: hello.bin crack1.bin
+all: hello.bin crack1.bin crack2.bin
 
 %.bin: entry.nas.o %.o api.nas.o
+	ld $(LDFLAGS) -N -e bin_entry -Ttext 0 -o $@.o $^
+	objcopy -S -O binary $@.o $@
+
+%.bin: entry.nas.o %.nas.o api.nas.o
 	ld $(LDFLAGS) -N -e bin_entry -Ttext 0 -o $@.o $^
 	objcopy -S -O binary $@.o $@
 

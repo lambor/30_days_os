@@ -170,6 +170,7 @@ int cmd_app(struct CONSOLE *cons,int *fat,char *cmdline)
 	struct MEMMAN *memman = (struct MEMMAN *)MEMMAN_ADDR;
 	struct FILEINFO *finfo;
 	struct SEGMENT_DESCRIPTOR *gdt = (struct SEGMENT_DESCRIPTOR *)ADR_GDT;
+	struct TASK *task = task_now();
 	char name[18],*p,*q;
 	int i;
 
@@ -198,13 +199,13 @@ int cmd_app(struct CONSOLE *cons,int *fat,char *cmdline)
 		*((int *)0xfe8) = (int)p;
 		q = (char *)memman_alloc_4k(memman,64*1024);
 		file_loadfile(finfo->clustno,finfo->size,p,fat,(char *)(ADR_DISKIMG + 0x3e00));
-		set_segmdesc(gdt+1003,finfo->size-1,(int)p,AR_CODE32_ER);
+		set_segmdesc(gdt+1003,finfo->size-1,(int)p,AR_CODE32_ER + 0x60);
 		//data segment selector for stack
-		set_segmdesc(gdt+1004,62*1024-1,(int)q,AR_DATA32_RW);
+		set_segmdesc(gdt+1004,62*1024-1,(int)q,AR_DATA32_RW + 0x60);
 		//farcall(0,1003*8);
 		//eip = 0; cs = 1003*8
 		//esp = 1024*64; ds = 1004 * 8
-		start_app(0,1003*8,64*1024,1004*8);
+		start_app(0,1003*8,64*1024,1004*8,&(task->tss.esp0));
 		memman_free_4k(memman,(int)p,finfo->size);
 		memman_free_4k(memman,(int)q,64*1024);
 		cons_newline(cons);

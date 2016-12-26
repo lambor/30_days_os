@@ -1,6 +1,8 @@
 [BITS 32]
 	global bin_entry
-	extern binmain
+	extern binmain,api_end
 [SECTION .text]
+bin_entry:
 	call binmain
-	retf
+	call api_end
+	

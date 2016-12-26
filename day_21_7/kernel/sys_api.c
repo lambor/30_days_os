@@ -1,4 +1,5 @@
 #include "console.h"
+#include "task.h"
 int *sys_api(int edi,int esi,int ebp,int esp,int ebx,int edx,int ecx,int eax)
 {
 	struct CONSOLE *cons = (struct CONSOLE *) *((int *)0x0fec);
@@ -10,7 +11,7 @@ int *sys_api(int edi,int esi,int ebp,int esp,int ebx,int edx,int ecx,int eax)
 	else if(edx == 4)
 	{
 		//exit app
-		return &(task->esp0);
+		return &(task->tss.esp0);
 	}
 	return 0;
 }

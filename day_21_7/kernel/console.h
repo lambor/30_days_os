@@ -19,5 +19,5 @@ int cmd_app(struct CONSOLE *cons,int *fat,char *cmdline);
 void cons_putstr0(struct CONSOLE *cons,char *s);
 void cons_putstr1(struct CONSOLE *cons,char *s,int l);
 
-void start_app(int eip,int cs,int esp,int ds);
+void start_app(int eip,int cs,int esp,int ds,int *tss_esp0);
 #endif
