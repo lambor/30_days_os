@@ -1,5 +1,5 @@
 
-main.out.o:     file format elf32-i386
+main.out.o：     文件格式 elf32-i386
 
 
 Disassembly of section .text:
@@ -1085,8 +1085,8 @@ int bootmain()
   280921:	e8 1c 02 00 00       	call   280b42 <io_cli>
 					task_console->tss.eax = (int)&(task_console->tss.esp0);
   280926:	8d 46 30             	lea    0x30(%esi),%eax
-					task_console->tss.eip = (int)asm_end_app;
-  280929:	c7 46 4c 80 2a 28 00 	movl   $0x282a80,0x4c(%esi)
+					task_console->tss.eip = (int)asm_end_app - 0x280000;
+  280929:	c7 46 4c 80 2a 00 00 	movl   $0x2a80,0x4c(%esi)
 				{
 					struct CONSOLE *cons = (struct CONSOLE *) *((int *)0x0fec);
 					extern void asm_end_app();
@@ -1094,7 +1094,7 @@ int bootmain()
 					io_cli();
 					task_console->tss.eax = (int)&(task_console->tss.esp0);
   280930:	89 46 54             	mov    %eax,0x54(%esi)
-					task_console->tss.eip = (int)asm_end_app;
+					task_console->tss.eip = (int)asm_end_app - 0x280000;
 					io_sti();
   280933:	e8 0c 02 00 00       	call   280b44 <io_sti>
   280938:	e9 6b ff ff ff       	jmp    2808a8 <bootmain+0x8a8>
@@ -1108,7 +1108,7 @@ int bootmain()
   280944:	ff ff ff 
 					io_cli();
 					task_console->tss.eax = (int)&(task_console->tss.esp0);
-					task_console->tss.eip = (int)asm_end_app;
+					task_console->tss.eip = (int)asm_end_app - 0x280000;
 					io_sti();
 				}
 				if(cursor_c >= 0)

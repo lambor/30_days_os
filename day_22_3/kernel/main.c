@@ -259,7 +259,7 @@ int bootmain()
 					cons_putstr0(cons,"\nBreak(key):\n");
 					io_cli();
 					task_console->tss.eax = (int)&(task_console->tss.esp0);
-					task_console->tss.eip = (int)asm_end_app;
+					task_console->tss.eip = (int)asm_end_app - 0x280000;
 					io_sti();
 				}
 				if(cursor_c >= 0)
