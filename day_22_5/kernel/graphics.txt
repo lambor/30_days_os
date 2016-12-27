@@ -1,0 +1,358 @@
+
+graphics.o:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+00000000 <set_palette>:
+   0:	55                   	push   %ebp
+   1:	89 e5                	mov    %esp,%ebp
+   3:	57                   	push   %edi
+   4:	56                   	push   %esi
+   5:	53                   	push   %ebx
+   6:	83 ec 1c             	sub    $0x1c,%esp
+   9:	8b 75 08             	mov    0x8(%ebp),%esi
+   c:	8b 7d 0c             	mov    0xc(%ebp),%edi
+   f:	8b 5d 10             	mov    0x10(%ebp),%ebx
+  12:	e8 fc ff ff ff       	call   13 <set_palette+0x13>
+  17:	89 45 e4             	mov    %eax,-0x1c(%ebp)
+  1a:	e8 fc ff ff ff       	call   1b <set_palette+0x1b>
+  1f:	83 ec 08             	sub    $0x8,%esp
+  22:	56                   	push   %esi
+  23:	68 c8 03 00 00       	push   $0x3c8
+  28:	e8 fc ff ff ff       	call   29 <set_palette+0x29>
+  2d:	83 c4 10             	add    $0x10,%esp
+  30:	39 fe                	cmp    %edi,%esi
+  32:	7f 54                	jg     88 <set_palette+0x88>
+  34:	83 ec 08             	sub    $0x8,%esp
+  37:	0f b6 03             	movzbl (%ebx),%eax
+  3a:	c0 e8 02             	shr    $0x2,%al
+  3d:	0f b6 c0             	movzbl %al,%eax
+  40:	50                   	push   %eax
+  41:	68 c9 03 00 00       	push   $0x3c9
+  46:	e8 fc ff ff ff       	call   47 <set_palette+0x47>
+  4b:	83 c4 08             	add    $0x8,%esp
+  4e:	0f b6 43 01          	movzbl 0x1(%ebx),%eax
+  52:	c0 e8 02             	shr    $0x2,%al
+  55:	0f b6 c0             	movzbl %al,%eax
+  58:	50                   	push   %eax
+  59:	68 c9 03 00 00       	push   $0x3c9
+  5e:	e8 fc ff ff ff       	call   5f <set_palette+0x5f>
+  63:	83 c4 08             	add    $0x8,%esp
+  66:	0f b6 43 02          	movzbl 0x2(%ebx),%eax
+  6a:	c0 e8 02             	shr    $0x2,%al
+  6d:	0f b6 c0             	movzbl %al,%eax
+  70:	50                   	push   %eax
+  71:	68 c9 03 00 00       	push   $0x3c9
+  76:	e8 fc ff ff ff       	call   77 <set_palette+0x77>
+  7b:	83 c3 03             	add    $0x3,%ebx
+  7e:	83 c6 01             	add    $0x1,%esi
+  81:	83 c4 10             	add    $0x10,%esp
+  84:	39 f7                	cmp    %esi,%edi
+  86:	7d ac                	jge    34 <set_palette+0x34>
+  88:	83 ec 0c             	sub    $0xc,%esp
+  8b:	ff 75 e4             	pushl  -0x1c(%ebp)
+  8e:	e8 fc ff ff ff       	call   8f <set_palette+0x8f>
+  93:	83 c4 10             	add    $0x10,%esp
+  96:	8d 65 f4             	lea    -0xc(%ebp),%esp
+  99:	5b                   	pop    %ebx
+  9a:	5e                   	pop    %esi
+  9b:	5f                   	pop    %edi
+  9c:	5d                   	pop    %ebp
+  9d:	c3                   	ret    
+
+0000009e <init_palette>:
+  9e:	55                   	push   %ebp
+  9f:	89 e5                	mov    %esp,%ebp
+  a1:	83 ec 0c             	sub    $0xc,%esp
+  a4:	68 00 00 00 00       	push   $0x0
+  a9:	6a 0f                	push   $0xf
+  ab:	6a 00                	push   $0x0
+  ad:	e8 fc ff ff ff       	call   ae <init_palette+0x10>
+  b2:	83 c4 10             	add    $0x10,%esp
+  b5:	c9                   	leave  
+  b6:	c3                   	ret    
+
+000000b7 <boxfill8>:
+  b7:	55                   	push   %ebp
+  b8:	89 e5                	mov    %esp,%ebp
+  ba:	57                   	push   %edi
+  bb:	56                   	push   %esi
+  bc:	53                   	push   %ebx
+  bd:	83 ec 04             	sub    $0x4,%esp
+  c0:	8b 55 0c             	mov    0xc(%ebp),%edx
+  c3:	8b 7d 14             	mov    0x14(%ebp),%edi
+  c6:	8b 75 18             	mov    0x18(%ebp),%esi
+  c9:	8b 4d 1c             	mov    0x1c(%ebp),%ecx
+  cc:	0f b6 5d 10          	movzbl 0x10(%ebp),%ebx
+  d0:	3b 75 20             	cmp    0x20(%ebp),%esi
+  d3:	7f 28                	jg     fd <boxfill8+0x46>
+  d5:	89 55 f0             	mov    %edx,-0x10(%ebp)
+  d8:	0f af d6             	imul   %esi,%edx
+  db:	03 55 08             	add    0x8(%ebp),%edx
+  de:	eb 15                	jmp    f5 <boxfill8+0x3e>
+  e0:	88 1c 02             	mov    %bl,(%edx,%eax,1)
+  e3:	83 c0 01             	add    $0x1,%eax
+  e6:	39 c1                	cmp    %eax,%ecx
+  e8:	7d f6                	jge    e0 <boxfill8+0x29>
+  ea:	83 c6 01             	add    $0x1,%esi
+  ed:	03 55 f0             	add    -0x10(%ebp),%edx
+  f0:	39 75 20             	cmp    %esi,0x20(%ebp)
+  f3:	7c 08                	jl     fd <boxfill8+0x46>
+  f5:	89 f8                	mov    %edi,%eax
+  f7:	39 cf                	cmp    %ecx,%edi
+  f9:	7e e5                	jle    e0 <boxfill8+0x29>
+  fb:	eb ed                	jmp    ea <boxfill8+0x33>
+  fd:	83 c4 04             	add    $0x4,%esp
+ 100:	5b                   	pop    %ebx
+ 101:	5e                   	pop    %esi
+ 102:	5f                   	pop    %edi
+ 103:	5d                   	pop    %ebp
+ 104:	c3                   	ret    
+
+00000105 <init_screen8>:
+ 105:	55                   	push   %ebp
+ 106:	89 e5                	mov    %esp,%ebp
+ 108:	57                   	push   %edi
+ 109:	56                   	push   %esi
+ 10a:	53                   	push   %ebx
+ 10b:	83 ec 14             	sub    $0x14,%esp
+ 10e:	8b 7d 08             	mov    0x8(%ebp),%edi
+ 111:	8b 5d 0c             	mov    0xc(%ebp),%ebx
+ 114:	8b 75 10             	mov    0x10(%ebp),%esi
+ 117:	8d 43 ff             	lea    -0x1(%ebx),%eax
+ 11a:	89 c2                	mov    %eax,%edx
+ 11c:	8d 46 e3             	lea    -0x1d(%esi),%eax
+ 11f:	50                   	push   %eax
+ 120:	89 55 f0             	mov    %edx,-0x10(%ebp)
+ 123:	52                   	push   %edx
+ 124:	6a 00                	push   $0x0
+ 126:	6a 00                	push   $0x0
+ 128:	6a 0e                	push   $0xe
+ 12a:	53                   	push   %ebx
+ 12b:	57                   	push   %edi
+ 12c:	e8 fc ff ff ff       	call   12d <init_screen8+0x28>
+ 131:	8d 46 e4             	lea    -0x1c(%esi),%eax
+ 134:	50                   	push   %eax
+ 135:	ff 75 f0             	pushl  -0x10(%ebp)
+ 138:	50                   	push   %eax
+ 139:	6a 00                	push   $0x0
+ 13b:	6a 08                	push   $0x8
+ 13d:	53                   	push   %ebx
+ 13e:	57                   	push   %edi
+ 13f:	e8 fc ff ff ff       	call   140 <init_screen8+0x3b>
+ 144:	8d 46 e5             	lea    -0x1b(%esi),%eax
+ 147:	83 c4 38             	add    $0x38,%esp
+ 14a:	50                   	push   %eax
+ 14b:	ff 75 f0             	pushl  -0x10(%ebp)
+ 14e:	50                   	push   %eax
+ 14f:	6a 00                	push   $0x0
+ 151:	6a 07                	push   $0x7
+ 153:	53                   	push   %ebx
+ 154:	57                   	push   %edi
+ 155:	e8 fc ff ff ff       	call   156 <init_screen8+0x51>
+ 15a:	8d 46 ff             	lea    -0x1(%esi),%eax
+ 15d:	50                   	push   %eax
+ 15e:	ff 75 f0             	pushl  -0x10(%ebp)
+ 161:	8d 46 e6             	lea    -0x1a(%esi),%eax
+ 164:	50                   	push   %eax
+ 165:	6a 00                	push   $0x0
+ 167:	6a 08                	push   $0x8
+ 169:	53                   	push   %ebx
+ 16a:	57                   	push   %edi
+ 16b:	e8 fc ff ff ff       	call   16c <init_screen8+0x67>
+ 170:	8d 46 e8             	lea    -0x18(%esi),%eax
+ 173:	83 c4 38             	add    $0x38,%esp
+ 176:	50                   	push   %eax
+ 177:	6a 3b                	push   $0x3b
+ 179:	89 45 f0             	mov    %eax,-0x10(%ebp)
+ 17c:	50                   	push   %eax
+ 17d:	6a 03                	push   $0x3
+ 17f:	6a 07                	push   $0x7
+ 181:	53                   	push   %ebx
+ 182:	57                   	push   %edi
+ 183:	e8 fc ff ff ff       	call   184 <init_screen8+0x7f>
+ 188:	8d 4e fc             	lea    -0x4(%esi),%ecx
+ 18b:	89 4d ec             	mov    %ecx,-0x14(%ebp)
+ 18e:	51                   	push   %ecx
+ 18f:	6a 02                	push   $0x2
+ 191:	ff 75 f0             	pushl  -0x10(%ebp)
+ 194:	6a 02                	push   $0x2
+ 196:	6a 07                	push   $0x7
+ 198:	53                   	push   %ebx
+ 199:	57                   	push   %edi
+ 19a:	e8 fc ff ff ff       	call   19b <init_screen8+0x96>
+ 19f:	83 c4 38             	add    $0x38,%esp
+ 1a2:	8b 4d ec             	mov    -0x14(%ebp),%ecx
+ 1a5:	51                   	push   %ecx
+ 1a6:	6a 3b                	push   $0x3b
+ 1a8:	51                   	push   %ecx
+ 1a9:	6a 03                	push   $0x3
+ 1ab:	6a 0f                	push   $0xf
+ 1ad:	53                   	push   %ebx
+ 1ae:	57                   	push   %edi
+ 1af:	e8 fc ff ff ff       	call   1b0 <init_screen8+0xab>
+ 1b4:	8d 56 e9             	lea    -0x17(%esi),%edx
+ 1b7:	8d 46 fb             	lea    -0x5(%esi),%eax
+ 1ba:	50                   	push   %eax
+ 1bb:	6a 3b                	push   $0x3b
+ 1bd:	89 55 e4             	mov    %edx,-0x1c(%ebp)
+ 1c0:	52                   	push   %edx
+ 1c1:	6a 3b                	push   $0x3b
+ 1c3:	6a 0f                	push   $0xf
+ 1c5:	53                   	push   %ebx
+ 1c6:	57                   	push   %edi
+ 1c7:	e8 fc ff ff ff       	call   1c8 <init_screen8+0xc3>
+ 1cc:	83 ee 03             	sub    $0x3,%esi
+ 1cf:	83 c4 38             	add    $0x38,%esp
+ 1d2:	56                   	push   %esi
+ 1d3:	6a 3b                	push   $0x3b
+ 1d5:	56                   	push   %esi
+ 1d6:	6a 02                	push   $0x2
+ 1d8:	6a 00                	push   $0x0
+ 1da:	53                   	push   %ebx
+ 1db:	57                   	push   %edi
+ 1dc:	e8 fc ff ff ff       	call   1dd <init_screen8+0xd8>
+ 1e1:	56                   	push   %esi
+ 1e2:	6a 3c                	push   $0x3c
+ 1e4:	ff 75 f0             	pushl  -0x10(%ebp)
+ 1e7:	6a 3c                	push   $0x3c
+ 1e9:	6a 00                	push   $0x0
+ 1eb:	53                   	push   %ebx
+ 1ec:	57                   	push   %edi
+ 1ed:	e8 fc ff ff ff       	call   1ee <init_screen8+0xe9>
+ 1f2:	8d 4b fc             	lea    -0x4(%ebx),%ecx
+ 1f5:	8d 53 d1             	lea    -0x2f(%ebx),%edx
+ 1f8:	83 c4 38             	add    $0x38,%esp
+ 1fb:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 1fe:	50                   	push   %eax
+ 1ff:	89 4d e0             	mov    %ecx,-0x20(%ebp)
+ 202:	51                   	push   %ecx
+ 203:	50                   	push   %eax
+ 204:	89 55 e8             	mov    %edx,-0x18(%ebp)
+ 207:	52                   	push   %edx
+ 208:	6a 0f                	push   $0xf
+ 20a:	53                   	push   %ebx
+ 20b:	57                   	push   %edi
+ 20c:	e8 fc ff ff ff       	call   20d <init_screen8+0x108>
+ 211:	ff 75 ec             	pushl  -0x14(%ebp)
+ 214:	8b 55 e8             	mov    -0x18(%ebp),%edx
+ 217:	52                   	push   %edx
+ 218:	ff 75 e4             	pushl  -0x1c(%ebp)
+ 21b:	52                   	push   %edx
+ 21c:	6a 0f                	push   $0xf
+ 21e:	53                   	push   %ebx
+ 21f:	57                   	push   %edi
+ 220:	e8 fc ff ff ff       	call   221 <init_screen8+0x11c>
+ 225:	83 c4 38             	add    $0x38,%esp
+ 228:	56                   	push   %esi
+ 229:	ff 75 e0             	pushl  -0x20(%ebp)
+ 22c:	56                   	push   %esi
+ 22d:	ff 75 e8             	pushl  -0x18(%ebp)
+ 230:	6a 07                	push   $0x7
+ 232:	53                   	push   %ebx
+ 233:	57                   	push   %edi
+ 234:	e8 fc ff ff ff       	call   235 <init_screen8+0x130>
+ 239:	8d 43 fd             	lea    -0x3(%ebx),%eax
+ 23c:	56                   	push   %esi
+ 23d:	50                   	push   %eax
+ 23e:	ff 75 f0             	pushl  -0x10(%ebp)
+ 241:	50                   	push   %eax
+ 242:	6a 07                	push   $0x7
+ 244:	53                   	push   %ebx
+ 245:	57                   	push   %edi
+ 246:	e8 fc ff ff ff       	call   247 <init_screen8+0x142>
+ 24b:	83 c4 38             	add    $0x38,%esp
+ 24e:	8d 65 f4             	lea    -0xc(%ebp),%esp
+ 251:	5b                   	pop    %ebx
+ 252:	5e                   	pop    %esi
+ 253:	5f                   	pop    %edi
+ 254:	5d                   	pop    %ebp
+ 255:	c3                   	ret    
+
+00000256 <init_mouse_cursor8>:
+ 256:	55                   	push   %ebp
+ 257:	89 e5                	mov    %esp,%ebp
+ 259:	57                   	push   %edi
+ 25a:	56                   	push   %esi
+ 25b:	53                   	push   %ebx
+ 25c:	83 ec 08             	sub    $0x8,%esp
+ 25f:	8b 75 08             	mov    0x8(%ebp),%esi
+ 262:	0f b6 7d 0c          	movzbl 0xc(%ebp),%edi
+ 266:	89 75 f0             	mov    %esi,-0x10(%ebp)
+ 269:	8d 86 00 01 00 00    	lea    0x100(%esi),%eax
+ 26f:	89 45 ec             	mov    %eax,-0x14(%ebp)
+ 272:	eb 38                	jmp    2ac <init_mouse_cursor8+0x56>
+ 274:	0f b6 94 03 00 00 00 	movzbl 0x0(%ebx,%eax,1),%edx
+ 27b:	00 
+ 27c:	80 fa 2a             	cmp    $0x2a,%dl
+ 27f:	75 06                	jne    287 <init_mouse_cursor8+0x31>
+ 281:	c6 04 06 00          	movb   $0x0,(%esi,%eax,1)
+ 285:	eb 15                	jmp    29c <init_mouse_cursor8+0x46>
+ 287:	80 fa 4f             	cmp    $0x4f,%dl
+ 28a:	75 06                	jne    292 <init_mouse_cursor8+0x3c>
+ 28c:	c6 04 06 07          	movb   $0x7,(%esi,%eax,1)
+ 290:	eb 0a                	jmp    29c <init_mouse_cursor8+0x46>
+ 292:	80 fa 2e             	cmp    $0x2e,%dl
+ 295:	75 05                	jne    29c <init_mouse_cursor8+0x46>
+ 297:	89 fa                	mov    %edi,%edx
+ 299:	88 14 06             	mov    %dl,(%esi,%eax,1)
+ 29c:	83 c0 01             	add    $0x1,%eax
+ 29f:	83 f8 10             	cmp    $0x10,%eax
+ 2a2:	75 d0                	jne    274 <init_mouse_cursor8+0x1e>
+ 2a4:	83 c6 10             	add    $0x10,%esi
+ 2a7:	3b 75 ec             	cmp    -0x14(%ebp),%esi
+ 2aa:	74 0c                	je     2b8 <init_mouse_cursor8+0x62>
+ 2ac:	b8 00 00 00 00       	mov    $0x0,%eax
+ 2b1:	89 f3                	mov    %esi,%ebx
+ 2b3:	2b 5d f0             	sub    -0x10(%ebp),%ebx
+ 2b6:	eb bc                	jmp    274 <init_mouse_cursor8+0x1e>
+ 2b8:	83 c4 08             	add    $0x8,%esp
+ 2bb:	5b                   	pop    %ebx
+ 2bc:	5e                   	pop    %esi
+ 2bd:	5f                   	pop    %edi
+ 2be:	5d                   	pop    %ebp
+ 2bf:	c3                   	ret    
+
+000002c0 <putblock8_8>:
+ 2c0:	55                   	push   %ebp
+ 2c1:	89 e5                	mov    %esp,%ebp
+ 2c3:	57                   	push   %edi
+ 2c4:	56                   	push   %esi
+ 2c5:	53                   	push   %ebx
+ 2c6:	83 ec 04             	sub    $0x4,%esp
+ 2c9:	8b 45 0c             	mov    0xc(%ebp),%eax
+ 2cc:	8b 5d 10             	mov    0x10(%ebp),%ebx
+ 2cf:	83 7d 14 00          	cmpl   $0x0,0x14(%ebp)
+ 2d3:	7e 49                	jle    31e <putblock8_8+0x5e>
+ 2d5:	8b 7d 24             	mov    0x24(%ebp),%edi
+ 2d8:	8b 4d 20             	mov    0x20(%ebp),%ecx
+ 2db:	89 45 f0             	mov    %eax,-0x10(%ebp)
+ 2de:	0f af 45 1c          	imul   0x1c(%ebp),%eax
+ 2e2:	03 45 18             	add    0x18(%ebp),%eax
+ 2e5:	89 c2                	mov    %eax,%edx
+ 2e7:	03 55 08             	add    0x8(%ebp),%edx
+ 2ea:	be 00 00 00 00       	mov    $0x0,%esi
+ 2ef:	eb 22                	jmp    313 <putblock8_8+0x53>
+ 2f1:	89 5d 10             	mov    %ebx,0x10(%ebp)
+ 2f4:	0f b6 1c 01          	movzbl (%ecx,%eax,1),%ebx
+ 2f8:	88 1c 02             	mov    %bl,(%edx,%eax,1)
+ 2fb:	83 c0 01             	add    $0x1,%eax
+ 2fe:	39 45 10             	cmp    %eax,0x10(%ebp)
+ 301:	75 f1                	jne    2f4 <putblock8_8+0x34>
+ 303:	8b 5d 10             	mov    0x10(%ebp),%ebx
+ 306:	83 c6 01             	add    $0x1,%esi
+ 309:	01 f9                	add    %edi,%ecx
+ 30b:	03 55 f0             	add    -0x10(%ebp),%edx
+ 30e:	39 75 14             	cmp    %esi,0x14(%ebp)
+ 311:	74 0b                	je     31e <putblock8_8+0x5e>
+ 313:	b8 00 00 00 00       	mov    $0x0,%eax
+ 318:	85 db                	test   %ebx,%ebx
+ 31a:	7f d5                	jg     2f1 <putblock8_8+0x31>
+ 31c:	eb e8                	jmp    306 <putblock8_8+0x46>
+ 31e:	83 c4 04             	add    $0x4,%esp
+ 321:	5b                   	pop    %ebx
+ 322:	5e                   	pop    %esi
+ 323:	5f                   	pop    %edi
+ 324:	5d                   	pop    %ebp
+ 325:	c3                   	ret    

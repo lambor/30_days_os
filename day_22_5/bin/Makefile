@@ -1,0 +1,26 @@
+CFLAGS := $(CFLAGS) -O1 -fno-builtin -MD -fno-stack-protector
+CFLAGS += -fno-omit-frame-pointer
+CFLAGS += -Wall -Wno-format -Wno-unused -gstabs -m32
+CFLAGS += -g
+
+LDFLAGS=-m elf_i386
+
+all: hello.bin \
+	crack1.bin crack2.bin crack3.bin crack4.bin crack5.bin \
+	bug1.bin bug2.bin bug3.bin
+
+%.bin: entry.nas.o %.o api.nas.o
+	ld $(LDFLAGS) -N -e bin_entry -Ttext 0 -o $@.o $^
+	objcopy -S -O binary $@.o $@
+
+%.bin: entry.nas.o %.nas.o api.nas.o
+	ld $(LDFLAGS) -N -e bin_entry -Ttext 0 -o $@.o $^
+	objcopy -S -O binary $@.o $@
+
+%.o: %.c
+	gcc -nostdinc $(CFLAGS) -c -o $@ $<
+%.nas.o: %.nas
+	nasm -f elf $< -o $@
+
+clean:
+	rm -f *.bin *.o *.d
