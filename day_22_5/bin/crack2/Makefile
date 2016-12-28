@@ -10,6 +10,9 @@ CFLAGS += -fno-omit-frame-pointer
 CFLAGS += -Wall -Wno-format -Wno-unused -gstabs -m32
 CFLAGS += -g -c
 
+CFILES=$(wildcard *.c)
+NASFILES=$(wildcard *.nas)
+
 %.bin: %.header %.body
 	cat $^ > $@
 
@@ -27,13 +30,11 @@ entry.nas.o: ../entry.nas
 api.nas.o: ../api.nas
 	nasm -f elf $< -o $@
 
-CFILES=$(wildcard *.c)
-NASFILES=$(wildcard *.nas)
-
 %.o: $(CFILES)
 	gcc -nostdinc $(CFLAGS) -o $@ $^
+
 %.nas.o: $(NASFILES)
-	echo $^
+	echo $(NASFILES)
 	nasm -f elf -o $@ $^
 
 %.header: ../header.nas %.body
