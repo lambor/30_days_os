@@ -1,26 +1,42 @@
 CFLAGS := $(CFLAGS) -O1 -fno-builtin -MD -fno-stack-protector
 CFLAGS += -fno-omit-frame-pointer
 CFLAGS += -Wall -Wno-format -Wno-unused -gstabs -m32
-CFLAGS += -g
+CFLAGS += -g -c
 
-LDFLAGS=-m elf_i386
+all: hello.bin
 
-all: hello.bin \
-	crack1.bin crack2.bin crack3.bin crack4.bin crack5.bin \
-	bug1.bin bug2.bin bug3.bin
+%.bin: %.header %.body
+	cat $^ > $@
 
-%.bin: entry.nas.o %.o api.nas.o
-	ld $(LDFLAGS) -N -e bin_entry -Ttext 0 -o $@.o $^
-	objcopy -S -O binary $@.o $@
-
-%.bin: entry.nas.o %.nas.o api.nas.o
-	ld $(LDFLAGS) -N -e bin_entry -Ttext 0 -o $@.o $^
-	objcopy -S -O binary $@.o $@
+%.body: entry.nas.o %.o api.nas.o
+	gcc -P -E -DSTACK_SIZE=$(STACK_ESP0) bin_ld.c -o $@.ld
+	ld -T $@.ld -o $@.o $^
+	@rm $@.ld
+	objcopy -S -O binary $@.o $@.all
+	dd if=$@.all of=$@.data bs=1 skip=$(DEC_STACK_ESP0)
+	objcopy -S -O binary -j .text $@.o $@.text
+	cat $@.text $@.data > $@
 
 %.o: %.c
-	gcc -nostdinc $(CFLAGS) -c -o $@ $<
+	gcc -nostdinc $(CFLAGS) -o $@ $<
 %.nas.o: %.nas
 	nasm -f elf $< -o $@
 
+
+DATA_SEG_SIZE = 64*1024 	#64KB
+DATA_SEG_RESV = 0
+STACK_ESP0 = 0x400			#1KB
+DEC_STACK_ESP0 = $(shell printf "%d" $(STACK_ESP0))
+HEAP_BEGIN = 0
+
+%.header: header.nas %.body
+	nasm -DDATA_SEG_SIZE=$(DATA_SEG_SIZE) \
+		 -DDATA_SEG_RESV=$(DATA_SEG_RESV) \
+		 -DSTACK_ESP0=$(STACK_ESP0) \
+		 -DDATA_SEC_SIZE=$(wc -c < $>.data) \
+		 -DCODE_SEC_SIZE=$(wc -c < $>.text) \
+		 -DHEAP_BEGIN=$(HEAP_BEGIN) \
+		 -o $@ $<
+
 clean:
-	rm -f *.bin *.o *.d
+	rm -f *.bin *.o *.d *.header *.ld *.data *.text *.all *.body

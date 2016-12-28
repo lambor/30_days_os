@@ -1,9 +1,10 @@
-dd 64*1024
+dd DATA_SEG_SIZE
 db "Hari"
-dd 0
-dd	;stack esp
-dd 	;data section size
-dd  ;data section start point
-dd 0xe9000000	;jmp
-dd 	;code start point - 0x20
-dd  ;malloc start point
+dd DATA_SEG_RESV
+dd STACK_ESP0			;stack esp
+dd DATA_SEC_SIZE		;data section size
+dd CODE_SEC_SIZE + 64	;data section start point
+dd 0xe9000000			;jmp
+dd 64					;code start point - 0x20
+dd HEAP_BEGIN			;malloc start point
+times 64-36 db 0
