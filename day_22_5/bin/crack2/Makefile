@@ -1,3 +1,6 @@
+.SUFFIXES:					#write empty rule to erase the built-in rules
+
+.PHONY: all clean copy
 DATA_SEG_SIZE = 64*1024 	#64KB
 DATA_SEG_RESV = 0
 STACK_ESP0 = 0x400			#1KB
@@ -10,13 +13,13 @@ CFLAGS += -fno-omit-frame-pointer
 CFLAGS += -Wall -Wno-format -Wno-unused -gstabs -m32
 CFLAGS += -g -c
 
-CFILES=$(wildcard *.c)
-NASFILES=$(wildcard *.nas)
+CSRC=$(wildcard *.c)
+NASSRC=$(wildcard *.nas)
 
 %.bin: %.header %.body
 	cat $^ > $@
 
-%.body: entry.nas.o %.nas.o api.nas.o
+%.body: entry.o  %.nas.o api.o
 	gcc -P -E -DSTACK_SIZE=$(STACK_ESP0) -DHEADER_SIZE=$(HEADER_SIZE) ../bin_ld.c -o $@.ld
 	ld -T $@.ld -o $@.o $^
 	objcopy -S -O binary $@.o $@.all
@@ -24,18 +27,18 @@ NASFILES=$(wildcard *.nas)
 	objcopy -S -O binary -j .text $@.o $@.text
 	cat $@.text $@.data > $@
 
-entry.nas.o: ../entry.nas
-	nasm -f elf $< -o $@
-
-api.nas.o: ../api.nas
-	nasm -f elf $< -o $@
-
-%.o: $(CFILES)
+%.c.o: $(CSRC)
 	gcc -nostdinc $(CFLAGS) -o $@ $^
 
-%.nas.o: $(NASFILES)
-	echo $(NASFILES)
-	nasm -f elf -o $@ $^
+%.nas.o: $(NASSRC)
+	nasm -f elf $^ -o $@
+
+entry.o: ../entry.nas
+	nasm -f elf $< -o $@
+
+api.o: ../api.nas
+	nasm -f elf $< -o $@
+
 
 %.header: ../header.nas %.body
 	nasm -DDATA_SEG_SIZE=$(DATA_SEG_SIZE) \
@@ -46,6 +49,8 @@ api.nas.o: ../api.nas
 		 -DHEAP_BEGIN=$(HEAP_BEGIN) \
 		 -DHEADER_SIZE=$(HEADER_SIZE) \
 		 -o $@ $<
+copy:
+	cp *.bin ../ 
 
 clean:
 	rm -f *.bin *.o *.d *.header *.ld *.data *.text *.all *.body

@@ -5,4 +5,3 @@
 bin_entry:
 	call binmain
 	call api_end
-	

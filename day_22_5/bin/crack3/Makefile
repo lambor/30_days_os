@@ -19,7 +19,7 @@ NASSRC=$(wildcard *.nas)
 %.bin: %.header %.body
 	cat $^ > $@
 
-%.body: entry.o %.c.o api.o
+%.body: entry.o %.nas.o api.o
 	gcc -P -E -DSTACK_SIZE=$(STACK_ESP0) -DHEADER_SIZE=$(HEADER_SIZE) ../bin_ld.c -o $@.ld
 	ld -T $@.ld -o $@.o $^
 	objcopy -S -O binary $@.o $@.all
