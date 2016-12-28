@@ -8,7 +8,7 @@ ENTRY(bin_entry)
 SECTIONS
 {
 	/* Link the kernel at this address: "." means the current address */
-	. = 0;
+	. = HEADER_SIZE;
 
 	/* AT(...) gives the load address of this section, which tells
 	   the boot loader where to load the kernel in physical memory */
