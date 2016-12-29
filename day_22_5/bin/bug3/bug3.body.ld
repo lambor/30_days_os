@@ -8,11 +8,11 @@ SECTIONS
   *(.text .stub .text.* .gnu.linkonce.t.*)
  }
  . = 0x400;
- .rodata : {
-  *(.rodata .rodata.* .gnu.linkonce.r.*)
- }
  .bss : {
   *(.bss)
+ }
+ .rodata : {
+  *(.rodata .rodata.* .gnu.linkonce.r.*)
  }
  .data : {
   *(.data)

@@ -16,14 +16,14 @@ SECTIONS
 		*(.text .stub .text.* .gnu.linkonce.t.*)
 	}
 	. = STACK_SIZE;
+	.bss : {
+		*(.bss)
+	}
+
 	.rodata : {
 		*(.rodata .rodata.* .gnu.linkonce.r.*)
 	}
 
-	.bss : {
-		*(.bss)
-	}
-	
 	.data : {
 		*(.data)
 	}
