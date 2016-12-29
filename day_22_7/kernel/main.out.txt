@@ -1,5 +1,5 @@
 
-main.out.o:     file format elf32-i386
+main.out.o：     文件格式 elf32-i386
 
 
 Disassembly of section .text:
@@ -288,7 +288,7 @@ int bootmain()
 	make_window8(buf_window,144,52,"task_a",1);
   280227:	83 c4 14             	add    $0x14,%esp
   28022a:	6a 01                	push   $0x1
-  28022c:	68 00 3f 28 00       	push   $0x283f00
+  28022c:	68 60 3f 28 00       	push   $0x283f60
   280231:	6a 34                	push   $0x34
   280233:	68 90 00 00 00       	push   $0x90
   280238:	ff b5 b8 fb ff ff    	pushl  -0x448(%ebp)
@@ -406,7 +406,7 @@ int bootmain()
 	make_window8(buf_console,256,165,"console",0);
   28033a:	83 c4 14             	add    $0x14,%esp
   28033d:	6a 00                	push   $0x0
-  28033f:	68 0c 3f 28 00       	push   $0x283f0c
+  28033f:	68 6c 3f 28 00       	push   $0x283f6c
   280344:	68 a5 00 00 00       	push   $0xa5
   280349:	68 00 01 00 00       	push   $0x100
   28034e:	ff b5 b0 fb ff ff    	pushl  -0x450(%ebp)
@@ -797,14 +797,14 @@ int bootmain()
 						key_to = 1;
 						make_wtitle8(buf_window,sht_window->bxsize,"task_a",0);
   28069a:	6a 00                	push   $0x0
-  28069c:	68 00 3f 28 00       	push   $0x283f00
+  28069c:	68 60 3f 28 00       	push   $0x283f60
   2806a1:	ff 73 04             	pushl  0x4(%ebx)
   2806a4:	ff b5 b8 fb ff ff    	pushl  -0x448(%ebp)
   2806aa:	e8 6e 08 00 00       	call   280f1d <make_wtitle8>
 						make_wtitle8(buf_console,sht_console->bxsize,"task_console",1);
   2806af:	8b 85 d4 fb ff ff    	mov    -0x42c(%ebp),%eax
   2806b5:	6a 01                	push   $0x1
-  2806b7:	68 07 3f 28 00       	push   $0x283f07
+  2806b7:	68 67 3f 28 00       	push   $0x283f67
   2806bc:	ff 70 04             	pushl  0x4(%eax)
   2806bf:	ff b5 b0 fb ff ff    	pushl  -0x450(%ebp)
   2806c5:	e8 53 08 00 00       	call   280f1d <make_wtitle8>
@@ -848,14 +848,14 @@ int bootmain()
 						key_to = 0;
 						make_wtitle8(buf_window,sht_window->bxsize,"task_a",1);
   280709:	6a 01                	push   $0x1
-  28070b:	68 00 3f 28 00       	push   $0x283f00
+  28070b:	68 60 3f 28 00       	push   $0x283f60
   280710:	ff 73 04             	pushl  0x4(%ebx)
   280713:	ff b5 b8 fb ff ff    	pushl  -0x448(%ebp)
   280719:	e8 ff 07 00 00       	call   280f1d <make_wtitle8>
 						make_wtitle8(buf_console,sht_console->bxsize,"task_console",0);
   28071e:	8b 85 d4 fb ff ff    	mov    -0x42c(%ebp),%eax
   280724:	6a 00                	push   $0x0
-  280726:	68 07 3f 28 00       	push   $0x283f07
+  280726:	68 67 3f 28 00       	push   $0x283f67
   28072b:	ff 70 04             	pushl  0x4(%eax)
   28072e:	ff b5 b0 fb ff ff    	pushl  -0x450(%ebp)
   280734:	e8 e4 07 00 00       	call   280f1d <make_wtitle8>
@@ -915,7 +915,7 @@ int bootmain()
 						putfonts8_asc_sht(sht_window,cursor_x,28,COL8_000000,COL8_FFFFFF," ",1);
   2807a6:	50                   	push   %eax
   2807a7:	6a 01                	push   $0x1
-  2807a9:	68 e3 42 28 00       	push   $0x2842e3
+  2807a9:	68 43 43 28 00       	push   $0x284343
   2807ae:	6a 07                	push   $0x7
   2807b0:	6a 00                	push   $0x0
   2807b2:	6a 1c                	push   $0x1c
@@ -1087,15 +1087,15 @@ int bootmain()
 					cons_putstr0(cons,"\nBreak(key):\n");
   280914:	50                   	push   %eax
   280915:	50                   	push   %eax
-  280916:	68 14 3f 28 00       	push   $0x283f14
+  280916:	68 74 3f 28 00       	push   $0x283f74
   28091b:	ff 35 ec 0f 00 00    	pushl  0xfec
   280921:	e8 b3 2f 00 00       	call   2838d9 <cons_putstr0>
 					io_cli();
   280926:	e8 27 02 00 00       	call   280b52 <io_cli>
 					task_console->tss.eax = (int)&(task_console->tss.esp0);
   28092b:	8d 46 30             	lea    0x30(%esi),%eax
-					task_console->tss.eip = (int)asm_end_app;
-  28092e:	c7 46 4c 90 2a 28 00 	movl   $0x282a90,0x4c(%esi)
+					task_console->tss.eip = (int)asm_end_app - 0x280000;
+  28092e:	c7 46 4c 90 2a 00 00 	movl   $0x2a90,0x4c(%esi)
 				{
 					struct CONSOLE *cons = (struct CONSOLE *) *((int *)0x0fec);
 					extern void asm_end_app();
@@ -1103,7 +1103,7 @@ int bootmain()
 					io_cli();
 					task_console->tss.eax = (int)&(task_console->tss.esp0);
   280935:	89 46 54             	mov    %eax,0x54(%esi)
-					task_console->tss.eip = (int)asm_end_app;
+					task_console->tss.eip = (int)asm_end_app - 0x280000;
 					io_sti();
   280938:	e8 17 02 00 00       	call   280b54 <io_sti>
   28093d:	e9 6b ff ff ff       	jmp    2808ad <bootmain+0x8ad>
@@ -1117,7 +1117,7 @@ int bootmain()
   280949:	ff ff ff 
 					io_cli();
 					task_console->tss.eax = (int)&(task_console->tss.esp0);
-					task_console->tss.eip = (int)asm_end_app;
+					task_console->tss.eip = (int)asm_end_app - 0x280000;
 					io_sti();
 				}
 				if(cursor_c >= 0)
@@ -1152,7 +1152,7 @@ int bootmain()
   28098a:	83 c4 20             	add    $0x20,%esp
   28098d:	ff b5 d8 fb ff ff    	pushl  -0x428(%ebp)
   280993:	ff b5 e0 fb ff ff    	pushl  -0x420(%ebp)
-  280999:	68 22 3f 28 00       	push   $0x283f22
+  280999:	68 82 3f 28 00       	push   $0x283f82
   28099e:	50                   	push   %eax
   28099f:	89 85 a4 fb ff ff    	mov    %eax,-0x45c(%ebp)
   2809a5:	e8 43 0f 00 00       	call   2818ed <sprintf>
@@ -1580,7 +1580,7 @@ void init_palette(void)
 		0x84, 0x84, 0x84,	//dark gray
 	};
 	set_palette(0,15,table_rgb);
-  280cc1:	68 20 50 28 00       	push   $0x285020
+  280cc1:	68 60 50 28 00       	push   $0x285060
   280cc6:	6a 0f                	push   $0xf
   280cc8:	6a 00                	push   $0x0
   280cca:	e8 4e ff ff ff       	call   280c1d <set_palette>
@@ -1908,7 +1908,7 @@ void init_mouse_cursor8(char *mouse, char bc)
 		for(x=0;x<16;x++)
 		{
 			if(cursor[y][x] == '*')
-  280ed1:	0f b6 94 03 20 40 28 	movzbl 0x284020(%ebx,%eax,1),%edx
+  280ed1:	0f b6 94 03 80 40 28 	movzbl 0x284080(%ebx,%eax,1),%edx
   280ed8:	00 
   280ed9:	80 fa 2a             	cmp    $0x2a,%dl
   280edc:	75 06                	jne    280ee4 <init_mouse_cursor8+0x31>
@@ -2042,7 +2042,7 @@ void make_wtitle8(unsigned char *buf,int xsize,char *title,char act)
 		for(x=0;x<16;x++)
 		{
 			c=closebtn[y][x];
-  280f87:	0f b6 9c 06 40 3f 28 	movzbl 0x283f40(%esi,%eax,1),%ebx
+  280f87:	0f b6 9c 06 a0 3f 28 	movzbl 0x283fa0(%esi,%eax,1),%ebx
   280f8e:	00 
 			if(c == '@') c=COL8_000000;
   280f8f:	ba 00 00 00 00       	mov    $0x0,%edx
@@ -2600,7 +2600,7 @@ void putfonts8_asc(char *vram,int xsize,int x,int y,char c,unsigned char *s)
   281340:	0f be fa             	movsbl %dl,%edi
   281343:	0f b6 c0             	movzbl %al,%eax
   281346:	c1 e0 04             	shl    $0x4,%eax
-  281349:	05 60 50 28 00       	add    $0x285060,%eax
+  281349:	05 a0 50 28 00       	add    $0x2850a0,%eax
   28134e:	50                   	push   %eax
   28134f:	57                   	push   %edi
   281350:	ff 75 14             	pushl  0x14(%ebp)
@@ -3059,7 +3059,7 @@ int *inthandler0d(int *esp)
   281688:	89 c3                	mov    %eax,%ebx
 	cons_putstr0(cons,"\nINT 0D:\n General Protected Exception.\n");
   28168a:	83 ec 08             	sub    $0x8,%esp
-  28168d:	68 20 41 28 00       	push   $0x284120
+  28168d:	68 80 41 28 00       	push   $0x284180
   281692:	56                   	push   %esi
   281693:	e8 41 22 00 00       	call   2838d9 <cons_putstr0>
 	char s[30];
@@ -3067,7 +3067,7 @@ int *inthandler0d(int *esp)
   281698:	83 c4 0c             	add    $0xc,%esp
   28169b:	8b 45 08             	mov    0x8(%ebp),%eax
   28169e:	ff 70 2c             	pushl  0x2c(%eax)
-  2816a1:	68 48 41 28 00       	push   $0x284148
+  2816a1:	68 a8 41 28 00       	push   $0x2841a8
   2816a6:	8d 7d ca             	lea    -0x36(%ebp),%edi
   2816a9:	57                   	push   %edi
   2816aa:	e8 3e 02 00 00       	call   2818ed <sprintf>
@@ -3105,7 +3105,7 @@ int *inthandler0c(int *esp)
   2816d8:	89 c3                	mov    %eax,%ebx
 	cons_putstr0(cons,"\nINT 0C:\n Stack Exception.\n");
   2816da:	83 ec 08             	sub    $0x8,%esp
-  2816dd:	68 50 41 28 00       	push   $0x284150
+  2816dd:	68 b0 41 28 00       	push   $0x2841b0
   2816e2:	56                   	push   %esi
   2816e3:	e8 f1 21 00 00       	call   2838d9 <cons_putstr0>
 	char s[30];
@@ -3113,7 +3113,7 @@ int *inthandler0c(int *esp)
   2816e8:	83 c4 0c             	add    $0xc,%esp
   2816eb:	8b 45 08             	mov    0x8(%ebp),%eax
   2816ee:	ff 70 2c             	pushl  0x2c(%eax)
-  2816f1:	68 48 41 28 00       	push   $0x284148
+  2816f1:	68 a8 41 28 00       	push   $0x2841a8
   2816f6:	8d 7d ca             	lea    -0x36(%ebp),%edi
   2816f9:	57                   	push   %edi
   2816fa:	e8 ee 01 00 00       	call   2818ed <sprintf>
@@ -3942,10 +3942,10 @@ void enable_mouse(struct FIFO32 *fifo,int data0,struct MOUSE_DEC *mdec)
   281b97:	83 ec 08             	sub    $0x8,%esp
 	mousefifo = fifo;
   281b9a:	8b 45 08             	mov    0x8(%ebp),%eax
-  281b9d:	a3 44 6a 28 00       	mov    %eax,0x286a44
+  281b9d:	a3 84 6a 28 00       	mov    %eax,0x286a84
 	mousedata0 = data0;
   281ba2:	8b 45 0c             	mov    0xc(%ebp),%eax
-  281ba5:	a3 40 6a 28 00       	mov    %eax,0x286a40
+  281ba5:	a3 80 6a 28 00       	mov    %eax,0x286a80
 
 	wait_KBC_sendready();
   281baa:	e8 1a 01 00 00       	call   281cc9 <wait_KBC_sendready>
@@ -4121,9 +4121,9 @@ void inthandler2c(int *esp)
   281caa:	e8 b5 ee ff ff       	call   280b64 <io_in8>
 	fifo32_put(mousefifo,data+mousedata0);
   281caf:	83 c4 08             	add    $0x8,%esp
-  281cb2:	03 05 40 6a 28 00    	add    0x286a40,%eax
+  281cb2:	03 05 80 6a 28 00    	add    0x286a80,%eax
   281cb8:	50                   	push   %eax
-  281cb9:	ff 35 44 6a 28 00    	pushl  0x286a44
+  281cb9:	ff 35 84 6a 28 00    	pushl  0x286a84
   281cbf:	e8 15 fe ff ff       	call   281ad9 <fifo32_put>
 	return;
   281cc4:	83 c4 10             	add    $0x10,%esp
@@ -4166,10 +4166,10 @@ void init_keyboard(struct FIFO32 *fifo,int data0)
   281ce5:	83 ec 08             	sub    $0x8,%esp
 	keyfifo = fifo;
   281ce8:	8b 45 08             	mov    0x8(%ebp),%eax
-  281ceb:	a3 48 6a 28 00       	mov    %eax,0x286a48
+  281ceb:	a3 88 6a 28 00       	mov    %eax,0x286a88
 	keydata0 = data0;
   281cf0:	8b 45 0c             	mov    0xc(%ebp),%eax
-  281cf3:	a3 4c 6a 28 00       	mov    %eax,0x286a4c
+  281cf3:	a3 8c 6a 28 00       	mov    %eax,0x286a8c
 	wait_KBC_sendready();
   281cf8:	e8 cc ff ff ff       	call   281cc9 <wait_KBC_sendready>
 	io_out8(PORT_KEYCMD,KEYCMD_WRITE_MODE);
@@ -4211,9 +4211,9 @@ void inthandler21(int *esp)
   281d35:	e8 2a ee ff ff       	call   280b64 <io_in8>
 	fifo32_put(keyfifo,data + keydata0);
   281d3a:	83 c4 08             	add    $0x8,%esp
-  281d3d:	03 05 4c 6a 28 00    	add    0x286a4c,%eax
+  281d3d:	03 05 8c 6a 28 00    	add    0x286a8c,%eax
   281d43:	50                   	push   %eax
-  281d44:	ff 35 48 6a 28 00    	pushl  0x286a48
+  281d44:	ff 35 88 6a 28 00    	pushl  0x286a88
   281d4a:	e8 8a fd ff ff       	call   281ad9 <fifo32_put>
 	return;
   281d4f:	83 c4 10             	add    $0x10,%esp
@@ -4250,10 +4250,10 @@ char key_char(int key, int key_shift)
 		if(key_shift==0) return keytable0[key];
   281d64:	83 7d 0c 00          	cmpl   $0x0,0xc(%ebp)
   281d68:	75 09                	jne    281d73 <key_char+0x1f>
-  281d6a:	0f b6 82 00 42 28 00 	movzbl 0x284200(%edx),%eax
+  281d6a:	0f b6 82 60 42 28 00 	movzbl 0x284260(%edx),%eax
   281d71:	eb 07                	jmp    281d7a <key_char+0x26>
 		else return keytable1[key];
-  281d73:	0f b6 82 80 41 28 00 	movzbl 0x284180(%edx),%eax
+  281d73:	0f b6 82 e0 41 28 00 	movzbl 0x2841e0(%edx),%eax
 	}
 	else return 0;
 }
@@ -5947,9 +5947,9 @@ struct TIMER *timer_alloc(void)
 	for(i=0;i<MAX_TIMER;i++)
 	{
 		if(timerctl.timers0[i].flags == 0)
-  28285a:	83 3d 70 6a 28 00 00 	cmpl   $0x0,0x286a70
+  28285a:	83 3d b0 6a 28 00 00 	cmpl   $0x0,0x286ab0
   282861:	74 11                	je     282874 <timer_alloc+0x1d>
-  282863:	ba 84 6a 28 00       	mov    $0x286a84,%edx
+  282863:	ba c4 6a 28 00       	mov    $0x286ac4,%edx
 }
 
 struct TIMER *timer_alloc(void)
@@ -5975,10 +5975,10 @@ struct TIMER *timer_alloc(void)
 			timerctl.timers0[i].flags = TIMER_FLAGS_ALLOC;
   282879:	8d 14 85 00 00 00 00 	lea    0x0(,%eax,4),%edx
   282880:	8d 0c 02             	lea    (%edx,%eax,1),%ecx
-  282883:	c7 04 8d 70 6a 28 00 	movl   $0x1,0x286a70(,%ecx,4)
+  282883:	c7 04 8d b0 6a 28 00 	movl   $0x1,0x286ab0(,%ecx,4)
   28288a:	01 00 00 00 
 			return &timerctl.timers0[i];
-  28288e:	8d 04 8d 68 6a 28 00 	lea    0x286a68(,%ecx,4),%eax
+  28288e:	8d 04 8d a8 6a 28 00 	lea    0x286aa8(,%ecx,4),%eax
   282895:	eb 12                	jmp    2828a9 <timer_alloc+0x52>
 }
 
@@ -6026,8 +6026,8 @@ void init_pit(void)
   2828cc:	6a 2e                	push   $0x2e
   2828ce:	6a 40                	push   $0x40
   2828d0:	e8 b1 e2 ff ff       	call   280b86 <io_out8>
-  2828d5:	b8 70 6a 28 00       	mov    $0x286a70,%eax
-  2828da:	ba 80 91 28 00       	mov    $0x289180,%edx
+  2828d5:	b8 b0 6a 28 00       	mov    $0x286ab0,%eax
+  2828da:	ba c0 91 28 00       	mov    $0x2891c0,%edx
   2828df:	83 c4 10             	add    $0x10,%esp
 	for(int i=0;i<MAX_TIMER;i++)
 		timerctl.timers0[i].flags = 0;
@@ -6051,9 +6051,9 @@ void init_pit(void)
 	t->flags = TIMER_FLAGS_USING;
   282901:	c7 40 08 02 00 00 00 	movl   $0x2,0x8(%eax)
 	timerctl.t0 = t;
-  282908:	a3 78 91 28 00       	mov    %eax,0x289178
+  282908:	a3 b8 91 28 00       	mov    %eax,0x2891b8
 	timerctl.next = 0xffffffff;
-  28290d:	c7 05 64 6a 28 00 ff 	movl   $0xffffffff,0x286a64
+  28290d:	c7 05 a4 6a 28 00 ff 	movl   $0xffffffff,0x286aa4
   282914:	ff ff ff 
 	return;
 }
@@ -6107,7 +6107,7 @@ void timer_settime(struct TIMER *timer,unsigned int timeout)
   282942:	83 ec 0c             	sub    $0xc,%esp
   282945:	8b 5d 08             	mov    0x8(%ebp),%ebx
 	timer->timeout = timeout + timerctl.count;
-  282948:	a1 60 6a 28 00       	mov    0x286a60,%eax
+  282948:	a1 a0 6a 28 00       	mov    0x286aa0,%eax
   28294d:	03 45 0c             	add    0xc(%ebp),%eax
   282950:	89 43 04             	mov    %eax,0x4(%ebx)
 	timer->flags = TIMER_FLAGS_USING;
@@ -6120,17 +6120,17 @@ void timer_settime(struct TIMER *timer,unsigned int timeout)
 	struct TIMER *t, *s;
 	if(timer->timeout<=timerctl.t0->timeout)
   282966:	8b 4b 04             	mov    0x4(%ebx),%ecx
-  282969:	8b 3d 78 91 28 00    	mov    0x289178,%edi
+  282969:	8b 3d b8 91 28 00    	mov    0x2891b8,%edi
   28296f:	3b 4f 04             	cmp    0x4(%edi),%ecx
   282972:	77 1e                	ja     282992 <timer_settime+0x56>
 	{
 		timer->next = timerctl.t0;
   282974:	89 3b                	mov    %edi,(%ebx)
 		timerctl.t0 = timer;
-  282976:	89 1d 78 91 28 00    	mov    %ebx,0x289178
+  282976:	89 1d b8 91 28 00    	mov    %ebx,0x2891b8
 		timerctl.next = timer->timeout;
   28297c:	8b 43 04             	mov    0x4(%ebx),%eax
-  28297f:	a3 64 6a 28 00       	mov    %eax,0x286a64
+  28297f:	a3 a4 6a 28 00       	mov    %eax,0x286aa4
 		io_store_eflags(e);
   282984:	83 ec 0c             	sub    $0xc,%esp
   282987:	56                   	push   %esi
@@ -6228,17 +6228,17 @@ void inthandler20(int *esp)
   2829e2:	6a 20                	push   $0x20
   2829e4:	e8 9d e1 ff ff       	call   280b86 <io_out8>
 	timerctl.count ++;
-  2829e9:	a1 60 6a 28 00       	mov    0x286a60,%eax
+  2829e9:	a1 a0 6a 28 00       	mov    0x286aa0,%eax
   2829ee:	8d 50 01             	lea    0x1(%eax),%edx
-  2829f1:	89 15 60 6a 28 00    	mov    %edx,0x286a60
+  2829f1:	89 15 a0 6a 28 00    	mov    %edx,0x286aa0
 	
 	if(timerctl.count >= timerctl.next)
   2829f7:	83 c4 10             	add    $0x10,%esp
-  2829fa:	3b 15 64 6a 28 00    	cmp    0x286a64,%edx
+  2829fa:	3b 15 a4 6a 28 00    	cmp    0x286aa4,%edx
   282a00:	72 6e                	jb     282a70 <inthandler20+0x98>
 	{
 		struct TIMER *t = timerctl.t0;
-  282a02:	8b 1d 78 91 28 00    	mov    0x289178,%ebx
+  282a02:	8b 1d b8 91 28 00    	mov    0x2891b8,%ebx
 		while(t)
   282a08:	85 db                	test   %ebx,%ebx
   282a0a:	75 4b                	jne    282a57 <inthandler20+0x7f>
@@ -6246,13 +6246,13 @@ void inthandler20(int *esp)
 		{
 			if(t->timeout <= timerctl.count)
   282a0e:	8b 43 04             	mov    0x4(%ebx),%eax
-  282a11:	3b 05 60 6a 28 00    	cmp    0x286a60,%eax
+  282a11:	3b 05 a0 6a 28 00    	cmp    0x286aa0,%eax
   282a17:	77 31                	ja     282a4a <inthandler20+0x72>
 			{
 				t->flags = TIMER_FLAGS_ALLOC;
   282a19:	c7 43 08 01 00 00 00 	movl   $0x1,0x8(%ebx)
 				if(t!=task_timer) fifo32_put(t->fifo,t->data);
-  282a20:	39 1d 80 91 28 00    	cmp    %ebx,0x289180
+  282a20:	39 1d c0 91 28 00    	cmp    %ebx,0x2891c0
   282a26:	74 15                	je     282a3d <inthandler20+0x65>
   282a28:	83 ec 08             	sub    $0x8,%esp
   282a2b:	0f b6 43 10          	movzbl 0x10(%ebx),%eax
@@ -6280,9 +6280,9 @@ void inthandler20(int *esp)
 			else
 			{
 				timerctl.next = t->timeout;
-  282a4a:	a3 64 6a 28 00       	mov    %eax,0x286a64
+  282a4a:	a3 a4 6a 28 00       	mov    %eax,0x286aa4
 				timerctl.t0 = t;
-  282a4f:	89 1d 78 91 28 00    	mov    %ebx,0x289178
+  282a4f:	89 1d b8 91 28 00    	mov    %ebx,0x2891b8
 				break;
   282a55:	eb 0e                	jmp    282a65 <inthandler20+0x8d>
 	if(timerctl.count >= timerctl.next)
@@ -6367,7 +6367,7 @@ struct TASK *task_alloc(void)
 	for(i=0;i<MAX_TASKS;i++)
 	{
 		if(taskctl->tasks0[i].flags == 0)
-  282aab:	8b 0d 7c 91 28 00    	mov    0x28917c,%ecx
+  282aab:	8b 0d bc 91 28 00    	mov    0x2891bc,%ecx
   282ab1:	83 b9 fc 0f 00 00 00 	cmpl   $0x0,0xffc(%ecx)
   282ab8:	74 16                	je     282ad0 <task_alloc+0x28>
   282aba:	8d 91 90 10 00 00    	lea    0x1090(%ecx),%edx
@@ -6478,7 +6478,7 @@ struct TASK *task_now(void)
   282ba2:	55                   	push   %ebp
   282ba3:	89 e5                	mov    %esp,%ebp
 	struct TASKLEVEL *tl = &taskctl->level[taskctl->now_lv];
-  282ba5:	8b 15 7c 91 28 00    	mov    0x28917c,%edx
+  282ba5:	8b 15 bc 91 28 00    	mov    0x2891bc,%edx
   282bab:	8b 02                	mov    (%edx),%eax
 	return tl->tasks[tl->now];
   282bad:	69 c8 98 01 00 00    	imul   $0x198,%eax,%ecx
@@ -6499,7 +6499,7 @@ void task_add(struct TASK *task)
   282bc4:	53                   	push   %ebx
   282bc5:	8b 5d 08             	mov    0x8(%ebp),%ebx
 	struct TASKLEVEL *tl = &taskctl->level[task->level];
-  282bc8:	8b 35 7c 91 28 00    	mov    0x28917c,%esi
+  282bc8:	8b 35 bc 91 28 00    	mov    0x2891bc,%esi
   282bce:	8b 4b 08             	mov    0x8(%ebx),%ecx
   282bd1:	69 c1 98 01 00 00    	imul   $0x198,%ecx,%eax
   282bd7:	01 f0                	add    %esi,%eax
@@ -6534,7 +6534,7 @@ void task_remove(struct TASK *task)
   282bff:	83 ec 04             	sub    $0x4,%esp
   282c02:	8b 5d 08             	mov    0x8(%ebp),%ebx
 	struct TASKLEVEL *tl = &taskctl->level[task->level];
-  282c05:	8b 3d 7c 91 28 00    	mov    0x28917c,%edi
+  282c05:	8b 3d bc 91 28 00    	mov    0x2891bc,%edi
   282c0b:	8b 43 08             	mov    0x8(%ebx),%eax
   282c0e:	89 45 f0             	mov    %eax,-0x10(%ebp)
   282c11:	69 d0 98 01 00 00    	imul   $0x198,%eax,%edx
@@ -6670,7 +6670,7 @@ void task_run(struct TASK *task,int level,int priority)
   282cd6:	83 c4 04             	add    $0x4,%esp
 	}
 	taskctl->lv_change = 1;
-  282cd9:	a1 7c 91 28 00       	mov    0x28917c,%eax
+  282cd9:	a1 bc 91 28 00       	mov    0x2891bc,%eax
   282cde:	c6 40 04 01          	movb   $0x1,0x4(%eax)
 	return;
 }
@@ -6693,7 +6693,7 @@ void task_switchsub(void)
 	for(i=0;i<MAX_TASKLEVELS;i++)
 	{
 		if(taskctl->level[i].running>0) break;
-  282cec:	8b 0d 7c 91 28 00    	mov    0x28917c,%ecx
+  282cec:	8b 0d bc 91 28 00    	mov    0x2891bc,%ecx
   282cf2:	83 79 08 00          	cmpl   $0x0,0x8(%ecx)
   282cf6:	7f 20                	jg     282d18 <task_switchsub+0x2f>
   282cf8:	8d 91 a0 01 00 00    	lea    0x1a0(%ecx),%edx
@@ -6726,7 +6726,7 @@ void task_switchsub(void)
 	taskctl->now_lv = i;
   282d1d:	89 01                	mov    %eax,(%ecx)
 	taskctl->lv_change = 0;
-  282d1f:	a1 7c 91 28 00       	mov    0x28917c,%eax
+  282d1f:	a1 bc 91 28 00       	mov    0x2891bc,%eax
   282d24:	c6 40 04 00          	movb   $0x0,0x4(%eax)
 	return;
 }
@@ -6754,14 +6754,14 @@ struct TASK *task_init(struct MEMMAN *memman)
   282d36:	68 18 52 02 00       	push   $0x25218
   282d3b:	57                   	push   %edi
   282d3c:	e8 1c f5 ff ff       	call   28225d <memman_alloc_4k>
-  282d41:	a3 7c 91 28 00       	mov    %eax,0x28917c
+  282d41:	a3 bc 91 28 00       	mov    %eax,0x2891bc
   282d46:	83 c4 10             	add    $0x10,%esp
   282d49:	be 20 00 00 00       	mov    $0x20,%esi
 	for(i=0;i<MAX_TASKS;i++)
   282d4e:	bb 00 00 00 00       	mov    $0x0,%ebx
 	{
 		taskctl->tasks0[i].flags = 0;
-  282d53:	8b 15 7c 91 28 00    	mov    0x28917c,%edx
+  282d53:	8b 15 bc 91 28 00    	mov    0x2891bc,%edx
   282d59:	69 c3 94 00 00 00    	imul   $0x94,%ebx,%eax
   282d5f:	8d 0c 02             	lea    (%edx,%eax,1),%ecx
   282d62:	c7 81 fc 0f 00 00 00 	movl   $0x0,0xffc(%ecx)
@@ -6793,7 +6793,7 @@ struct TASK *task_init(struct MEMMAN *memman)
 	for(i=0;i<MAX_TASKLEVELS;i++)
 	{
 		taskctl->level[i].running = 0;
-  282d9e:	8b 15 7c 91 28 00    	mov    0x28917c,%edx
+  282d9e:	8b 15 bc 91 28 00    	mov    0x2891bc,%edx
   282da4:	8d 42 08             	lea    0x8(%edx),%eax
   282da7:	81 c2 f8 0f 00 00    	add    $0xff8,%edx
   282dad:	c7 00 00 00 00 00    	movl   $0x0,(%eax)
@@ -6834,7 +6834,7 @@ struct TASK *task_init(struct MEMMAN *memman)
   282df2:	e8 89 fc ff ff       	call   282a80 <load_tr>
 	task_timer = timer_alloc();
   282df7:	e8 5b fa ff ff       	call   282857 <timer_alloc>
-  282dfc:	a3 80 91 28 00       	mov    %eax,0x289180
+  282dfc:	a3 c0 91 28 00       	mov    %eax,0x2891c0
 	timer_settime(task_timer,task->priority);
   282e01:	83 c4 08             	add    $0x8,%esp
   282e04:	ff 76 0c             	pushl  0xc(%esi)
@@ -6896,7 +6896,7 @@ void task_switch(void)
   282e7e:	56                   	push   %esi
   282e7f:	53                   	push   %ebx
 	struct TASKLEVEL *tl = &taskctl->level[taskctl->now_lv];
-  282e80:	8b 0d 7c 91 28 00    	mov    0x28917c,%ecx
+  282e80:	8b 0d bc 91 28 00    	mov    0x2891bc,%ecx
   282e86:	8b 31                	mov    (%ecx),%esi
   282e88:	69 c6 98 01 00 00    	imul   $0x198,%esi,%eax
   282e8e:	01 c8                	add    %ecx,%eax
@@ -6935,7 +6935,7 @@ void task_switch(void)
 		task_switchsub();
   282ec0:	e8 24 fe ff ff       	call   282ce9 <task_switchsub>
 		tl = &taskctl->level[taskctl->now_lv];
-  282ec5:	a1 7c 91 28 00       	mov    0x28917c,%eax
+  282ec5:	a1 bc 91 28 00       	mov    0x2891bc,%eax
   282eca:	69 10 98 01 00 00    	imul   $0x198,(%eax),%edx
   282ed0:	8d 44 10 08          	lea    0x8(%eax,%edx,1),%eax
 	}
@@ -6945,7 +6945,7 @@ void task_switch(void)
 	timer_settime(task_timer,new_task->priority);
   282edb:	83 ec 08             	sub    $0x8,%esp
   282ede:	ff 76 0c             	pushl  0xc(%esi)
-  282ee1:	ff 35 80 91 28 00    	pushl  0x289180
+  282ee1:	ff 35 c0 91 28 00    	pushl  0x2891c0
   282ee7:	e8 50 fa ff ff       	call   28293c <timer_settime>
 	if(new_task != now_task)
   282eec:	83 c4 10             	add    $0x10,%esp
@@ -7894,7 +7894,7 @@ void cons_putchar(struct CONSOLE *cons,int chr,char move)
 			putfonts8_asc_sht(cons->sht,cons->cur_x,cons->cur_y,COL8_FFFFFF,COL8_000000," ",1);
   2835b6:	83 ec 04             	sub    $0x4,%esp
   2835b9:	6a 01                	push   $0x1
-  2835bb:	68 e3 42 28 00       	push   $0x2842e3
+  2835bb:	68 43 43 28 00       	push   $0x284343
   2835c0:	6a 00                	push   $0x0
   2835c2:	6a 07                	push   $0x7
   2835c4:	ff 73 08             	pushl  0x8(%ebx)
@@ -7997,7 +7997,7 @@ void cmd_mem(struct CONSOLE *cons,unsigned int memtotal)
   283663:	8b 45 0c             	mov    0xc(%ebp),%eax
   283666:	c1 e8 14             	shr    $0x14,%eax
   283669:	50                   	push   %eax
-  28366a:	68 80 42 28 00       	push   $0x284280
+  28366a:	68 e0 42 28 00       	push   $0x2842e0
   28366f:	8d 75 da             	lea    -0x26(%ebp),%esi
   283672:	56                   	push   %esi
   283673:	e8 75 e2 ff ff       	call   2818ed <sprintf>
@@ -8021,7 +8021,7 @@ void cmd_mem(struct CONSOLE *cons,unsigned int memtotal)
   2836a3:	83 c4 0c             	add    $0xc,%esp
   2836a6:	c1 e8 0a             	shr    $0xa,%eax
   2836a9:	50                   	push   %eax
-  2836aa:	68 8b 42 28 00       	push   $0x28428b
+  2836aa:	68 eb 42 28 00       	push   $0x2842eb
   2836af:	56                   	push   %esi
   2836b0:	e8 38 e2 ff ff       	call   2818ed <sprintf>
 	putfonts8_asc_sht(cons->sht,8,cons->cur_y,COL8_FFFFFF,COL8_000000,s,30);
@@ -8176,7 +8176,7 @@ void cmd_dir(struct CONSOLE *cons)
 				sprintf(s,"filename.ext %d",finfo[i].size);
   283788:	83 ec 04             	sub    $0x4,%esp
   28378b:	ff 73 3c             	pushl  0x3c(%ebx)
-  28378e:	68 95 42 28 00       	push   $0x284295
+  28378e:	68 f5 42 28 00       	push   $0x2842f5
   283793:	56                   	push   %esi
   283794:	e8 54 e1 ff ff       	call   2818ed <sprintf>
   283799:	83 c4 10             	add    $0x10,%esp
@@ -8331,7 +8331,7 @@ void cmd_type(struct CONSOLE *cons,int *fat,char *cmdline)
 		putfonts8_asc_sht(cons->sht,8,cons->cur_y,COL8_FFFFFF,COL8_000000,"File not found.",15);
   283898:	83 ec 04             	sub    $0x4,%esp
   28389b:	6a 0f                	push   $0xf
-  28389d:	68 a5 42 28 00       	push   $0x2842a5
+  28389d:	68 05 43 28 00       	push   $0x284305
   2838a2:	6a 00                	push   $0x0
   2838a4:	6a 07                	push   $0x7
   2838a6:	8b 45 08             	mov    0x8(%ebp),%eax
@@ -8534,7 +8534,7 @@ int cmd_app(struct CONSOLE *cons,int *fat,char *cmdline)
   2839eb:	0f 86 e5 00 00 00    	jbe    283ad6 <cmd_app+0x1c8>
   2839f1:	83 ec 04             	sub    $0x4,%esp
   2839f4:	6a 04                	push   $0x4
-  2839f6:	68 b5 42 28 00       	push   $0x2842b5
+  2839f6:	68 15 43 28 00       	push   $0x284315
   2839fb:	8d 46 04             	lea    0x4(%esi),%eax
   2839fe:	50                   	push   %eax
   2839ff:	e8 24 e0 ff ff       	call   281a28 <strncmp>
@@ -8639,7 +8639,7 @@ int cmd_app(struct CONSOLE *cons,int *fat,char *cmdline)
 		{
 			cons_putstr0(cons,".bin file format error.\n");
   283ad6:	83 ec 08             	sub    $0x8,%esp
-  283ad9:	68 ba 42 28 00       	push   $0x2842ba
+  283ad9:	68 1a 43 28 00       	push   $0x28431a
   283ade:	ff 75 08             	pushl  0x8(%ebp)
   283ae1:	e8 f3 fd ff ff       	call   2838d9 <cons_putstr0>
   283ae6:	83 c4 10             	add    $0x10,%esp
@@ -8703,7 +8703,7 @@ void cons_runcmd(char *cmdline,struct CONSOLE *cons,int *fat,unsigned int memtot
   283b2f:	83 ec 0c             	sub    $0xc,%esp
   283b32:	8b 5d 08             	mov    0x8(%ebp),%ebx
 	if(strcmp(cmdline,"mem") == 0)
-  283b35:	68 d3 42 28 00       	push   $0x2842d3
+  283b35:	68 33 43 28 00       	push   $0x284333
   283b3a:	53                   	push   %ebx
   283b3b:	e8 82 de ff ff       	call   2819c2 <strcmp>
   283b40:	83 c4 10             	add    $0x10,%esp
@@ -8718,7 +8718,7 @@ void cons_runcmd(char *cmdline,struct CONSOLE *cons,int *fat,unsigned int memtot
   283b58:	e9 c9 00 00 00       	jmp    283c26 <cons_runcmd+0xfb>
 	else if(strcmp(cmdline,"cls") == 0)
   283b5d:	83 ec 08             	sub    $0x8,%esp
-  283b60:	68 d7 42 28 00       	push   $0x2842d7
+  283b60:	68 37 43 28 00       	push   $0x284337
   283b65:	53                   	push   %ebx
   283b66:	e8 57 de ff ff       	call   2819c2 <strcmp>
   283b6b:	83 c4 10             	add    $0x10,%esp
@@ -8732,7 +8732,7 @@ void cons_runcmd(char *cmdline,struct CONSOLE *cons,int *fat,unsigned int memtot
   283b80:	e9 a1 00 00 00       	jmp    283c26 <cons_runcmd+0xfb>
 	else if(strcmp(cmdline,"dir") == 0)
   283b85:	83 ec 08             	sub    $0x8,%esp
-  283b88:	68 db 42 28 00       	push   $0x2842db
+  283b88:	68 3b 43 28 00       	push   $0x28433b
   283b8d:	53                   	push   %ebx
   283b8e:	e8 2f de ff ff       	call   2819c2 <strcmp>
   283b93:	83 c4 10             	add    $0x10,%esp
@@ -8747,7 +8747,7 @@ void cons_runcmd(char *cmdline,struct CONSOLE *cons,int *fat,unsigned int memtot
 	else if(strncmp(cmdline,"type ",5) == 0)
   283baa:	83 ec 04             	sub    $0x4,%esp
   283bad:	6a 05                	push   $0x5
-  283baf:	68 df 42 28 00       	push   $0x2842df
+  283baf:	68 3f 43 28 00       	push   $0x28433f
   283bb4:	53                   	push   %ebx
   283bb5:	e8 6e de ff ff       	call   281a28 <strncmp>
   283bba:	83 c4 10             	add    $0x10,%esp
@@ -8778,7 +8778,7 @@ void cons_runcmd(char *cmdline,struct CONSOLE *cons,int *fat,unsigned int memtot
 			putfonts8_asc_sht(cons->sht,8,cons->cur_y,COL8_FFFFFF,COL8_000000,"Bad command.",12);
   283bf0:	83 ec 04             	sub    $0x4,%esp
   283bf3:	6a 0c                	push   $0xc
-  283bf5:	68 e5 42 28 00       	push   $0x2842e5
+  283bf5:	68 45 43 28 00       	push   $0x284345
   283bfa:	6a 00                	push   $0x0
   283bfc:	6a 07                	push   $0x7
   283bfe:	8b 45 0c             	mov    0xc(%ebp),%eax
@@ -8889,329 +8889,313 @@ int *sys_api(int edi,int esi,int ebp,int esp,int ebx,int edx,int ecx,int eax)
 {
   283c9e:	55                   	push   %ebp
   283c9f:	89 e5                	mov    %esp,%ebp
-  283ca1:	57                   	push   %edi
-  283ca2:	56                   	push   %esi
-  283ca3:	53                   	push   %ebx
-  283ca4:	83 ec 0c             	sub    $0xc,%esp
-  283ca7:	8b 5d 1c             	mov    0x1c(%ebp),%ebx
+  283ca1:	53                   	push   %ebx
+  283ca2:	83 ec 24             	sub    $0x24,%esp
 	struct CONSOLE *cons = (struct CONSOLE *) *((int *)0x0fec);
-  283caa:	8b 3d ec 0f 00 00    	mov    0xfec,%edi
+  283ca5:	b8 ec 0f 00 00       	mov    $0xfec,%eax
+  283caa:	8b 00                	mov    (%eax),%eax
+  283cac:	89 45 f4             	mov    %eax,-0xc(%ebp)
 	int ds_base = *((int *)0xfe8);
-  283cb0:	8b 35 e8 0f 00 00    	mov    0xfe8,%esi
+  283caf:	b8 e8 0f 00 00       	mov    $0xfe8,%eax
+  283cb4:	8b 00                	mov    (%eax),%eax
+  283cb6:	89 45 f0             	mov    %eax,-0x10(%ebp)
 	struct TASK *task = task_now();
-  283cb6:	e8 e7 ee ff ff       	call   282ba2 <task_now>
+  283cb9:	e8 e4 ee ff ff       	call   282ba2 <task_now>
+  283cbe:	89 45 ec             	mov    %eax,-0x14(%ebp)
+	struct SHTCTL *shtctl = (struct SHTCTL *) *((int *)0x0fe4);
+  283cc1:	b8 e4 0f 00 00       	mov    $0xfe4,%eax
+  283cc6:	8b 00                	mov    (%eax),%eax
+  283cc8:	89 45 e8             	mov    %eax,-0x18(%ebp)
+	struct SHEET *sht;
+	int *reg = &eax + 1;
+  283ccb:	8d 45 24             	lea    0x24(%ebp),%eax
+  283cce:	83 c0 04             	add    $0x4,%eax
+  283cd1:	89 45 e4             	mov    %eax,-0x1c(%ebp)
 	   reg[0] = 1st_edi; reg[1] = 1st_esi ... reg[7] = 1st_eax
 	   and the parameters:
 	   edi = 2nd_edi; esi = 2nd_esi ... eax = 2nd_eax
 	 */
 
 	if(edx == 1) cons_putchar(cons,eax & 0xff,1);
-  283cbb:	83 fb 01             	cmp    $0x1,%ebx
-  283cbe:	75 1d                	jne    283cdd <sys_api+0x3f>
-  283cc0:	83 ec 04             	sub    $0x4,%esp
-  283cc3:	6a 01                	push   $0x1
-  283cc5:	0f b6 45 24          	movzbl 0x24(%ebp),%eax
-  283cc9:	50                   	push   %eax
-  283cca:	57                   	push   %edi
-  283ccb:	e8 ca f8 ff ff       	call   28359a <cons_putchar>
-  283cd0:	83 c4 10             	add    $0x10,%esp
-	{
-		sht = (struct SHEET *)ebx;
-		boxfill8(sht->buf,sht->bxsize,ebp,eax,ecx,esi,edi);
-		sheet_refresh(sht,eax,ecx,esi+1,edi+1);
-	}
-	return 0;
-  283cd3:	b8 00 00 00 00       	mov    $0x0,%eax
-  283cd8:	e9 52 01 00 00       	jmp    283e2f <sys_api+0x191>
-	   and the parameters:
-	   edi = 2nd_edi; esi = 2nd_esi ... eax = 2nd_eax
-	 */
-
-	if(edx == 1) cons_putchar(cons,eax & 0xff,1);
+  283cd4:	83 7d 1c 01          	cmpl   $0x1,0x1c(%ebp)
+  283cd8:	75 1c                	jne    283cf6 <sys_api+0x58>
+  283cda:	8b 45 24             	mov    0x24(%ebp),%eax
+  283cdd:	0f b6 c0             	movzbl %al,%eax
+  283ce0:	83 ec 04             	sub    $0x4,%esp
+  283ce3:	6a 01                	push   $0x1
+  283ce5:	50                   	push   %eax
+  283ce6:	ff 75 f4             	pushl  -0xc(%ebp)
+  283ce9:	e8 ac f8 ff ff       	call   28359a <cons_putchar>
+  283cee:	83 c4 10             	add    $0x10,%esp
+  283cf1:	e9 aa 01 00 00       	jmp    283ea0 <sys_api+0x202>
 	else if(edx == 2) cons_putstr0(cons,(char *)ebx+ds_base);
-  283cdd:	83 fb 02             	cmp    $0x2,%ebx
-  283ce0:	75 1a                	jne    283cfc <sys_api+0x5e>
-  283ce2:	83 ec 08             	sub    $0x8,%esp
-  283ce5:	03 75 18             	add    0x18(%ebp),%esi
-  283ce8:	56                   	push   %esi
-  283ce9:	57                   	push   %edi
-  283cea:	e8 ea fb ff ff       	call   2838d9 <cons_putstr0>
-  283cef:	83 c4 10             	add    $0x10,%esp
-	{
-		sht = (struct SHEET *)ebx;
-		boxfill8(sht->buf,sht->bxsize,ebp,eax,ecx,esi,edi);
-		sheet_refresh(sht,eax,ecx,esi+1,edi+1);
-	}
-	return 0;
-  283cf2:	b8 00 00 00 00       	mov    $0x0,%eax
-  283cf7:	e9 33 01 00 00       	jmp    283e2f <sys_api+0x191>
-	   edi = 2nd_edi; esi = 2nd_esi ... eax = 2nd_eax
-	 */
-
-	if(edx == 1) cons_putchar(cons,eax & 0xff,1);
-	else if(edx == 2) cons_putstr0(cons,(char *)ebx+ds_base);
+  283cf6:	83 7d 1c 02          	cmpl   $0x2,0x1c(%ebp)
+  283cfa:	75 1c                	jne    283d18 <sys_api+0x7a>
+  283cfc:	8b 55 f0             	mov    -0x10(%ebp),%edx
+  283cff:	8b 45 18             	mov    0x18(%ebp),%eax
+  283d02:	01 d0                	add    %edx,%eax
+  283d04:	83 ec 08             	sub    $0x8,%esp
+  283d07:	50                   	push   %eax
+  283d08:	ff 75 f4             	pushl  -0xc(%ebp)
+  283d0b:	e8 c9 fb ff ff       	call   2838d9 <cons_putstr0>
+  283d10:	83 c4 10             	add    $0x10,%esp
+  283d13:	e9 88 01 00 00       	jmp    283ea0 <sys_api+0x202>
 	else if(edx == 3) cons_putstr1(cons,(char *)ebx+ds_base,ecx);
-  283cfc:	83 fb 03             	cmp    $0x3,%ebx
-  283cff:	75 1d                	jne    283d1e <sys_api+0x80>
-  283d01:	83 ec 04             	sub    $0x4,%esp
-  283d04:	ff 75 20             	pushl  0x20(%ebp)
-  283d07:	03 75 18             	add    0x18(%ebp),%esi
-  283d0a:	56                   	push   %esi
-  283d0b:	57                   	push   %edi
-  283d0c:	e8 1a ff ff ff       	call   283c2b <cons_putstr1>
-  283d11:	83 c4 10             	add    $0x10,%esp
-	{
-		sht = (struct SHEET *)ebx;
-		boxfill8(sht->buf,sht->bxsize,ebp,eax,ecx,esi,edi);
-		sheet_refresh(sht,eax,ecx,esi+1,edi+1);
-	}
-	return 0;
-  283d14:	b8 00 00 00 00       	mov    $0x0,%eax
-  283d19:	e9 11 01 00 00       	jmp    283e2f <sys_api+0x191>
-	else if(edx == 2) cons_putstr0(cons,(char *)ebx+ds_base);
-	else if(edx == 3) cons_putstr1(cons,(char *)ebx+ds_base,ecx);
+  283d18:	83 7d 1c 03          	cmpl   $0x3,0x1c(%ebp)
+  283d1c:	75 1f                	jne    283d3d <sys_api+0x9f>
+  283d1e:	8b 55 f0             	mov    -0x10(%ebp),%edx
+  283d21:	8b 45 18             	mov    0x18(%ebp),%eax
+  283d24:	01 d0                	add    %edx,%eax
+  283d26:	83 ec 04             	sub    $0x4,%esp
+  283d29:	ff 75 20             	pushl  0x20(%ebp)
+  283d2c:	50                   	push   %eax
+  283d2d:	ff 75 f4             	pushl  -0xc(%ebp)
+  283d30:	e8 f6 fe ff ff       	call   283c2b <cons_putstr1>
+  283d35:	83 c4 10             	add    $0x10,%esp
+  283d38:	e9 63 01 00 00       	jmp    283ea0 <sys_api+0x202>
 	else if(edx == 4)
+  283d3d:	83 7d 1c 04          	cmpl   $0x4,0x1c(%ebp)
+  283d41:	75 0b                	jne    283d4e <sys_api+0xb0>
 	{
 		//exit app
 		return &(task->tss.esp0);
-  283d1e:	83 c0 30             	add    $0x30,%eax
-	 */
-
-	if(edx == 1) cons_putchar(cons,eax & 0xff,1);
-	else if(edx == 2) cons_putstr0(cons,(char *)ebx+ds_base);
-	else if(edx == 3) cons_putstr1(cons,(char *)ebx+ds_base,ecx);
-	else if(edx == 4)
-  283d21:	83 fb 04             	cmp    $0x4,%ebx
-  283d24:	0f 84 05 01 00 00    	je     283e2f <sys_api+0x191>
-	{
-		//exit app
-		return &(task->tss.esp0);
+  283d43:	8b 45 ec             	mov    -0x14(%ebp),%eax
+  283d46:	83 c0 30             	add    $0x30,%eax
+  283d49:	e9 57 01 00 00       	jmp    283ea5 <sys_api+0x207>
 	}
 	else if(edx == 5)
-  283d2a:	83 fb 05             	cmp    $0x5,%ebx
-  283d2d:	75 62                	jne    283d91 <sys_api+0xf3>
+  283d4e:	83 7d 1c 05          	cmpl   $0x5,0x1c(%ebp)
+  283d52:	0f 85 8b 00 00 00    	jne    283de3 <sys_api+0x145>
 	{
 		sht = sheet_alloc(shtctl);
-  283d2f:	83 ec 0c             	sub    $0xc,%esp
-  283d32:	ff 35 e4 0f 00 00    	pushl  0xfe4
-  283d38:	e8 0f e6 ff ff       	call   28234c <sheet_alloc>
-  283d3d:	89 c7                	mov    %eax,%edi
+  283d58:	83 ec 0c             	sub    $0xc,%esp
+  283d5b:	ff 75 e8             	pushl  -0x18(%ebp)
+  283d5e:	e8 e9 e5 ff ff       	call   28234c <sheet_alloc>
+  283d63:	83 c4 10             	add    $0x10,%esp
+  283d66:	89 45 e0             	mov    %eax,-0x20(%ebp)
 		sheet_setbuf(sht,(char *)ebx+ds_base,esi,edi,eax);
-  283d3f:	89 f3                	mov    %esi,%ebx
-  283d41:	03 5d 18             	add    0x18(%ebp),%ebx
-  283d44:	83 c4 04             	add    $0x4,%esp
-  283d47:	ff 75 24             	pushl  0x24(%ebp)
-  283d4a:	ff 75 08             	pushl  0x8(%ebp)
-  283d4d:	ff 75 0c             	pushl  0xc(%ebp)
-  283d50:	53                   	push   %ebx
-  283d51:	50                   	push   %eax
-  283d52:	e8 5c e6 ff ff       	call   2823b3 <sheet_setbuf>
+  283d69:	8b 45 24             	mov    0x24(%ebp),%eax
+  283d6c:	8b 4d f0             	mov    -0x10(%ebp),%ecx
+  283d6f:	8b 55 18             	mov    0x18(%ebp),%edx
+  283d72:	01 ca                	add    %ecx,%edx
+  283d74:	83 ec 0c             	sub    $0xc,%esp
+  283d77:	50                   	push   %eax
+  283d78:	ff 75 08             	pushl  0x8(%ebp)
+  283d7b:	ff 75 0c             	pushl  0xc(%ebp)
+  283d7e:	52                   	push   %edx
+  283d7f:	ff 75 e0             	pushl  -0x20(%ebp)
+  283d82:	e8 2c e6 ff ff       	call   2823b3 <sheet_setbuf>
+  283d87:	83 c4 20             	add    $0x20,%esp
 		make_window8((char *)ebx+ds_base,esi,edi,(char *)ecx+ds_base,0);
-  283d57:	83 c4 14             	add    $0x14,%esp
-  283d5a:	6a 00                	push   $0x0
-  283d5c:	03 75 20             	add    0x20(%ebp),%esi
-  283d5f:	56                   	push   %esi
-  283d60:	ff 75 08             	pushl  0x8(%ebp)
-  283d63:	ff 75 0c             	pushl  0xc(%ebp)
-  283d66:	53                   	push   %ebx
-  283d67:	e8 69 d2 ff ff       	call   280fd5 <make_window8>
+  283d8a:	8b 55 f0             	mov    -0x10(%ebp),%edx
+  283d8d:	8b 45 20             	mov    0x20(%ebp),%eax
+  283d90:	01 d0                	add    %edx,%eax
+  283d92:	89 c1                	mov    %eax,%ecx
+  283d94:	8b 55 f0             	mov    -0x10(%ebp),%edx
+  283d97:	8b 45 18             	mov    0x18(%ebp),%eax
+  283d9a:	01 d0                	add    %edx,%eax
+  283d9c:	83 ec 0c             	sub    $0xc,%esp
+  283d9f:	6a 00                	push   $0x0
+  283da1:	51                   	push   %ecx
+  283da2:	ff 75 08             	pushl  0x8(%ebp)
+  283da5:	ff 75 0c             	pushl  0xc(%ebp)
+  283da8:	50                   	push   %eax
+  283da9:	e8 27 d2 ff ff       	call   280fd5 <make_window8>
+  283dae:	83 c4 20             	add    $0x20,%esp
 		sheet_slide(sht,100,50);
-  283d6c:	83 c4 1c             	add    $0x1c,%esp
-  283d6f:	6a 32                	push   $0x32
-  283d71:	6a 64                	push   $0x64
-  283d73:	57                   	push   %edi
-  283d74:	e8 5b ea ff ff       	call   2827d4 <sheet_slide>
+  283db1:	83 ec 04             	sub    $0x4,%esp
+  283db4:	6a 32                	push   $0x32
+  283db6:	6a 64                	push   $0x64
+  283db8:	ff 75 e0             	pushl  -0x20(%ebp)
+  283dbb:	e8 14 ea ff ff       	call   2827d4 <sheet_slide>
+  283dc0:	83 c4 10             	add    $0x10,%esp
 		sheet_updown(sht,3);	//above task_a
-  283d79:	83 c4 08             	add    $0x8,%esp
-  283d7c:	6a 03                	push   $0x3
-  283d7e:	57                   	push   %edi
-  283d7f:	e8 67 e9 ff ff       	call   2826eb <sheet_updown>
-  283d84:	83 c4 10             	add    $0x10,%esp
-	{
-		sht = (struct SHEET *)ebx;
-		boxfill8(sht->buf,sht->bxsize,ebp,eax,ecx,esi,edi);
-		sheet_refresh(sht,eax,ecx,esi+1,edi+1);
-	}
-	return 0;
-  283d87:	b8 00 00 00 00       	mov    $0x0,%eax
-  283d8c:	e9 9e 00 00 00       	jmp    283e2f <sys_api+0x191>
-		make_window8((char *)ebx+ds_base,esi,edi,(char *)ecx+ds_base,0);
-		sheet_slide(sht,100,50);
-		sheet_updown(sht,3);	//above task_a
+  283dc3:	83 ec 08             	sub    $0x8,%esp
+  283dc6:	6a 03                	push   $0x3
+  283dc8:	ff 75 e0             	pushl  -0x20(%ebp)
+  283dcb:	e8 1b e9 ff ff       	call   2826eb <sheet_updown>
+  283dd0:	83 c4 10             	add    $0x10,%esp
 		reg[7] = (int)sht;		//after sys_api ret and popad the eax will be sht
+  283dd3:	8b 45 e4             	mov    -0x1c(%ebp),%eax
+  283dd6:	8d 50 1c             	lea    0x1c(%eax),%edx
+  283dd9:	8b 45 e0             	mov    -0x20(%ebp),%eax
+  283ddc:	89 02                	mov    %eax,(%edx)
+  283dde:	e9 bd 00 00 00       	jmp    283ea0 <sys_api+0x202>
 	}
 	else if(edx == 6)
-  283d91:	83 fb 06             	cmp    $0x6,%ebx
-  283d94:	75 49                	jne    283ddf <sys_api+0x141>
+  283de3:	83 7d 1c 06          	cmpl   $0x6,0x1c(%ebp)
+  283de7:	75 60                	jne    283e49 <sys_api+0x1ab>
 	{
 		sht = (struct SHEET *)ebx;
+  283de9:	8b 45 18             	mov    0x18(%ebp),%eax
+  283dec:	89 45 e0             	mov    %eax,-0x20(%ebp)
 		putfonts8_asc(sht->buf,sht->bxsize,esi,edi,eax,(char *)ebp + ds_base);
-  283d96:	83 ec 08             	sub    $0x8,%esp
-  283d99:	03 75 10             	add    0x10(%ebp),%esi
-  283d9c:	56                   	push   %esi
-  283d9d:	ff 75 24             	pushl  0x24(%ebp)
-  283da0:	ff 75 08             	pushl  0x8(%ebp)
-  283da3:	ff 75 0c             	pushl  0xc(%ebp)
-  283da6:	8b 45 18             	mov    0x18(%ebp),%eax
-  283da9:	ff 70 04             	pushl  0x4(%eax)
-  283dac:	ff 30                	pushl  (%eax)
-  283dae:	e8 76 d5 ff ff       	call   281329 <putfonts8_asc>
+  283def:	8b 55 f0             	mov    -0x10(%ebp),%edx
+  283df2:	8b 45 10             	mov    0x10(%ebp),%eax
+  283df5:	01 d0                	add    %edx,%eax
+  283df7:	89 c3                	mov    %eax,%ebx
+  283df9:	8b 4d 24             	mov    0x24(%ebp),%ecx
+  283dfc:	8b 45 e0             	mov    -0x20(%ebp),%eax
+  283dff:	8b 50 04             	mov    0x4(%eax),%edx
+  283e02:	8b 45 e0             	mov    -0x20(%ebp),%eax
+  283e05:	8b 00                	mov    (%eax),%eax
+  283e07:	83 ec 08             	sub    $0x8,%esp
+  283e0a:	53                   	push   %ebx
+  283e0b:	51                   	push   %ecx
+  283e0c:	ff 75 08             	pushl  0x8(%ebp)
+  283e0f:	ff 75 0c             	pushl  0xc(%ebp)
+  283e12:	52                   	push   %edx
+  283e13:	50                   	push   %eax
+  283e14:	e8 10 d5 ff ff       	call   281329 <putfonts8_asc>
+  283e19:	83 c4 20             	add    $0x20,%esp
 		sheet_refresh(sht,esi,edi,esi+ecx*8,edi+16);
-  283db3:	83 c4 14             	add    $0x14,%esp
-  283db6:	8b 45 08             	mov    0x8(%ebp),%eax
-  283db9:	83 c0 10             	add    $0x10,%eax
-  283dbc:	50                   	push   %eax
-  283dbd:	8b 45 0c             	mov    0xc(%ebp),%eax
-  283dc0:	8b 55 20             	mov    0x20(%ebp),%edx
-  283dc3:	8d 04 d0             	lea    (%eax,%edx,8),%eax
-  283dc6:	50                   	push   %eax
-  283dc7:	ff 75 08             	pushl  0x8(%ebp)
-  283dca:	ff 75 0c             	pushl  0xc(%ebp)
-  283dcd:	ff 75 18             	pushl  0x18(%ebp)
-  283dd0:	e8 dd e8 ff ff       	call   2826b2 <sheet_refresh>
-  283dd5:	83 c4 20             	add    $0x20,%esp
-	{
-		sht = (struct SHEET *)ebx;
-		boxfill8(sht->buf,sht->bxsize,ebp,eax,ecx,esi,edi);
-		sheet_refresh(sht,eax,ecx,esi+1,edi+1);
-	}
-	return 0;
-  283dd8:	b8 00 00 00 00       	mov    $0x0,%eax
-  283ddd:	eb 50                	jmp    283e2f <sys_api+0x191>
-  283ddf:	b8 00 00 00 00       	mov    $0x0,%eax
-	{
-		sht = (struct SHEET *)ebx;
-		putfonts8_asc(sht->buf,sht->bxsize,esi,edi,eax,(char *)ebp + ds_base);
-		sheet_refresh(sht,esi,edi,esi+ecx*8,edi+16);
+  283e1c:	8b 45 08             	mov    0x8(%ebp),%eax
+  283e1f:	8d 50 10             	lea    0x10(%eax),%edx
+  283e22:	8b 45 20             	mov    0x20(%ebp),%eax
+  283e25:	8d 0c c5 00 00 00 00 	lea    0x0(,%eax,8),%ecx
+  283e2c:	8b 45 0c             	mov    0xc(%ebp),%eax
+  283e2f:	01 c8                	add    %ecx,%eax
+  283e31:	83 ec 0c             	sub    $0xc,%esp
+  283e34:	52                   	push   %edx
+  283e35:	50                   	push   %eax
+  283e36:	ff 75 08             	pushl  0x8(%ebp)
+  283e39:	ff 75 0c             	pushl  0xc(%ebp)
+  283e3c:	ff 75 e0             	pushl  -0x20(%ebp)
+  283e3f:	e8 6e e8 ff ff       	call   2826b2 <sheet_refresh>
+  283e44:	83 c4 20             	add    $0x20,%esp
+  283e47:	eb 57                	jmp    283ea0 <sys_api+0x202>
 	}
 	else if(edx == 7)
-  283de4:	83 fb 07             	cmp    $0x7,%ebx
-  283de7:	75 46                	jne    283e2f <sys_api+0x191>
+  283e49:	83 7d 1c 07          	cmpl   $0x7,0x1c(%ebp)
+  283e4d:	75 51                	jne    283ea0 <sys_api+0x202>
 	{
 		sht = (struct SHEET *)ebx;
+  283e4f:	8b 45 18             	mov    0x18(%ebp),%eax
+  283e52:	89 45 e0             	mov    %eax,-0x20(%ebp)
 		boxfill8(sht->buf,sht->bxsize,ebp,eax,ecx,esi,edi);
-  283de9:	83 ec 04             	sub    $0x4,%esp
-  283dec:	ff 75 08             	pushl  0x8(%ebp)
-  283def:	ff 75 0c             	pushl  0xc(%ebp)
-  283df2:	ff 75 20             	pushl  0x20(%ebp)
-  283df5:	ff 75 24             	pushl  0x24(%ebp)
-  283df8:	ff 75 10             	pushl  0x10(%ebp)
-  283dfb:	8b 45 18             	mov    0x18(%ebp),%eax
-  283dfe:	ff 70 04             	pushl  0x4(%eax)
-  283e01:	ff 30                	pushl  (%eax)
-  283e03:	e8 cc ce ff ff       	call   280cd4 <boxfill8>
+  283e55:	8b 4d 24             	mov    0x24(%ebp),%ecx
+  283e58:	8b 45 e0             	mov    -0x20(%ebp),%eax
+  283e5b:	8b 50 04             	mov    0x4(%eax),%edx
+  283e5e:	8b 45 e0             	mov    -0x20(%ebp),%eax
+  283e61:	8b 00                	mov    (%eax),%eax
+  283e63:	83 ec 04             	sub    $0x4,%esp
+  283e66:	ff 75 08             	pushl  0x8(%ebp)
+  283e69:	ff 75 0c             	pushl  0xc(%ebp)
+  283e6c:	ff 75 20             	pushl  0x20(%ebp)
+  283e6f:	51                   	push   %ecx
+  283e70:	ff 75 10             	pushl  0x10(%ebp)
+  283e73:	52                   	push   %edx
+  283e74:	50                   	push   %eax
+  283e75:	e8 5a ce ff ff       	call   280cd4 <boxfill8>
+  283e7a:	83 c4 20             	add    $0x20,%esp
 		sheet_refresh(sht,eax,ecx,esi+1,edi+1);
-  283e08:	83 c4 14             	add    $0x14,%esp
-  283e0b:	8b 45 08             	mov    0x8(%ebp),%eax
-  283e0e:	83 c0 01             	add    $0x1,%eax
-  283e11:	50                   	push   %eax
-  283e12:	8b 45 0c             	mov    0xc(%ebp),%eax
-  283e15:	83 c0 01             	add    $0x1,%eax
-  283e18:	50                   	push   %eax
-  283e19:	ff 75 20             	pushl  0x20(%ebp)
-  283e1c:	ff 75 24             	pushl  0x24(%ebp)
-  283e1f:	ff 75 18             	pushl  0x18(%ebp)
-  283e22:	e8 8b e8 ff ff       	call   2826b2 <sheet_refresh>
-  283e27:	83 c4 20             	add    $0x20,%esp
+  283e7d:	8b 45 08             	mov    0x8(%ebp),%eax
+  283e80:	8d 48 01             	lea    0x1(%eax),%ecx
+  283e83:	8b 45 0c             	mov    0xc(%ebp),%eax
+  283e86:	8d 50 01             	lea    0x1(%eax),%edx
+  283e89:	8b 45 24             	mov    0x24(%ebp),%eax
+  283e8c:	83 ec 0c             	sub    $0xc,%esp
+  283e8f:	51                   	push   %ecx
+  283e90:	52                   	push   %edx
+  283e91:	ff 75 20             	pushl  0x20(%ebp)
+  283e94:	50                   	push   %eax
+  283e95:	ff 75 e0             	pushl  -0x20(%ebp)
+  283e98:	e8 15 e8 ff ff       	call   2826b2 <sheet_refresh>
+  283e9d:	83 c4 20             	add    $0x20,%esp
 	}
 	return 0;
-  283e2a:	b8 00 00 00 00       	mov    $0x0,%eax
+  283ea0:	b8 00 00 00 00       	mov    $0x0,%eax
 }
-  283e2f:	8d 65 f4             	lea    -0xc(%ebp),%esp
-  283e32:	5b                   	pop    %ebx
-  283e33:	5e                   	pop    %esi
-  283e34:	5f                   	pop    %edi
-  283e35:	5d                   	pop    %ebp
-  283e36:	c3                   	ret    
-  283e37:	66 90                	xchg   %ax,%ax
-  283e39:	66 90                	xchg   %ax,%ax
-  283e3b:	66 90                	xchg   %ax,%ax
-  283e3d:	66 90                	xchg   %ax,%ax
-  283e3f:	90                   	nop
+  283ea5:	8b 5d fc             	mov    -0x4(%ebp),%ebx
+  283ea8:	c9                   	leave  
+  283ea9:	c3                   	ret    
+  283eaa:	66 90                	xchg   %ax,%ax
+  283eac:	66 90                	xchg   %ax,%ax
+  283eae:	66 90                	xchg   %ax,%ax
 
-00283e40 <api_putchar>:
-  283e40:	ba 01 00 00 00       	mov    $0x1,%edx
-  283e45:	8a 44 24 04          	mov    0x4(%esp),%al
-  283e49:	cd 40                	int    $0x40
-  283e4b:	c3                   	ret    
+00283eb0 <api_putchar>:
+  283eb0:	ba 01 00 00 00       	mov    $0x1,%edx
+  283eb5:	8a 44 24 04          	mov    0x4(%esp),%al
+  283eb9:	cd 40                	int    $0x40
+  283ebb:	c3                   	ret    
 
-00283e4c <api_putstr>:
-  283e4c:	ba 02 00 00 00       	mov    $0x2,%edx
-  283e51:	8b 5c 24 04          	mov    0x4(%esp),%ebx
-  283e55:	cd 40                	int    $0x40
-  283e57:	c3                   	ret    
+00283ebc <api_putstr>:
+  283ebc:	ba 02 00 00 00       	mov    $0x2,%edx
+  283ec1:	8b 5c 24 04          	mov    0x4(%esp),%ebx
+  283ec5:	cd 40                	int    $0x40
+  283ec7:	c3                   	ret    
 
-00283e58 <api_end>:
-  283e58:	ba 04 00 00 00       	mov    $0x4,%edx
-  283e5d:	cd 40                	int    $0x40
+00283ec8 <api_end>:
+  283ec8:	ba 04 00 00 00       	mov    $0x4,%edx
+  283ecd:	cd 40                	int    $0x40
 
-00283e5f <api_test>:
-  283e5f:	05 80 00 00 00       	add    $0x80,%eax
-  283e64:	c3                   	ret    
+00283ecf <api_test>:
+  283ecf:	05 80 00 00 00       	add    $0x80,%eax
+  283ed4:	c3                   	ret    
 
-00283e65 <api_openwin>:
-  283e65:	57                   	push   %edi
-  283e66:	56                   	push   %esi
-  283e67:	53                   	push   %ebx
-  283e68:	ba 05 00 00 00       	mov    $0x5,%edx
-  283e6d:	8b 5c 24 10          	mov    0x10(%esp),%ebx
-  283e71:	8b 74 24 14          	mov    0x14(%esp),%esi
-  283e75:	8b 7c 24 18          	mov    0x18(%esp),%edi
-  283e79:	8b 44 24 1c          	mov    0x1c(%esp),%eax
-  283e7d:	8b 4c 24 20          	mov    0x20(%esp),%ecx
-  283e81:	cd 40                	int    $0x40
-  283e83:	5b                   	pop    %ebx
-  283e84:	5e                   	pop    %esi
-  283e85:	5f                   	pop    %edi
-  283e86:	c3                   	ret    
+00283ed5 <api_openwin>:
+  283ed5:	57                   	push   %edi
+  283ed6:	56                   	push   %esi
+  283ed7:	53                   	push   %ebx
+  283ed8:	ba 05 00 00 00       	mov    $0x5,%edx
+  283edd:	8b 5c 24 10          	mov    0x10(%esp),%ebx
+  283ee1:	8b 74 24 14          	mov    0x14(%esp),%esi
+  283ee5:	8b 7c 24 18          	mov    0x18(%esp),%edi
+  283ee9:	8b 44 24 1c          	mov    0x1c(%esp),%eax
+  283eed:	8b 4c 24 20          	mov    0x20(%esp),%ecx
+  283ef1:	cd 40                	int    $0x40
+  283ef3:	5b                   	pop    %ebx
+  283ef4:	5e                   	pop    %esi
+  283ef5:	5f                   	pop    %edi
+  283ef6:	c3                   	ret    
 
-00283e87 <api_putstrwin>:
-  283e87:	57                   	push   %edi
-  283e88:	56                   	push   %esi
-  283e89:	55                   	push   %ebp
-  283e8a:	53                   	push   %ebx
-  283e8b:	ba 06 00 00 00       	mov    $0x6,%edx
-  283e90:	8b 5c 24 14          	mov    0x14(%esp),%ebx
-  283e94:	8b 74 24 18          	mov    0x18(%esp),%esi
-  283e98:	8b 7c 24 1c          	mov    0x1c(%esp),%edi
-  283e9c:	8b 44 24 20          	mov    0x20(%esp),%eax
-  283ea0:	8b 4c 24 24          	mov    0x24(%esp),%ecx
-  283ea4:	8b 6c 24 28          	mov    0x28(%esp),%ebp
-  283ea8:	cd 40                	int    $0x40
-  283eaa:	5b                   	pop    %ebx
-  283eab:	5d                   	pop    %ebp
-  283eac:	5e                   	pop    %esi
-  283ead:	5f                   	pop    %edi
-  283eae:	c3                   	ret    
+00283ef7 <api_putstrwin>:
+  283ef7:	57                   	push   %edi
+  283ef8:	56                   	push   %esi
+  283ef9:	55                   	push   %ebp
+  283efa:	53                   	push   %ebx
+  283efb:	ba 06 00 00 00       	mov    $0x6,%edx
+  283f00:	8b 5c 24 14          	mov    0x14(%esp),%ebx
+  283f04:	8b 74 24 18          	mov    0x18(%esp),%esi
+  283f08:	8b 7c 24 1c          	mov    0x1c(%esp),%edi
+  283f0c:	8b 44 24 20          	mov    0x20(%esp),%eax
+  283f10:	8b 4c 24 24          	mov    0x24(%esp),%ecx
+  283f14:	8b 6c 24 28          	mov    0x28(%esp),%ebp
+  283f18:	cd 40                	int    $0x40
+  283f1a:	5b                   	pop    %ebx
+  283f1b:	5d                   	pop    %ebp
+  283f1c:	5e                   	pop    %esi
+  283f1d:	5f                   	pop    %edi
+  283f1e:	c3                   	ret    
 
-00283eaf <api_boxfilwin>:
-  283eaf:	57                   	push   %edi
-  283eb0:	56                   	push   %esi
-  283eb1:	55                   	push   %ebp
-  283eb2:	53                   	push   %ebx
-  283eb3:	ba 07 00 00 00       	mov    $0x7,%edx
-  283eb8:	8b 5c 24 14          	mov    0x14(%esp),%ebx
-  283ebc:	8b 44 24 18          	mov    0x18(%esp),%eax
-  283ec0:	8b 4c 24 1c          	mov    0x1c(%esp),%ecx
-  283ec4:	8b 74 24 20          	mov    0x20(%esp),%esi
-  283ec8:	8b 7c 24 24          	mov    0x24(%esp),%edi
-  283ecc:	8b 6c 24 28          	mov    0x28(%esp),%ebp
-  283ed0:	cd 40                	int    $0x40
-  283ed2:	5b                   	pop    %ebx
-  283ed3:	5d                   	pop    %ebp
-  283ed4:	5e                   	pop    %esi
-  283ed5:	5f                   	pop    %edi
-  283ed6:	c3                   	ret    
+00283f1f <api_boxfilwin>:
+  283f1f:	57                   	push   %edi
+  283f20:	56                   	push   %esi
+  283f21:	55                   	push   %ebp
+  283f22:	53                   	push   %ebx
+  283f23:	ba 07 00 00 00       	mov    $0x7,%edx
+  283f28:	8b 5c 24 14          	mov    0x14(%esp),%ebx
+  283f2c:	8b 44 24 18          	mov    0x18(%esp),%eax
+  283f30:	8b 4c 24 1c          	mov    0x1c(%esp),%ecx
+  283f34:	8b 74 24 20          	mov    0x20(%esp),%esi
+  283f38:	8b 7c 24 24          	mov    0x24(%esp),%edi
+  283f3c:	8b 6c 24 28          	mov    0x28(%esp),%ebp
+  283f40:	cd 40                	int    $0x40
+  283f42:	5b                   	pop    %ebx
+  283f43:	5d                   	pop    %ebp
+  283f44:	5e                   	pop    %esi
+  283f45:	5f                   	pop    %edi
+  283f46:	c3                   	ret    
 
-00283ed7 <test>:
+00283f47 <test>:
 #include "test.h"
 int test(int screenx, int screeny)
 {
-  283ed7:	55                   	push   %ebp
-  283ed8:	89 e5                	mov    %esp,%ebp
+  283f47:	55                   	push   %ebp
+  283f48:	89 e5                	mov    %esp,%ebp
 	return screenx*screeny;
-  283eda:	8b 45 0c             	mov    0xc(%ebp),%eax
-  283edd:	0f af 45 08          	imul   0x8(%ebp),%eax
+  283f4a:	8b 45 0c             	mov    0xc(%ebp),%eax
+  283f4d:	0f af 45 08          	imul   0x8(%ebp),%eax
 }
-  283ee1:	5d                   	pop    %ebp
-  283ee2:	c3                   	ret    
+  283f51:	5d                   	pop    %ebp
+  283f52:	c3                   	ret    

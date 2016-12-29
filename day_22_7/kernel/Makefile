@@ -41,6 +41,9 @@ memory.o: memory.c
 file.o: file.c
 	gcc -nostdinc $(CFLAGS) -O0 -c -o $@ $<
 
+sys_api.o: sys_api.c
+	gcc -nostdinc $(CFLAGS) -O0 -c -o $@ $<
+
 api.nas.o: ../bin/api.nas
 	nasm -f elf $< -o $@
 
