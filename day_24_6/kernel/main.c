@@ -88,7 +88,7 @@ int bootmain()
 	//mouse pos
 	int mx = (binfo->scrnx-16)/2;
 	int my = (binfo->scrny-28-16)/2;
-	int mmx = -1,mmy = -1;
+	int x,y,mmx = -1,mmy = -1;
 
 	//console sheet
 	sht_console = sheet_alloc(shtctl);
@@ -120,12 +120,14 @@ int bootmain()
 	sheet_updown(sht_mouse,3);
 
 	extern struct TIMERCTL timerctl;
-	struct SHEET *sht = 0, *key_win;
+	struct SHEET *key_win,*sht = 0;
 
-	key_win = sht_win;
+	//init window focus
+	key_win = sht_window;
+	sht_console->task = task_console;
+	sht_console->flags |= 0x20;
 
-
-	int key_to = 0,key_shift = 0,keycmd_wait = -1;
+	int key_shift = 0,keycmd_wait = -1;
 
 	for(;;)
 	{
@@ -145,6 +147,11 @@ int bootmain()
 		{
 			int i = fifo32_get(&fifo);
 			io_sti();
+			if(key_win->flags == 0) //key_win already closed
+			{
+				key_win = shtctl->sheets[shtctl->top - 1];
+				cursor_c = keywin_on(key_win,sht_window,cursor_c);
+			}
 			if(256<=i && i<=511)
 			{
 				xtoa(i-256,s);
@@ -161,58 +168,45 @@ int bootmain()
 				}
 				if(s[0]!=0)//visible char
 				{
-					if(key_to == 0 && cursor_x <128)
+					if(key_win == sht_window && cursor_x <128)
 					{
 						putfonts8_asc_sht(sht_window,cursor_x,28,COL8_000000,COL8_FFFFFF,s,1);
 						cursor_x += 8;
 					}
-					else if(key_to == 1)
+					else
 					{
-						fifo32_put(&task_console->fifo,s[0]+256); //send key to console fifo
+						fifo32_put(&key_win->task->fifo,s[0]+256); //send key to console fifo
 					}
 
 				}
 				if(i == 256 + 0x0f) //tab key
 				{
-					if(key_to == 0)
+					cursor_c = keywin_off(key_win,sht_window,cursor_c,cursor_x);
+					int j=key_win->height - 1;
+					if(j==0)
 					{
-						//switch to task_console window
-						key_to = 1;
-						make_wtitle8(buf_window,sht_window->bxsize,"task_a",0);
-						make_wtitle8(buf_console,sht_console->bxsize,"task_console",1);
-						cursor_c = -1;	//set cursor color to null(-1) to hide
-						boxfill8(sht_window->buf,sht_window->bxsize,COL8_FFFFFF,cursor_x,28,cursor_x+7,43);
-						fifo32_put(&task_console->fifo,2); //wake console cursor
+						j = shtctl->top-1;
 					}
-					else
-					{
-						//back to task_a window
-						key_to = 0;
-						make_wtitle8(buf_window,sht_window->bxsize,"task_a",1);
-						make_wtitle8(buf_console,sht_console->bxsize,"task_console",0);
-						cursor_c = COL8_000000;//show the cursor
-						fifo32_put(&task_console->fifo,3); //stop console cursor
-					}
-					sheet_refresh(sht_window,0,0,sht_window->bxsize,21);
-					sheet_refresh(sht_console,0,0,sht_console->bxsize,21);
+					key_win = shtctl->sheets[j];
+					cursor_c = keywin_on(key_win,sht_window,cursor_c);
 				}
 				else if(i == 256 + 0x0e) //back key
 				{
-					if(key_to == 0 && cursor_x >8)
+					if(key_win == sht_window && cursor_x >8)
 					{
 						putfonts8_asc_sht(sht_window,cursor_x,28,COL8_000000,COL8_FFFFFF," ",1);
 						cursor_x -= 8;
 					}
-					else if(key_to == 1)
+					else
 					{
-						fifo32_put(&task_console->fifo,8+256);
+						fifo32_put(&key_win->task->fifo,8+256);
 					}
 				}
 				else if(i == 256 + 0x1c)  //return key
 				{
-					if(key_to!=0) //forcus on task_console window
+					if(key_win != sht_window) //forcus on task_console window
 					{
-						fifo32_put(&task_console->fifo,10+256);
+						fifo32_put(&key_win->task->fifo,10+256);
 					}
 				}
 				else if(i == 256 + 0x2a)  //left shift on
@@ -302,12 +296,18 @@ int bootmain()
 							{
 								sht = shtctl->sheets[j];
 								x = mx - sht->vx0;
-								y = mx - sht->vy0;
+								y = my - sht->vy0;
 								if(x>=0 && x<sht->bxsize && y>=0 && y<sht->bysize)
 								{
 									if(sht->buf[y*sht->bxsize+x] != sht->col_inv )
 									{
 										sheet_updown(sht,shtctl->top-1);
+										if(sht!=key_win)
+										{
+											cursor_c = keywin_off(key_win,sht_window,cursor_c,cursor_x);
+											key_win = sht;
+											cursor_c = keywin_on(key_win,sht_window,cursor_c);
+										}
 										if(x>=3 && x<sht->bxsize-3 && y>=3 && y<21)
 										{
 											mmx = mx;
@@ -315,14 +315,18 @@ int bootmain()
 										}
 										if(sht->bxsize - 21 <= x && x<sht->bxsize - 5 && y>=5 && y<19)
 										{
-											if(sht->task != 0)
+											if(sht->flags & 0x10)
 											{
-												cons = (struct CONSOLE *) *((int *)0x0fec);
-												cons_putstr0(cons,"\nBreak(mouse) :\n");
-												io_cli();
-												task_cons->tss.eax = (int)&(task_cons->tss.esp0);
-												task_cons->tss.eip = (int)asm_end_app - 0x280000;
-												io_sti();
+												if(sht->task != 0)
+												{
+													struct CONSOLE *cons = (struct CONSOLE *) *((int *)0x0fec);
+													cons_putstr0(cons,"\nBreak(mouse) :\n");
+													io_cli();
+													task_console->tss.eax = (int)&(task_console->tss.esp0);
+													extern void asm_end_app();
+													task_console->tss.eip = (int)&asm_end_app - 0x280000;
+													io_sti();
+												}
 											}
 										}
 										break;
@@ -372,7 +376,7 @@ int bootmain()
 			   sheet_refresh(sht_bg,8,96,16,112);
 			   timer_settime(timer3,50);
 			   }
-			   */				
+			 */				
 		}
 	}
 }

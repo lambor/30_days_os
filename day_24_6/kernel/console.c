@@ -218,7 +218,7 @@ int cmd_app(struct CONSOLE *cons,int *fat,char *cmdline)
 			for(int i=0;i<MAX_SHEETS;i++)
 			{
 				sht = &(shtctl->sheets0[i]);
-				if(sht->flags!=0 && sht->task == task)
+				if((sht->flags&0x11) == 0x11 && sht->task == task)
 					sheet_free(sht);
 			}
 			memman_free_4k(memman,(int)q,segsiz);
