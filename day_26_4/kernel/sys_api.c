@@ -29,7 +29,7 @@ int *sys_api(int edi,int esi,int ebp,int esp,int ebx,int edx,int ecx,int eax)
 		sht->flags |= 0x11;
 		sheet_setbuf(sht,(char *)ebx+ds_base,esi,edi,eax);
 		make_window8((char *)ebx+ds_base,esi,edi,(char *)ecx+ds_base,0);
-		sheet_slide(sht,(shtctl->xsize - esi)/2,(shtctl->ysize - edi)/2);
+		sheet_slide(sht,((shtctl->xsize - esi)/2)&~3,(shtctl->ysize - edi)/2);
 		sheet_updown(sht,shtctl->top);	//above task_a
 		reg[7] = (int)sht;		//after sys_api ret and popad the eax will be sht
 	}

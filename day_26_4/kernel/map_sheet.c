@@ -54,6 +54,7 @@ void sheet_setbuf(struct SHEET *sht,unsigned char *buf,int xsize,int ysize,int c
 	return;
 }
 
+
 //update the sheet with new height
 void sheet_updown(struct SHEET *sht,int height)
 {
@@ -201,16 +202,31 @@ void sheet_refreshsub2(struct SHTCTL *ctl,int vx0,int vy0,int vx1,int vy1,int h0
 		{
 			if((sht->vx0 & 3)==0 && (bx0 & 3)==0 && (bx1 & 3)==0) 
 			{
+				vx = sht->vx0+bx0;
 				bx1 = (bx1-bx0)/4;
-				int sid4 = sid
-			}
-			for(by=by0;by<by1;by++)
-			{
-				vy = sht->vy0+by;
-				for(bx=bx0;bx<bx1;bx++)
+				for(by=by0;by<by1;by++)
 				{
-					vx = sht->vx0+bx;
-					map[vy*ctl->xsize+vx] = buf[by*sht->bxsize+bx];
+
+					vy = sht->vy0+by;
+					int *p = (int *) &map[vy*ctl->xsize+vx];
+					int *q = (int *) &buf[by*sht->bxsize+bx0];
+
+					for(bx=0;bx<bx1;bx++)
+					{
+						p[bx]=q[bx];
+					}
+				}
+			}
+			else
+			{
+				for(by=by0;by<by1;by++)
+				{
+					vy = sht->vy0+by;
+					for(bx=bx0;bx<bx1;bx++)
+					{
+						vx = sht->vx0+bx;
+						map[vy*ctl->xsize+vx] = buf[by*sht->bxsize+bx];
+					}
 				}
 			}
 		}
@@ -230,9 +246,24 @@ void sheet_refreshsub2(struct SHTCTL *ctl,int vx0,int vy0,int vx1,int vy1,int h0
 		}
 
 	}
-	for(vy=vy0;vy<vy1;vy++)
-		for(vx=vx0;vx<vx1;vx++)
-			vram[vy*ctl->xsize+vx] = map[vy*ctl->xsize+vx];
+	if(((vx1-vx0)&3)==0)
+	{
+		vx1 = (vx1-vx0)/4;
+		for(vy=vy0;vy<vy1;vy++)
+		{
+
+			int *s = (int *) &map[vy*ctl->xsize+vx0];
+			int *d = (int *) &vram[vy*ctl->xsize+vx0];
+			for(vx=0;vx<vx1;vx++)
+				d[vx] = s[vx];
+		}
+	}
+	else
+	{
+		for(vy=vy0;vy<vy1;vy++)
+			for(vx=vx0;vx<vx1;vx++)
+				vram[vy*ctl->xsize+vx] = map[vy*ctl->xsize+vx];
+	}
 }
 
 void sheet_refresh(struct SHEET *sht,int bx0,int by0,int bx1,int by1)
@@ -269,3 +300,4 @@ void sheet_free(struct SHEET *sht)
 	sht->flags = 0; //set sheet unused.
 	return;
 }
+
