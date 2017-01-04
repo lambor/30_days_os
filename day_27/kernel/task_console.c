@@ -49,14 +49,18 @@ void console_task(struct SHEET *sheet,unsigned int memtotal)
 				timer_settime(cons.timer,50);
 							
 			}
-			else if(i == 2) //get show cursor msg
+			else if(i == 2) //get show_cursor msg
 			{
 				cons.cur_c = COL8_FFFFFF;
 			}
-			else if(i == 3) //get hide cursor msg
+			else if(i == 3) //get hide_cursor msg
 			{
 				cons.cur_c = -1;
-				boxfill8(sheet->buf,sheet->bxsize,COL8_000000,cons.cur_x,cons.cur_y,cons.cur_x+7,cons.cur_y+15);
+				if(sheet != 0)boxfill8(sheet->buf,sheet->bxsize,COL8_000000,cons.cur_x,cons.cur_y,cons.cur_x+7,cons.cur_y+15);
+			}
+			else if(i == 4) //close button clicked
+			{
+				cmd_exit(&cons,fat);
 			}
 			else if(256<=i && i<=511)
 			{
@@ -74,6 +78,8 @@ void console_task(struct SHEET *sheet,unsigned int memtotal)
 					cmdline[cons.cur_x/8-2] = 0;
 					cons_newline(&cons);
 					cons_runcmd(cmdline,&cons,fat,memtotal);
+					if(sheet == 0)
+						cmd_exit(&cons,fat);
 					cons_putchar(&cons,'>',1);
 				}
 				else
@@ -87,9 +93,11 @@ void console_task(struct SHEET *sheet,unsigned int memtotal)
 					}
 				}
 			}
+			if(sheet != 0)
+			{
 			if(cons.cur_c >= 0) boxfill8(sheet->buf,sheet->bxsize,cons.cur_c,cons.cur_x,cons.cur_y,cons.cur_x+7,cons.cur_y+15);
 			sheet_refresh(sheet,cons.cur_x,cons.cur_y,cons.cur_x+8,cons.cur_y+16);
-
+			}
 		}
 	}
 }
