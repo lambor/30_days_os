@@ -69,6 +69,8 @@ void cons_runcmd(char *cmdline,struct CONSOLE *cons,int *fat,unsigned int memtot
 		cmd_type(cons,fat,cmdline);
 	else if(strcmp(cmdline,"exit") == 0)
 		cmd_exit(cons,fat);
+	else if(strncmp(cmdline,"start ",6) == 0)
+		cmd_start(cons,cmdline,memtotal);
 	else if(cmdline[0] != 0)
 	{
 		if(cmd_app(cons,fat,cmdline) == 0)
@@ -285,7 +287,7 @@ struct SHEET *open_console(struct SHTCTL *shtctl,unsigned int memtotal)
 	make_window8(buf,256,165,"console",0);
 	make_textbox8(sht,8,28,240,128,COL8_000000);
 	task->cons_stack = memman_alloc_4k(memman,64*1024);
-	task->tss.esp = task->cons_task+64*1024-12;
+	task->tss.esp = task->cons_stack+64*1024-12;
 	task->tss.eip = (int)&console_task - 0x280000;
 	task->tss.es = 1*8;
 	task->tss.cs = 3*8;
@@ -305,7 +307,7 @@ struct SHEET *open_console(struct SHTCTL *shtctl,unsigned int memtotal)
 
 void close_constask(struct TASK *task)
 {
-	struct MEMMAN *memman = (struct MEMMAN *)MEMMAM_ADDR;
+	struct MEMMAN *memman = (struct MEMMAN *)MEMMAN_ADDR;
 	task_sleep(task);
 	memman_free_4k(memman,task->cons_stack,64 * 1024);
 	memman_free_4k(memman,(int)task->fifo.buf,128*4);
@@ -319,6 +321,23 @@ void close_console(struct SHEET *sht)
 	struct TASK *task = sht->task;
 	memman_free_4k(memman,(int)sht->buf,256*165);
 	sheet_free(sht);
-	close_console(task);
+	close_constask(task);
+	return;
+}
+
+void cmd_start(struct CONSOLE *cons,char *cmdline,int memtotal)
+{
+	struct SHTCTL *shtctl = (struct SHTCTL *) *((int *) 0x0fe4);
+	struct SHEET *sht = open_console(shtctl,memtotal);
+	struct FIFO32 *fifo = &sht->task->fifo;
+	int i;
+	sheet_slide(sht,32,4);
+	sheet_updown(sht,shtctl->top);
+	for(i = 6;cmdline[i]!=0;i++)
+	{
+		fifo32_put(fifo,cmdline[i] + 256);
+	}
+	fifo32_put(fifo,10+256);
+	cons_newline(cons);
 	return;
 }

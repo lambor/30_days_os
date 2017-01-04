@@ -58,6 +58,10 @@ void console_task(struct SHEET *sheet,unsigned int memtotal)
 				cons.cur_c = -1;
 				boxfill8(sheet->buf,sheet->bxsize,COL8_000000,cons.cur_x,28,cons.cur_x+7,43);
 			}
+			else if(i == 4) //close button clicked
+			{
+				cmd_exit(&cons,fat);
+			}
 			else if(256<=i && i<=511)
 			{
 				if(i == 8+256) //back key

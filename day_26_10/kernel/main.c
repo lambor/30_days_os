@@ -14,6 +14,7 @@ int bootmain()
 	int fifobuf[128], keycmd_buf[32];
 	fifo32_init(&fifo,128,fifobuf,0);
 	fifo32_init(&keycmd,32,keycmd_buf,0);
+	*((int *)0x0fec) = (int) &fifo;
 
 	int key_leds = (binfo->leds>>4)&7;
 
@@ -125,10 +126,17 @@ int bootmain()
 		{
 			int i = fifo32_get(&fifo);
 			io_sti();
-			if(key_win->flags == 0) //key_win already closed
+			if(key_win != 0 && key_win->flags == 0) //key_win already closed
 			{
-				key_win = shtctl->sheets[shtctl->top - 1];
-				keywin_on(key_win);
+				if(shtctl->top == 1)
+				{
+					key_win = 0;
+				}
+				else
+				{
+					key_win = shtctl->sheets[shtctl->top - 1];
+					keywin_on(key_win);
+				}
 			}
 			if(256<=i && i<=511)
 			{
@@ -144,11 +152,11 @@ int bootmain()
 							(key_leds&4) != 0 && key_shift == 0)			//keyboard led on and shift off
 						s[0] += 0x20;		//uppercase 2 lowercases					
 				}
-				if(s[0]!=0)//visible char,return key and back key
+				if(s[0]!=0 && key_win != 0)//visible char,return key and back key
 				{
 					fifo32_put(&key_win->task->fifo,s[0]+256); //send key to console fifo
 				}
-				if(i == 256 + 0x0f) //tab key
+				if(i == 256 + 0x0f && key_win != 0) //tab key
 				{
 					keywin_off(key_win);
 					int j=key_win->height - 1;
@@ -202,7 +210,7 @@ int bootmain()
 					wait_KBC_sendready();
 					io_out8(PORT_KEYDAT,keycmd_wait);
 				}
-				else if(i == 256 + 0x3b && key_shift != 0)	//shift + F1
+				else if(i == 256 + 0x3b && key_shift != 0 && key_win != 0)	//shift + F1
 				{
 					struct TASK *task = key_win->task;
 					if(task!=0 && task->tss.ss0 != 0)
@@ -217,7 +225,7 @@ int bootmain()
 				}
 				else if(i == 256 + 0x3c && key_shift != 0)	//shift + F2 to open new console
 				{
-					keywin_off(key_win);
+					if(key_win != 0) keywin_off(key_win);
 					key_win = open_console(shtctl,memtotal);
 					sheet_slide(key_win,32,4);
 					sheet_updown(key_win,shtctl->top);
@@ -286,6 +294,13 @@ int bootmain()
 													io_sti();
 												}
 											}
+											else
+											{
+												struct TASK *task = sht->task;
+												io_cli();
+												fifo32_put(&task->fifo,4);
+												io_sti();
+											}
 										}
 										break;
 									}
@@ -312,6 +327,10 @@ int bootmain()
 						}
 					}
 				}
+			}
+			else if(768<=i && i<=1023)
+			{
+				close_console(shtctl->sheets0 + (i-768));
 			}
 		}
 	}
