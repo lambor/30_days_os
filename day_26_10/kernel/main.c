@@ -332,6 +332,11 @@ int bootmain()
 			{
 				close_console(shtctl->sheets0 + (i-768));
 			}
+			else if(1024<=i && i<=2023)
+			{
+				extern struct TASKCTL *taskctl;
+				close_constask(taskctl->tasks0 + (i-1024));
+			}
 		}
 	}
 }

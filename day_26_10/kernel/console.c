@@ -9,7 +9,7 @@ void cons_putchar(struct CONSOLE *cons,int chr,char move)
 		//tab
 		for(;;)
 		{
-			putfonts8_asc_sht(cons->sht,cons->cur_x,cons->cur_y,COL8_FFFFFF,COL8_000000," ",1);
+			if(cons->sht!=0)	putfonts8_asc_sht(cons->sht,cons->cur_x,cons->cur_y,COL8_FFFFFF,COL8_000000," ",1);
 			cons->cur_x += 8;
 			if(cons->cur_x == 8+240) {
 				cons_newline(cons);
@@ -24,7 +24,7 @@ void cons_putchar(struct CONSOLE *cons,int chr,char move)
 		;//todo
 	else
 	{
-		putfonts8_asc_sht(cons->sht,cons->cur_x,cons->cur_y,COL8_FFFFFF,COL8_000000,s,1);
+		if(cons->sht!=0)	putfonts8_asc_sht(cons->sht,cons->cur_x,cons->cur_y,COL8_FFFFFF,COL8_000000,s,1);
 		if(move != 0)
 		{
 			cons->cur_x += 8;
@@ -43,7 +43,7 @@ void cons_newline(struct CONSOLE *cons)
 	{
 		cons->cur_y += 16;
 	}
-	else
+	else if(sheet != 0)
 	{
 		for(y=28;y<28+112;y++)
 			for(x=8;x<8+240;x++)
@@ -71,6 +71,8 @@ void cons_runcmd(char *cmdline,struct CONSOLE *cons,int *fat,unsigned int memtot
 		cmd_exit(cons,fat);
 	else if(strncmp(cmdline,"start ",6) == 0)
 		cmd_start(cons,cmdline,memtotal);
+	else if(strncmp(cmdline,"ncst ",5) == 0)
+		cmd_ncst(cons,cmdline,memtotal);
 	else if(cmdline[0] != 0)
 	{
 		if(cmd_app(cons,fat,cmdline) == 0)
@@ -242,6 +244,7 @@ int cmd_app(struct CONSOLE *cons,int *fat,char *cmdline)
 
 void cmd_exit(struct CONSOLE *cons,int *fat)
 {
+	extern struct TASKCTL *taskctl;
 	struct MEMMAN *memman = (struct MEMMAN *)MEMMAN_ADDR;
 	struct TASK *task = task_now();
 	struct SHTCTL *shtctl = (struct SHTCTL *) *((int *)0x0fe4);
@@ -249,7 +252,10 @@ void cmd_exit(struct CONSOLE *cons,int *fat)
 	timer_cancel(cons->timer);
 	memman_free_4k(memman,(int)fat,4*2880);
 	io_cli();
-	fifo32_put(fifo,cons->sht - shtctl->sheets0 + 768);
+	if(cons->sht != 0)
+		fifo32_put(fifo,cons->sht - shtctl->sheets0 + 768);
+	else
+		fifo32_put(fifo,task - taskctl->tasks0 + 1024 );
 	io_sti();
 	for(;;)
 	{
@@ -276,16 +282,10 @@ void cons_putstr1(struct CONSOLE *cons,char *s,int l)
 	return;
 }
 
-
-struct SHEET *open_console(struct SHTCTL *shtctl,unsigned int memtotal)
+struct TASK *open_constask(struct SHEET *sht,unsigned int memtotal)
 {
 	struct MEMMAN *memman = (struct MEMMAN *)MEMMAN_ADDR;
-	struct SHEET *sht = sheet_alloc(shtctl);
-	unsigned char *buf = (unsigned char *)memman_alloc_4k(memman,256*165);
 	struct TASK *task = task_alloc();
-	sheet_setbuf(sht,buf,256,165,-1);
-	make_window8(buf,256,165,"console",0);
-	make_textbox8(sht,8,28,240,128,COL8_000000);
 	task->cons_stack = memman_alloc_4k(memman,64*1024);
 	task->tss.esp = task->cons_stack+64*1024-12;
 	task->tss.eip = (int)&console_task - 0x280000;
@@ -298,10 +298,21 @@ struct SHEET *open_console(struct SHTCTL *shtctl,unsigned int memtotal)
 	*((int *)(task->tss.esp + 4)) = sht;
 	*((int *)(task->tss.esp + 8)) = memtotal;
 	task_run(task,2,2);
-	sht->task = task;
-	sht->flags |= 0x20;
 	int *cons_fifo = memman_alloc_4k(memman,128*4);
 	fifo32_init(&task->fifo,128,cons_fifo,task);
+	return task;
+}
+
+struct SHEET *open_console(struct SHTCTL *shtctl,unsigned int memtotal)
+{
+	struct MEMMAN *memman = (struct MEMMAN *)MEMMAN_ADDR;
+	struct SHEET *sht = sheet_alloc(shtctl);
+	unsigned char *buf = (unsigned char *)memman_alloc_4k(memman,256*165);
+	sheet_setbuf(sht,buf,256,165,-1);
+	make_window8(buf,256,165,"console",0);
+	make_textbox8(sht,8,28,240,128,COL8_000000);
+	sht->task = open_constask(sht,memtotal);
+	sht->flags |= 0x20;
 	return sht;
 }
 
@@ -335,6 +346,19 @@ void cmd_start(struct CONSOLE *cons,char *cmdline,int memtotal)
 	sheet_updown(sht,shtctl->top);
 	for(i = 6;cmdline[i]!=0;i++)
 	{
+		fifo32_put(fifo,cmdline[i] + 256);
+	}
+	fifo32_put(fifo,10+256);
+	cons_newline(cons);
+	return;
+}
+
+void cmd_ncst(struct CONSOLE *cons,char *cmdline,int memtotal)
+{
+	struct TASK *task = open_constask(0,memtotal);
+	struct FIFO32 *fifo = &task->fifo;
+	int i;
+	for(i=5;cmdline[i]!=0;i++) {
 		fifo32_put(fifo,cmdline[i] + 256);
 	}
 	fifo32_put(fifo,10+256);
