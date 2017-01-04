@@ -10,6 +10,7 @@ struct TSS32
 };
 
 #include "fifo.h"
+#include "dsctbl.h"
 
 struct TASK
 {
@@ -17,6 +18,7 @@ struct TASK
 	int level,priority;
 	struct FIFO32 fifo;
 	struct TSS32 tss;
+	struct SEGMENT_DESCRIPTOR ldt[2];
 	struct CONSOLE *cons;
 	int ds_base,cons_stack;
 };

@@ -221,6 +221,7 @@ int bootmain()
 						task->tss.eax = (int)&(task->tss.esp0);
 						task->tss.eip = (int)asm_end_app - 0x280000;
 						io_sti();
+						task_run(task,-1,0);
 					}
 				}
 				else if(i == 256 + 0x3c && key_shift != 0)	//shift + F2 to open new console
@@ -280,7 +281,7 @@ int bootmain()
 										}
 										if(sht->bxsize - 21 <= x && x<sht->bxsize - 5 && y>=5 && y<19) //click the close button
 										{
-											if(sht->flags & 0x10)
+											if(sht->flags & 0x10)	//app window
 											{
 												if(sht->task != 0)
 												{
@@ -292,9 +293,10 @@ int bootmain()
 													extern void asm_end_app();
 													task->tss.eip = (int)&asm_end_app - 0x280000;
 													io_sti();
+													task_run(task,-1,0);
 												}
 											}
-											else
+											else				//console window
 											{
 												struct TASK *task = sht->task;
 												io_cli();
