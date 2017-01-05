@@ -1,3 +1,4 @@
+.SUFFIXES:
 OBJDIR=.
 
 CFLAGS := $(CFLAGS) -O1 -fno-builtin -I$(OBJDIR) -MD -fno-stack-protector                                                                                      

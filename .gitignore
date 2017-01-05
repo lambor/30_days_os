@@ -7,3 +7,4 @@ bootloader
 os.img
 *.d
 *.bin
+*.a

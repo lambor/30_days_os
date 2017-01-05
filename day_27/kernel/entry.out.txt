@@ -1,5 +1,5 @@
 
-entry.out.o:     file format elf32-i386
+entry.out.o：     文件格式 elf32-i386
 
 
 Disassembly of section .text:
@@ -29,7 +29,7 @@ Disassembly of section .text:
     c43c:	26 80 7d 1b 04       	cmpb   $0x4,%es:0x1b(%ebp)
     c441:	75 2e                	jne    c471 <scrn320>
     c443:	26 8b 05 25 80 00 74 	mov    %es:0x74008025,%eax
-    c44a:	26                   	es
+    c44a:	26 bb 05 41 b8 02    	es mov $0x2b84105,%ebx
 
 0000c44b <largescrn>:
     c44b:	bb 05 41 b8 02       	mov    $0x2b84105,%ebx
@@ -92,9 +92,7 @@ Disassembly of section .text:
     c4cd:	7f 66                	jg     c535 <protcseg+0x1b>
     c4cf:	83 c8 01             	or     $0x1,%eax
     c4d2:	0f 22 c0             	mov    %eax,%cr0
-    c4d5:	ea                   	.byte 0xea
-    c4d6:	1a c5                	sbb    %ch,%al
-    c4d8:	10 00                	adc    %al,(%eax)
+    c4d5:	ea 1a c5 10 00 0d 0a 	ljmp   $0xa0d,$0x10c51a
 
 0000c4da <msg>:
     c4da:	0d 0a 0a 0d 6d       	or     $0x6d0d0a0a,%eax
@@ -113,9 +111,7 @@ Disassembly of section .text:
     c4fd:	20 69 74             	and    %ch,0x74(%ecx)
     c500:	20 61 67             	and    %ah,0x67(%ecx)
     c503:	61                   	popa   
-    c504:	69                   	.byte 0x69
-    c505:	6e                   	outsb  %ds:(%esi),(%dx)
-	...
+    c504:	69 6e 00 8a 04 83 c6 	imul   $0xc683048a,0x0(%esi),%ebp
 
 0000c507 <puts>:
     c507:	8a 04 83             	mov    (%ebx,%eax,4),%al
@@ -176,10 +172,7 @@ Disassembly of section .text:
     c5a5:	ff 00                	incl   (%eax)
     c5a7:	00 00                	add    %al,(%eax)
     c5a9:	9a cf 00 7f 00 00 00 	lcall  $0x0,$0x7f00cf
-    c5b0:	28                   	.byte 0x28
-    c5b1:	9a                   	.byte 0x9a
-    c5b2:	c0                   	.byte 0xc0
-	...
+    c5b0:	28 9a c0 00 1f 00    	sub    %bl,0x1f00c0(%edx)
 
 0000c5b4 <gdtdesc>:
     c5b4:	1f                   	pop    %ds
