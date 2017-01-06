@@ -47,6 +47,8 @@ int bootmain()
 	memman_free(memman,0x00001000,0x0009e000);
 	memman_free(memman,0x00400000,memtotal-0x00400000);
 
+	load_hanyu();
+
 	struct SHTCTL *shtctl;
 	struct SHEET *sht_bg, *sht_mouse;
 	unsigned char *buf_bg,buf_mouse[256];
@@ -56,6 +58,7 @@ int bootmain()
 	shtctl = shtctl_init(memman,binfo->vram,binfo->scrnx,binfo->scrny);
 	*((int *)0x0fe4) = (int)shtctl;
 	task_a = task_init(memman); //main task
+	task_a->langmode = 0;
 	fifo.task = task_a;
 	task_run(task_a,1,0);
 
