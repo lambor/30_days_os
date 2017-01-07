@@ -23,6 +23,7 @@ NASSRC=$(wildcard *.nas)
 	gcc -P -E -DSTACK_SIZE=$(STACK_ESP0) -DHEADER_SIZE=$(HEADER_SIZE) ../bin_ld.c -o $@.ld
 	#incase section overlap
 	ld -T $@.ld -o $@.o $^ -L.. -llib --no-check-sections
+	objdump -dS $@.o > $@.txt
 	objcopy -S -O binary $@.o $@.all
 	dd if=$@.all of=$@.data bs=1 skip=$$(($(DEC_STACK_ESP0)-$(HEADER_SIZE)))
 	objcopy -S -O binary -j .text $@.o $@.text
@@ -50,4 +51,4 @@ copy:
 	cp *.bin ../ 
 
 clean:
-	rm -f *.bin *.o *.d *.header *.ld *.data *.text *.all *.body
+	rm -f *.bin *.o *.d *.header *.ld *.data *.text *.all *.body *.swp

@@ -223,7 +223,7 @@ int cmd_app(struct CONSOLE *cons,int *fat,char *cmdline)
 			{
 				q[esp + i] = p[dathrb + i];
 			}
-			start_app(0x1b,0*8+4,esp,1*8+4,&(task->tss.esp0));
+			start_app(0x1b,0*8+4,esp-4,1*8+4,&(task->tss.esp0));
 			struct SHEET *sht;
 			struct SHTCTL *shtctl = (struct SHTCTL *) *((int *)0x0fe4);
 			for(int i=0;i<MAX_SHEETS;i++)

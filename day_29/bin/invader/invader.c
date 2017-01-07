@@ -227,7 +227,7 @@ void putstr(int win, char *winbuf, int x, int y, int col, unsigned char *s)
 				q -= 336 * 16 + x;
 			} else {
 				t[0] = *s;
-				api_putstrwin(win + 1, x, y, col, 1, t);
+				api_putstrwin(win, x, y, col, 1, t);
 			}
 		}
 		s++;
