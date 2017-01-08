@@ -201,7 +201,7 @@ void putstr(int win, char *winbuf, int x, int y, int col, unsigned char *s)
 	y = y * 16 + 29;
 	x0 = x;
 	i = strlen(s);	/* s‚Ì•¶š”‚ğ”‚¦‚é */
-	api_boxfilwin(win + 1, x, y, x + i * 8 - 1, y + 15, 0);
+	api_boxfilwin(win, x, y, x + i * 8 - 1, y + 15, 0);
 	q = winbuf + y * 336;
 	t[1] = 0;
 	for (;;) {
