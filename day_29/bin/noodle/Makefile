@@ -8,8 +8,8 @@ DEC_STACK_ESP0 = $(shell printf "%d" $(STACK_ESP0))
 HEAP_BEGIN = 0
 HEADER_SIZE = 64			#64	bytes
 
-CFLAGS := $(CFLAGS) -O1 -fno-builtin -MD -fno-stack-protector
-CFLAGS += -fno-omit-frame-pointer
+CFLAGS := $(CFLAGS) -O1 -MD -fno-stack-protector
+CFLAGS += -fno-omit-frame-pointer 
 CFLAGS += -Wall -Wno-format -Wno-unused -gstabs -m32
 CFLAGS += -g -c
 
@@ -19,16 +19,18 @@ NASSRC=$(wildcard *.nas)
 %.bin: %.header %.body
 	cat $^ > $@
 
-%.body: entry.o %.c.o api.o string.o
+%.body: entry.o %.c.o api.o
+	echo $(LD_LIBRARY_PATH)
 	gcc -P -E -DSTACK_SIZE=$(STACK_ESP0) -DHEADER_SIZE=$(HEADER_SIZE) ../bin_ld.c -o $@.ld
-	ld -T $@.ld -o $@.o $^ --no-check-sections
+	ld  -T $@.ld -o $@.o  $^ ../dietlibc.a --no-check-sections -L/usr/lib/gcc/x86_64-linux-gnu/5/32 -lgcc
+	objdump -d -S $@.o > $@.txt
 	objcopy -S -O binary $@.o $@.all
 	dd if=$@.all of=$@.data bs=1 skip=$$(($(DEC_STACK_ESP0)-$(HEADER_SIZE)))
 	objcopy -S -O binary -j .text $@.o $@.text
 	cat $@.text $@.data > $@
 
 %.c.o: $(CSRC)
-	gcc -nostdinc $(CFLAGS) -o $@ $^
+	gcc $(CFLAGS) -fno-stack-protector -fno-mudflap -D_FORTIFY_SOURCE=0 -o $@ $^
 
 %.nas.o: $(NASSRC)
 	nasm -f elf $^ -o $@

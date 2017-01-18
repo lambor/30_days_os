@@ -1,5 +1,5 @@
 #include "../api.h"
-#include "../string.h"
+#include <stdio.h>
 void binmain(void)
 {
 	char *buf,s[12];
@@ -11,7 +11,7 @@ void binmain(void)
 	api_inittimer(timer,128);
 	for(;;)
 	{
-		sprintf(s,"%d:%d:%d",hou,min,sec);
+		sprintf(s,"%02d:%02d:%02d",hou,min,sec);
 		api_boxfilwin(win,28,27,115,41,7);
 		api_putstrwin(win,28,27,0,11,s);
 		api_settimer(timer,100);

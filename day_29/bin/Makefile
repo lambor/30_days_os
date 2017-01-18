@@ -18,7 +18,7 @@ all: liblib.a
 		&& $(MAKE) -C $$dir copy;\
 	done
 
-liblib.a: api.nas.o string.c.o util.c.o
+liblib.a: api.nas.o util.c.o
 	ar rcs $@ $^
 
 %.c.o: %.c
@@ -31,4 +31,4 @@ clean:
 	@for dir in $(BIN_DIRS); do \
 		$(MAKE) -C $$dir clean;\
 	done
-	rm -f *.bin *.a *.o *.d
+	rm -f *.bin liblib.a *.o *.d

@@ -7,7 +7,7 @@ SECTIONS
  .text : {
   *(.text .stub .text.* .gnu.linkonce.t.*)
  }
- . = 0x2c00;
+ . = 0x4000;
  .bss : {
   *(.bss)
  }

@@ -22,7 +22,7 @@ NASSRC=$(wildcard *.nas)
 %.body: entry.o %.c.o 
 	gcc -P -E -DSTACK_SIZE=$(STACK_ESP0) -DHEADER_SIZE=$(HEADER_SIZE) ../bin_ld.c -o $@.ld
 	#incase section overlap
-	ld -T $@.ld -o $@.o $^ -L.. -llib --no-check-sections
+	ld -T $@.ld -o $@.o $^ ../dietlibc.a ../liblib.a -L/usr/lib/gcc/x86_64-linux-gnu/5/32 -lgcc --no-check-sections
 	objdump -dS $@.o > $@.txt
 	objcopy -S -O binary $@.o $@.all
 	dd if=$@.all of=$@.data bs=1 skip=$$(($(DEC_STACK_ESP0)-$(HEADER_SIZE)))

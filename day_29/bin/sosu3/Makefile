@@ -3,12 +3,12 @@
 .PHONY: all clean copy
 DATA_SEG_SIZE = 64*1024 	#64KB
 DATA_SEG_RESV = 0
-STACK_ESP0 = 0x2c00			#11KB
+STACK_ESP0 = 0x4000			#16KB
 DEC_STACK_ESP0 = $(shell printf "%d" $(STACK_ESP0))
 HEAP_BEGIN = 0
 HEADER_SIZE = 64			#64	bytes
 
-CFLAGS := $(CFLAGS) -O1  -MD -fno-stack-protector
+CFLAGS := $(CFLAGS) -O0 -fno-builtin -MD -fno-stack-protector
 CFLAGS += -fno-omit-frame-pointer
 CFLAGS += -Wall -Wno-format -Wno-unused -gstabs -m32
 CFLAGS += -g -c
@@ -19,17 +19,17 @@ NASSRC=$(wildcard *.nas)
 %.bin: %.header %.body
 	cat $^ > $@
 
-%.body: entry.o %.c.o
+%.body: entry.o %.c.o 
 	gcc -P -E -DSTACK_SIZE=$(STACK_ESP0) -DHEADER_SIZE=$(HEADER_SIZE) ../bin_ld.c -o $@.ld
 	#incase section overlap
-	ld -T $@.ld -o $@.o $^ -L.. -llib --no-check-sections
+	ld -T $@.ld -o $@.o $^ ../dietlibc.a ../liblib.a -L/usr/lib/gcc/x86_64-linux-gnu/5/32 -lgcc --no-check-sections
 	objcopy -S -O binary $@.o $@.all
 	dd if=$@.all of=$@.data bs=1 skip=$$(($(DEC_STACK_ESP0)-$(HEADER_SIZE)))
 	objcopy -S -O binary -j .text $@.o $@.text
 	cat $@.text $@.data > $@
 
 %.c.o: $(CSRC)
-	gcc -nostdinc $(CFLAGS) -O0 -o $@ $^
+	gcc -nostdinc $(CFLAGS) -o $@ $^
 
 %.nas.o: $(NASSRC)
 	nasm -f elf $^ -o $@
